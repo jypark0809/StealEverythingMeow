@@ -13,9 +13,9 @@ public class Define : MonoBehaviour
     public enum State
     {
         Idle,
-        Move,
-        Attack,
+        Walk,
         Die,
+        Other,
     }
 
     public enum Layer
@@ -42,5 +42,7 @@ public class Define : MonoBehaviour
     {
         Click,
         Drag,
+        PointerDown,
+        PointerUp,
     }
 }
