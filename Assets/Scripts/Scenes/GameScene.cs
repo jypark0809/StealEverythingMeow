@@ -9,14 +9,13 @@ public class GameScene : BaseScene
         base.Init();
 
         SceneType = Define.Scene.Game;
-        // GameObject player = Managers.Game.Spawn(Define.WorldObject.Player, "UnityChan");
-        // Camera.main.gameObject.GetOrAddComponent<CameraController>().SetPlayer(player);
-
+        GameObject player = Managers.Game.Spawn(Define.WorldObject.Player, "Nyan/Cat_BlackTest");
+        Camera.main.GetComponent<CameraController>().SetPlayer(player);
     }
 
     void Update()
     {
-        
+
     }
 
     public override void Clear()
