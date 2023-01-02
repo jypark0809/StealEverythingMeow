@@ -1,5 +1,9 @@
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -18,6 +22,29 @@ public class UI_GameScene : UI_Scene
         FiiledCircle,
     }
 
+    enum Texts
+    {
+        TimeText,
+        GoldText,
+    }
+
+    enum Images
+    {
+        Heart1,
+        Heart2,
+        Heart3,
+    }
+
+    enum Buttons
+    {
+        PauseButton,
+    }
+
+    void Update()
+    {
+        UpdateTime();
+    }
+
     void Start()
     {
         Init();
@@ -27,12 +54,20 @@ public class UI_GameScene : UI_Scene
     {
         base.Init();
 
-        player = Managers.Game.GetPlayer().GetComponent<PlayerController>();
+        player = Managers.Object.Player;
         Bind<GameObject>(typeof(GameObjects));
+        Bind<Image>(typeof(Images));
+        Bind<TextMeshProUGUI>(typeof(Texts));
+        Bind<Button>(typeof(Buttons));
 
         GetObject((int)GameObjects.JoystickPanel).BindEvent(OnPointerDown, Define.UIEvent.PointerDown);
         GetObject((int)GameObjects.JoystickPanel).BindEvent(OnPointerUp, Define.UIEvent.PointerUp);
         GetObject((int)GameObjects.JoystickPanel).BindEvent(OnDrag, Define.UIEvent.Drag);
+
+        GetText((int)Texts.GoldText).text = Managers.Game.SaveData.Coin.ToString();
+
+        Managers.Resource.Load<Sprite>("Art/Sprites/UI/Heart_gray");
+        Managers.Resource.Load<Sprite>("Art/Sprites/UI/Heart_red");
 
         joystickRadius = GetObject((int)GameObjects.OutLineCircle).GetComponent<RectTransform>().sizeDelta.y * 1.2f;
         GetObject((int)GameObjects.OutLineCircle).SetActive(false);
@@ -89,5 +124,58 @@ public class UI_GameScene : UI_Scene
 
         GetObject((int)GameObjects.OutLineCircle).SetActive(false);
         GetObject((int)GameObjects.FiiledCircle).SetActive(false);
+    }
+
+
+    int min, sec;
+    float limitTime = 121;
+    void UpdateTime()
+    {
+        if (limitTime < 0)
+        {
+            limitTime = 0;
+            (Managers.Scene.CurrentScene as GameScene).GameOver();
+        }
+        else
+        {
+            limitTime -= Time.deltaTime;
+            min = (int)limitTime / 60;
+            sec = (int)limitTime % 60;
+            string result = sec.ToString("D2");
+            GetText((int)Texts.TimeText).text = $"{min}:{result}";
+        }
+    }
+
+    public void SetHeartUI(int hp)
+    {
+        switch (hp)
+        {
+            case 3:
+                GetImage((int)Images.Heart1).sprite = Managers.Resource.Load<Sprite>("Sprites/UI/Heart_red");
+                GetImage((int)Images.Heart2).sprite = Managers.Resource.Load<Sprite>("Sprites/UI/Heart_red");
+                GetImage((int)Images.Heart3).sprite = Managers.Resource.Load<Sprite>("Sprites/UI/Heart_red");
+                break;
+            case 2:
+                GetImage((int)Images.Heart1).sprite = Managers.Resource.Load<Sprite>("Sprites/UI/Heart_red");
+                GetImage((int)Images.Heart2).sprite = Managers.Resource.Load<Sprite>("Sprites/UI/Heart_red");
+                GetImage((int)Images.Heart3).sprite = Managers.Resource.Load<Sprite>("Sprites/UI/Heart_gray");
+                break;
+            case 1:
+                GetImage((int)Images.Heart1).sprite = Managers.Resource.Load<Sprite>("Sprites/UI/Heart_red");
+                GetImage((int)Images.Heart2).sprite = Managers.Resource.Load<Sprite>("Sprites/UI/Heart_gray");
+                GetImage((int)Images.Heart3).sprite = Managers.Resource.Load<Sprite>("Sprites/UI/Heart_gray");
+                break;
+            case 0:
+                GetImage((int)Images.Heart1).sprite = Managers.Resource.Load<Sprite>("Sprites/UI/Heart_gray");
+                GetImage((int)Images.Heart2).sprite = Managers.Resource.Load<Sprite>("Sprites/UI/Heart_gray");
+                GetImage((int)Images.Heart3).sprite = Managers.Resource.Load<Sprite>("Sprites/UI/Heart_gray");
+                (Managers.Scene.CurrentScene as GameScene).GameOver();
+                break;
+        }
+    }
+
+    public void UpdateGoldText()
+    {
+        GetText((int)Texts.GoldText).text = Managers.Game.SaveData.Coin.ToString();
     }
 }
