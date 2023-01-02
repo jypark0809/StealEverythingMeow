@@ -4,18 +4,10 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Managers.Game.SaveData.Coin += 100;
+        (Managers.UI.SceneUI as UI_GameScene).UpdateGoldText();
         gameObject.SetActive(false);
     }
 }

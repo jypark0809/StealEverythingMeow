@@ -25,10 +25,10 @@ public class Define : MonoBehaviour
         //Block = 10,
     }
 
-    public enum Scene
+    public enum SceneType
     {
         Unknown,
-        Game,
+        GameScene,
     }
 
     public enum Sound
@@ -45,4 +45,6 @@ public class Define : MonoBehaviour
         PointerDown,
         PointerUp,
     }
+
+    public const int MOTION_COUNT = 16;
 }

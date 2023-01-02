@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -13,7 +14,23 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     int speed = 5;
-    
+
+    [SerializeField]
+    int hp = 3;
+    public int Hp
+    {
+        get { return hp; }
+        set
+        {
+            if (hp < 0)
+                hp = 0;
+            hp = value;
+            (Managers.UI.SceneUI as UI_GameScene).SetHeartUI(hp);
+        }
+    }
+
+    public int MaxHp { get; private set; } = 3;
+
     Define.State _state = Define.State.Idle;
 
     public virtual Define.State State
