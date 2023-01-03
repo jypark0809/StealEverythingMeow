@@ -5,13 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class SceneManagerEx
 {
-    private Define.Scene _curSceneType = Define.Scene.Unknown;
+    private Define.SceneType _curSceneType = Define.SceneType.Unknown;
 
-    public Define.Scene CurrentSceneType
+    public Define.SceneType CurrentSceneType
     {
         get
         {
-            if (_curSceneType != Define.Scene.Unknown)
+            if (_curSceneType != Define.SceneType.Unknown)
                 return _curSceneType;
             return CurrentScene.SceneType;
         }
@@ -25,7 +25,7 @@ public class SceneManagerEx
 
     }
 
-    public void LoadScene(Define.Scene type)
+    public void LoadScene(Define.SceneType type)
     {
         Managers.Clear();
 
@@ -33,9 +33,9 @@ public class SceneManagerEx
         SceneManager.LoadScene(GetSceneName(type));
     }
 
-    string GetSceneName(Define.Scene type)
+    string GetSceneName(Define.SceneType type)
     {
-        string name = System.Enum.GetName(typeof(Define.Scene), type);
+        string name = System.Enum.GetName(typeof(Define.SceneType), type);
         char[] letters = name.ToLower().ToCharArray();
         letters[0] = char.ToUpper(letters[0]);
         return new string(letters);
