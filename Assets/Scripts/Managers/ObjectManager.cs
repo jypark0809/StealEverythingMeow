@@ -19,6 +19,9 @@ public class ObjectManager
         }
     }
 
+    Grid _catHouse;
+    public Grid CatHouse { get { return _catHouse; } set { _catHouse = value; } }
+
     public ObjectManager()
     {
         Init();
@@ -33,5 +36,11 @@ public class ObjectManager
     {
         GameObject go = Managers.Resource.Instantiate(path, parent);
         _player = go.GetOrAddComponent<PlayerController>();
+    }
+
+    public void SpawnCatHouse(string path, Transform parent = null)
+    {
+        GameObject go = Managers.Resource.Instantiate(path, parent);
+        _catHouse = go.GetOrAddComponent<Grid>();
     }
 }

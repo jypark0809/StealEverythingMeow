@@ -64,7 +64,8 @@ public class UI_GameScene : UI_Scene
         GetObject((int)GameObjects.JoystickPanel).BindEvent(OnPointerUp, Define.UIEvent.PointerUp);
         GetObject((int)GameObjects.JoystickPanel).BindEvent(OnDrag, Define.UIEvent.Drag);
 
-        GetText((int)Texts.GoldText).text = Managers.Game.SaveData.Coin.ToString();
+        GetText((int)Texts.GoldText).text = Managers.Game.SaveData.Gold.ToString();
+        GetButton((int)Buttons.PauseButton).gameObject.BindEvent(PopupGameOverUI);
 
         Managers.Resource.Load<Sprite>("Art/Sprites/UI/Heart_gray");
         Managers.Resource.Load<Sprite>("Art/Sprites/UI/Heart_red");
@@ -176,6 +177,11 @@ public class UI_GameScene : UI_Scene
 
     public void UpdateGoldText()
     {
-        GetText((int)Texts.GoldText).text = Managers.Game.SaveData.Coin.ToString();
+        GetText((int)Texts.GoldText).text = Managers.Game.SaveData.Gold.ToString();
+    }
+
+    void PopupGameOverUI(PointerEventData evt)
+    {
+        Managers.UI.ShowPopupUI<UI_GameOver>();
     }
 }
