@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 public class ResourceManager
 {
@@ -55,7 +57,7 @@ public class ResourceManager
 
     public GameObject Instantiate(GameObject prefab, Transform parent = null)
     {
-        GameObject go = Object.Instantiate(prefab, parent);
+        GameObject go = GameObject.Instantiate(prefab, parent);
         go.name = prefab.name;
         return go;
     }
