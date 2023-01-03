@@ -6,7 +6,7 @@ public class Item : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Managers.Game.SaveData.Coin += 100;
+        Managers.Game.SaveData.Gold += 100;
         (Managers.UI.SceneUI as UI_GameScene).UpdateGoldText();
         gameObject.SetActive(false);
     }

@@ -9,7 +9,7 @@ using static Define;
 public class GameData
 {
     public int Energy;
-    public int Coin;
+    public int Gold;
     public int Dia;
     public int Level;
     public int BGMVolume;
