@@ -29,7 +29,7 @@ public class UI_Store : UI_Popup
 
     void BuySomsomButton(PointerEventData evt)
     {
-        Managers.Resource.Instantiate("Somsom", Managers.Object.CatHouse.transform);
+        Managers.Resource.Instantiate("SOMSOMPRE", Managers.Object.CatHouse.transform);
         Managers.UI.ClosePopupUI();
     }
 

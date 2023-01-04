@@ -53,7 +53,7 @@ public class UI_UnlockRoomPopup : UI_Popup
             Managers.Game.SaveData.Gold -= 0;
 
             // Save Data
-            Managers.Game.SaveGame();
+            //Managers.Game.SaveGame();
 
             Managers.UI.ClosePopupUI();
         }
