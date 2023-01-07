@@ -1362,6 +1362,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 478569472018997970, guid: 5bb4c13d7ae44ec4487bddd2136a3f3d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3737430820374075610, guid: 5bb4c13d7ae44ec4487bddd2136a3f3d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3737430821731031764, guid: 5bb4c13d7ae44ec4487bddd2136a3f3d, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -1409,6 +1417,10 @@ PrefabInstance:
     - target: {fileID: 3737430821731031766, guid: 5bb4c13d7ae44ec4487bddd2136a3f3d, type: 3}
       propertyPath: m_Name
       value: CatHouse
+      objectReference: {fileID: 0}
+    - target: {fileID: 3737430821981416753, guid: 5bb4c13d7ae44ec4487bddd2136a3f3d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7695627244750273789, guid: 5bb4c13d7ae44ec4487bddd2136a3f3d, type: 3}
       propertyPath: m_IsTrigger
