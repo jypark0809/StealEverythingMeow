@@ -29,6 +29,7 @@ public class Define : MonoBehaviour
     {
         Unknown,
         GameScene,
+        CatRoomScene,
     }
 
     public enum Sound
