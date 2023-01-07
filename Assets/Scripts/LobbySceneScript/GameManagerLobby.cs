@@ -7,7 +7,8 @@ public class GameManagerLobby : MonoBehaviour
     public GameObject[] Room;
     Camera Camera;
     public int current_room = 0;
-
+    public Vector2 a;
+    public Vector2 b;
 
     private void Start()
     {
@@ -15,6 +16,8 @@ public class GameManagerLobby : MonoBehaviour
     }
     private void Update()
     {
+        Debug.Log(GetAngle(a,b));
+        /*
         if(Input.GetMouseButtonDown(0))
         {
             Vector3 mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -29,6 +32,13 @@ public class GameManagerLobby : MonoBehaviour
                 //hit.collider.gameObject.transform.position = new Vector3(mousepos.x,mousepos.y,0);
             }
         }
-
+        */
     }
+
+    float GetAngle(Vector2 start, Vector2 end)
+    {
+        Vector2 v2 = end.normalized - start.normalized;
+        return Mathf.Atan2(v2.y, v2.x) * 180/Mathf.PI;
+    }
+
 }

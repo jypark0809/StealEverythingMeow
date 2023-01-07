@@ -7,7 +7,7 @@ public class SomSom : MonoBehaviour
     public bool IsRoomOpen = false;
     private void Start()
     {
-        StartCoroutine("RoomOpen");
+        StartCoroutine("RoomOpen"); // 룸 확장조건 여부체크
     }
 
     void Update()
@@ -23,6 +23,10 @@ public class SomSom : MonoBehaviour
                 IsRoomOpen = false;
             }
 
+        }
+        else
+        {
+            //확장 풀가 팝업
         }
     }
 
