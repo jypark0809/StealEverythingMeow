@@ -5,11 +5,15 @@ using UnityEngine;
 public class ItemGenerator : MonoBehaviour
 {
     Item[] _items;
-    float timer = 10;
+
+    [SerializeField]
+    float spawnTime = 60;
+    float timer;
     public bool isActive = false;
 
     void Start()
     {
+        timer = spawnTime;
         _items = GetComponentsInChildren<Item>();
     }
 
@@ -21,7 +25,7 @@ public class ItemGenerator : MonoBehaviour
             if (timer < 0)
             {
                 RespawnCommonItem();
-                timer = 10;
+                timer = spawnTime;
             }
         }
     }
