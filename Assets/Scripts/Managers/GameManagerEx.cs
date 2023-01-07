@@ -12,8 +12,6 @@ public class GameData
     public int Gold;
     public int Dia;
     public int Level;
-    public int BGMVolume;
-    public int EffectVolume;
 
     public int[] Motion = new int[MOTION_COUNT];
 }
