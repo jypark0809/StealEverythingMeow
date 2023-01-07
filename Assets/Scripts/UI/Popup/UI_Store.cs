@@ -29,7 +29,8 @@ public class UI_Store : UI_Popup
 
     void BuySomsomButton(PointerEventData evt)
     {
-        Managers.Resource.Instantiate("Somsom", Managers.Object.CatHouse.transform);
+        GameObject go = Managers.Resource.Instantiate("Somsom", Managers.Object.CatHouse.transform);
+        go.transform.position = Util.FindChild(Managers.Object.CatHouse.gameObject,"Som_Spwan_Point").transform.position;
         Managers.UI.ClosePopupUI();
     }
 

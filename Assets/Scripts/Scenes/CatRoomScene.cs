@@ -10,7 +10,7 @@ public class CatRoomScene : BaseScene
     {
         base.Init();
 
-        // SceneType = Define.SceneType.GameScene;
+        SceneType = Define.SceneType.CatRoomScene;
 
         StartCoroutine(CoWaitLoad());
     }

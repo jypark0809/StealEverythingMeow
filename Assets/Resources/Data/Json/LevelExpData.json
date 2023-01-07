@@ -1,0 +1,52 @@
+{
+  "levelExps": [
+    {
+      "Level": 1,
+      "TotalExp": 0
+    },
+    {
+      "Level": 2,
+      "TotalExp": 300
+    },
+    {
+      "Level": 3,
+      "TotalExp": 600
+    },
+    {
+      "Level": 4,
+      "TotalExp": 900
+    },
+    {
+      "Level": 5,
+      "TotalExp": 1200
+    },
+    {
+      "Level": 6,
+      "TotalExp": 1500
+    },
+    {
+      "Level": 7,
+      "TotalExp": 1800
+    },
+    {
+      "Level": 8,
+      "TotalExp": 2100
+    },
+    {
+      "Level": 9,
+      "TotalExp": 2400
+    },
+    {
+      "Level": 10,
+      "TotalExp": 2700
+    },
+    {
+      "Level": 11,
+      "TotalExp": 3000
+    },
+    {
+      "Level": 12,
+      "TotalExp": 3300
+    }
+  ]
+}
