@@ -46,15 +46,26 @@ public class UI_UnlockRoomPopup : UI_Popup
         }
         else
         {
+            Debug.Log(Managers.Game.SaveData.Level);
+            switch(Managers.Game.SaveData.Level)
+            {
+                case 0:
+                    Util.FindChild(Managers.Object.CatHouse.gameObject, "living_room1_Hide", recursive: true).SetActive(false);
+                    Managers.UI.ShowPopupUI<UI_RoomRestTime>();
+                    break;
+                case 1:
+                    Util.FindChild(Managers.Object.CatHouse.gameObject, "living_room2_Hide", recursive: true).SetActive(false);
+                    break;
+                case 2:
+                    Util.FindChild(Managers.Object.CatHouse.gameObject, "small_room_Hide", recursive: true).SetActive(false);
+                    break;
+            }
+            Managers.Game.SaveData.Level++;
             // Unlock
-            Util.FindChild(Managers.Object.CatHouse.gameObject, "LobbyHide", recursive: true).SetActive(false);
-
             // Spend Gold
             Managers.Game.SaveData.Gold -= 0;
-
             // Save Data
-            Managers.Game.SaveGame();
-
+            //Managers.Game.SaveGame();
             Managers.UI.ClosePopupUI();
         }
     }
