@@ -6,30 +6,13 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    Rigidbody2D rigid;
-    Animator anim;
+    Rigidbody2D _rigid;
+    Animator _anim;
     public Vector3 MoveVec { get; set; }
 
+    public Stat Stat { get; set; }
+
     public Define.WorldObject WorldObjectType { get; protected set; } = Define.WorldObject.Player;
-
-    [SerializeField]
-    int speed = 5;
-
-    [SerializeField]
-    int hp = 3;
-    public int Hp
-    {
-        get { return hp; }
-        set
-        {
-            if (hp < 0)
-                hp = 0;
-            hp = value;
-            (Managers.UI.SceneUI as UI_GameScene).SetHeartUI(hp);
-        }
-    }
-
-    public int MaxHp { get; private set; } = 3;
 
     Define.State _state = Define.State.Idle;
 
@@ -40,16 +23,16 @@ public class PlayerController : MonoBehaviour
         {
             _state = value;
 
-            anim = GetComponent<Animator>();
+            _anim = GetComponent<Animator>();
             switch (_state)
             {
                 case Define.State.Die:
                     break;
                 case Define.State.Idle:
-                    anim.Play("Idle");
+                    _anim.Play("Idle");
                     break;
                 case Define.State.Walk:
-                    anim.Play("Walk");
+                    _anim.Play("Walk");
                     break;
             }
         }
@@ -57,18 +40,14 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        rigid = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
-    }
-
-    void Update()
-    {
-        
+        Stat = GetComponent<Stat>();
+        _rigid = GetComponent<Rigidbody2D>();
+        _anim = GetComponent<Animator>();
     }
 
     private void FixedUpdate()
     {
-        Vector2 nextVec = MoveVec * speed * Time.fixedDeltaTime;
-        rigid.MovePosition(rigid.position + nextVec);
+        Vector2 nextVec = MoveVec * Stat.MoveSpeed * Time.fixedDeltaTime;
+        _rigid.MovePosition(_rigid.position + nextVec);
     }
 }

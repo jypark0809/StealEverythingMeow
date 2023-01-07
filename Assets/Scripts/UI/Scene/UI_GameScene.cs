@@ -20,6 +20,7 @@ public class UI_GameScene : UI_Scene
         JoystickPanel,
         OutLineCircle,
         FiiledCircle,
+        ExpBar,
     }
 
     enum Texts
@@ -89,6 +90,11 @@ public class UI_GameScene : UI_Scene
     {
         Vector3 endDragPosition = evt.position;
         joystickDir = (endDragPosition - beginDragPos).normalized;
+
+        //float Dot = Vector3.Dot(joystickDir, Vector3.up);
+        //float Angle = Mathf.Acos(Dot);
+        //Debug.Log(Angle * Mathf.Rad2Deg);
+
         player.MoveVec = joystickDir;
 
         player.State = Define.State.Walk;
@@ -147,6 +153,11 @@ public class UI_GameScene : UI_Scene
         }
     }
 
+    public void PlusTime(float time)
+    {
+        limitTime += time;
+    }
+
     public void SetHeartUI(int hp)
     {
         switch (hp)
@@ -173,6 +184,11 @@ public class UI_GameScene : UI_Scene
                 (Managers.Scene.CurrentScene as GameScene).GameOver();
                 break;
         }
+    }
+
+    public void SetExpBar(int curExp, int maxExp)
+    {
+        GetObject((int)GameObjects.ExpBar).GetComponent<Slider>().value = (float)curExp/maxExp;
     }
 
     public void UpdateGoldText()

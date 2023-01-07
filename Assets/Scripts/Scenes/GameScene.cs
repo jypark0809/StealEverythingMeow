@@ -11,7 +11,6 @@ public class GameScene : BaseScene
         base.Init();
 
         SceneType = Define.SceneType.GameScene;
-        
 
         StartCoroutine(CoWaitLoad());
     }
