@@ -11,9 +11,9 @@ namespace Map
 
         public bool wall;
 
-        public int F => G + H;
+        // public int F => G + H;
 
-        public int G
+        public int G;
       
     }
 }
