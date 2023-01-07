@@ -6,6 +6,6 @@ public class Astar
 {
     public static class AStar
     {
-        public static Block PathFinding(this B)
+        // public static Block PathFinding(this B)
     }
 }
