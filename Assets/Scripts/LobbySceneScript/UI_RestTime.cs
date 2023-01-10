@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-public class UI_RestTime : UI_Popup
+public class RestTime : UI_Base
 {
     public float resttime = 20f;
     public TextMeshProUGUI text;
@@ -20,11 +20,7 @@ public class UI_RestTime : UI_Popup
 
     public override void Init()
     {
-        base.Init();
-
         Bind<TextMeshProUGUI>(typeof(Texts));
-
-
         text = GetText((int)Texts.TimeText);
         text.text = Mathf.Floor(resttime).ToString();
     }
