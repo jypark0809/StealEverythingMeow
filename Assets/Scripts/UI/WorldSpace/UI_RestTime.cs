@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-public class RestTime : UI_Base
+public class UI_RestTime : UI_Base
 {
     public float resttime = 20f;
     public TextMeshProUGUI text;
