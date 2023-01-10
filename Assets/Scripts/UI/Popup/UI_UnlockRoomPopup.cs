@@ -46,12 +46,12 @@ public class UI_UnlockRoomPopup : UI_Popup
         }
         else
         {
-            Debug.Log(Managers.Game.SaveData.Level);
+            
             switch(Managers.Game.SaveData.Level)
             {
                 case 0:
                     Util.FindChild(Managers.Object.CatHouse.gameObject, "living_room1_Hide", recursive: true).SetActive(false);
-                    Managers.UI.ShowPopupUI<UI_RoomRestTime>();
+                    Managers.UI.MakeWorldSpaceUI<UI_RestTime>();
                     break;
                 case 1:
                     Util.FindChild(Managers.Object.CatHouse.gameObject, "living_room2_Hide", recursive: true).SetActive(false);

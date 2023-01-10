@@ -13,55 +13,54 @@ public class Cat_Lobby : MonoBehaviour
     int curWalk = 0;
     int WalkCount = 16;
 
-
+    public GameManager thegame;
 
     private void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        StartCoroutine(Move());
     }
 
     private void Update()
     {
-        if(!IsMove)
+        if (thegame.FinalNodeList.Count != 0 && IsMove == false)
         {
             StartCoroutine(Move());
         }
     }
-    IEnumerator Move(float x = 0, float y = 0)
+    IEnumerator Move(int x = 0, int y = 0)
     {
         IsMove = true;
-        float InputX = x;
-        float InputY = y;
-        if (x != 0 || y != 0)
+        for (int i = 0; i < thegame.FinalNodeList.Count; i++)
         {
-            while (curWalk < WalkCount)
+            int InputX = thegame.FinalNodeList[i].x;
+            int InputY = thegame.FinalNodeList[i].y;
+            Debug.Log(InputX + " " + InputY);
+            if (x != 0 || y != 0)
             {
-                anim.SetBool("walk", true);
+                while (curWalk < WalkCount)
+                {
+                    anim.SetBool("walk", true);
+                    anim.SetFloat("dirX", InputX);
+                    anim.SetFloat("dirY", InputY);
+                    transform.Translate(new Vector2(InputX, InputY) * Time.deltaTime * _Speed);
+                    curWalk++;
+                    yield return new WaitForSeconds(0.01f);
+                }
+                anim.SetBool("walk", false);
+                yield return new WaitForSeconds(2f);
+            }
+            else
+            {
+                anim.SetBool("walk", false);
                 anim.SetFloat("dirX", InputX);
                 anim.SetFloat("dirY", InputY);
-                transform.Translate(new Vector2(InputX, InputY) * Time.deltaTime * _Speed);
-                curWalk++;
-                yield return new WaitForSeconds(0.01f);
-            }
-            anim.SetBool("walk", false);
-            yield return new WaitForSeconds(2f);
-        }
-        else
-        {
-            anim.SetBool("walk", false);
-            anim.SetFloat("dirX", InputX);
-            anim.SetFloat("dirY", InputY);
-            yield return new WaitForSeconds(3f);
+                yield return new WaitForSeconds(3f);
 
+            }
+            curWalk = 0;
+            yield return new WaitForSeconds(1f);
         }
-        curWalk = 0;
-        WalkCount = Random.Range(16, 33);
-        int a = Random.Range(-1, 2);
-        int b = Random.Range(-1, 2);
-        yield return new WaitForSeconds(1f);
-        StartCoroutine(Move(a, b));
     }
 }
 
