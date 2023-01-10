@@ -21,11 +21,8 @@ public class GameScene : BaseScene
         while (Managers.Data.Loaded() == false)
             yield return null;
         
-        Managers.Object.SpawnPlayer("Nyan/Cat_WhiteTest");
-        Managers.Object.Player.transform.position = new Vector3(-0.5f, -12.5f, 0);
+        Managers.Object.SpawnPlayer("Nyan/Cat_BlackTest");
         Managers.Object.Camera.SetPlayer(Managers.Object.Player);
-
-        Managers.UI.MakeWorldSpaceUI<UI_Test>();
 
         _gameSceneUI = Managers.UI.ShowSceneUI<UI_GameScene>();
     }
@@ -36,7 +33,7 @@ public class GameScene : BaseScene
 
         // Get Reward
 
-        // Managers.Game.SaveGame();
+        Managers.Game.SaveGame();
     }
 
     public void GameOver()
