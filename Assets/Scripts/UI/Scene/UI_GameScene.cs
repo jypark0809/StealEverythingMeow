@@ -1,12 +1,9 @@
-using Newtonsoft.Json.Linq;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.Windows;
+using Input = UnityEngine.Input;
 
 public class UI_GameScene : UI_Scene
 {
@@ -14,6 +11,7 @@ public class UI_GameScene : UI_Scene
     public Vector3 joystickDir;
     float joystickRadius;
     PlayerController player;
+    Animator _playerAnim;
 
     enum GameObjects
     {
@@ -56,6 +54,7 @@ public class UI_GameScene : UI_Scene
         base.Init();
 
         player = Managers.Object.Player;
+        _playerAnim = Managers.Object.Player.GetComponent<Animator>();
         Bind<GameObject>(typeof(GameObjects));
         Bind<Image>(typeof(Images));
         Bind<TextMeshProUGUI>(typeof(Texts));
@@ -79,6 +78,7 @@ public class UI_GameScene : UI_Scene
 
     void OnPointerDown(PointerEventData evt)
     {
+        Managers.Game.Jelly--;
         GetObject((int)GameObjects.OutLineCircle).SetActive(true);
         GetObject((int)GameObjects.FiiledCircle).SetActive(true);
         GetObject((int)GameObjects.OutLineCircle).transform.position = Input.mousePosition;
@@ -91,23 +91,10 @@ public class UI_GameScene : UI_Scene
         Vector3 endDragPosition = evt.position;
         joystickDir = (endDragPosition - beginDragPos).normalized;
 
-        //float Dot = Vector3.Dot(joystickDir, Vector3.up);
-        //float Angle = Mathf.Acos(Dot);
-        //Debug.Log(Angle * Mathf.Rad2Deg);
-
+        SetPlayerDir();
         player.MoveVec = joystickDir;
 
         player.State = Define.State.Walk;
-        if (joystickDir.x > 0)
-        {
-            // Right Animation
-            player.GetComponent<SpriteRenderer>().flipX = false;
-        }
-        else
-        {
-            // Left Animation
-            player.GetComponent<SpriteRenderer>().flipX = true;
-        }
 
         // Set FilledCircle Boundary
         float stickDistance = Vector3.Distance(endDragPosition, beginDragPos);
@@ -133,6 +120,69 @@ public class UI_GameScene : UI_Scene
         GetObject((int)GameObjects.FiiledCircle).SetActive(false);
     }
 
+    void SetPlayerDir()
+    {
+        float Dot = Vector3.Dot(joystickDir, Vector3.up);
+        float Angle = Mathf.Acos(Dot) * Mathf.Rad2Deg;
+
+        if (Angle < 22)
+        {
+            // up
+            _playerAnim.SetFloat("dirX", 0);
+            _playerAnim.SetFloat("dirY", 1);
+        }
+        else if (Angle < 67 && Angle >= 22)
+        {
+            if (joystickDir.x > 0)
+            {
+                // up right
+                _playerAnim.SetFloat("dirX", 1);
+                _playerAnim.SetFloat("dirY", 1);
+            }
+            else
+            {
+                // up left
+                _playerAnim.SetFloat("dirX", -1);
+                _playerAnim.SetFloat("dirY", 1);
+            }
+        }
+        else if (Angle < 112 && Angle >= 67)
+        {
+            if (joystickDir.x > 0)
+            {
+                // right
+                _playerAnim.SetFloat("dirX", 1);
+                _playerAnim.SetFloat("dirY", 0);
+            }
+            else
+            {
+                // left
+                _playerAnim.SetFloat("dirX", -1);
+                _playerAnim.SetFloat("dirY", 0);
+            }
+        }
+        else if(Angle < 157 && Angle >= 122)
+        {
+            if (joystickDir.x > 0)
+            {
+                // down right
+                _playerAnim.SetFloat("dirX", 1);
+                _playerAnim.SetFloat("dirY", -1);
+            }
+            else
+            {
+                // down left
+                _playerAnim.SetFloat("dirX", -1);
+                _playerAnim.SetFloat("dirY", -1);
+            }
+        }
+        else if(Angle > 157)
+        {
+            // down
+            _playerAnim.SetFloat("dirX", 0);
+            _playerAnim.SetFloat("dirY", -1);
+        }
+    }
 
     int min, sec;
     float limitTime = 121;
