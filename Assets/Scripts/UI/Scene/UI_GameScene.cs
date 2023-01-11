@@ -14,6 +14,9 @@ public class UI_GameScene : UI_Scene
     public Vector3 joystickDir;
     float joystickRadius;
     PlayerController player;
+    Animator _playerAnim;
+
+    public Action skillHandler = null;
 
     enum GameObjects
     {
@@ -39,6 +42,7 @@ public class UI_GameScene : UI_Scene
     enum Buttons
     {
         PauseButton,
+        SkillButton,
     }
 
     void Update()
@@ -56,6 +60,8 @@ public class UI_GameScene : UI_Scene
         base.Init();
 
         player = Managers.Object.Player;
+        _playerAnim = player.GetComponent<Animator>();
+
         Bind<GameObject>(typeof(GameObjects));
         Bind<Image>(typeof(Images));
         Bind<TextMeshProUGUI>(typeof(Texts));
@@ -66,7 +72,8 @@ public class UI_GameScene : UI_Scene
         GetObject((int)GameObjects.JoystickPanel).BindEvent(OnDrag, Define.UIEvent.Drag);
 
         GetText((int)Texts.GoldText).text = Managers.Game.SaveData.Gold.ToString();
-        GetButton((int)Buttons.PauseButton).gameObject.BindEvent(PopupGameOverUI);
+        GetButton((int)Buttons.PauseButton).gameObject.BindEvent(PopupPuaseUI);
+        GetButton((int)Buttons.SkillButton).gameObject.BindEvent((PointerEventData evt) => skillHandler?.Invoke());
 
         Managers.Resource.Load<Sprite>("Art/Sprites/UI/Heart_gray");
         Managers.Resource.Load<Sprite>("Art/Sprites/UI/Heart_red");
@@ -88,26 +95,11 @@ public class UI_GameScene : UI_Scene
 
     void OnDrag(PointerEventData evt)
     {
+        player.State = Define.State.Walk;
         Vector3 endDragPosition = evt.position;
         joystickDir = (endDragPosition - beginDragPos).normalized;
-
-        //float Dot = Vector3.Dot(joystickDir, Vector3.up);
-        //float Angle = Mathf.Acos(Dot);
-        //Debug.Log(Angle * Mathf.Rad2Deg);
-
+        SetPlayerAnim();
         player.MoveVec = joystickDir;
-
-        player.State = Define.State.Walk;
-        if (joystickDir.x > 0)
-        {
-            // Right Animation
-            player.GetComponent<SpriteRenderer>().flipX = false;
-        }
-        else
-        {
-            // Left Animation
-            player.GetComponent<SpriteRenderer>().flipX = true;
-        }
 
         // Set FilledCircle Boundary
         float stickDistance = Vector3.Distance(endDragPosition, beginDragPos);
@@ -133,6 +125,69 @@ public class UI_GameScene : UI_Scene
         GetObject((int)GameObjects.FiiledCircle).SetActive(false);
     }
 
+    void SetPlayerAnim()
+    {
+        float Dot = Vector3.Dot(joystickDir, Vector3.up);
+        float Angle = Mathf.Acos(Dot) * Mathf.Rad2Deg;
+
+        if (Angle < 22)
+        {
+            // Top
+            _playerAnim.SetFloat("dirX", 0);
+            _playerAnim.SetFloat("dirY", 1);
+        }
+        else if (Angle >= 22 && Angle < 67)
+        {
+            if (joystickDir.x > 0)
+            {
+                // Top Right
+                _playerAnim.SetFloat("dirX", 1);
+                _playerAnim.SetFloat("dirY", 1);
+            }
+            else
+            {
+                // Top Left
+                _playerAnim.SetFloat("dirX", -1);
+                _playerAnim.SetFloat("dirY", 1);
+            }
+        }
+        else if (Angle >= 67 && Angle < 112)
+        {
+            if (joystickDir.x > 0)
+            {
+                // Right
+                _playerAnim.SetFloat("dirX", 1);
+                _playerAnim.SetFloat("dirY", 0);
+            }
+            else
+            {
+                // Left
+                _playerAnim.SetFloat("dirX", -1);
+                _playerAnim.SetFloat("dirY", 0);
+            }
+        }
+        else if (Angle >= 112 && Angle < 157)
+        {
+            if (joystickDir.x > 0)
+            {
+                // Botton Right
+                _playerAnim.SetFloat("dirX", 1);
+                _playerAnim.SetFloat("dirY", -1);
+            }
+            else
+            {
+                // Bottom Left
+                _playerAnim.SetFloat("dirX", -1);
+                _playerAnim.SetFloat("dirY", -1);
+            }
+        }
+        else if (Angle >= 157)
+        {
+            // Bottom
+            _playerAnim.SetFloat("dirX", 0);
+            _playerAnim.SetFloat("dirY", -1);
+        }
+    }
 
     int min, sec;
     float limitTime = 121;
@@ -196,7 +251,7 @@ public class UI_GameScene : UI_Scene
         GetText((int)Texts.GoldText).text = Managers.Game.SaveData.Gold.ToString();
     }
 
-    void PopupGameOverUI(PointerEventData evt)
+    void PopupPuaseUI(PointerEventData evt)
     {
         Managers.UI.ShowPopupUI<UI_GameOver>();
     }

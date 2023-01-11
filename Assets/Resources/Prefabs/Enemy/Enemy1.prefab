@@ -158,8 +158,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 5
-  _attackTimer: 0
-  _transformList: []
+  _transformList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _state: 0
   angleRange: 60
   radius: 4

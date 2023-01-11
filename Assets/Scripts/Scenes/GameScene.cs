@@ -21,7 +21,8 @@ public class GameScene : BaseScene
         while (Managers.Data.Loaded() == false)
             yield return null;
         
-        Managers.Object.SpawnPlayer("Nyan/Cat_BlackTest");
+        Managers.Object.SpawnPlayer("Nyan/Minigame/Cat_Tabby");
+        Managers.Object.Player.transform.position = new Vector3(0, -13, 0);
         Managers.Object.Camera.SetPlayer(Managers.Object.Player);
 
         _gameSceneUI = Managers.UI.ShowSceneUI<UI_GameScene>();

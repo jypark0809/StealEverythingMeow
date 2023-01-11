@@ -32,8 +32,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - JumpPlayer
+  - InvisiblePlayer
   - Player
   - Item
   - Enemy
