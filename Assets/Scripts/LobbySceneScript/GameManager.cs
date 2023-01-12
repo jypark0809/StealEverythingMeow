@@ -30,7 +30,6 @@ public class GameManager : MonoBehaviour
     List<Node> OpenList, ClosedList;
 
     public Transform Catpos;
-    public Transform targPos;
 
     private void Start()
     {
@@ -45,6 +44,8 @@ public class GameManager : MonoBehaviour
         sizeX = topRight.x - bottomLeft.x + 1;
         sizeY = topRight.y - bottomLeft.y + 1;
         NodeArray = new Node[sizeX, sizeY];
+
+        targetPos = new Vector2Int(Random.Range(0, topRight.x), Random.Range(0, topRight.y));
 
         for (int i = 0; i < sizeX; i++)
         {
@@ -61,7 +62,7 @@ public class GameManager : MonoBehaviour
 
         // 시작과 끝 노드, 열린리스트와 닫힌리스트, 마지막리스트 초기화
         StartNode = NodeArray[(int)Catpos.position.x - bottomLeft.x, (int)Catpos.position.y - bottomLeft.y];
-        TargetNode = NodeArray[(int)targPos.position.x - bottomLeft.x, (int)targPos.position.y - bottomLeft.y];
+        TargetNode = NodeArray[(int)targetPos.x - bottomLeft.x, (int)targetPos.y - bottomLeft.y];
 
         OpenList = new List<Node>() { StartNode };
         ClosedList = new List<Node>();
@@ -111,6 +112,8 @@ public class GameManager : MonoBehaviour
             OpenListAdd(CurNode.x, CurNode.y - 1);
             OpenListAdd(CurNode.x - 1, CurNode.y);
         }
+
+        Debug.Log("움직일수 없습니다");
     }
 
     void OpenListAdd(int checkX, int checkY)
