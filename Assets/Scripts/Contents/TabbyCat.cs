@@ -4,24 +4,23 @@ using UnityEngine;
 
 public class TabbyCat : MonoBehaviour
 {
+    Rigidbody2D _rigid;
+
     void Start()
     {
+        _rigid = GetComponentInParent<Rigidbody2D>();
         (Managers.UI.SceneUI as UI_GameScene).skillHandler -= Test;
         (Managers.UI.SceneUI as UI_GameScene).skillHandler += Test;
     }
 
-    void Test()
+    private void FixedUpdate()
     {
-        Debug.Log("Tabby Skill");
-        Managers.Object.Player.State = Define.State.Jump;
-
-
-        StartCoroutine(CancleSkill());
+        _rigid.AddForce(new Vector2(1, 1) * 5f, ForceMode2D.Impulse);
     }
 
-    IEnumerator CancleSkill()
+    void Test()
     {
-        yield return new WaitForSeconds(0.6f);
-        Managers.Object.Player.State = Define.State.Idle;
+        Managers.Object.Player.State = Define.State.Jump;
+
     }
 }

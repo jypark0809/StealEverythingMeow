@@ -8,7 +8,7 @@ using UnityEngine.U2D;
 public class EnemyController : MonoBehaviour
 {
     [SerializeField]
-    int _speed = 5;
+    float _speed = 5;
 
     [SerializeField]
     float CHASE_TIME = 5;

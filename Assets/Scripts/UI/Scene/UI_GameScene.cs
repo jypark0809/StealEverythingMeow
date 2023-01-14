@@ -248,11 +248,12 @@ public class UI_GameScene : UI_Scene
 
     public void UpdateGoldText()
     {
-        GetText((int)Texts.GoldText).text = Managers.Game.SaveData.Gold.ToString();
+        GetText((int)Texts.GoldText).text = Managers.Object.Player.Stat.Gold.ToString();
     }
 
     void PopupPuaseUI(PointerEventData evt)
     {
-        Managers.UI.ShowPopupUI<UI_GameOver>();
+        Time.timeScale = 0;
+        Managers.UI.ShowPopupUI<UI_PauseGamePopup>();
     }
 }

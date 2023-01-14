@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class CalicoCat : MonoBehaviour
 {
+    Stat _stat;
+
     void Start()
     {
+        _stat = GetComponentInParent<Stat>();
         (Managers.UI.SceneUI as UI_GameScene).skillHandler -= Test;
         (Managers.UI.SceneUI as UI_GameScene).skillHandler += Test;
     }
 
     void Test()
     {
-        Debug.Log("BlackCat Skill");
-        GetComponentInParent<Stat>().MoveSpeed += 2f;
+        _stat.MoveSpeed += 2;
 
         StartCoroutine(CancleSkill());
     }
@@ -21,6 +23,6 @@ public class CalicoCat : MonoBehaviour
     IEnumerator CancleSkill()
     {
         yield return new WaitForSeconds(3f);
-        GetComponentInParent<Stat>().MoveSpeed -= 2f;
+        _stat.MoveSpeed -= 2;
     }
 }
