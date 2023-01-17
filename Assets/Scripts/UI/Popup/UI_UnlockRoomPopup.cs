@@ -10,6 +10,9 @@ public class UI_UnlockRoomPopup : UI_Popup
     enum Texts
     {
         GoldText,
+        CottonValue,
+        StoneValue,
+        WoodValue,
     }
 
     enum Buttons
@@ -35,6 +38,10 @@ public class UI_UnlockRoomPopup : UI_Popup
         GetButton((int)Buttons.OkayButton).gameObject.BindEvent(OnOkayButton);
         GetButton((int)Buttons.CancleButton).gameObject.BindEvent(OnCloseButton);
         GetButton((int)Buttons.CloseButton).gameObject.BindEvent(OnCloseButton);
+        GetText((int)Texts.CottonValue).text = "456456"; //차후 추가
+        GetText((int)Texts.StoneValue).text = "456456";//차후 추가
+        GetText((int)Texts.WoodValue).text = "456456";//차후 추가
+        Util.FindChild(this.gameObject, "Cotton", true).SetActive(false);
     }
 
     void OnOkayButton(PointerEventData evt)
@@ -46,12 +53,11 @@ public class UI_UnlockRoomPopup : UI_Popup
         }
         else
         {
-            
-            switch(Managers.Game.SaveData.Level)
+            switch (Managers.Game.SaveData.Level)
             {
                 case 0:
-                    Util.FindChild(Managers.Object.CatHouse.gameObject, "living_room1_Hide", recursive: true).SetActive(false);
                     Managers.UI.MakeWorldSpaceUI<UI_RestTime>();
+                    Util.FindChild(Managers.Object.CatHouse.gameObject, "living_room1_Hide", recursive: true).SetActive(false);
                     break;
                 case 1:
                     Util.FindChild(Managers.Object.CatHouse.gameObject, "living_room2_Hide", recursive: true).SetActive(false);

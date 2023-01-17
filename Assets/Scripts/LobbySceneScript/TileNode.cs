@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.EventSystems;
 
+/*
 [System.Serializable]
 public class Node
 {
@@ -18,7 +19,7 @@ public class Node
 }
 
 
-public class GameManager : MonoBehaviour
+public class TileNode : MonoBehaviour
 {
     public Vector2Int bottomLeft, topRight, startPos, targetPos;
     public List<Node> FinalNodeList;
@@ -29,23 +30,14 @@ public class GameManager : MonoBehaviour
     Node StartNode, TargetNode, CurNode;
     List<Node> OpenList, ClosedList;
 
-    public Transform Catpos;
-
-    private void Start()
-    {
-    }
-    private void Update()
-    {
-        
-    }
-    public void PathFinding()
+    public void PathFinding(Transform Catpos , Vector2Int targetPos)
     {
         // NodeArray의 크기 정해주고, isWall, x, y 대입
         sizeX = topRight.x - bottomLeft.x + 1;
         sizeY = topRight.y - bottomLeft.y + 1;
         NodeArray = new Node[sizeX, sizeY];
 
-        targetPos = new Vector2Int(Random.Range(0, topRight.x), Random.Range(0, topRight.y));
+        //targetPos = new Vector2Int(Random.Range(bottomLeft.x, topRight.x), Random.Range(bottomLeft.x, topRight.y));
 
         for (int i = 0; i < sizeX; i++)
         {
@@ -58,8 +50,6 @@ public class GameManager : MonoBehaviour
                 NodeArray[i, j] = new Node(isWall, i + bottomLeft.x, j + bottomLeft.y);
             }
         }
-
-
         // 시작과 끝 노드, 열린리스트와 닫힌리스트, 마지막리스트 초기화
         StartNode = NodeArray[(int)Catpos.position.x - bottomLeft.x, (int)Catpos.position.y - bottomLeft.y];
         TargetNode = NodeArray[(int)targetPos.x - bottomLeft.x, (int)targetPos.y - bottomLeft.y];
@@ -67,8 +57,6 @@ public class GameManager : MonoBehaviour
         OpenList = new List<Node>() { StartNode };
         ClosedList = new List<Node>();
         FinalNodeList = new List<Node>();
-
-
         while (OpenList.Count > 0)
         {
             // 열린리스트 중 가장 F가 작고 F가 같다면 H가 작은 걸 현재노드로 하고 열린리스트에서 닫힌리스트로 옮기기
@@ -95,8 +83,6 @@ public class GameManager : MonoBehaviour
                 for (int i = 0; i < FinalNodeList.Count; i++) print(i + "번째는 " + FinalNodeList[i].x + ", " + FinalNodeList[i].y);
                 return;
             }
-
-
             // ↗↖↙↘
             if (allowDiagonal)
             {
@@ -105,17 +91,13 @@ public class GameManager : MonoBehaviour
                 OpenListAdd(CurNode.x - 1, CurNode.y - 1);
                 OpenListAdd(CurNode.x + 1, CurNode.y - 1);
             }
-
             // ↑ → ↓ ←
             OpenListAdd(CurNode.x, CurNode.y + 1);
             OpenListAdd(CurNode.x + 1, CurNode.y);
             OpenListAdd(CurNode.x, CurNode.y - 1);
             OpenListAdd(CurNode.x - 1, CurNode.y);
         }
-
-        Debug.Log("움직일수 없습니다");
     }
-
     void OpenListAdd(int checkX, int checkY)
     {
         // 상하좌우 범위를 벗어나지 않고, 벽이 아니면서, 닫힌리스트에 없다면
@@ -151,3 +133,4 @@ public class GameManager : MonoBehaviour
                 Gizmos.DrawLine(new Vector2(FinalNodeList[i].x, FinalNodeList[i].y), new Vector2(FinalNodeList[i + 1].x, FinalNodeList[i + 1].y));
     }
 }
+*/

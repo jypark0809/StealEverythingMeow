@@ -6,19 +6,12 @@ public class UI_CatHouseScene_Upper : UI_Scene
 {
     enum Texts
     {
-        ChargeTime,
+        Current_Room_Text_Step,
         CoinMount,
+        DiaMount,
         JellyMount,
     }
 
-    enum Images
-    {
-        Heart1,
-        Heart2,
-        Heart3,
-        Heart4,
-        Heart5,
-    }
     void Start()
     {
         Init();
@@ -29,8 +22,12 @@ public class UI_CatHouseScene_Upper : UI_Scene
         base.Init();
         Bind<TextMeshProUGUI>(typeof(Texts));
 
+        GetText((int)Texts.JellyMount).text = "123 / 123";//123.ToString();
+        GetText((int)Texts.DiaMount).text = 99999999.ToString();
         GetText((int)Texts.CoinMount).text  = 99999999.ToString();// 코인,젤리양 데이터 추가
-        GetText((int)Texts.JellyMount).text = 99999999.ToString();
+
+
+
     }
 
     private void Update()
