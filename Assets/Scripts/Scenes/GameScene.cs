@@ -12,7 +12,7 @@ public class GameScene : BaseScene
     protected override void Init()
     {
         base.Init();
-
+        
         SceneType = Define.SceneType.GameScene;
 
         StartCoroutine(CoWaitLoad());
@@ -23,23 +23,51 @@ public class GameScene : BaseScene
         while (Managers.Data.Loaded() == false)
             yield return null;
 
-        _stage = Managers.Object.SpawnStage("Stage/Stage1");
+        Managers.Object.SpawnStage("Stage/Stage1");
+
+        // SetPlayer();
         _player = Managers.Object.SpawnPlayer("Nyan/Minigame/Cat_Calico");
         _player.transform.position = new Vector3(0, -13, 0);
         Managers.Object.Camera.SetPlayer(_player.GetComponent<PlayerController>());
 
+        // Managers.Resource.Instantiate("JellyScheduler");
         _gameSceneUI = Managers.UI.ShowSceneUI<UI_GameScene>();
     }
 
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer > 110)
+        if (timer > 115)
         {
             Managers.UI.ShowPopupUI<UI_NextStagePopup>();
             SpawnPortal();
             timer = 0;
         }
+    }
+
+    void SetPlayer()
+    {
+        switch(PlayerPrefs.GetInt("SelectCat"))
+        {
+            case 0:
+                _player = Managers.Object.SpawnPlayer("Nyan/Minigame/Cat_White");
+                break;
+            case 1:
+                _player = Managers.Object.SpawnPlayer("Nyan/Minigame/Cat_Black");
+                break;
+            case 2:
+                _player = Managers.Object.SpawnPlayer("Nyan/Minigame/Cat_Calico");
+                break;
+            case 3:
+                _player = Managers.Object.SpawnPlayer("Nyan/Minigame/Cat_Tabby");
+                break;
+            case 4:
+                _player = Managers.Object.SpawnPlayer("Nyan/Minigame/Cat_Gray");
+                break;
+        }
+
+        _player.transform.position = new Vector3(0, -13, 0);
+        Managers.Object.Camera.SetPlayer(_player.GetComponent<PlayerController>());
     }
 
     public void StageClear()
@@ -61,13 +89,11 @@ public class GameScene : BaseScene
     void SpawnPortal()
     {
         Transform[] spawnPos = Util.FindChild(_stage, "PortalRandomPoint", false).GetComponentsInChildren<Transform>();
-        Managers.Resource.Instantiate("Portal").transform.position = spawnPos[Random.Range(1,9)].position;
+        Managers.Resource.Instantiate("PortalContainer").transform.position = spawnPos[Random.Range(1,9)].position;
     }
 
     public void GoToNextStage()
     {
-        Debug.Log("Next Stage");
-
         _stage = Managers.Object.SpawnStage($"Stage/Stage{_player.GetComponent<Stat>().Stage}");
         _player.transform.position = new Vector3(0, -13, 0);
     }
@@ -75,6 +101,5 @@ public class GameScene : BaseScene
     public override void Clear()
     {
         Managers.Resource.Destroy(_stage);
-
     }
 }

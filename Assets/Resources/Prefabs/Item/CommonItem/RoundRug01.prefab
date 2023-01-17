@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1007662891436342330}
   - component: {fileID: 5476111484344452640}
   - component: {fileID: 5503441071184578020}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: RoundRug01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,3 +125,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: b817b42eeb9a1fc49be63851e8c47365, type: 2}
+  isPull: 0

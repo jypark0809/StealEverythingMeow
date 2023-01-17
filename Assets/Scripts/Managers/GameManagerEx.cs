@@ -8,12 +8,17 @@ using static Define;
 [Serializable]
 public class GameData
 {
-    public int Energy;
+    public int Jelly;
     public int Gold;
     public int Dia;
     public int Level;
 
     public int[] Motion = new int[MOTION_COUNT];
+
+    public GameData() 
+    {
+        Jelly = 5;
+    }
 }
 
 public class GameManagerEx
@@ -36,11 +41,6 @@ public class GameManagerEx
 
     #region Save&Load
     string _path;
-
-    void InitSaveData()
-    {
-        _gameData = new GameData();
-    }
 
     public void SaveGame()
     {

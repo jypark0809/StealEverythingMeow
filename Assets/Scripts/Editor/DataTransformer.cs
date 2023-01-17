@@ -21,6 +21,7 @@ public class DataTransformer : EditorWindow
     public static void ParseExcel()
     {
         ParseLevelExpData("LevelExp");
+        ParseStatSpeedData("StatSpeed");
     }
 
     static void ParseLevelExpData(string filename)
@@ -43,6 +44,36 @@ public class DataTransformer : EditorWindow
             {
                 Level = int.Parse(row[i++]),
                 TotalExp = int.Parse(row[i++])
+            });
+        }
+
+        #endregion
+
+        string jsonStr = JsonConvert.SerializeObject(loader, Formatting.Indented);
+        File.WriteAllText($"{Application.dataPath}/Resources/Data/Json/{filename}Data.json", jsonStr);
+        AssetDatabase.Refresh();
+    }
+
+    static void ParseStatSpeedData(string filename)
+    {
+        StatSpeedDataLoader loader = new StatSpeedDataLoader();
+
+        #region ExcelData
+        string[] lines = File.ReadAllText($"{Application.dataPath}/Resources/Data/Excel/{filename}Data.csv").Split("\n");
+
+        for (int y = 1; y < lines.Length; y++)
+        {
+            string[] row = lines[y].Replace("\r", "").Split(',');
+            if (row.Length == 0)
+                continue;
+            if (string.IsNullOrEmpty(row[0]))
+                continue;
+            int i = 0;
+
+            loader.StatSpeeds.Add(new StatSpeedData()
+            {
+                Stats_Lv = int.Parse(row[i++]),
+                Stats_Speed = float.Parse(row[i++])
             });
         }
 

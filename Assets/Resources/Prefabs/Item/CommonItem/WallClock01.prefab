@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4307099873451509583}
   - component: {fileID: 8105789733550306588}
   - component: {fileID: 7544435285678185165}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: WallClock01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,3 +125,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: b817b42eeb9a1fc49be63851e8c47365, type: 2}
+  isPull: 0

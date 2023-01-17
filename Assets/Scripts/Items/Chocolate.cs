@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class Chocolate : Item
 {
+    [SerializeField]
+    int Value = 1;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Managers.Object.Player.Stat.Hp -= 1;
-        gameObject.SetActive(false);
+        if (collision.tag == "Player")
+        {
+            Managers.Object.Player.Stat.Hp -= Value;
+            gameObject.SetActive(false);
+        }
     }
 }

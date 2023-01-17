@@ -25,3 +25,26 @@ public class LevelExpDataLoader : ILoader<int, LevelExpData>
         return dic;
     }
 }
+
+[Serializable]
+public class StatSpeedData
+{
+    public int Stats_Lv;
+    public float Stats_Speed;
+}
+
+[Serializable]
+public class StatSpeedDataLoader : ILoader<int, StatSpeedData>
+{
+    public List<StatSpeedData> StatSpeeds = new List<StatSpeedData>();
+
+    public Dictionary<int, StatSpeedData> MakeDict()
+    {
+        Dictionary<int, StatSpeedData> dic = new Dictionary<int, StatSpeedData>();
+
+        foreach (StatSpeedData speedData in StatSpeeds)
+            dic.Add(speedData.Stats_Lv, speedData);
+
+        return dic;
+    }
+}

@@ -18,6 +18,8 @@ public class UI_GameScene : UI_Scene
 
     public Action skillHandler = null;
 
+    UI_Test _testUI;
+
     enum GameObjects
     {
         JoystickPanel,
@@ -30,6 +32,7 @@ public class UI_GameScene : UI_Scene
     {
         TimeText,
         GoldText,
+        LevelText,
     }
 
     enum Images
@@ -249,6 +252,11 @@ public class UI_GameScene : UI_Scene
     public void UpdateGoldText()
     {
         GetText((int)Texts.GoldText).text = Managers.Object.Player.Stat.Gold.ToString();
+    }
+
+    public void UpdateLevelText()
+    {
+        GetText((int)Texts.LevelText).text = $"Lv.{Managers.Object.Player.Stat.Level.ToString()}";
     }
 
     void PopupPuaseUI(PointerEventData evt)

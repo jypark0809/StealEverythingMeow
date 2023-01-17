@@ -13,8 +13,12 @@ public class Stat : MonoBehaviour
     [SerializeField] protected int _rock;
     [SerializeField] protected int _cotton;
     [SerializeField] protected int _stage = 1;
+    [SerializeField] protected int _speedLv = 1;
+    [SerializeField] protected int _sightLv = 1;
+    [SerializeField] protected int _magnetLv = 1;
     [SerializeField] protected float _moveSpeed = 5;
     [SerializeField] protected float _sightRange;
+    [SerializeField] protected float _magnetRange;
 
     public int Level
     {
@@ -22,7 +26,9 @@ public class Stat : MonoBehaviour
         set
         {
             _level = value;
-
+            (Managers.UI.SceneUI as UI_GameScene).UpdateLevelText();
+            Managers.UI.ShowPopupUI<UI_SelectAbility>();
+            Time.timeScale = 0;
         }
     }
     public int Exp 
@@ -74,8 +80,23 @@ public class Stat : MonoBehaviour
     public int Rock { get { return _rock; } set { _rock = value; } }
     public int Cotton { get { return _cotton; } set { _cotton = value; } }
     public int Stage { get { return _stage; } set { _stage = value; } }
+    public int SpeedLv
+    {
+        get { return _speedLv; }
+        set
+        { 
+            _speedLv = value;
+            StatSpeedData speedData;
+            Managers.Data.StatSpeeds.TryGetValue(_speedLv, out speedData);
+            MoveSpeed = speedData.Stats_Speed;
+        }
+    }
+    public int SightLv { get { return _sightLv; } set { _sightLv = value; } }
+    public int MagnetLv { get { return _magnetLv; } set { _magnetLv = value; } }
     public float MoveSpeed { get { return _moveSpeed; } set { _moveSpeed = value; } }
     public float SightRange { get { return _sightRange; } set { _sightRange = value; } }
+    public float MagnetRange { get { return _magnetRange; } set { _magnetRange = value; } }
+
 
     void Start()
     {

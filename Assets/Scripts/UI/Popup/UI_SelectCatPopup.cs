@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class UI_SelectCatPopup : UI_Popup
@@ -23,6 +24,11 @@ public class UI_SelectCatPopup : UI_Popup
         GrayImage,
     }
 
+    enum Buttons
+    {
+        StartButton,
+    }
+
     void Start()
     {
         Init();
@@ -40,6 +46,8 @@ public class UI_SelectCatPopup : UI_Popup
         GetObject((int)Toggles.TabbyToggle).GetComponent<Toggle>().onValueChanged.AddListener(OnTabbyToggleSelected);
         GetObject((int)Toggles.GrayToggle).GetComponent<Toggle>().onValueChanged.AddListener(OnGrayToggleSelected);
         GetObject((int)Toggles.WhiteToggle).GetComponent<Toggle>().isOn = true;
+
+        GetButton((int)Buttons.StartButton).gameObject.BindEvent(OnStartButtonClicked);
     }
 
     #region Toggle
@@ -48,6 +56,7 @@ public class UI_SelectCatPopup : UI_Popup
         if (boolean)
         {
             GetImage((int)Images.WhiteImage).gameObject.GetComponent<Animator>().Play("Selected");
+            PlayerPrefs.SetInt("SelectCat", 0);
         }
         else
         {
@@ -60,6 +69,7 @@ public class UI_SelectCatPopup : UI_Popup
         if (boolean)
         {
             GetImage((int)Images.BlackImage).gameObject.GetComponent<Animator>().Play("Selected");
+            PlayerPrefs.SetInt("SelectCat", 1);
         }
         else
         {
@@ -72,6 +82,7 @@ public class UI_SelectCatPopup : UI_Popup
         if (boolean)
         {
             GetImage((int)Images.CalicoImage).gameObject.GetComponent<Animator>().Play("Selected");
+            PlayerPrefs.SetInt("SelectCat", 2);
         }
         else
         {
@@ -84,6 +95,7 @@ public class UI_SelectCatPopup : UI_Popup
         if (boolean)
         {
             GetImage((int)Images.TabbyImage).gameObject.GetComponent<Animator>().Play("Selected");
+            PlayerPrefs.SetInt("SelectCat", 3);
         }
         else
         {
@@ -96,6 +108,7 @@ public class UI_SelectCatPopup : UI_Popup
         if (boolean)
         {
             GetImage((int)Images.GrayImage).gameObject.GetComponent<Animator>().Play("Selected");
+            PlayerPrefs.SetInt("SelectCat", 4);
         }
         else
         {
@@ -103,4 +116,11 @@ public class UI_SelectCatPopup : UI_Popup
         }
     }
     #endregion
+
+    void OnStartButtonClicked(PointerEventData evt)
+    {
+        // Load
+
+        Managers.Scene.LoadScene(Define.SceneType.GameScene);
+    }
 }
