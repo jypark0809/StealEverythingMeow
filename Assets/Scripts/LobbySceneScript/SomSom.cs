@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class SomSom : MonoBehaviour
 {
-    public bool IsRoomOpen = false;
-    public bool IsUpgrdae = true;
+    public bool IsRoomOpen;
+    public bool IsUpgrdae;
     private void Start()
     {
-        StartCoroutine("RoomOpen"); // 룸 확장조건 여부체크
+        //StartCoroutine("RoomOpen"); // 룸 확장조건 여부체크
     }
 
     private void OnMouseDown()

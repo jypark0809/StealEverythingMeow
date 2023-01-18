@@ -29,10 +29,6 @@ public class Cat_Lobby : MonoBehaviour
     Animator anim;
 
     public float _Speed;
-    private bool IsMove;
-
-    int curWalk = 0;
-    int WalkCount = 16;
 
     int index = 0;
 
@@ -42,7 +38,6 @@ public class Cat_Lobby : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
-
     private void Update()
     {
 
@@ -89,7 +84,6 @@ public class Cat_Lobby : MonoBehaviour
             anim.SetBool("walk", false);
             anim.SetFloat("dirX", 0);
             anim.SetFloat("dirY", -1f);
-            IsMove = false;
         }
 
     }
@@ -194,7 +188,7 @@ public class Cat_Lobby : MonoBehaviour
         switch (_index)
         {
             case 0:
-                anim.Play("B_Other_Attack");
+                anim.Play("W_Other_Attack");
                 break;
             case 1:
                 anim.Play("W_Other_Blink");

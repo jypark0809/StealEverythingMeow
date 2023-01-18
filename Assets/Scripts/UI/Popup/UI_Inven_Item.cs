@@ -27,17 +27,10 @@ public class UI_Inven_Item : UI_Base
         Get<GameObject>((int)GameObjects.ItemIcon).gameObject.BindEvent(OnInstantPre);// 이벤트추가
 
     }
-
-    private void Update()
-    {
-
-    }
-
     void OnInstantPre(PointerEventData evt)
     {
         GameObject go = Managers.Resource.Instantiate("UI/UI_Inven_Item_pre");
-        go.transform.position = evt.position;
-        Managers.UI.ClosePopupUI();
+        //Managers.UI.ClosePopupUI();
     }
 
 }

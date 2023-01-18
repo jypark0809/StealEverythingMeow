@@ -53,16 +53,16 @@ public class UI_UnlockRoomPopup : UI_Popup
         }
         else
         {
+            Managers.Object.CatHouse.GetComponent<TileManager>().Open();
+            /*
             switch (Managers.Game.SaveData.Level)
             {
                 case 1:
-                    //Managers.UI.MakeWorldSpaceUI<UI_RestTime>();
                     Util.FindChild(Managers.Object.CatHouse.gameObject, "Hide_Living_Room2", recursive: true).SetActive(false);
-                    Camera.main.transform.position = new Vector3(0,0,-10); 
                     break;
                 case 2:
-                    Util.FindChild(Managers.Object.CatHouse.gameObject, "Hide_Samll_Room", recursive: true).SetActive(false);
-                    Camera.main.transform.position = new Vector3(10, 0, -10);
+                    StartCoroutine(OpenRoom("Hide_Samll_Room"));
+                    Camera.main.GetComponent<CameraTest>().target = new Vector3(10,0,-10);
                     break;
                 case 3:
                     Util.FindChild(Managers.Object.CatHouse.gameObject, "Hide_Samll_Kitchen", recursive: true).SetActive(false);
@@ -93,6 +93,7 @@ public class UI_UnlockRoomPopup : UI_Popup
                     Camera.main.transform.position = new Vector3(-6, -8, -10);
                     break;
             }
+            */
             Managers.Game.SaveData.Level++;
             // Unlock
             // Spend Gold
@@ -100,11 +101,18 @@ public class UI_UnlockRoomPopup : UI_Popup
             // Save Data
             //Managers.Game.SaveGame();
             Managers.UI.ClosePopupUI();
+            
         }
     }
 
     void OnCloseButton(PointerEventData evt)
     {
         Managers.UI.ClosePopupUI();
+    }
+
+    IEnumerator OpenRoom(string _name)
+    {
+        yield return new WaitForSeconds(1f);
+        Util.FindChild(Managers.Object.CatHouse.gameObject, _name, recursive: true).SetActive(false);
     }
 }

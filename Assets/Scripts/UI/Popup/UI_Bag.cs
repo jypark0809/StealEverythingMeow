@@ -42,9 +42,6 @@ public class UI_Bag : UI_Popup
             inven_item.SetInfo("asd1");
         }
         */
-
-
-
         GetButton((int)Buttons.CloseButton).gameObject.BindEvent(OnCloseButton);
     }
 

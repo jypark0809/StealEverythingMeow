@@ -38,10 +38,6 @@ public class UI_UpgradeSom : UI_Popup
         GetButton((int)Buttons.OkayButton).gameObject.BindEvent(OnOkayButton);
         GetButton((int)Buttons.CancleButton).gameObject.BindEvent(OnCloseButton);
         GetButton((int)Buttons.CloseButton).gameObject.BindEvent(OnCloseButton);
-        GetText((int)Texts.CottonValue).text = "999"; //차후 추가
-        GetText((int)Texts.StoneValue).text = "999";//차후 추가
-        GetText((int)Texts.WoodValue).text = "999";//차후 추가
-        //Util.FindChild(this.gameObject, "Cotton", true).SetActive(false);
     }
 
     void OnOkayButton(PointerEventData evt)
