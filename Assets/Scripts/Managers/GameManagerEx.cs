@@ -11,7 +11,9 @@ public class GameData
     public int Energy;
     public int Gold;
     public int Dia;
-    public int Level;
+    public int Level = 1;
+    public int currentFurniture;
+
 
     public int[] Motion = new int[MOTION_COUNT];
 }

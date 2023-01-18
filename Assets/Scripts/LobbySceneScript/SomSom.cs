@@ -4,30 +4,20 @@ using UnityEngine;
 
 public class SomSom : MonoBehaviour
 {
-    public bool IsRoomOpen = false;
+    public bool IsRoomOpen;
+    public bool IsUpgrdae;
     private void Start()
     {
-        StartCoroutine("RoomOpen"); // 룸 확장조건 여부체크
+        //StartCoroutine("RoomOpen"); // 룸 확장조건 여부체크
     }
 
-    void Update()
+    private void OnMouseDown()
     {
         if (IsRoomOpen)
-        {
-            Vector3 mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, LayerMask.GetMask("SomSom")))
-            {
-                Managers.UI.ShowPopupUI<UI_UnlockRoomPopup>();
-                IsRoomOpen = false;
-            }
+            Managers.UI.ShowPopupUI<UI_UnlockRoomPopup>();
+        else if (IsUpgrdae)
+            Managers.UI.ShowPopupUI<UI_UpgradeSom>();
 
-        }
-        else
-        {
-            //확장 풀가 팝업
-        }
     }
 
     IEnumerator RoomOpen()

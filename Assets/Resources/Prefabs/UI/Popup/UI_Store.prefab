@@ -145,7 +145,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC228\uC228\uC9D1 \uAD6C\uB9E4"
+  m_text: "\uAC00\uAD6C \uAD6C\uB9E4"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 55da9bf4fbab3b04a99f48ebdd7431d5, type: 2}
   m_sharedMaterial: {fileID: 2240069245312190547, guid: 55da9bf4fbab3b04a99f48ebdd7431d5, type: 2}
@@ -540,7 +540,7 @@ GameObject:
   - component: {fileID: 362933026212886887}
   - component: {fileID: 5077929087399674907}
   m_Layer: 5
-  m_Name: BuySomsomButton
+  m_Name: BuyFurnitureButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
