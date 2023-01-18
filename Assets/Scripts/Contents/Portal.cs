@@ -18,5 +18,6 @@ public class Portal : MonoBehaviour
     {
         Managers.Object.Player.Stat.Stage++;
         Managers.UI.ShowPopupUI<UI_Blocker>();
+        gameObject.SetActive(false);
     }
 }

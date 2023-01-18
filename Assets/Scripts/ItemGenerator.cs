@@ -7,6 +7,9 @@ public class ItemGenerator : MonoBehaviour
     Item[] _items;
 
     [SerializeField]
+    int respawnCount = 1;
+
+    [SerializeField]
     float spawnTime = 60;
     float timer;
     public bool isActive = false;
@@ -25,8 +28,12 @@ public class ItemGenerator : MonoBehaviour
             timer -= Time.deltaTime;
             if (timer < 0)
             {
-                RespawnCommonItem();
-                timer = spawnTime;
+                if (respawnCount > 0)
+                {
+                    RespawnCommonItem();
+                    timer = spawnTime;
+                    respawnCount--;
+                }
             }
         }
     }

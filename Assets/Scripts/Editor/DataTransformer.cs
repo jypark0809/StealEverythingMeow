@@ -22,6 +22,9 @@ public class DataTransformer : EditorWindow
     {
         ParseLevelExpData("LevelExp");
         ParseStatSpeedData("StatSpeed");
+        ParseStatSightData("StatSight");
+        ParseStatMagnetData("StatMagnet");
+        ParseDestroyableObjectData("DestroyableObject");
     }
 
     static void ParseLevelExpData(string filename)
@@ -74,6 +77,101 @@ public class DataTransformer : EditorWindow
             {
                 Stats_Lv = int.Parse(row[i++]),
                 Stats_Speed = float.Parse(row[i++])
+            });
+        }
+
+        #endregion
+
+        string jsonStr = JsonConvert.SerializeObject(loader, Formatting.Indented);
+        File.WriteAllText($"{Application.dataPath}/Resources/Data/Json/{filename}Data.json", jsonStr);
+        AssetDatabase.Refresh();
+    }
+
+    static void ParseStatSightData(string filename)
+    {
+        StatSightDataLoader loader = new StatSightDataLoader();
+
+        #region ExcelData
+        string[] lines = File.ReadAllText($"{Application.dataPath}/Resources/Data/Excel/{filename}Data.csv").Split("\n");
+
+        for (int y = 1; y < lines.Length; y++)
+        {
+            string[] row = lines[y].Replace("\r", "").Split(',');
+            if (row.Length == 0)
+                continue;
+            if (string.IsNullOrEmpty(row[0]))
+                continue;
+            int i = 0;
+
+            loader.StatSights.Add(new StatSightData()
+            {
+                Stats_Lv = int.Parse(row[i++]),
+                Stats_Sight = float.Parse(row[i++])
+            });
+        }
+
+        #endregion
+
+        string jsonStr = JsonConvert.SerializeObject(loader, Formatting.Indented);
+        File.WriteAllText($"{Application.dataPath}/Resources/Data/Json/{filename}Data.json", jsonStr);
+        AssetDatabase.Refresh();
+    }
+
+    static void ParseStatMagnetData(string filename)
+    {
+        StatMagnetDataLoader loader = new StatMagnetDataLoader();
+
+        #region ExcelData
+        string[] lines = File.ReadAllText($"{Application.dataPath}/Resources/Data/Excel/{filename}Data.csv").Split("\n");
+
+        for (int y = 1; y < lines.Length; y++)
+        {
+            string[] row = lines[y].Replace("\r", "").Split(',');
+            if (row.Length == 0)
+                continue;
+            if (string.IsNullOrEmpty(row[0]))
+                continue;
+            int i = 0;
+
+            loader.StatMagnets.Add(new StatMagnetData()
+            {
+                Stats_Lv = int.Parse(row[i++]),
+                Stats_Magnet = float.Parse(row[i++])
+            });
+        }
+
+        #endregion
+
+        string jsonStr = JsonConvert.SerializeObject(loader, Formatting.Indented);
+        File.WriteAllText($"{Application.dataPath}/Resources/Data/Json/{filename}Data.json", jsonStr);
+        AssetDatabase.Refresh();
+    }
+
+    static void ParseDestroyableObjectData(string filename)
+    {
+        DestroyableObjectDataLoader loader = new DestroyableObjectDataLoader();
+
+        #region ExcelData
+        string[] lines = File.ReadAllText($"{Application.dataPath}/Resources/Data/Excel/{filename}Data.csv").Split("\n");
+
+        for (int y = 1; y < lines.Length; y++)
+        {
+            string[] row = lines[y].Replace("\r", "").Split(',');
+            if (row.Length == 0)
+                continue;
+            if (string.IsNullOrEmpty(row[0]))
+                continue;
+            int i = 0;
+
+            loader.destroyableObjects.Add(new DestroyableObjectData()
+            {
+                Object_Id = int.Parse(row[i++]),
+                Object_Int_Name = row[i++],
+                Player_Lv = int.Parse(row[i++]),
+                Touch_Count = int.Parse(row[i++]),
+                Object_Gold = int.Parse(row[i++]),
+                Object_Diamond = int.Parse(row[i++]),
+                Image_Path = row[i++]
             });
         }
 

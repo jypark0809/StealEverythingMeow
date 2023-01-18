@@ -78,9 +78,6 @@ public class UI_GameScene : UI_Scene
         GetButton((int)Buttons.PauseButton).gameObject.BindEvent(PopupPuaseUI);
         GetButton((int)Buttons.SkillButton).gameObject.BindEvent((PointerEventData evt) => skillHandler?.Invoke());
 
-        Managers.Resource.Load<Sprite>("Art/Sprites/UI/Heart_gray");
-        Managers.Resource.Load<Sprite>("Art/Sprites/UI/Heart_red");
-
         joystickRadius = GetObject((int)GameObjects.OutLineCircle).GetComponent<RectTransform>().sizeDelta.y * 1.2f;
         GetObject((int)GameObjects.OutLineCircle).SetActive(false);
         GetObject((int)GameObjects.FiiledCircle).SetActive(false);

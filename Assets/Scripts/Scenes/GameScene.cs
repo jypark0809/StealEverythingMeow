@@ -23,25 +23,24 @@ public class GameScene : BaseScene
         while (Managers.Data.Loaded() == false)
             yield return null;
 
-        Managers.Object.SpawnStage("Stage/Stage1");
+        _stage = Managers.Object.SpawnStage("Stage/Stage1");
 
         // SetPlayer();
         _player = Managers.Object.SpawnPlayer("Nyan/Minigame/Cat_Calico");
         _player.transform.position = new Vector3(0, -13, 0);
         Managers.Object.Camera.SetPlayer(_player.GetComponent<PlayerController>());
 
-        // Managers.Resource.Instantiate("JellyScheduler");
         _gameSceneUI = Managers.UI.ShowSceneUI<UI_GameScene>();
     }
 
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer > 115)
+        if (timer > 30)
         {
             Managers.UI.ShowPopupUI<UI_NextStagePopup>();
             SpawnPortal();
-            timer = 0;
+            timer = -999;
         }
     }
 

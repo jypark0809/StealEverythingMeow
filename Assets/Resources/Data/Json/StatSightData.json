@@ -1,0 +1,16 @@
+{
+  "StatSights": [
+    {
+      "Stats_Lv": 1,
+      "Stats_Sight": 2.0
+    },
+    {
+      "Stats_Lv": 2,
+      "Stats_Sight": 3.0
+    },
+    {
+      "Stats_Lv": 3,
+      "Stats_Sight": 4.0
+    }
+  ]
+}

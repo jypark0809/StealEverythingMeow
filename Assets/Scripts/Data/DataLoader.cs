@@ -48,3 +48,77 @@ public class StatSpeedDataLoader : ILoader<int, StatSpeedData>
         return dic;
     }
 }
+
+[Serializable]
+public class StatSightData
+{
+    public int Stats_Lv;
+    public float Stats_Sight;
+}
+
+[Serializable]
+public class StatSightDataLoader : ILoader<int, StatSightData>
+{
+    public List<StatSightData> StatSights = new List<StatSightData>();
+
+    public Dictionary<int, StatSightData> MakeDict()
+    {
+        Dictionary<int, StatSightData> dic = new Dictionary<int, StatSightData>();
+
+        foreach (StatSightData sightData in StatSights)
+            dic.Add(sightData.Stats_Lv, sightData);
+
+        return dic;
+    }
+}
+
+[Serializable]
+public class StatMagnetData
+{
+    public int Stats_Lv;
+    public float Stats_Magnet;
+}
+
+[Serializable]
+public class StatMagnetDataLoader : ILoader<int, StatMagnetData>
+{
+    public List<StatMagnetData> StatMagnets = new List<StatMagnetData>();
+
+    public Dictionary<int, StatMagnetData> MakeDict()
+    {
+        Dictionary<int, StatMagnetData> dic = new Dictionary<int, StatMagnetData>();
+
+        foreach (StatMagnetData magnetData in StatMagnets)
+            dic.Add(magnetData.Stats_Lv, magnetData);
+
+        return dic;
+    }
+}
+
+[Serializable]
+public class DestroyableObjectData
+{
+    public int Object_Id;
+    public string Object_Int_Name;
+    public int Player_Lv;
+    public int Touch_Count;
+    public int Object_Gold;
+    public int Object_Diamond;
+    public string Image_Path;
+}
+
+[Serializable]
+public class DestroyableObjectDataLoader : ILoader<int, DestroyableObjectData>
+{
+    public List<DestroyableObjectData> destroyableObjects = new List<DestroyableObjectData>();
+
+    public Dictionary<int, DestroyableObjectData> MakeDict()
+    {
+        Dictionary<int, DestroyableObjectData> dic = new Dictionary<int, DestroyableObjectData>();
+
+        foreach (DestroyableObjectData objectData in destroyableObjects)
+            dic.Add(objectData.Object_Id, objectData);
+
+        return dic;
+    }
+}
