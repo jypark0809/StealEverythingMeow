@@ -14,6 +14,7 @@ public class FPSCheck : MonoBehaviour
 
     void Start()
     {
+        DontDestroyOnLoad(this);
         fFontSize = fFontSize == 0 ? 50 : fFontSize;
     }
 

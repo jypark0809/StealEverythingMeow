@@ -1,0 +1,6 @@
+Object_Id,Object_Int_Name,Player_Lv,Touch_Count,Object_Gold,Object_Diamond,Object_Path
+2301,Nintendo,2,10,300,0,Sprites/Items/DestroyableObject/Nintendo
+2302,Laptop,4,15,400,0,Sprites/Items/DestroyableObject/Laptop
+2303,Washer,6,20,500,0,Sprites/Items/DestroyableObject/Washer
+2304,TV,8,25,600,0,Sprites/Items/DestroyableObject/TV
+2305,Safebox,10,30,777,20,Sprites/Items/DestroyableObject/Safebox

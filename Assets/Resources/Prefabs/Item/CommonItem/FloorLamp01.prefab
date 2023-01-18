@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4250484830210032252}
   - component: {fileID: 5209653038042332370}
   - component: {fileID: 5991894152859376390}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: FloorLamp01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,3 +125,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: b817b42eeb9a1fc49be63851e8c47365, type: 2}
+  isPull: 0

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5196098231932261572}
   - component: {fileID: 8007872185388976601}
   - component: {fileID: 1233119105782489112}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: Rug01_Vertical
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,3 +125,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: b817b42eeb9a1fc49be63851e8c47365, type: 2}
+  isPull: 0

@@ -1,0 +1,49 @@
+{
+  "destroyableObjects": [
+    {
+      "Object_Id": 2301,
+      "Object_Int_Name": "Nintendo",
+      "Player_Lv": 2,
+      "Touch_Count": 10,
+      "Object_Gold": 300,
+      "Object_Diamond": 0,
+      "Image_Path": "Sprites/Items/DestroyableObject/Nintendo"
+    },
+    {
+      "Object_Id": 2302,
+      "Object_Int_Name": "Laptop",
+      "Player_Lv": 4,
+      "Touch_Count": 15,
+      "Object_Gold": 400,
+      "Object_Diamond": 0,
+      "Image_Path": "Sprites/Items/DestroyableObject/Laptop"
+    },
+    {
+      "Object_Id": 2303,
+      "Object_Int_Name": "Washer",
+      "Player_Lv": 6,
+      "Touch_Count": 20,
+      "Object_Gold": 500,
+      "Object_Diamond": 0,
+      "Image_Path": "Sprites/Items/DestroyableObject/Washer"
+    },
+    {
+      "Object_Id": 2304,
+      "Object_Int_Name": "TV",
+      "Player_Lv": 8,
+      "Touch_Count": 25,
+      "Object_Gold": 600,
+      "Object_Diamond": 0,
+      "Image_Path": "Sprites/Items/DestroyableObject/TV"
+    },
+    {
+      "Object_Id": 2305,
+      "Object_Int_Name": "Safebox",
+      "Player_Lv": 10,
+      "Touch_Count": 30,
+      "Object_Gold": 777,
+      "Object_Diamond": 20,
+      "Image_Path": "Sprites/Items/DestroyableObject/Safebox"
+    }
+  ]
+}

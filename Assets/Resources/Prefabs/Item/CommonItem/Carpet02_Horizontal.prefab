@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7529866723835126173}
   - component: {fileID: 8367981985446039879}
   - component: {fileID: 1218955472129455202}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: Carpet02_Horizontal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,3 +125,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: b817b42eeb9a1fc49be63851e8c47365, type: 2}
+  isPull: 0
