@@ -37,9 +37,35 @@ public class UI_Store : UI_Popup
     }
     void BuyFurnitureButton(PointerEventData evt)
     {
-        GameObject go = Managers.Resource.Instantiate("Somsom", Managers.Object.CatHouse.transform);
-        go.transform.position = Util.FindChild(Managers.Object.CatHouse.gameObject, "Living_1", true).transform.position;
         //가구 배치or 해금
+        switch (Managers.Game.SaveData.currentFurniture)
+        {
+            case 0:
+                GameObject go1 = Managers.Resource.Instantiate("1", Managers.Object.CatHouse.transform);
+                go1.transform.position = Util.FindChild(Managers.Object.CatHouse.gameObject, "1", true).transform.position;
+                break;
+            case 1:
+                GameObject go2 = Managers.Resource.Instantiate("2", Managers.Object.CatHouse.transform);
+                go2.transform.position = Util.FindChild(Managers.Object.CatHouse.gameObject, "2", true).transform.position;
+                break;
+            case 2:
+                GameObject go3 = Managers.Resource.Instantiate("3", Managers.Object.CatHouse.transform);
+                go3.transform.position = Util.FindChild(Managers.Object.CatHouse.gameObject, "3", true).transform.position;
+                break;
+            case 3:
+                GameObject go4 = Managers.Resource.Instantiate("4", Managers.Object.CatHouse.transform);
+                go4.transform.position = Util.FindChild(Managers.Object.CatHouse.gameObject, "4", true).transform.position;
+                break;
+            case 4:
+                GameObject go5 = Managers.Resource.Instantiate("5", Managers.Object.CatHouse.transform);
+                go5.transform.position = Util.FindChild(Managers.Object.CatHouse.gameObject, "5", true).transform.position;
+                break;
+            case 5:
+                GameObject go6 = Managers.Resource.Instantiate("6", Managers.Object.CatHouse.transform);
+                go6.transform.position = Util.FindChild(Managers.Object.CatHouse.gameObject, "6", true).transform.position;
+                break;
+        }
+        Managers.Game.SaveData.currentFurniture++;
         Managers.UI.ClosePopupUI();
     }
     void OnCloseButton(PointerEventData evt)

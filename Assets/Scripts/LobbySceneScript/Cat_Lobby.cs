@@ -14,8 +14,6 @@ public class Node
     public int x, y, G, H;
     public int F { get { return G + H; } }
 }
-
-
 public class Cat_Lobby : MonoBehaviour
 {
     public Vector2Int bottomLeft, topRight, startPos, targetPos;
@@ -48,10 +46,10 @@ public class Cat_Lobby : MonoBehaviour
     private void Update()
     {
 
-        if(FinalNodeList.Count == 0 && ReFind)
+        if (FinalNodeList.Count == 0 && ReFind)
         {
             ReFind = false;
-            PathFinding(this.transform, new Vector2Int(Random.Range(bottomLeft.x,topRight.x), Random.Range(bottomLeft.y, topRight.y)));
+            PathFinding(this.transform, new Vector2Int(Random.Range(bottomLeft.x, topRight.x), Random.Range(bottomLeft.y, topRight.y)));
             StartCoroutine(boolFind());
         }
         if (FinalNodeList.Count != 0)
@@ -67,11 +65,11 @@ public class Cat_Lobby : MonoBehaviour
     }
     public void MovePath()
     {
-        int InputX = FinalNodeList[index].x; 
+        int InputX = FinalNodeList[index].x;
         int InputY = FinalNodeList[index].y;
         Vector2 targetPos = new Vector2(InputX, InputY);
         transform.position = Vector2.MoveTowards(transform.position, targetPos, _Speed * Time.deltaTime);
-        if((transform.position.x == targetPos.x && transform.position.y == targetPos.y))
+        if ((transform.position.x == targetPos.x && transform.position.y == targetPos.y))
         {
             index++;
         }
@@ -92,11 +90,9 @@ public class Cat_Lobby : MonoBehaviour
             anim.SetFloat("dirX", 0);
             anim.SetFloat("dirY", -1f);
             IsMove = false;
-        }    
-           
+        }
+
     }
-
-
     public void PathFinding(Transform Catpos, Vector2Int targetPos)
     {
         // NodeArray의 크기 정해주고, isWall, x, y 대입
@@ -189,6 +185,59 @@ public class Cat_Lobby : MonoBehaviour
 
                 OpenList.Add(NeighborNode);
             }
+        }
+    }
+
+    private void OnMouseDown()
+    {
+        int _index = Random.Range(0, 15);
+        switch (_index)
+        {
+            case 0:
+                anim.Play("B_Other_Attack");
+                break;
+            case 1:
+                anim.Play("W_Other_Blink");
+                break;
+            case 2:
+                anim.Play("W_Other_Dig");
+                break;
+            case 3:
+                anim.Play("W_Other_Ennui");
+                break;
+            case 4:
+                anim.Play("W_Other_Lick");
+                break;
+            case 5:
+                anim.Play("W_Other_Paw");
+                break;
+            case 6:
+                anim.Play("W_Other_Relux");
+                break;
+            case 7:
+                anim.Play("W_Other_Scratch");
+                break;
+            case 8:
+                anim.Play("W_Other_Sleep1");
+                break;
+            case 9:
+                anim.Play("W_Other_Sleep2");
+                break;
+            case 10:
+                anim.Play("W_Other_Sleep3");
+                break;
+            case 11:
+                anim.Play("W_Other_Sniff");
+                break;
+            case 12:
+                anim.Play("W_Other_Stretch");
+                break;
+            case 13:
+                anim.Play("W_Other_Sway");
+                break;
+            case 14:
+                anim.Play("W_Other_Tail");
+                break;
         }
     }
 }
