@@ -26,7 +26,7 @@ public class UI_Inven_Item : UI_Base
     }
     void OnInstantPre(PointerEventData evt)
     {
-        Managers.UI.ShowPopupUI<UI_Inven_Item_pre>()
+        Managers.UI.ShowPopupUI<UI_Inven_Item_pre>();
     }
 
 }
