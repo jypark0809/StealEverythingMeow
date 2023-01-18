@@ -50,6 +50,6 @@ public class UI_CatHouse : UI_Scene
                 Managers.UI.ShowPopupUI<UI_Bag>();
                 break;
         }
-        GetDropDown((int)DropDown.MenuDropDown).value = 0;
+        // GetDropDown((int)DropDown.MenuDropDown).value = 0;
     }
 }
