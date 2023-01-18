@@ -31,9 +31,9 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
+  - Portal
+  - JumpPlayer
+  - InvisiblePlayer
   - Player
   - Item
   - Enemy

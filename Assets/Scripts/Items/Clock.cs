@@ -16,8 +16,11 @@ public class Clock : Item
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        ig.isActive = true;
-        (Managers.UI.SceneUI as UI_GameScene).PlusTime(plusTime);
-        gameObject.SetActive(false);
+        if (collision.tag == "Player")
+        {
+            ig.isActive = true;
+            (Managers.UI.SceneUI as UI_GameScene).PlusTime(plusTime);
+            gameObject.SetActive(false);
+        }
     }
 }

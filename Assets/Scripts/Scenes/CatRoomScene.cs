@@ -5,6 +5,8 @@ using UnityEngine;
 public class CatRoomScene : BaseScene
 {
     UI_CatHouseScene _catRoomScene;
+    UI_CatHouseScene_Upper _catHouseScene_Upper;
+    UI_CatHouse _catHouse;
 
     protected override void Init()
     {
@@ -20,9 +22,12 @@ public class CatRoomScene : BaseScene
         while (Managers.Data.Loaded() == false)
             yield return null;
 
-        Managers.Object.SpawnCatHouse("CatHouse");
+        Managers.Object.SpawnCatHouse("CatHouse2");
 
-        _catRoomScene = Managers.UI.ShowSceneUI<UI_CatHouseScene>();
+        _catHouse = Managers.UI.ShowSceneUI<UI_CatHouse>();
+        _catHouseScene_Upper = Managers.UI.ShowSceneUI<UI_CatHouseScene_Upper>();
+
+        
     }
 
     void Start()

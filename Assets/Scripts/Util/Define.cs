@@ -15,6 +15,7 @@ public class Define : MonoBehaviour
         Idle,
         Walk,
         Die,
+        Jump,
         Other,
     }
 

@@ -34,6 +34,9 @@ public class PlayerController : MonoBehaviour
                 case Define.State.Walk:
                     _anim.Play("Walk");
                     break;
+                case Define.State.Jump:
+                    _anim.Play("Jump");
+                    break;
             }
         }
     }
@@ -46,6 +49,29 @@ public class PlayerController : MonoBehaviour
     }
 
     private void FixedUpdate()
+    {
+        switch(State)
+        {
+            case Define.State.Die:
+                break;
+            case Define.State.Idle:
+
+                break;
+            case Define.State.Walk:
+                UpdateWalk();
+                break;
+            case Define.State.Jump:
+
+                break;
+        }
+    }
+
+    void UpdateDie()
+    {
+
+    }
+
+    void UpdateWalk()
     {
         Vector2 nextVec = MoveVec * Stat.MoveSpeed * Time.fixedDeltaTime;
         _rigid.MovePosition(_rigid.position + nextVec);

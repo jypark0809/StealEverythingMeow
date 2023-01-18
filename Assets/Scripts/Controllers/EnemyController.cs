@@ -8,10 +8,10 @@ using UnityEngine.U2D;
 public class EnemyController : MonoBehaviour
 {
     [SerializeField]
-    int _speed = 5;
+    float _speed = 5;
 
     [SerializeField]
-    float _attackTime = 5;
+    float CHASE_TIME = 5;
 
     Rigidbody2D _rigid;
     Animator _anim;
@@ -60,7 +60,7 @@ public class EnemyController : MonoBehaviour
         _rigid = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
 
-        _attackTimer = _attackTime;
+        _attackTimer = CHASE_TIME;
     }
 
     void FixedUpdate()
@@ -94,12 +94,18 @@ public class EnemyController : MonoBehaviour
     float _attackTimer;
     void UpdateAttack()
     {
+        if (_player.gameObject.layer == 28)
+        {
+            State = EnemyState.Idle;
+            _attackTimer = CHASE_TIME;
+        }
+
         _attackTimer -= Time.deltaTime;
 
         if (_attackTimer < 0)
         {
             State = EnemyState.Idle;
-            _attackTimer = _attackTime;
+            _attackTimer = CHASE_TIME;
         }
 
         Vector3 dir = _player.position - transform.position;
@@ -148,6 +154,9 @@ public class EnemyController : MonoBehaviour
 
     void SetCircularSector()
     {
+        if (_player.gameObject.layer == 28)
+            return;
+
         Vector3 dir = _player.transform.position - transform.position;
 
         // target과 나 사이의 거리가 radius 보다 작다면

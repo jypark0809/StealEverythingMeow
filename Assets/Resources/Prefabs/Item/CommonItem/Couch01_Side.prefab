@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8609299865424555641}
   - component: {fileID: 2614502754238250682}
   - component: {fileID: 4502557269861956459}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: Couch01_Side
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,3 +125,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: b817b42eeb9a1fc49be63851e8c47365, type: 2}
+  isPull: 0

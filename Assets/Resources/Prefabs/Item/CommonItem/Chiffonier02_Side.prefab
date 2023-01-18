@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2184459855184717694}
   - component: {fileID: 8138618308771621869}
   - component: {fileID: 1305789023844884020}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: Chiffonier02_Side
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,3 +125,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: b817b42eeb9a1fc49be63851e8c47365, type: 2}
+  isPull: 0
