@@ -87,6 +87,7 @@ public class Cat_Lobby : MonoBehaviour
         }
 
     }
+
     public void PathFinding(Transform Catpos, Vector2Int targetPos)
     {
         // NodeArray의 크기 정해주고, isWall, x, y 대입
@@ -233,6 +234,12 @@ public class Cat_Lobby : MonoBehaviour
                 anim.Play("W_Other_Tail");
                 break;
         }
+    }
+
+    public void Love()
+    {
+        Debug.Log("애정도가 올랐습니다");
+        Managers.UI.ClosePopupUI();
     }
 }
 

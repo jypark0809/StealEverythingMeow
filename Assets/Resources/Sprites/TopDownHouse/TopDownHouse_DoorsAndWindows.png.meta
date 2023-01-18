@@ -101,6 +101,18 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -3794,11 +3806,11 @@ TextureImporter:
       TopDownHouse_DoorsAndWindows_44: 832107603
       TopDownHouse_DoorsAndWindows_26: 1540988826
       TopDownHouse_DoorsAndWindows_154: 300072328
+      TopDownHouse_DoorsAndWindows_158: 1752237042
       TopDownHouse_DoorsAndWindows_106: -1637542524
       TopDownHouse_DoorsAndWindows_94: 1657624293
       TopDownHouse_DoorsAndWindows_56: -153608112
       TopDownHouse_DoorsAndWindows_119: -760659334
-      TopDownHouse_DoorsAndWindows_158: 1752237042
       TopDownHouse_DoorsAndWindows_126: 256620933
       TopDownHouse_DoorsAndWindows_19: -678699410
       TopDownHouse_DoorsAndWindows_124: -474874259
@@ -3819,20 +3831,20 @@ TextureImporter:
       TopDownHouse_DoorsAndWindows_43: -1531223560
       TopDownHouse_DoorsAndWindows_117: 351562310
       TopDownHouse_DoorsAndWindows_92: -589159325
+      TopDownHouse_DoorsAndWindows_159: 420836008
       TopDownHouse_DoorsAndWindows_11: 1711174811
-      TopDownHouse_DoorsAndWindows_58: 1419810137
       TopDownHouse_DoorsAndWindows_115: -1633497023
+      TopDownHouse_DoorsAndWindows_58: 1419810137
       TopDownHouse_DoorsAndWindows_91: 2126879053
-      TopDownHouse_DoorsAndWindows_123: -444078034
+      TopDownHouse_DoorsAndWindows_172: 2099669218
       TopDownHouse_DoorsAndWindows_103: -1951026817
-      TopDownHouse_DoorsAndWindows_70: -746108227
+      TopDownHouse_DoorsAndWindows_123: -444078034
       TopDownHouse_DoorsAndWindows_135: -2014933244
       TopDownHouse_DoorsAndWindows_9: -251969703
-      TopDownHouse_DoorsAndWindows_172: 2099669218
+      TopDownHouse_DoorsAndWindows_70: -746108227
       TopDownHouse_DoorsAndWindows_46: -1786115735
       TopDownHouse_DoorsAndWindows_35: 1920685718
       TopDownHouse_DoorsAndWindows_156: -1546777871
-      TopDownHouse_DoorsAndWindows_159: 420836008
       TopDownHouse_DoorsAndWindows_17: 1389490468
       TopDownHouse_DoorsAndWindows_77: 693462949
       TopDownHouse_DoorsAndWindows_163: -1010563963
@@ -3933,10 +3945,10 @@ TextureImporter:
       TopDownHouse_DoorsAndWindows_2: -1643625203
       TopDownHouse_DoorsAndWindows_54: -2032680928
       TopDownHouse_DoorsAndWindows_101: -275187139
-      TopDownHouse_DoorsAndWindows_87: -1989157596
+      TopDownHouse_DoorsAndWindows_147: 1307854112
       TopDownHouse_DoorsAndWindows_72: -561221844
       TopDownHouse_DoorsAndWindows_146: -2142069240
-      TopDownHouse_DoorsAndWindows_147: 1307854112
+      TopDownHouse_DoorsAndWindows_87: -1989157596
       TopDownHouse_DoorsAndWindows_108: -824840589
       TopDownHouse_DoorsAndWindows_5: -1735800647
       TopDownHouse_DoorsAndWindows_88: 1098040878
