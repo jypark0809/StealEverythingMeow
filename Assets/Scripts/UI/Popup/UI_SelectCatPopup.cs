@@ -38,6 +38,7 @@ public class UI_SelectCatPopup : UI_Popup
     {
         base.Init();
         Bind<GameObject>(typeof(Toggles));
+        Bind<Button>(typeof(Buttons));
         Bind<Image>(typeof(Images));
 
         GetObject((int)Toggles.WhiteToggle).GetComponent<Toggle>().onValueChanged.AddListener(OnWhiteToggleSelected);
@@ -50,9 +51,11 @@ public class UI_SelectCatPopup : UI_Popup
         GetButton((int)Buttons.StartButton).gameObject.BindEvent(OnStartButtonClicked);
     }
 
-    #region Toggle
+    #region EventHandler
     void OnWhiteToggleSelected(bool boolean)
     {
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
+
         if (boolean)
         {
             GetImage((int)Images.WhiteImage).gameObject.GetComponent<Animator>().Play("Selected");
@@ -66,6 +69,8 @@ public class UI_SelectCatPopup : UI_Popup
 
     void OnBlackToggleSelected(bool boolean)
     {
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
+
         if (boolean)
         {
             GetImage((int)Images.BlackImage).gameObject.GetComponent<Animator>().Play("Selected");
@@ -79,6 +84,8 @@ public class UI_SelectCatPopup : UI_Popup
 
     void OnCalicoToggleSelected(bool boolean)
     {
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
+
         if (boolean)
         {
             GetImage((int)Images.CalicoImage).gameObject.GetComponent<Animator>().Play("Selected");
@@ -92,6 +99,8 @@ public class UI_SelectCatPopup : UI_Popup
 
     void OnTabbyToggleSelected(bool boolean)
     {
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
+
         if (boolean)
         {
             GetImage((int)Images.TabbyImage).gameObject.GetComponent<Animator>().Play("Selected");
@@ -105,6 +114,8 @@ public class UI_SelectCatPopup : UI_Popup
 
     void OnGrayToggleSelected(bool boolean)
     {
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
+
         if (boolean)
         {
             GetImage((int)Images.GrayImage).gameObject.GetComponent<Animator>().Play("Selected");
@@ -119,8 +130,9 @@ public class UI_SelectCatPopup : UI_Popup
 
     void OnStartButtonClicked(PointerEventData evt)
     {
-        // Load
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
 
-        Managers.Scene.LoadScene(Define.SceneType.GameScene);
+        // Load
+        // Managers.Scene.LoadScene(Define.SceneType.GameScene);
     }
 }

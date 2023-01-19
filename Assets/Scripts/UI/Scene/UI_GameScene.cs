@@ -256,9 +256,12 @@ public class UI_GameScene : UI_Scene
         GetText((int)Texts.LevelText).text = $"Lv.{Managers.Object.Player.Stat.Level.ToString()}";
     }
 
+    #region EventHandler
     void PopupPuaseUI(PointerEventData evt)
     {
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
         Time.timeScale = 0;
         Managers.UI.ShowPopupUI<UI_PauseGamePopup>();
     }
+    #endregion
 }

@@ -48,14 +48,20 @@ public class SoundManager
         audioSource.pitch = pitch;
     }
 
+    public void Play(Define.Sound type)
+    {
+        AudioSource audioSource = _audioSources[(int)type];
+        audioSource.Play();
+    }
+
     public bool Play(Define.Sound type, string path, float volume = 1.0f, float pitch = 1.0f)
     {
         if (string.IsNullOrEmpty(path))
             return false;
 
         AudioSource audioSource = _audioSources[(int)type];
-        if (path.Contains("Sound/") == false)
-            path = string.Format("Sound/{0}", path);
+        if (path.Contains("Sounds/") == false)
+            path = string.Format("Sounds/{0}", path);
 
         audioSource.volume = volume;
 
@@ -70,7 +76,11 @@ public class SoundManager
 
             audioSource.clip = audioClip;
             audioSource.pitch = pitch;
-            audioSource.Play();
+
+            // Option
+            if(Managers.Game.BGMOn)
+                audioSource.Play();
+
             return true;
         }
         else if (type == Define.Sound.Effect)
@@ -80,7 +90,11 @@ public class SoundManager
                 return false;
 
             audioSource.pitch = pitch;
-            audioSource.PlayOneShot(audioClip);
+
+            // Option
+            if (Managers.Game.EffectSoundOn)
+                audioSource.PlayOneShot(audioClip);
+
             return true;
         }
 

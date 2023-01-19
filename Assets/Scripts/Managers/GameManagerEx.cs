@@ -14,6 +14,8 @@ public class GameData
     public int Level = 1;
     public int currentFurniture;
 
+    public bool BGMOn = true;
+    public bool EffectSoundOn = true;
 
     public int[] Motion = new int[MOTION_COUNT];
 
@@ -27,6 +29,20 @@ public class GameManagerEx
 {
     GameData _gameData = new GameData();
     public GameData SaveData { get { return _gameData; } set { _gameData = value; } }
+
+    #region Option
+    public bool BGMOn
+    {
+        get { return _gameData.BGMOn; }
+        set { _gameData.BGMOn = value; }
+    }
+
+    public bool EffectSoundOn
+    {
+        get { return _gameData.EffectSoundOn; }
+        set { _gameData.EffectSoundOn = value; }
+    }
+    #endregion
 
     public bool IsLoaded = false;
 
