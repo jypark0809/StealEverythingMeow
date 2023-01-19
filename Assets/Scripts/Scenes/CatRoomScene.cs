@@ -26,8 +26,6 @@ public class CatRoomScene : BaseScene
 
         _catHouse = Managers.UI.ShowSceneUI<UI_CatHouse>();
         _catHouseScene_Upper = Managers.UI.ShowSceneUI<UI_CatHouseScene_Upper>();
-
-        
     }
 
     void Start()
