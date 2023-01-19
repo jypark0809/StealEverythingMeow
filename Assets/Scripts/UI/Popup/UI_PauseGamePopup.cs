@@ -42,7 +42,7 @@ public class UI_PauseGamePopup : UI_Popup
         GetObject((int)Toggles.BgmToggle).GetComponent<Toggle>().onValueChanged.AddListener(OnBgmToggleSelected);
         GetObject((int)Toggles.BgmToggle).GetComponent<Toggle>().isOn = Managers.Game.BGMOn;
         GetObject((int)Toggles.EffectSoundToggle).GetComponent<Toggle>().onValueChanged.AddListener(OnEffectSoundToggleSelected);
-        GetObject((int)Toggles.EffectSoundToggle).GetComponent<Toggle>().isOn = Managers.Game.BGMOn;
+        GetObject((int)Toggles.EffectSoundToggle).GetComponent<Toggle>().isOn = Managers.Game.EffectSoundOn;
 
 
         GetText((int)Texts.WoodText).text = $"x {Managers.Object.Player.Stat.Wood.ToString()}";
@@ -59,8 +59,6 @@ public class UI_PauseGamePopup : UI_Popup
             Managers.Sound.Play(Define.Sound.Bgm);
         else
             Managers.Sound.Stop(Define.Sound.Bgm);
-
-        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
     }
 
     void OnEffectSoundToggleSelected(bool boolean)
@@ -68,11 +66,9 @@ public class UI_PauseGamePopup : UI_Popup
         Managers.Game.EffectSoundOn = boolean;
 
         if (boolean)
-            Managers.Sound.Play(Define.Sound.Effect);
-        else
-            Managers.Sound.Stop(Define.Sound.Effect);
-
-        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
+        {
+            Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
+        }
     }
 
     void OnCloseButtonClicked(PointerEventData evt)

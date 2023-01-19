@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: CommonItem
   m_EditorClassIdentifier: 
   gold: 4
-  exp: 100
+  exp: 2

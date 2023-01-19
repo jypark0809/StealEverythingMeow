@@ -8,6 +8,8 @@ public class Stat : MonoBehaviour
     [SerializeField] protected int _exp;
     [SerializeField] protected int _hp = 3;
     [SerializeField] protected int _maxHp = 3;
+    [SerializeField] protected int _map;
+    [SerializeField] protected int _maxMap = 5;
     [SerializeField] protected int _gold;
     [SerializeField] protected int _diamond;
     [SerializeField] protected int _wood;
@@ -45,9 +47,9 @@ public class Stat : MonoBehaviour
                 LevelExpData levelExpData;
                 if (Managers.Data.LevelExps.TryGetValue(level + 1, out levelExpData) == false)
                     break;
-                if (_exp < levelExpData.TotalExp)
+                if (_exp < levelExpData.Game_Lv_Exp)
                 {
-                    (Managers.UI.SceneUI as UI_GameScene).SetExpBar(_exp, levelExpData.TotalExp);
+                    (Managers.UI.SceneUI as UI_GameScene).SetExpBar(_exp, levelExpData.Game_Lv_Exp);
                     break;
                 }
                     
@@ -76,6 +78,17 @@ public class Stat : MonoBehaviour
         } 
     }
     public int MaxHp { get { return _maxHp; } set { _maxHp = value; } }
+    public int Map
+    {
+        get { return _map; }
+        set
+        {
+            _map = value;
+
+            (Managers.UI.SceneUI as UI_GameScene).UpdateTreasureMapImage(_map, MaxMap);
+        }
+    }
+    public int MaxMap { get { return _maxMap; } set { _maxMap = value; } }
     public int Gold { get { return _gold; } set { _gold = value; } }
     public int Diamond { get { return _diamond; } set { _diamond = value; } }
     public int Wood { get { return _wood; } set { _wood = value; } }

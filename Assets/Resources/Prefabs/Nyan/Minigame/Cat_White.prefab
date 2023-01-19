@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -1472874440864893020}
   m_Layer: 29
   m_Name: Cat_White
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58,7 +58,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300004, guid: b12163ef1f4bfc847aa42e60c9ce6dc0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -175,7 +175,10 @@ MonoBehaviour:
   _exp: 0
   _hp: 3
   _maxHp: 3
+  _map: 0
+  _maxMap: 5
   _gold: 0
+  _diamond: 0
   _wood: 0
   _rock: 0
   _cotton: 0
@@ -185,7 +188,7 @@ MonoBehaviour:
   _magnetLv: 1
   _moveSpeed: 5
   _sightRange: 0
-  _magnetRange: 0
+  _magnetRange: 0.4
 --- !u!1 &9113799795052110500
 GameObject:
   m_ObjectHideFlags: 0

@@ -45,8 +45,8 @@ public class DataTransformer : EditorWindow
 
             loader.levelExps.Add(new LevelExpData()
             {
-                Level = int.Parse(row[i++]),
-                TotalExp = int.Parse(row[i++])
+                Game_Lv = int.Parse(row[i++]),
+                Game_Lv_Exp = int.Parse(row[i++])
             });
         }
 

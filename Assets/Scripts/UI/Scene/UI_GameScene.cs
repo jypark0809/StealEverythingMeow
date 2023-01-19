@@ -40,6 +40,7 @@ public class UI_GameScene : UI_Scene
         Heart1,
         Heart2,
         Heart3,
+        TreasureMapImage
     }
 
     enum Buttons
@@ -254,6 +255,11 @@ public class UI_GameScene : UI_Scene
     public void UpdateLevelText()
     {
         GetText((int)Texts.LevelText).text = $"Lv.{Managers.Object.Player.Stat.Level.ToString()}";
+    }
+
+    public void UpdateTreasureMapImage(int curMapCount, int maxMapCount)
+    {
+        GetImage((int)Images.TreasureMapImage).fillAmount = (float)curMapCount / maxMapCount;
     }
 
     #region EventHandler
