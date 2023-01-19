@@ -10,7 +10,8 @@ public class PlayerController : MonoBehaviour
     Animator _anim;
     public Vector3 MoveVec { get; set; }
 
-    public Stat Stat { get; set; }
+    Stat _stat;
+    public Stat Stat { get { return _stat; } set { _stat = value; } }
 
     public Define.WorldObject WorldObjectType { get; protected set; } = Define.WorldObject.Player;
 
@@ -41,9 +42,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void Start()
+    void Awake()
     {
-        Stat = GetComponent<Stat>();
+        _stat = GetComponent<Stat>();
         _rigid = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
     }
@@ -64,6 +65,8 @@ public class PlayerController : MonoBehaviour
 
                 break;
         }
+
+        _rigid.velocity = Vector3.zero;
     }
 
     void UpdateDie()

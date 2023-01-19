@@ -27,6 +27,7 @@ public class UI_SelectCatPopup : UI_Popup
     enum Buttons
     {
         StartButton,
+        CloseButton
     }
 
     void Start()
@@ -47,8 +48,10 @@ public class UI_SelectCatPopup : UI_Popup
         GetObject((int)Toggles.TabbyToggle).GetComponent<Toggle>().onValueChanged.AddListener(OnTabbyToggleSelected);
         GetObject((int)Toggles.GrayToggle).GetComponent<Toggle>().onValueChanged.AddListener(OnGrayToggleSelected);
         GetObject((int)Toggles.WhiteToggle).GetComponent<Toggle>().isOn = true;
+        PlayerPrefs.SetInt("SelectedCatNum", 0);
 
         GetButton((int)Buttons.StartButton).gameObject.BindEvent(OnStartButtonClicked);
+        GetButton((int)Buttons.CloseButton).gameObject.BindEvent(OnCloseButtonClicked);
     }
 
     #region EventHandler
@@ -59,7 +62,8 @@ public class UI_SelectCatPopup : UI_Popup
         if (boolean)
         {
             GetImage((int)Images.WhiteImage).gameObject.GetComponent<Animator>().Play("Selected");
-            PlayerPrefs.SetInt("SelectCat", 0);
+            PlayerPrefs.SetInt("SelectedCatNum", 0);
+            Debug.Log(PlayerPrefs.GetInt("SelectedCatNum"));
         }
         else
         {
@@ -74,7 +78,7 @@ public class UI_SelectCatPopup : UI_Popup
         if (boolean)
         {
             GetImage((int)Images.BlackImage).gameObject.GetComponent<Animator>().Play("Selected");
-            PlayerPrefs.SetInt("SelectCat", 1);
+            PlayerPrefs.SetInt("SelectedCatNum", 1);
         }
         else
         {
@@ -89,7 +93,7 @@ public class UI_SelectCatPopup : UI_Popup
         if (boolean)
         {
             GetImage((int)Images.CalicoImage).gameObject.GetComponent<Animator>().Play("Selected");
-            PlayerPrefs.SetInt("SelectCat", 2);
+            PlayerPrefs.SetInt("SelectedCatNum", 2);
         }
         else
         {
@@ -104,7 +108,7 @@ public class UI_SelectCatPopup : UI_Popup
         if (boolean)
         {
             GetImage((int)Images.TabbyImage).gameObject.GetComponent<Animator>().Play("Selected");
-            PlayerPrefs.SetInt("SelectCat", 3);
+            PlayerPrefs.SetInt("SelectedCatNum", 3);
         }
         else
         {
@@ -119,7 +123,7 @@ public class UI_SelectCatPopup : UI_Popup
         if (boolean)
         {
             GetImage((int)Images.GrayImage).gameObject.GetComponent<Animator>().Play("Selected");
-            PlayerPrefs.SetInt("SelectCat", 4);
+            PlayerPrefs.SetInt("SelectedCatNum", 4);
         }
         else
         {
@@ -132,7 +136,12 @@ public class UI_SelectCatPopup : UI_Popup
     {
         Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
 
-        // Load
-        // Managers.Scene.LoadScene(Define.SceneType.GameScene);
+        Managers.Scene.LoadScene(Define.SceneType.GameScene);
+    }
+
+    void OnCloseButtonClicked(PointerEventData evt)
+    {
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
+        Managers.UI.ClosePopupUI();
     }
 }

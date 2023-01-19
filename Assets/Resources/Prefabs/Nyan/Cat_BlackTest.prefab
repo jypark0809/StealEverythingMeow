@@ -57,7 +57,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -158,7 +158,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f554f985a92f473479e092cb90ab8f54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
 --- !u!114 &-8005630128211763404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,4 +174,15 @@ MonoBehaviour:
   _exp: 0
   _hp: 3
   _maxHp: 3
+  _gold: 0
+  _diamond: 0
+  _wood: 0
+  _rock: 0
+  _cotton: 0
+  _stage: 1
+  _speedLv: 1
+  _sightLv: 1
+  _magnetLv: 1
   _moveSpeed: 5
+  _sightRange: 0
+  _magnetRange: 0
