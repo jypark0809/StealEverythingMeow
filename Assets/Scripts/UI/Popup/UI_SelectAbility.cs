@@ -75,7 +75,8 @@ public class UI_SelectAbility : UI_Popup
 
     void OnMoveSpeedButtonClicked(PointerEventData evt)
     {
-        if(GetButton((int)Buttons.MoveSpeedButton).interactable)
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
+        if (GetButton((int)Buttons.MoveSpeedButton).interactable)
         {
             Managers.Object.Player.Stat.SpeedLv++;
             Time.timeScale = 1;
@@ -85,6 +86,7 @@ public class UI_SelectAbility : UI_Popup
 
     void OnSightRangeButtonClicked(PointerEventData evt)
     {
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
         if (GetButton((int)Buttons.SightRangeButton).interactable)
         {
             Managers.Object.Player.Stat.SightLv++;
@@ -95,6 +97,7 @@ public class UI_SelectAbility : UI_Popup
 
     void OnMagnetRangeButtonClicked(PointerEventData evt)
     {
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
         if (GetButton((int)Buttons.MagnetRangeButton).interactable)
         {
             Managers.Object.Player.Stat.MagnetLv++;

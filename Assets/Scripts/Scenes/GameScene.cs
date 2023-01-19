@@ -31,6 +31,7 @@ public class GameScene : BaseScene
         Managers.Object.Camera.SetPlayer(_player.GetComponent<PlayerController>());
 
         _gameSceneUI = Managers.UI.ShowSceneUI<UI_GameScene>();
+        Managers.Sound.Play(Define.Sound.Bgm, "BGM/BGM_Game", volume: 0.1f);
     }
 
     void Update()
