@@ -229,11 +229,11 @@ public class EnemyController : MonoBehaviour
     #region OnDrawGizmos
     Color _red = new Color(1f, 0f, 0f, 0.2f);
     Color _blue = new Color(0f, 0f, 1f, 0.2f);
-    void OnDrawGizmos()
-    {
-        Handles.color = isCollide ? _red : _blue;
-        Handles.DrawSolidArc(transform.position, new Vector3(0, 0, 1), lookDir, angleRange / 2, radius);
-        Handles.DrawSolidArc(transform.position, new Vector3(0, 0, 1), lookDir, -angleRange / 2, radius);
-    }
+    //void OnDrawGizmos()
+    //{
+        //Handles.color = isCollide ? _red : _blue;
+        //Handles.DrawSolidArc(transform.position, new Vector3(0, 0, 1), lookDir, angleRange / 2, radius);
+        //Handles.DrawSolidArc(transform.position, new Vector3(0, 0, 1), lookDir, -angleRange / 2, radius);
+    //}
     #endregion
 }

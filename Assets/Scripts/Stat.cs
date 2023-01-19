@@ -66,10 +66,14 @@ public class Stat : MonoBehaviour
         get { return _hp; } 
         set 
         {
-            if (_hp < 0)
-                _hp = 0;
-
             _hp = value;
+
+            if (_hp <= 0)
+            {
+                _hp = 0;
+                Time.timeScale = 0;
+                (Managers.Scene.CurrentScene as GameScene).GameOver();
+            }
 
             if (_hp > _maxHp)
                 _hp = _maxHp;
