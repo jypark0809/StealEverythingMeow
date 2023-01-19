@@ -40,6 +40,7 @@ public class UI_GameScene : UI_Scene
         Heart1,
         Heart2,
         Heart3,
+        TreasureMapImage
     }
 
     enum Buttons
@@ -191,6 +192,7 @@ public class UI_GameScene : UI_Scene
 
     int min, sec;
     float limitTime = 121;
+    //(Managers.Scene.CurrentScene as GameScene).LIMIT_TIME;
     void UpdateTime()
     {
         if (limitTime < 0)
@@ -236,7 +238,6 @@ public class UI_GameScene : UI_Scene
                 GetImage((int)Images.Heart1).sprite = Managers.Resource.Load<Sprite>("Sprites/UI/Heart_gray");
                 GetImage((int)Images.Heart2).sprite = Managers.Resource.Load<Sprite>("Sprites/UI/Heart_gray");
                 GetImage((int)Images.Heart3).sprite = Managers.Resource.Load<Sprite>("Sprites/UI/Heart_gray");
-                (Managers.Scene.CurrentScene as GameScene).GameOver();
                 break;
         }
     }
@@ -256,9 +257,17 @@ public class UI_GameScene : UI_Scene
         GetText((int)Texts.LevelText).text = $"Lv.{Managers.Object.Player.Stat.Level.ToString()}";
     }
 
+    public void UpdateTreasureMapImage(int curMapCount, int maxMapCount)
+    {
+        GetImage((int)Images.TreasureMapImage).fillAmount = (float)curMapCount / maxMapCount;
+    }
+
+    #region EventHandler
     void PopupPuaseUI(PointerEventData evt)
     {
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
         Time.timeScale = 0;
         Managers.UI.ShowPopupUI<UI_PauseGamePopup>();
     }
+    #endregion
 }

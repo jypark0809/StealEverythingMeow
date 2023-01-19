@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/CatHouseScene.unity
+    guid: c7be6bef8e73fd3458bfd28286c3bbd9
+  - enabled: 1
+    path: Assets/Scenes/GameScene.unity
+    guid: 6628a018607ceb447b930816dcefa7fc
   m_configObjects: {}

@@ -4,11 +4,21 @@ using UnityEngine;
 
 public class SomSom : MonoBehaviour
 {
-    public bool IsRoomOpen;
-    public bool IsUpgrdae;
-    private void Start()
+    public bool IsRoomOpen = false;
+    public bool IsUpgrdae = false;
+
+
+    private void Update()
     {
-        //StartCoroutine("RoomOpen"); // 룸 확장조건 여부체크
+        if(Managers.Game.SaveData.curFurnitureCount == Managers.Game.SaveData.MaxFurniture[Managers.Game.SaveData.RoomLevel])
+        {
+            IsRoomOpen = true;
+            if (Managers.Game.SaveData.RoomLevel == 3)
+            {
+                IsRoomOpen = false;
+                IsUpgrdae = true;
+            }
+        }
     }
 
     private void OnMouseDown()
@@ -17,12 +27,14 @@ public class SomSom : MonoBehaviour
             Managers.UI.ShowPopupUI<UI_UnlockRoomPopup>();
         else if (IsUpgrdae)
             Managers.UI.ShowPopupUI<UI_UpgradeSom>();
-
     }
-
-    IEnumerator RoomOpen()
+    public void SomUpgrade()
     {
-        yield return new WaitForSeconds(2f);
-        IsRoomOpen = true;
+        Managers.UI.ClosePopupUI(); ;
+        GameObject go = Util.FindChild(Managers.Object.CatHouse.gameObject, "Somsom", true);
+        go.transform.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Furniture/woodhouse");
+        Managers.Game.SaveData.RoomLevel++;
+        Managers.Game.SaveData.curFurnitureCount = 0;
+        IsUpgrdae = false;
     }
 }

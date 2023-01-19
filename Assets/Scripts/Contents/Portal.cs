@@ -16,8 +16,11 @@ public class Portal : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Managers.Object.Player.Stat.Stage++;
-        Managers.UI.ShowPopupUI<UI_Blocker>();
-        gameObject.SetActive(false);
+        if (collision.tag == "Player")
+        {
+            Managers.Object.Player.Stat.Stage++;
+            Managers.UI.ShowPopupUI<UI_Blocker>();
+            gameObject.SetActive(false);
+        }
     }
 }

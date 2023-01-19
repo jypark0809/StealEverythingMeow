@@ -21,6 +21,7 @@ public class EnemyController : MonoBehaviour
     List<Transform> _transformList;
 
     Transform _player;
+    GameObject _sightScope;
 
     public enum EnemyState
     {
@@ -61,6 +62,7 @@ public class EnemyController : MonoBehaviour
         _anim = GetComponent<Animator>();
 
         _attackTimer = CHASE_TIME;
+        _sightScope = Util.FindChild(gameObject, "SightScopeContainer", true);
     }
 
     void FixedUpdate()
@@ -190,7 +192,6 @@ public class EnemyController : MonoBehaviour
     int index = 0;
     Vector3 destPos;
     Vector3 lookDir;
-
     void setDestination()
     {
         // Last index point -> First index point
@@ -206,6 +207,18 @@ public class EnemyController : MonoBehaviour
             destPos = _transformList[index].position;
             lookDir = (_transformList[index].position - _transformList[index-1].position).normalized;
         }
+
+        float Dot = Vector3.Dot(lookDir, Vector3.down);
+        float Angle = Mathf.Acos(Dot) * Mathf.Rad2Deg;
+        if (lookDir.x > 0)
+        {
+            _sightScope.transform.localRotation = Quaternion.Euler(0,0,Angle);
+        }
+        else
+        {
+            _sightScope.transform.localRotation = Quaternion.Euler(0, 0, -Angle);
+        }
+
     }
 
     void LateUpdate()
@@ -216,11 +229,11 @@ public class EnemyController : MonoBehaviour
     #region OnDrawGizmos
     Color _red = new Color(1f, 0f, 0f, 0.2f);
     Color _blue = new Color(0f, 0f, 1f, 0.2f);
-    void OnDrawGizmos()
-    {
-        Handles.color = isCollide ? _red : _blue;
-        Handles.DrawSolidArc(transform.position, new Vector3(0, 0, 1), lookDir, angleRange / 2, radius);
-        Handles.DrawSolidArc(transform.position, new Vector3(0, 0, 1), lookDir, -angleRange / 2, radius);
-    }
+    //void OnDrawGizmos()
+    //{
+        //Handles.color = isCollide ? _red : _blue;
+        //Handles.DrawSolidArc(transform.position, new Vector3(0, 0, 1), lookDir, angleRange / 2, radius);
+        //Handles.DrawSolidArc(transform.position, new Vector3(0, 0, 1), lookDir, -angleRange / 2, radius);
+    //}
     #endregion
 }
