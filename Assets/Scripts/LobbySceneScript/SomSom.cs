@@ -5,7 +5,7 @@ using UnityEngine;
 public class SomSom : MonoBehaviour
 {
     public bool IsRoomOpen;
-    public bool IsUpgrdae;
+    public bool IsUpgrdae = false;
     private void Start()
     {
         //StartCoroutine("RoomOpen"); // 룸 확장조건 여부체크
@@ -14,7 +14,10 @@ public class SomSom : MonoBehaviour
     private void OnMouseDown()
     {
         if (IsRoomOpen)
+        {
             Managers.UI.ShowPopupUI<UI_UnlockRoomPopup>();
+            IsRoomOpen = false;
+        }
         else if (IsUpgrdae)
             Managers.UI.ShowPopupUI<UI_UpgradeSom>();
 
