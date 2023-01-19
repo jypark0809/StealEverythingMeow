@@ -7,7 +7,8 @@ public class GameScene : BaseScene
     UI_GameScene _gameSceneUI;
     GameObject _player;
     GameObject _stage;
-    float timer = 0;
+    public float LIMIT_TIME = 121;
+    public float _playTime;
 
     protected override void Init()
     {
@@ -31,17 +32,13 @@ public class GameScene : BaseScene
 
         _gameSceneUI = Managers.UI.ShowSceneUI<UI_GameScene>();
         Managers.Sound.Play(Define.Sound.Bgm, "BGM/BGM_Game", volume: 0.1f);
+
+        StartCoroutine(PortalScheduler(10));
     }
 
-    void Update()
+    private void Update()
     {
-        timer += Time.deltaTime;
-        if (timer > 115)
-        {
-            Managers.UI.ShowPopupUI<UI_NextStagePopup>();
-            SpawnPortal();
-            timer = 0;
-        }
+        _playTime += Time.deltaTime;
     }
 
     void SetPlayer()
@@ -87,20 +84,33 @@ public class GameScene : BaseScene
 
     void SpawnPortal()
     {
+        if (Managers.Object.Player.Stat.Stage > 3)
+            return;
+
         Transform[] spawnPos = Util.FindChild(_stage, "PortalSpawnPoint", false).GetComponentsInChildren<Transform>();
-        Managers.Resource.Instantiate("PortalContainer").transform.position = spawnPos[Random.Range(1,9)].position;
+        Managers.Resource.Instantiate("PortalContainer", _stage.transform).transform.position = spawnPos[Random.Range(1,9)].position;
     }
 
     public void GoToNextStage()
     {
+        // Set Stage
         _stage = Managers.Object.SpawnStage($"Stage/Stage{_player.GetComponent<Stat>().Stage}");
+
+        // Set Player Position
         _player.transform.position = Util.FindChild(_stage, "PlayerSpawnPos").transform.position;
-        timer = -6;
+
+        // Set TreasureMap();
+        SpawnTreasureMap();
+
+        StartCoroutine(PortalScheduler(10));
     }
 
     List<int> indexList = new List<int>();
     void SpawnTreasureMap()
     {
+        if (Managers.Object.Player.Stat.Stage > 3)
+            return;
+
         Transform[] spawnPos = Util.FindChild(_stage, "TreasureMapSpawnPoint", false).GetComponentsInChildren<Transform>();
         if (Managers.Object.Player.Stat.Stage == 1 || Managers.Object.Player.Stat.Stage == 2)
         {
@@ -138,8 +148,21 @@ public class GameScene : BaseScene
         }
     }
 
+    IEnumerator PortalScheduler(float time)
+    {
+        while (time > 0)
+        {
+            yield return new WaitForSeconds(1);
+            time--;
+        }
+
+        Managers.UI.ShowPopupUI<UI_NextStagePopup>();
+        SpawnPortal();
+    }
+
     public override void Clear()
     {
         Managers.Resource.Destroy(_stage);
+        indexList.Clear();
     }
 }

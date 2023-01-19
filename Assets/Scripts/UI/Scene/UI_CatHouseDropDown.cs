@@ -1,34 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
-public class UI_CatHouse : UI_Scene
+using UnityEngine;
+
+public class UI_CatHouseDropDown : UI_Base
 {
     enum DropDown
     {
         MenuDropDown
     }
 
-
     void Start()
     {
         Init();
-
     }
 
     public override void Init()
     {
-        base.Init();
         Bind<TMP_Dropdown>(typeof(DropDown));
 
-        //GetDropDown((int)DropDown.MenuDropDown).gameObject.BindEvent(OnDropdownEvent);
         GetDropDown((int)DropDown.MenuDropDown).onValueChanged.AddListener(OnDropdownEvent);
     }
 
     public void OnDropdownEvent(int index)
     {
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
+
         switch (index)
         {
             case 1://¼ÂÆÃ

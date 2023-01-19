@@ -192,6 +192,7 @@ public class UI_GameScene : UI_Scene
 
     int min, sec;
     float limitTime = 121;
+    //(Managers.Scene.CurrentScene as GameScene).LIMIT_TIME;
     void UpdateTime()
     {
         if (limitTime < 0)
@@ -237,7 +238,6 @@ public class UI_GameScene : UI_Scene
                 GetImage((int)Images.Heart1).sprite = Managers.Resource.Load<Sprite>("Sprites/UI/Heart_gray");
                 GetImage((int)Images.Heart2).sprite = Managers.Resource.Load<Sprite>("Sprites/UI/Heart_gray");
                 GetImage((int)Images.Heart3).sprite = Managers.Resource.Load<Sprite>("Sprites/UI/Heart_gray");
-                (Managers.Scene.CurrentScene as GameScene).GameOver();
                 break;
         }
     }

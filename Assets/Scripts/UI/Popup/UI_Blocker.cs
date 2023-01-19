@@ -41,7 +41,7 @@ public class UI_Blocker : UI_Popup
         (Managers.Scene.CurrentScene as GameScene).Clear();
         (Managers.Scene.CurrentScene as GameScene).GoToNextStage();
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
 
         while (GetImage((int)Images.Blocker).color.a > 0f)
         {
@@ -51,7 +51,7 @@ public class UI_Blocker : UI_Popup
             yield return null;
         }
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         Managers.UI.ClosePopupUI();
     }
 }
