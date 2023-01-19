@@ -49,9 +49,8 @@ public class UI_UpgradeSom : UI_Popup
         }
         else
         {
-            GameObject go = Util.FindChild(Managers.Object.CatHouse.gameObject, "Somsom", true);
-            go.transform.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Furniture/woodhouse");
-            Managers.UI.ClosePopupUI();
+            Util.FindChild(Managers.Object.CatHouse.gameObject, "Somsom", true).GetComponent<SomSom>().SomUpgrade();
+            Managers.UI.ShowPopupUI<UI_SucessUp>();
         }
 
     }

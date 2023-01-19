@@ -111,5 +111,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16086d6760d95684ba27cebc6443acaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsRoomOpen: 1
+  IsRoomOpen: 0
   IsUpgrdae: 0

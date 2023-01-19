@@ -54,13 +54,11 @@ public class UI_UnlockRoomPopup : UI_Popup
         else
         {
             Managers.Object.CatHouse.GetComponent<TileManager>().Open();
-            Managers.Game.SaveData.Level++;
-            // Unlock
-            // Spend Gold
+            Managers.Game.SaveData.RoomLevel++;
             Managers.Game.SaveData.Gold -= 0;
+
             // Save Data
             //Managers.Game.SaveGame();
-            Managers.UI.ClosePopupUI();
             
         }
     }

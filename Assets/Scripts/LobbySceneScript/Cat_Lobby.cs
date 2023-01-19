@@ -33,6 +33,7 @@ public class Cat_Lobby : MonoBehaviour
     int index = 0;
 
     private bool ReFind = true;
+    private bool IsEmotion = false;
     private void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -44,27 +45,24 @@ public class Cat_Lobby : MonoBehaviour
         if (FinalNodeList.Count == 0 && ReFind)
         {
             ReFind = false;
-            PathFinding(this.transform, new Vector2Int(Random.Range(bottomLeft.x, topRight.x), Random.Range(bottomLeft.y, topRight.y)));
+            targetPos = new Vector2Int(Random.Range(bottomLeft.x, topRight.x), Random.Range(bottomLeft.y, topRight.y));
+            PathFinding(this.transform, targetPos);
             StartCoroutine(boolFind());
         }
-        if (FinalNodeList.Count != 0)
+        if (FinalNodeList.Count != 0 && !IsEmotion)
         {
             MovePath();
         }
 
     }
-    IEnumerator boolFind()
-    {
-        yield return new WaitForSeconds(1f);
-        ReFind = true;
-    }
+
     public void MovePath()
     {
         int InputX = FinalNodeList[index].x;
         int InputY = FinalNodeList[index].y;
-        Vector2 targetPos = new Vector2(InputX, InputY);
-        transform.position = Vector2.MoveTowards(transform.position, targetPos, _Speed * Time.deltaTime);
-        if ((transform.position.x == targetPos.x && transform.position.y == targetPos.y))
+        Vector2Int targetNode = new Vector2Int(InputX, InputY);
+        transform.position = Vector2.MoveTowards(transform.position, targetNode, _Speed * Time.deltaTime);
+        if ((transform.position.x == targetNode.x && transform.position.y == targetNode.y))
         {
             index++;
         }
@@ -76,7 +74,6 @@ public class Cat_Lobby : MonoBehaviour
             anim.SetFloat("dirX", dirX);
             anim.SetFloat("dirY", dirY);
         }
-
         if (index == FinalNodeList.Count)
         {
             index = 0;
@@ -85,7 +82,6 @@ public class Cat_Lobby : MonoBehaviour
             anim.SetFloat("dirX", 0);
             anim.SetFloat("dirY", -1f);
         }
-
     }
 
     public void PathFinding(Transform Catpos, Vector2Int targetPos)
@@ -185,6 +181,7 @@ public class Cat_Lobby : MonoBehaviour
 
     private void OnMouseDown()
     {
+        IsEmotion = true;
         int _index = Random.Range(0, 15);
         switch (_index)
         {
@@ -234,8 +231,19 @@ public class Cat_Lobby : MonoBehaviour
                 anim.Play("W_Other_Tail");
                 break;
         }
+        StartCoroutine(IsEmoe());
     }
 
+    IEnumerator IsEmoe()
+    {
+        yield return new WaitForSeconds(1f);
+        IsEmotion = false;
+    }
+    IEnumerator boolFind()
+    {
+        yield return new WaitForSeconds(1f);
+        ReFind = true;
+    }
     public void Love()
     {
         Debug.Log("애정도가 올랐습니다");
