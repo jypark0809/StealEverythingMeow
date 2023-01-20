@@ -970,9 +970,9 @@ GameObject:
   - component: {fileID: 6993069432620244579}
   - component: {fileID: 6993069432620244578}
   - component: {fileID: 6993069432620244577}
-  - component: {fileID: 1250739538869136063}
+  - component: {fileID: 5642630427247862008}
   m_Layer: 5
-  m_Name: UI_GameOver
+  m_Name: UI_StageClear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1061,7 +1061,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &1250739538869136063
+--- !u!114 &5642630427247862008
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1070,7 +1070,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6993069432620244591}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 741e4ff03a1cfa54d902dd51504bc569, type: 3}
+  m_Script: {fileID: 11500000, guid: 090d630957d9e9c40865b25379fcfd68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6993069432714331604
@@ -1666,7 +1666,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Game Over
+  m_text: Stage Clear
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 55da9bf4fbab3b04a99f48ebdd7431d5, type: 2}
   m_sharedMaterial: {fileID: 2240069245312190547, guid: 55da9bf4fbab3b04a99f48ebdd7431d5, type: 2}

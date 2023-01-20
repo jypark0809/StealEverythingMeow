@@ -18,6 +18,7 @@ public class Portal : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
+            Managers.Sound.Play(Define.Sound.Effect, "Effects/NextStage", volume: 0.4f);
             Managers.Object.Player.Stat.Stage++;
             Managers.UI.ShowPopupUI<UI_Blocker>();
             gameObject.SetActive(false);

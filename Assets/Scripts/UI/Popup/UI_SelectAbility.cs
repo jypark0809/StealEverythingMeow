@@ -68,6 +68,7 @@ public class UI_SelectAbility : UI_Popup
         }
         #endregion
 
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/LevelUp", volume : 0.2f);
         GetButton((int)Buttons.MoveSpeedButton).gameObject.BindEvent(OnMoveSpeedButtonClicked);
         GetButton((int)Buttons.SightRangeButton).gameObject.BindEvent(OnSightRangeButtonClicked);
         GetButton((int)Buttons.MagnetRangeButton).gameObject.BindEvent(OnMagnetRangeButtonClicked);

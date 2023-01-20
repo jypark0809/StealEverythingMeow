@@ -31,6 +31,8 @@ public class CommonItem : Item
     {
         if (collision.tag == "Player")
         {
+            Managers.Sound.Play(Define.Sound.Effect, "Effects/GetItem", volume : 0.4f);
+
             ig.isActive = true;
             Managers.Object.Player.Stat.Gold += itemData.Gold * Managers.Object.Player.Stat.Stage;
             Managers.Object.Player.Stat.Exp += itemData.Exp + (Managers.Object.Player.Stat.Stage - 1);

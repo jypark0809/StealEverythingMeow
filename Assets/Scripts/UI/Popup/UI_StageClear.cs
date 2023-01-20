@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UI_GameOver : UI_Popup
+public class UI_StageClear : UI_Popup
 {
     enum Texts
     {
@@ -34,13 +34,13 @@ public class UI_GameOver : UI_Popup
         Bind<TextMeshProUGUI>(typeof(Texts));
         Bind<Button>(typeof(Buttons));
 
-        Managers.Sound.Play(Define.Sound.Effect, "Effects/GameOver", volume: 0.2f);
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/StageClear", volume: 0.2f);
 
         GetButton((int)Buttons.ExitButton).gameObject.BindEvent(OnCloseButton);
-        GetText((int)Texts.PlaytimeText).text = 
-            $"í”Œë ˆì´ ì‹œê°„ : {UpdateTime((Managers.Scene.CurrentScene as GameScene)._playTime)}";
+        GetText((int)Texts.PlaytimeText).text =
+            $"ÇÃ·¹ÀÌ ½Ã°£ : {UpdateTime((Managers.Scene.CurrentScene as GameScene)._playTime)}";
         GetText((int)Texts.GoldText).text =
-            $"í›”ì¹œ ê³¨ë“œ : {Managers.Object.Player.Stat.Gold}";
+            $"ÈÉÄ£ °ñµå : {Managers.Object.Player.Stat.Gold}";
         GetText((int)Texts.TotalGoldText).text = Managers.Object.Player.Stat.Gold.ToString();
         GetText((int)Texts.WoodText).text = Managers.Object.Player.Stat.Wood.ToString();
         GetText((int)Texts.RockText).text = Managers.Object.Player.Stat.Rock.ToString();

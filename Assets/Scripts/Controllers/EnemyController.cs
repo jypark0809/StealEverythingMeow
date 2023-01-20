@@ -83,8 +83,13 @@ public class EnemyController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Managers.Object.Player.Stat.Hp--;
-        State = EnemyState.Idle;
+        if (collision.gameObject.tag == "Player")
+        {
+            Vibration.Vibrate((long)50);
+            Managers.Sound.Play(Define.Sound.Effect, "Effects/CatCry", volume: 0.4f);
+            Managers.Object.Player.Stat.Hp--;
+            State = EnemyState.Idle;
+        }
     }
 
     void UpdatePatrol()
@@ -153,6 +158,18 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     float radius = 4f;
     bool isCollide = false;
+    bool IsCollide
+    {
+        get { return isCollide; }
+        set
+        {
+            isCollide = value;
+            if (value)
+            {
+                Managers.Sound.Play(Define.Sound.Effect, "Effects/Detected", volume: 0.4f);
+            }
+        }
+    }
 
     void SetCircularSector()
     {
@@ -176,18 +193,16 @@ public class EnemyController : MonoBehaviour
             // 시야각 판별
             if (degree <= angleRange / 2f)
             {
-                isCollide = true;
+                IsCollide = true;
                 State = EnemyState.Attack;
             }
                 
             else
-                isCollide = false;
+                IsCollide = false;
         }
         else
-            isCollide = false;
+            IsCollide = false;
     }
-
-    
 
     int index = 0;
     Vector3 destPos;
@@ -227,8 +242,8 @@ public class EnemyController : MonoBehaviour
     }
 
     #region OnDrawGizmos
-    Color _red = new Color(1f, 0f, 0f, 0.2f);
-    Color _blue = new Color(0f, 0f, 1f, 0.2f);
+    //Color _red = new Color(1f, 0f, 0f, 0.2f);
+    //Color _blue = new Color(0f, 0f, 1f, 0.2f);
     //void OnDrawGizmos()
     //{
         //Handles.color = isCollide ? _red : _blue;

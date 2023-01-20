@@ -10,6 +10,14 @@ using UnityEngine.UI;
 
 public class UI_GameScene : UI_Scene
 {
+    enum GameState
+    {
+        GameOver,
+        Game,
+    }
+
+    GameState _state = GameState.Game;
+
     Vector3 beginDragPos; // BeginDrag position
     public Vector3 joystickDir;
     float joystickRadius;
@@ -51,7 +59,14 @@ public class UI_GameScene : UI_Scene
 
     void Update()
     {
-        UpdateTime();
+        switch(_state)
+        {
+            case GameState.GameOver:
+                break;
+            case GameState.Game:
+                UpdateTime();
+                break;
+        }
     }
 
     void Start()
@@ -192,12 +207,19 @@ public class UI_GameScene : UI_Scene
 
     int min, sec;
     float limitTime = 121;
-    //(Managers.Scene.CurrentScene as GameScene).LIMIT_TIME;
+    bool alarm;
     void UpdateTime()
     {
+        if (limitTime < 30 && alarm == false)
+        {
+            Managers.Sound.Play(Define.Sound.Effect, "Effects/ClockTikSound", volume: 0.4f);
+            alarm = true;
+        }
+
         if (limitTime < 0)
         {
             limitTime = 0;
+            _state = GameState.GameOver;
             (Managers.Scene.CurrentScene as GameScene).GameOver();
         }
         else

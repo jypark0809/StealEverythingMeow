@@ -23,18 +23,26 @@ public class SomSom : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (Managers.Game.SaveData.RoomLevel > 6)
+            return;
+
         if (IsRoomOpen)
             Managers.UI.ShowPopupUI<UI_UnlockRoomPopup>();
         else if (IsUpgrdae)
             Managers.UI.ShowPopupUI<UI_UpgradeSom>();
     }
+
     public void SomUpgrade()
     {
-        Managers.UI.ClosePopupUI(); ;
-        GameObject go = Util.FindChild(Managers.Object.CatHouse.gameObject, "Somsom", true);
-        go.transform.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Furniture/woodhouse");
-        Managers.Game.SaveData.RoomLevel++;
-        Managers.Game.SaveData.curFurnitureCount = 0;
-        IsUpgrdae = false;
+        if (Managers.Game.SaveData.RoomLevel < 7)
+        {
+            GameObject go = Util.FindChild(Managers.Object.CatHouse.gameObject, "Somsom", true);
+            go.transform.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Furniture/woodhouse");
+            Managers.Game.SaveData.RoomLevel++;
+            Managers.Game.SaveData.curFurnitureCount = 0;
+            IsUpgrdae = false;
+        }
+
+        Managers.UI.ClosePopupUI();
     }
 }
