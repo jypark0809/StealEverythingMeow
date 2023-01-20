@@ -71,7 +71,6 @@ public class Stat : MonoBehaviour
             if (_hp <= 0)
             {
                 _hp = 0;
-                Time.timeScale = 0;
                 (Managers.Scene.CurrentScene as GameScene).GameOver();
             }
 
