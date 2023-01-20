@@ -5,7 +5,7 @@ using UnityEngine;
 public class Clock : Item
 {
     [SerializeField]
-    float plusTime = 8;
+    float plusTime = 10;
 
     ItemGenerator ig;
 

@@ -16,6 +16,7 @@ public class UI_PauseGamePopup : UI_Popup
     enum Buttons
     {
         CloseButton,
+        MainMenuButton,
     }
 
     enum Texts
@@ -23,6 +24,9 @@ public class UI_PauseGamePopup : UI_Popup
         WoodText,
         RockText,
         CottonText,
+        SpeedText,
+        SightText,
+        MagnetText
     }
 
     void Start()
@@ -39,6 +43,7 @@ public class UI_PauseGamePopup : UI_Popup
         Bind<GameObject>(typeof(Toggles));
 
         GetButton((int)Buttons.CloseButton).gameObject.BindEvent(OnCloseButtonClicked);
+        GetButton((int)Buttons.MainMenuButton).gameObject.BindEvent(OnMainMenuButtonClicked);
         GetObject((int)Toggles.BgmToggle).GetComponent<Toggle>().onValueChanged.AddListener(OnBgmToggleSelected);
         GetObject((int)Toggles.BgmToggle).GetComponent<Toggle>().isOn = Managers.Game.BGMOn;
         GetObject((int)Toggles.EffectSoundToggle).GetComponent<Toggle>().onValueChanged.AddListener(OnEffectSoundToggleSelected);
@@ -48,6 +53,10 @@ public class UI_PauseGamePopup : UI_Popup
         GetText((int)Texts.WoodText).text = $"x {Managers.Object.Player.Stat.Wood.ToString()}";
         GetText((int)Texts.RockText).text = $"x {Managers.Object.Player.Stat.Rock.ToString()}";
         GetText((int)Texts.CottonText).text = $"x {Managers.Object.Player.Stat.Cotton.ToString()}";
+        GetText((int)Texts.SpeedText).text = $"Lv. {Managers.Object.Player.Stat.SpeedLv.ToString()}";
+        GetText((int)Texts.SightText).text = $"Lv. {Managers.Object.Player.Stat.SightLv.ToString()}";
+        GetText((int)Texts.MagnetText).text = $"Lv. {Managers.Object.Player.Stat.MagnetLv.ToString()}";
+
     }
 
     #region EventHandler
@@ -76,6 +85,13 @@ public class UI_PauseGamePopup : UI_Popup
         Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
         Time.timeScale = 1;
         Managers.UI.ClosePopupUI();
+    }
+
+    void OnMainMenuButtonClicked(PointerEventData evt)
+    {
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
+        Time.timeScale = 1;
+        Managers.Scene.LoadScene(Define.SceneType.CatHouseScene);
     }
     #endregion
 }
