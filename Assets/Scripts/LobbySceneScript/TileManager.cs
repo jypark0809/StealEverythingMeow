@@ -54,6 +54,7 @@ public class TileManager : MonoBehaviour
                 break;
         }
         Util.FindChild(Managers.Object.CatHouse.gameObject,"Somsom",true).GetComponent<SomSom>().IsRoomOpen = false;
+
         Managers.UI.ClosePopupUI();
         Managers.Game.SaveData.curFurnitureCount = 0;
     }
@@ -64,6 +65,7 @@ public class TileManager : MonoBehaviour
         Util.FindChild(Managers.Object.CatHouse.gameObject, _name, true).SetActive(false);
         Managers.UI.ShowPopupUI<UI_Sucess>();
         Camera.main.GetComponent<CameraTest>().IsMove = false;
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/RoomOpen");
     }
     IEnumerator OpenRoomBlock(string _name)
     {
@@ -94,9 +96,8 @@ public class TileManager : MonoBehaviour
             
         }
         Managers.Game.SaveData.curFurnitureCount++;
+
         Managers.UI.ClosePopupUI();
-
-
         if (Managers.Game.SaveData.RoomLevel == 3 && Managers.Game.SaveData.curFurnitureCount == Managers.Game.SaveData.MaxFurniture[Managers.Game.SaveData.RoomLevel])
         {
             Managers.UI.ShowPopupUI<UI_TmpUp>();
@@ -118,6 +119,7 @@ public class TileManager : MonoBehaviour
     {
         Camera.main.GetComponent<CameraTest>().targetPos = (Util.FindChild(Managers.Object.CatHouse.gameObject, Managers.Game.SaveData.CurFurniture[Managers.Game.SaveData.RoomLevel] + _name, true)).transform.position;
         yield return new WaitForSeconds(1.3f);
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/OpenFurniture");
         GameObject go = Managers.Resource.Instantiate("RoomFurniture/"+ Managers.Game.SaveData.CurFurniture[Managers.Game.SaveData.RoomLevel] +_name, Managers.Object.CatHouse.transform);
         go.transform.position = (Util.FindChild(Managers.Object.CatHouse.gameObject, Managers.Game.SaveData.CurFurniture[Managers.Game.SaveData.RoomLevel]+_name, true)).transform.position;
         Camera.main.GetComponent<CameraTest>().IsMove = false;
