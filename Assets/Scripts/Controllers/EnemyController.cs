@@ -85,6 +85,7 @@ public class EnemyController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            StartCoroutine(ChangePlayerState());
             Vibration.Vibrate((long)50);
             Managers.Sound.Play(Define.Sound.Effect, "Effects/CatCry", volume: 0.4f);
             Managers.Object.Player.Stat.Hp--;
@@ -191,7 +192,7 @@ public class EnemyController : MonoBehaviour
             float degree = Mathf.Rad2Deg * theta;
 
             // 시야각 판별
-            if (degree <= angleRange / 2f)
+            if (degree <= angleRange / 2f && Managers.Object.Player.gameObject.layer == 29)
             {
                 IsCollide = true;
                 State = EnemyState.Attack;
@@ -239,6 +240,15 @@ public class EnemyController : MonoBehaviour
     void LateUpdate()
     {
         _spriteRenderer.flipX = (lookDir.x < 0);
+    }
+
+    IEnumerator ChangePlayerState()
+    {
+        Managers.Object.Player.gameObject.layer = 27;
+        Managers.Object.Player.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
+        yield return new WaitForSeconds(1);
+        Managers.Object.Player.gameObject.layer = 29;
+        Managers.Object.Player.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
     }
 
     #region OnDrawGizmos
