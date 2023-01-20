@@ -34,6 +34,8 @@ public class UI_GameOver : UI_Popup
         Bind<TextMeshProUGUI>(typeof(Texts));
         Bind<Button>(typeof(Buttons));
 
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/GameOver", volume: 0.2f);
+
         GetButton((int)Buttons.ExitButton).gameObject.BindEvent(OnCloseButton);
         GetText((int)Texts.PlaytimeText).text = 
             $"플레이 시간 : {UpdateTime((Managers.Scene.CurrentScene as GameScene)._playTime)}";

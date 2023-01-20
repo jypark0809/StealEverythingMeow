@@ -5,7 +5,7 @@ using UnityEngine;
 public class Clock : Item
 {
     [SerializeField]
-    float plusTime = 8;
+    float plusTime = 10;
 
     ItemGenerator ig;
 
@@ -18,6 +18,8 @@ public class Clock : Item
     {
         if (collision.tag == "Player")
         {
+            Managers.Sound.Play(Define.Sound.Effect, "Effects/GetItem", volume: 0.4f);
+
             ig.isActive = true;
             (Managers.UI.SceneUI as UI_GameScene).PlusTime(plusTime);
             gameObject.SetActive(false);

@@ -33,7 +33,7 @@ public class GameScene : BaseScene
         _gameSceneUI = Managers.UI.ShowSceneUI<UI_GameScene>();
         Managers.Sound.Play(Define.Sound.Bgm, "BGM/BGM_Game", volume: 0.1f);
 
-        StartCoroutine(PortalScheduler(10));
+        StartCoroutine(PortalScheduler(120));
     }
 
     private void Update()
@@ -77,8 +77,7 @@ public class GameScene : BaseScene
 
     public void GameOver()
     {
-        Debug.Log("GameOver");
-
+        Time.timeScale = 0;
         Managers.UI.ShowPopupUI<UI_GameOver>();
     }
 
@@ -102,7 +101,7 @@ public class GameScene : BaseScene
         // Set TreasureMap();
         SpawnTreasureMap();
 
-        StartCoroutine(PortalScheduler(10));
+        StartCoroutine(PortalScheduler(120));
     }
 
     List<int> indexList = new List<int>();

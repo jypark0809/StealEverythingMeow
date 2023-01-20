@@ -70,6 +70,9 @@ public class UI_DestroyableObjectPopup : UI_Popup
     {
         TouchCount++;
 
+        PlayRandomSound();
+        Vibration.Vibrate((long)50);
+
         // Shake Object
         StartCoroutine(ShakeObject(_shakePower, _shakeTime));
     }
@@ -96,5 +99,22 @@ public class UI_DestroyableObjectPopup : UI_Popup
         Managers.Object.Player.Stat.Gold += _object.Object_Gold;
         Managers.Object.Player.Stat.Diamond += _object.Object_Diamond;
         (Managers.UI.SceneUI as UI_GameScene).UpdateGoldText();
+    }
+
+    void PlayRandomSound()
+    {
+        int rand = Random.Range(0, 3);
+        switch(rand)
+        {
+            case 0:
+                Managers.Sound.Play(Define.Sound.Effect, "Effects/Punch_01", volume: 0.4f);
+                break;
+            case 1:
+                Managers.Sound.Play(Define.Sound.Effect, "Effects/Punch_02", volume: 0.4f);
+                break;
+            case 2:
+                Managers.Sound.Play(Define.Sound.Effect, "Effects/Punch_03", volume: 0.4f);
+                break;
+        }
     }
 }

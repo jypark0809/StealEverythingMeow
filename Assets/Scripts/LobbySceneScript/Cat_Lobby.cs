@@ -81,6 +81,7 @@ public class Cat_Lobby : MonoBehaviour
             anim.SetBool("walk", false);
             anim.SetFloat("dirX", 0);
             anim.SetFloat("dirY", -1f);
+            Managers.Sound.Play(Define.Sound.Effect, "Effects/CatIdle");
         }
     }
 
@@ -181,6 +182,7 @@ public class Cat_Lobby : MonoBehaviour
 
     private void OnMouseDown()
     {
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/CatTouch", 0.3f); ;
         IsEmotion = true;
         int _index = Random.Range(0, 15);
         switch (_index)

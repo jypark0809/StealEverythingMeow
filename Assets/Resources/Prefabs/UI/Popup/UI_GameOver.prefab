@@ -970,7 +970,7 @@ GameObject:
   - component: {fileID: 6993069432620244579}
   - component: {fileID: 6993069432620244578}
   - component: {fileID: 6993069432620244577}
-  - component: {fileID: 6993069432620244576}
+  - component: {fileID: 1250739538869136063}
   m_Layer: 5
   m_Name: UI_GameOver
   m_TagString: Untagged
@@ -1061,7 +1061,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &6993069432620244576
+--- !u!114 &1250739538869136063
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
