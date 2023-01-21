@@ -50,9 +50,9 @@ public class UI_PauseGamePopup : UI_Popup
         GetObject((int)Toggles.EffectSoundToggle).GetComponent<Toggle>().isOn = Managers.Game.EffectSoundOn;
 
 
-        GetText((int)Texts.WoodText).text = $"x {Managers.Object.Player.Stat.Wood.ToString()}";
-        GetText((int)Texts.RockText).text = $"x {Managers.Object.Player.Stat.Rock.ToString()}";
-        GetText((int)Texts.CottonText).text = $"x {Managers.Object.Player.Stat.Cotton.ToString()}";
+        GetText((int)Texts.WoodText).text = Managers.Object.Player.Stat.Wood.ToString();
+        GetText((int)Texts.RockText).text = Managers.Object.Player.Stat.Rock.ToString();
+        GetText((int)Texts.CottonText).text = Managers.Object.Player.Stat.Cotton.ToString();
         GetText((int)Texts.SpeedText).text = $"Lv. {Managers.Object.Player.Stat.SpeedLv.ToString()}";
         GetText((int)Texts.SightText).text = $"Lv. {Managers.Object.Player.Stat.SightLv.ToString()}";
         GetText((int)Texts.MagnetText).text = $"Lv. {Managers.Object.Player.Stat.MagnetLv.ToString()}";

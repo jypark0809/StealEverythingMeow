@@ -38,10 +38,11 @@ public class UI_GameOver : UI_Popup
 
         GetButton((int)Buttons.ExitButton).gameObject.BindEvent(OnCloseButton);
         GetText((int)Texts.PlaytimeText).text = 
-            $"플레이 시간 : {UpdateTime((Managers.Scene.CurrentScene as GameScene)._playTime)}";
+            $"PlayTime : {UpdateTime((Managers.Scene.CurrentScene as GameScene)._playTime)}";
         GetText((int)Texts.GoldText).text =
-            $"훔친 골드 : {Managers.Object.Player.Stat.Gold}";
-        GetText((int)Texts.TotalGoldText).text = Managers.Object.Player.Stat.Gold.ToString();
+            $"Gold : {Managers.Object.Player.Stat.Gold}";
+        GetText((int)Texts.TotalGoldText).text =
+            $"Total : {Managers.Object.Player.Stat.Gold.ToString()}";
         GetText((int)Texts.WoodText).text = Managers.Object.Player.Stat.Wood.ToString();
         GetText((int)Texts.RockText).text = Managers.Object.Player.Stat.Rock.ToString();
         GetText((int)Texts.CottonText).text = Managers.Object.Player.Stat.Cotton.ToString();

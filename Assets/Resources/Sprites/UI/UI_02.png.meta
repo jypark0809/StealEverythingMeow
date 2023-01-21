@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1aa2b1b9990852940bbd0b656b028b70
+guid: 1a00764c7bbec1943b94cf9870875dcc
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,22 +117,148 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: diamond (2)_0
+      name: UI_Panel_03
       rect:
         serializedVersion: 2
-        x: 5
-        y: 6
-        width: 23
-        height: 18
+        x: 0
+        y: 36
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 6, y: 3, z: 2, w: 3}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c754b3e68a302341acf95eb467614f0
-      internalID: -290013606
+      spriteID: cf50ab8acb8799e409588bb41ba05ffb
+      internalID: 142759953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Panel_06
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 36
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 2, y: 3, z: 2, w: 3}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82da50ab5540dad47891b5ed5cfac9f0
+      internalID: -1801301149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Panel_02
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 19
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 1, y: 2, z: 1, w: 1}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 428c30925802db744a4fcf618d903305
+      internalID: 1390478781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Panel_04
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 19
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 1, y: 2, z: 1, w: 1}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76d0e81d349f5564f89fa77dee04e77c
+      internalID: -1973381307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Panel_05
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 4, y: 2, z: 2, w: 4}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78eac68eab330514ea5ce83fe389d589
+      internalID: -613789479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpBar_02
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 19
+        width: 24
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 3, y: 3, z: 3, w: 4}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8276118721620a743914b7fa6366fb0a
+      internalID: 976812923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpBar_01
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 29
+        width: 24
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 2, y: 2, z: 2, w: 2}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6886846416950040bc49182aee50aa9
+      internalID: 1254931241
       vertices: []
       indices: 
       edges: []
@@ -148,7 +274,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      diamond (2)_0: -290013606
+      UI_Panel_05: -613789479
+      UI_Heart_Pink: 2050596293
+      UI_Panel_06: -1801301149
+      UI_Panel_03: 142759953
+      ExpBar_01: 1254931241
+      UI_Panel_04: -1973381307
+      ExpBar_02: 976812923
+      UI_Panel_02: 1390478781
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
