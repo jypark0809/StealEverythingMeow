@@ -53,7 +53,10 @@ public class CameraTest : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        CameraMove();
+        if(!IsMove)
+        {
+            CameraMove();
+        }
         LimitCameraArea();
     }
 

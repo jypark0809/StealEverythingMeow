@@ -5,6 +5,8 @@ using TMPro;
 using UnityEngine.EventSystems;
 public class UI_Inven_Item : UI_Base
 {
+
+    private bool IsDrag;
     enum GameObjects
     {
         ItemIcon,
@@ -25,8 +27,17 @@ public class UI_Inven_Item : UI_Base
 
     }
     void OnInstantPre(PointerEventData evt)
-    {
-        Managers.UI.ShowPopupUI<UI_Inven_Item_pre>();
+    {/*
+        if(!IsDrag)
+        {
+            //GameObject go = Managers.UI.ShowPopupUI<Test>().gameObject;
+            go.transform.position = this.transform.position;
+            IsDrag = true;
+        }
+        else
+        {
+            return;
+        }*/
     }
 
 }
