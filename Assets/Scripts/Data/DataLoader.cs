@@ -122,3 +122,31 @@ public class DestroyableObjectDataLoader : ILoader<int, DestroyableObjectData>
         return dic;
     }
 }
+
+[Serializable]
+public class FurnitureData
+{
+    public int F_Id;
+    public string F_Int_Name;
+    public string F_Name;
+    public string F_Desc;
+    public int F_Space_Num;
+    public int F_Happiness;
+    public int F_Gold;
+}
+
+[Serializable]
+public class FurnitureDataLoader : ILoader<int, FurnitureData>
+{
+    public List<FurnitureData> furnitures = new List<FurnitureData>();
+
+    public Dictionary<int, FurnitureData> MakeDict()
+    {
+        Dictionary<int, FurnitureData> dic = new Dictionary<int, FurnitureData>();
+
+        foreach (FurnitureData furnitureData in furnitures)
+            dic.Add(furnitureData.F_Id, furnitureData);
+
+        return dic;
+    }
+}

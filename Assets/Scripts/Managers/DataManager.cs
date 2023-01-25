@@ -14,6 +14,7 @@ public class DataManager
     public Dictionary<int, StatSightData> StatSights { get; private set; } = new Dictionary<int, StatSightData>();
     public Dictionary<int, StatMagnetData> StatMagnets { get; private set; } = new Dictionary<int, StatMagnetData>();
     public Dictionary<int, DestroyableObjectData> DestroyableObjects { get; private set; } = new Dictionary<int, DestroyableObjectData>();
+    public Dictionary<int, FurnitureData> Furnitures { get; private set; } = new Dictionary<int, FurnitureData>();
 
     public void Init()
     {
@@ -22,6 +23,7 @@ public class DataManager
         StatSights = LoadJson<StatSightDataLoader, int, StatSightData>("StatSightData").MakeDict();
         StatMagnets = LoadJson<StatMagnetDataLoader, int, StatMagnetData>("StatMagnetData").MakeDict();
         DestroyableObjects = LoadJson<DestroyableObjectDataLoader, int, DestroyableObjectData>("DestroyableObjectData").MakeDict();
+        Furnitures = LoadJson<FurnitureDataLoader, int, FurnitureData>("FurnitureData").MakeDict();
     }
 
     public bool Loaded()

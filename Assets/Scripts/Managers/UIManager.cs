@@ -64,6 +64,7 @@ public class UIManager
         if (parent != null)
             go.transform.SetParent(parent);
 
+        go.transform.localScale = Vector3.one;
         return Util.GetOrAddComponent<T>(go);
     }
 

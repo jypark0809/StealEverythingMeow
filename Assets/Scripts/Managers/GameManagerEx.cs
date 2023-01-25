@@ -12,9 +12,10 @@ public class GameData
     public int Gold;
     public int Dia;
     public int RoomLevel = 1;
+    public int SoomLevel = 1;
     public int curFurnitureCount = 0;
-    public int[] MaxFurniture = {0,0,5,5,0,5,3,5}; //추후 수정
-    public string[] CurFurniture = {"N","L","L","S","N","K","U","B"}; //데이터테이블 연동
+    public int[] MaxFurniture = {0,0,5,5,0,5,3,5}; // 추후 수정
+    public string[] CurFurniture = {"N","L","L","S","N","K","U","B"}; // 데이터테이블 연동
 
     public bool BGMOn = true;
     public bool EffectSoundOn = true;
