@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TileManager : MonoBehaviour
 {
+    /*
     public void Open()
     {
         Camera.main.GetComponent<CameraTest>().IsMove = true;
@@ -53,15 +54,12 @@ public class TileManager : MonoBehaviour
                 Camera.main.GetComponent<CameraTest>().targetPos = new Vector3(-6, -8, -10);
                 break;
         }
-        Util.FindChild(Managers.Object.CatHouse.gameObject,"Somsom",true).GetComponent<SomSom>().IsRoomOpen = false;
-
         Managers.UI.ClosePopupUI();
         Managers.Game.SaveData.curFurnitureCount = 0;
     }
     IEnumerator OpenRoom(string _name)
     {
         yield return new WaitForSeconds(2f);
-
         Util.FindChild(Managers.Object.CatHouse.gameObject, _name, true).SetActive(false);
         Managers.UI.ShowPopupUI<UI_Sucess>();
         Camera.main.GetComponent<CameraTest>().IsMove = false;
@@ -124,5 +122,5 @@ public class TileManager : MonoBehaviour
         go.transform.position = (Util.FindChild(Managers.Object.CatHouse.gameObject, Managers.Game.SaveData.CurFurniture[Managers.Game.SaveData.RoomLevel]+_name, true)).transform.position;
         Camera.main.GetComponent<CameraTest>().IsMove = false;
     }
-
+    */
 }

@@ -1,0 +1,4 @@
+Soom_Id,Soom_Int_Name,Soom_Name,Soom_Desc,Soom_Lv,Happiness,Space_Num,Space_F_Count,Cap_Capacity,Diamond,Wood,Stone,Cotton,Soom_Img
+1301,Soom_Box,종이 상자,가장 기본 단계. 쉽게 찢어질 것 같다.,1,10,3,10,1,10,0,0,0,box.png
+1302,Soom_Wood,나무 집,지붕이 있는 단단한 나무 집이다.,2,20,6,21,3,100,50,0,0,woodhouse.png
+1303,Soom_Cushion,쿠션 집,안락하고 푹신한 쿠션 집. 최종 단계 형태이다.,3,30,10,41,5,250,0,0,70,cushionhouse.png

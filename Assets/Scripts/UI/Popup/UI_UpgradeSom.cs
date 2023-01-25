@@ -49,7 +49,6 @@ public class UI_UpgradeSom : UI_Popup
         }
         else
         {
-            Util.FindChild(Managers.Object.CatHouse.gameObject, "Somsom", true).GetComponent<SomSom>().SomUpgrade();
             Managers.UI.ShowPopupUI<UI_SucessUp>();
         }
 

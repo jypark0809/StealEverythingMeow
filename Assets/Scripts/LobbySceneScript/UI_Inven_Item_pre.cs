@@ -25,19 +25,33 @@ public class UI_Inven_Item_pre : UI_Popup, IDragHandler, IEndDragHandler
         Bind<Image>(typeof(Images));
         Imagego = Get<Image>((int)Images.PreImage).gameObject;
     }
+
+    void Update()
+    {
+    }
+
     void IDragHandler.OnDrag(PointerEventData eventData)
     {
-        Imagego.transform.position = eventData.position;
+        Debug.Log("asd");
+        transform.position = eventData.position;
     }
+
     void IEndDragHandler.OnEndDrag(PointerEventData eventData)
     {
-        mousepos = Camera.main.ScreenToWorldPoint(eventData.position); 
-        if(Physics2D.Raycast(mousepos, transform.forward, LayerMask.GetMask("Cat")))
+        mousepos = Camera.main.ScreenToWorldPoint(eventData.position);
+        if (Physics2D.Raycast(mousepos, transform.forward, LayerMask.GetMask("Cat")))
         {
             RaycastHit2D hit = Physics2D.Raycast(mousepos, transform.forward, LayerMask.GetMask("Cat"));
-            hit.transform.GetComponent<Cat_Lobby>().Love();
-            //이벤트 추가 (애정도)
+            //hit.transform.GetComponent<Cat_Lobby>().Love();
+
             Managers.UI.ClosePopupUI();
         }
+        else
+        {
+            ClosePopupUI();
+        }
     }
+
+    
+
 }
