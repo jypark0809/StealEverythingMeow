@@ -69,6 +69,8 @@ public class CameraTest : MonoBehaviour
                 beginMousePos = Input.mousePosition;
                 beginCamPos = transform.position;
             }
+            else
+                return;
         }
         else if (Input.GetMouseButton(0))
         {

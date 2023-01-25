@@ -25,6 +25,7 @@ public class DataTransformer : EditorWindow
         ParseStatSightData("StatSight");
         ParseStatMagnetData("StatMagnet");
         ParseDestroyableObjectData("DestroyableObject");
+        ParseFurnitureData("Furniture");
     }
 
     static void ParseLevelExpData(string filename)
@@ -172,6 +173,41 @@ public class DataTransformer : EditorWindow
                 Object_Gold = int.Parse(row[i++]),
                 Object_Diamond = int.Parse(row[i++]),
                 Image_Path = row[i++]
+            });
+        }
+
+        #endregion
+
+        string jsonStr = JsonConvert.SerializeObject(loader, Formatting.Indented);
+        File.WriteAllText($"{Application.dataPath}/Resources/Data/Json/{filename}Data.json", jsonStr);
+        AssetDatabase.Refresh();
+    }
+
+    static void ParseFurnitureData(string filename)
+    {
+        FurnitureDataLoader loader = new FurnitureDataLoader();
+
+        #region ExcelData
+        string[] lines = File.ReadAllText($"{Application.dataPath}/Resources/Data/Excel/{filename}Data.csv").Split("\n");
+
+        for (int y = 1; y < lines.Length; y++)
+        {
+            string[] row = lines[y].Replace("\r", "").Split(',');
+            if (row.Length == 0)
+                continue;
+            if (string.IsNullOrEmpty(row[0]))
+                continue;
+            int i = 0;
+
+            loader.furnitures.Add(new FurnitureData()
+            {
+                F_Id = int.Parse(row[i++]),
+                F_Int_Name = row[i++],
+                F_Name = row[i++],
+                F_Desc = row[i++],
+                F_Space_Num = int.Parse(row[i++]),
+                F_Happiness = int.Parse(row[i++]),
+                F_Gold = int.Parse(row[i++])
             });
         }
 

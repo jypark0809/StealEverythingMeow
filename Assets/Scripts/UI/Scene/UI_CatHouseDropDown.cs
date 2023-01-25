@@ -38,7 +38,7 @@ public class UI_CatHouseDropDown : UI_Base
                 Managers.UI.ShowPopupUI<UI_Colletion>();
                 break;
             case 4://상점
-                //Managers.UI.ShowPopupUI<UI_Store>();
+                Managers.UI.ShowPopupUI<UI_Shop>();
                 break;
             case 5://퀘스트
                 Managers.UI.ShowPopupUI<UI_Quest>();
