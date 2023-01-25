@@ -122,3 +122,101 @@ public class DestroyableObjectDataLoader : ILoader<int, DestroyableObjectData>
         return dic;
     }
 }
+
+
+[Serializable]
+public class FurnitureData
+{
+    public int F_Id;
+    public string F_Int_Name;
+    public string F_Name;
+    public string F_Desc;
+    public int F_Space_Num;
+    public int F_Happiness;
+    public int F_Gold;
+}
+
+[Serializable]
+public class FurnitureDataLoader : ILoader<int, FurnitureData>
+{
+    public List<FurnitureData> Furnitures = new List<FurnitureData>();
+
+    public Dictionary<int, FurnitureData> MakeDict()
+    {
+        Dictionary<int, FurnitureData> dic = new Dictionary<int, FurnitureData>();
+
+        foreach (FurnitureData furnitureData in Furnitures)
+            dic.Add(furnitureData.F_Id, furnitureData);
+
+        return dic;
+    }
+}
+
+[Serializable]
+public class SoomData
+{
+    public int Soom_Id;
+    public string Soom_Int_Name;
+    public string Soom_Name;
+    public string Soom_Desc;
+    public int Soom_Lv;
+    public int Happiness;
+    public int Space_Num;
+    public int Space_F_Count;
+    public int Cap_Capacity;
+    public int Diamond;
+    public int Wood;
+    public int Stone;
+    public int Cotton;
+    public string Soom_Img;
+}
+
+[Serializable]
+public class SoomDataLoader : ILoader<int, SoomData>
+{
+    public List<SoomData> Sooms = new List<SoomData>();
+
+    public Dictionary<int, SoomData> MakeDict()
+    {
+        Dictionary<int, SoomData> dic = new Dictionary<int, SoomData>();
+
+        foreach (SoomData SoomData in Sooms)
+            dic.Add(SoomData.Soom_Id, SoomData);
+
+        return dic;
+    }
+}
+
+[Serializable]
+public class SpaceData
+{
+    public int Space_Id;
+    public string Space_Int_Name;
+    public string Space_Name;
+    public int Space_Lv;
+    public int Space_Furniture_Count;
+    public int Space_Gold_Plus;
+    public int Gold;
+    public int Wood;
+    public int Stone;
+    public int Cotton;
+    public int Happiness;
+    public int Space_Time;
+    public int Soom_Lv;
+
+}
+[Serializable]
+public class SpaceDataLoader : ILoader<int, SpaceData>
+{
+    public List<SpaceData> Spaces = new List<SpaceData>();
+
+    public Dictionary<int, SpaceData> MakeDict()
+    {
+        Dictionary<int, SpaceData> dic = new Dictionary<int, SpaceData>();
+
+        foreach (SpaceData objectData in Spaces)
+            dic.Add(objectData.Space_Id, objectData);
+
+        return dic;
+    }
+}

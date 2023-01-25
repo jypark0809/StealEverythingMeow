@@ -33,8 +33,10 @@ public class UI_TmpUp : UI_Popup
             GetText((int)Texts.Ment).text = "숨숨집 3단계를 기대해달라냥";
             return;
         }
+        /*
         if ((Managers.Game.SaveData.curFurnitureCount == Managers.Game.SaveData.MaxFurniture[Managers.Game.SaveData.RoomLevel]))
             GetText((int)Texts.Ment).text = "숨숨집을 눌러 공간을 확장하라냥";
+        */
     }
 
     private void OnCloseButton(PointerEventData evt)

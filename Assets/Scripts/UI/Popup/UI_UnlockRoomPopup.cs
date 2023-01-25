@@ -53,7 +53,7 @@ public class UI_UnlockRoomPopup : UI_Popup
         }
         else
         {
-            Managers.Object.CatHouse.GetComponent<TileManager>().Open();
+            //Managers.Object.CatHouse.GetComponent<TileManager>().Open();
             if (Managers.Game.SaveData.RoomLevel < 7)
                 Managers.Game.SaveData.RoomLevel++;
             Managers.Game.SaveData.Gold -= 0;

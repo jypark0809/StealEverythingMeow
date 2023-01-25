@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 423899346}
   - component: {fileID: 423899342}
   m_Layer: 7
-  m_Name: Tabby_Walk1_0
+  m_Name: Tabby
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -158,11 +158,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bottomLeft: {x: -50, y: -50}
   topRight: {x: 50, y: 50}
-  startPos: {x: 0, y: 0}
-  targetPos: {x: 0, y: 0}
   FinalNodeList: []
   allowDiagonal: 1
   dontCrossCorner: 1
+  cat: 2
   _Speed: 2
 --- !u!50 &423899343
 Rigidbody2D:
@@ -313,7 +312,7 @@ GameObject:
   - component: {fileID: 450330278}
   - component: {fileID: 450330281}
   m_Layer: 7
-  m_Name: Lobby_Black
+  m_Name: Black
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -467,11 +466,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bottomLeft: {x: -50, y: -50}
   topRight: {x: 50, y: 50}
-  startPos: {x: 0, y: 0}
-  targetPos: {x: 0, y: 0}
   FinalNodeList: []
   allowDiagonal: 1
   dontCrossCorner: 1
+  cat: 0
   _Speed: 2
 --- !u!1 &549467372
 GameObject:
@@ -488,7 +486,7 @@ GameObject:
   - component: {fileID: 549467376}
   - component: {fileID: 549467377}
   m_Layer: 7
-  m_Name: Calico_Walk1_0
+  m_Name: Calico
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -616,11 +614,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bottomLeft: {x: -50, y: -50}
   topRight: {x: 50, y: 50}
-  startPos: {x: 0, y: 0}
-  targetPos: {x: 0, y: 0}
   FinalNodeList: []
   allowDiagonal: 1
   dontCrossCorner: 1
+  cat: 3
   _Speed: 2
 --- !u!61 &549467378
 BoxCollider2D:
@@ -648,6 +645,50 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &1038406510
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1038406512}
+  - component: {fileID: 1038406511}
+  m_Layer: 0
+  m_Name: '@Managers'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1038406511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1038406510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1035745a387bf34d9faaacfa360ea8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1038406512
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1038406510}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1169040856
 GameObject:
   m_ObjectHideFlags: 0
@@ -663,7 +704,7 @@ GameObject:
   - component: {fileID: 1169040861}
   - component: {fileID: 1169040857}
   m_Layer: 7
-  m_Name: Gray_Walk1_0
+  m_Name: Gray
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -683,11 +724,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bottomLeft: {x: -50, y: -50}
   topRight: {x: 50, y: 50}
-  startPos: {x: 0, y: 0}
-  targetPos: {x: 0, y: 0}
   FinalNodeList: []
   allowDiagonal: 1
   dontCrossCorner: 1
+  cat: 1
   _Speed: 2
 --- !u!50 &1169040858
 Rigidbody2D:
@@ -1112,7 +1152,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1682171627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1164,7 +1204,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1742454968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1179,11 +1219,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bottomLeft: {x: -20, y: -20}
   topRight: {x: 20, y: 20}
-  startPos: {x: 0, y: 0}
-  targetPos: {x: 0, y: 0}
   FinalNodeList: []
   allowDiagonal: 1
   dontCrossCorner: 1
+  cat: 4
   _Speed: 2
 --- !u!50 &1742454969
 Rigidbody2D:

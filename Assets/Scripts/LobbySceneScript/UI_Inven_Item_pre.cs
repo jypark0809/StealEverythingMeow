@@ -42,8 +42,8 @@ public class UI_Inven_Item_pre : UI_Popup, IDragHandler, IEndDragHandler
         if (Physics2D.Raycast(mousepos, transform.forward, LayerMask.GetMask("Cat")))
         {
             RaycastHit2D hit = Physics2D.Raycast(mousepos, transform.forward, LayerMask.GetMask("Cat"));
-            hit.transform.GetComponent<Cat_Lobby>().Love();
-            //이벤트 추가 (애정도)
+            //hit.transform.GetComponent<Cat_Lobby>().Love();
+
             Managers.UI.ClosePopupUI();
         }
         else
