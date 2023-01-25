@@ -11,19 +11,37 @@ public class GameData
     public int Jelly;
     public int Gold;
     public int Dia;
-    public int RoomLevel = 1;
-    public int curFurnitureCount = 0;
-    public int[] MaxFurniture = {0,0,5,5,0,5,3,5}; //추후 수정
-    public string[] CurFurniture = {"N","L","L","S","N","K","U","B"}; //데이터테이블 연동
+
+    // 재료
+    public int Wood = 9999;
+    public int Cotton = 9999;
+    public int Stone = 9999;
+
+    public int RoomLevel ;
+    public int[] MaxFurniture = new int[11]; //추후 수정
+
+    public int SoomLevel = 1;
+    public List<string> Emotion = new List<string>(); //배열 갱신
+    public List<float> EmotionTime = new List<float>(); //추후배열로 다시봐보기
 
     public bool BGMOn = true;
     public bool EffectSoundOn = true;
 
-    public int[] Motion = new int[MOTION_COUNT];
 
-    public GameData() 
+    public GameData()
     {
         Jelly = 5;
+
+        //초기 감정 배열선언
+        Emotion.Add("Sleep3");
+        Emotion.Add("Sleep2");
+        Emotion.Add("Blink");
+        Emotion.Add("Ennui");
+
+        EmotionTime.Add(10f);
+        EmotionTime.Add(10f);
+        EmotionTime.Add(5f);
+        EmotionTime.Add(10f);
     }
 }
 

@@ -16,9 +16,26 @@ public class Node
 }
 public class Cat_Lobby : MonoBehaviour
 {
-    public Vector2Int bottomLeft, topRight, startPos, targetPos;
+    public Vector2Int bottomLeft, topRight;
+    private Vector2Int startPos, targetPos;
     public List<Node> FinalNodeList;
     public bool allowDiagonal, dontCrossCorner;
+
+
+    private int _index;
+    private string _indexstr;
+
+[SerializeField]
+    public enum Catname
+    {
+        Black,
+        Gray,
+        Tabby,
+        Calico,
+        White
+    }
+
+    public Catname cat;
 
     int sizeX, sizeY;
     Node[,] NodeArray;
@@ -34,29 +51,37 @@ public class Cat_Lobby : MonoBehaviour
 
     private bool ReFind = true;
     private bool IsEmotion = false;
+
     private void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
+
     private void Update()
     {
-
         if (FinalNodeList.Count == 0 && ReFind)
         {
+            CancelInvoke();
             ReFind = false;
             targetPos = new Vector2Int(Random.Range(bottomLeft.x, topRight.x), Random.Range(bottomLeft.y, topRight.y));
             PathFinding(this.transform, targetPos);
             StartCoroutine(boolFind());
+            InvokeRepeating("doEmotion", 3f, Random.Range(10f,15f));
         }
         if (FinalNodeList.Count != 0 && !IsEmotion)
         {
-            MovePath();
+            MovePath();  
         }
 
     }
 
-    public void MovePath()
+    IEnumerator boolFind()
+    {
+        yield return new WaitForSeconds(10f);
+        ReFind = true;
+    }
+    private void MovePath()
     {
         int InputX = FinalNodeList[index].x;
         int InputY = FinalNodeList[index].y;
@@ -85,7 +110,7 @@ public class Cat_Lobby : MonoBehaviour
         }
     }
 
-    public void PathFinding(Transform Catpos, Vector2Int targetPos)
+    void PathFinding(Transform Catpos, Vector2Int targetPos)
     {
         // NodeArray의 크기 정해주고, isWall, x, y 대입
         sizeX = topRight.x - bottomLeft.x + 1;
@@ -179,77 +204,41 @@ public class Cat_Lobby : MonoBehaviour
             }
         }
     }
+    private void doEmotion()
+    {
+        if (IsEmotion)
+            return;
+        IsEmotion = true;
+        _index = Random.Range(0, Managers.Game.SaveData.Emotion.Count);
+        _indexstr = Managers.Game.SaveData.Emotion[_index];
+        anim.SetBool(_indexstr, true);
+        StartCoroutine(IsEmoe(_indexstr, Managers.Game.SaveData.EmotionTime[_index]));
+    }
+
+    IEnumerator IsEmoe(string _str ,float _Time)
+    {
+        yield return new WaitForSeconds(_Time);
+        IsEmotion = false;
+        anim.SetBool(_str,false);
+    }
+    public void Love(string _food)
+    {
+        Debug.Log("애정도가 올랐습니다");
+        //고양이별 간식 분류
+        //이벤트 추가 (애정도)
+        Managers.UI.ClosePopupUI();
+    }
+
 
     private void OnMouseDown()
     {
-        Managers.Sound.Play(Define.Sound.Effect, "Effects/CatTouch", 0.3f); ;
-        IsEmotion = true;
-        int _index = Random.Range(0, 15);
-        switch (_index)
+        if (IsEmotion)
         {
-            case 0:
-                anim.Play("W_Other_Attack");
-                break;
-            case 1:
-                anim.Play("W_Other_Blink");
-                break;
-            case 2:
-                anim.Play("W_Other_Dig");
-                break;
-            case 3:
-                anim.Play("W_Other_Ennui");
-                break;
-            case 4:
-                anim.Play("W_Other_Lick");
-                break;
-            case 5:
-                anim.Play("W_Other_Paw");
-                break;
-            case 6:
-                anim.Play("W_Other_Relux");
-                break;
-            case 7:
-                anim.Play("W_Other_Scratch");
-                break;
-            case 8:
-                anim.Play("W_Other_Sleep1");
-                break;
-            case 9:
-                anim.Play("W_Other_Sleep2");
-                break;
-            case 10:
-                anim.Play("W_Other_Sleep3");
-                break;
-            case 11:
-                anim.Play("W_Other_Sniff");
-                break;
-            case 12:
-                anim.Play("W_Other_Stretch");
-                break;
-            case 13:
-                anim.Play("W_Other_Sway");
-                break;
-            case 14:
-                anim.Play("W_Other_Tail");
-                break;
+            Managers.Sound.Play(Define.Sound.Effect, "Effects/CatTouch", 0.3f);
+            anim.SetBool(_indexstr, false );
+            IsEmotion = false;
         }
-        StartCoroutine(IsEmoe());
     }
 
-    IEnumerator IsEmoe()
-    {
-        yield return new WaitForSeconds(1f);
-        IsEmotion = false;
-    }
-    IEnumerator boolFind()
-    {
-        yield return new WaitForSeconds(1f);
-        ReFind = true;
-    }
-    public void Love()
-    {
-        Debug.Log("애정도가 올랐습니다");
-        Managers.UI.ClosePopupUI();
-    }
 }
 
