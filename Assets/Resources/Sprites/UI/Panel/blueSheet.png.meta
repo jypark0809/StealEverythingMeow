@@ -326,6 +326,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: blueSheet_10
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 85
+        width: 38
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 276403c123fdbd34daf0c4eec2b311ae
+      internalID: 115963677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blueSheet_11
+      rect:
+        serializedVersion: 2
+        x: 379
+        y: 85
+        width: 38
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa105a0c607fbb14aa0ae333af574033
+      internalID: -1015898340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -339,10 +381,12 @@ TextureImporter:
     nameFileIdTable:
       blueSheet_9: 721404516
       blueSheet_5: -1211445872
+      blueSheet_11: -1015898340
       blueSheet_2: -792182438
       blueSheet_8: -1983790819
       blueSheet_0: -746517934
       blueSheet_3: 253727621
+      blueSheet_10: 115963677
       blueSheet_4: 1810656332
       blueSheet_1: -1769591199
       blueSheet_6: 1446339388

@@ -26,6 +26,8 @@ public class DataTransformer : EditorWindow
         ParseStatMagnetData("StatMagnet");
         ParseDestroyableObjectData("DestroyableObject");
         ParseFurnitureData("Furniture");
+        ParseSoomData("Soom");
+        ParseCatBookData("CatBook");
     }
 
     static void ParseLevelExpData(string filename)
@@ -199,7 +201,7 @@ public class DataTransformer : EditorWindow
                 continue;
             int i = 0;
 
-            loader.furnitures.Add(new FurnitureData()
+            loader.Furnitures.Add(new FurnitureData()
             {
                 F_Id = int.Parse(row[i++]),
                 F_Int_Name = row[i++],
@@ -210,6 +212,96 @@ public class DataTransformer : EditorWindow
                 F_Gold = int.Parse(row[i++]),
                 F_Path = row[i++]
             });
+        }
+
+        #endregion
+
+        string jsonStr = JsonConvert.SerializeObject(loader, Formatting.Indented);
+        File.WriteAllText($"{Application.dataPath}/Resources/Data/Json/{filename}Data.json", jsonStr);
+        AssetDatabase.Refresh();
+    }
+
+    static void ParseSoomData(string filename)
+    {
+        SoomDataLoader loader = new SoomDataLoader();
+
+        #region ExcelData
+        string[] lines = File.ReadAllText($"{Application.dataPath}/Resources/Data/Excel/{filename}Data.csv").Split("\n");
+
+        for (int y = 1; y < lines.Length; y++)
+        {
+            string[] row = lines[y].Replace("\r", "").Split(',');
+            if (row.Length == 0)
+                continue;
+            if (string.IsNullOrEmpty(row[0]))
+                continue;
+            int i = 0;
+
+            loader.Sooms.Add(new SoomData()
+            {
+                Soom_Id = int.Parse(row[i++]),
+                Soom_Int_Name = row[i++],
+                Soom_Name = row[i++],
+                Soom_Desc = row[i++],
+                Soom_Lv = int.Parse(row[i++]),
+                Happiness = int.Parse(row[i++]),
+                Space_Num = int.Parse(row[i++]),
+                Space_F_Count = int.Parse(row[i++]),
+                Cap_Capacity = int.Parse(row[i++]),
+                Gold = int.Parse(row[i++]),
+                Diamond = int.Parse(row[i++]),
+                Wood = int.Parse(row[i++]),
+                Stone = int.Parse(row[i++]),
+                Cotton = int.Parse(row[i++]),
+                //Soom_Path,
+            });
+
+        }
+
+        #endregion
+
+        string jsonStr = JsonConvert.SerializeObject(loader, Formatting.Indented);
+        File.WriteAllText($"{Application.dataPath}/Resources/Data/Json/{filename}Data.json", jsonStr);
+        AssetDatabase.Refresh();
+    }
+
+    static void ParseCatBookData(string filename)
+    {
+        CatBookDataLoader loader = new CatBookDataLoader();
+
+        #region ExcelData
+        string[] lines = File.ReadAllText($"{Application.dataPath}/Resources/Data/Excel/{filename}Data.csv").Split("\n");
+
+        for (int y = 1; y < lines.Length; y++)
+        {
+            string[] row = lines[y].Replace("\r", "").Split(',');
+            if (row.Length == 0)
+                continue;
+            if (string.IsNullOrEmpty(row[0]))
+                continue;
+            int i = 0;
+
+            loader.CatBooks.Add(new CatBookData()
+            {
+                Cat_Id = int.Parse(row[i++]),
+                Cat_Int_Name = row[i++],
+                Cat_Name = row[i++],
+                Cat_Desc = row[i++],
+                Cat_Favor_Food = int.Parse(row[i++]),
+                Cat_Skill_Name = row[i++],
+                Cat_Skill_Count = int.Parse(row[i++]),
+                Cat_Soom_Lv = int.Parse(row[i++]),
+                Cat_Skill_Desc = row[i++],
+                Cat_Present_Type = int.Parse(row[i++]),
+                Cat_Present_Count = int.Parse(row[i++]),
+                Cat_Present_Time = int.Parse(row[i++]),
+                Happiness = int.Parse(row[i++]),
+                Soom_Lv = int.Parse(row[i++]),
+                Gold = int.Parse(row[i++]),
+                Diamond = int.Parse(row[i++]),
+                Cat_Path = int.Parse(row[i++]),
+            });
+
         }
 
         #endregion

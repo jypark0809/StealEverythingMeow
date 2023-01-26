@@ -1,52 +1,55 @@
 {
-  "Sooms":[
-   {
-      "Soom_Id":1301,
-      "Soom_Int_Name":"Soom_Box",
-      "Soom_Name":"종이 상자",
-      "Soom_Desc":"가장 기본 단계. 쉽게 찢어질 것 같다.",
-      "Soom_Lv":1,
-      "Happiness":10,
-      "Space_Num":3,
-      "Space_F_Count":10,
-      "Cap_Capacity":1,
-      "Diamond":10,
-      "Wood":0,
-      "Stone":0,
-      "Cotton":0,
-      "Soom_Img":"box.png"
-   },
-   {
-      "Soom_Id":1302,
-      "Soom_Int_Name":"Soom_Wood",
-      "Soom_Name":"나무 집",
-      "Soom_Desc":"지붕이 있는 단단한 나무 집이다.",
-      "Soom_Lv":2,
-      "Happiness":20,
-      "Space_Num":6,
-      "Space_F_Count":21,
-      "Cap_Capacity":3,
-      "Diamond":100,
-      "Wood":50,
-      "Stone":0,
-      "Cotton":0,
-      "Soom_Img":"woodhouse.png"
-   },
-   {
-      "Soom_Id":1303,
-      "Soom_Int_Name":"Soom_Cushion",
-      "Soom_Name":"쿠션 집",
-      "Soom_Desc":"안락하고 푹신한 쿠션 집. 최종 단계 형태이다.",
-      "Soom_Lv":3,
-      "Happiness":30,
-      "Space_Num":10,
-      "Space_F_Count":41,
-      "Cap_Capacity":5,
-      "Diamond":250,
-      "Wood":0,
-      "Stone":0,
-      "Cotton":70,
-      "Soom_Img":"cushionhouse.png"
-   } 
-   ]
+  "Sooms": [
+    {
+      "Soom_Id": 1301,
+      "Soom_Int_Name": "Soom_Box",
+      "Soom_Name": "종이 상자",
+      "Soom_Desc": "가장 기본 단계. 쉽게 찢어질 것 같다.",
+      "Soom_Lv": 1,
+      "Happiness": 400,
+      "Space_Num": 3,
+      "Space_F_Count": 10,
+      "Cap_Capacity": 1,
+      "Gold": 0,
+      "Diamond": 10,
+      "Wood": 0,
+      "Stone": 0,
+      "Cotton": 0,
+      "Soom_Img": null
+    },
+    {
+      "Soom_Id": 1302,
+      "Soom_Int_Name": "Soom_Wood",
+      "Soom_Name": "나무 집",
+      "Soom_Desc": "지붕이 있는 단단한 나무 집이다.",
+      "Soom_Lv": 2,
+      "Happiness": 500,
+      "Space_Num": 6,
+      "Space_F_Count": 21,
+      "Cap_Capacity": 3,
+      "Gold": 15000,
+      "Diamond": 150,
+      "Wood": 100,
+      "Stone": 90,
+      "Cotton": 20,
+      "Soom_Img": null
+    },
+    {
+      "Soom_Id": 1303,
+      "Soom_Int_Name": "Soom_Cushion",
+      "Soom_Name": "쿠션 집",
+      "Soom_Desc": "안락하고 푹신한 쿠션 집. 최종 단계 형태이다.",
+      "Soom_Lv": 3,
+      "Happiness": 600,
+      "Space_Num": 10,
+      "Space_F_Count": 41,
+      "Cap_Capacity": 5,
+      "Gold": 35000,
+      "Diamond": 350,
+      "Wood": 300,
+      "Stone": 270,
+      "Cotton": 70,
+      "Soom_Img": null
+    }
+  ]
 }

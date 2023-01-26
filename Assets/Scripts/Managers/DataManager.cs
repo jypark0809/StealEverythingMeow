@@ -22,6 +22,7 @@ public class DataManager
     public Dictionary<int, FurnitureData> Furnitures { get; private set; } = new Dictionary<int, FurnitureData>();
     public Dictionary<int, SoomData> Sooms { get; private set; } = new Dictionary<int, SoomData>();
     public Dictionary<int, SpaceData> Spaces { get; private set; } = new Dictionary<int, SpaceData>();
+    public Dictionary<int, CatBookData> CatBooks { get; private set; } = new Dictionary<int, CatBookData>();
 
     public void Init()
     {
@@ -34,7 +35,8 @@ public class DataManager
         Furnitures = LoadJson<FurnitureDataLoader, int, FurnitureData>("FurnitureData").MakeDict();
         Sooms = LoadJson<SoomDataLoader, int, SoomData>("SoomData").MakeDict();
         Spaces = LoadJson<SpaceDataLoader, int, SpaceData>("SpaceData").MakeDict();
-        
+        CatBooks = LoadJson<CatBookDataLoader, int, CatBookData>("CatBookData").MakeDict();
+
     }
 
     public bool Loaded()
