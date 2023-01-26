@@ -22,7 +22,7 @@ public class DataTransformer : EditorWindow
     {
         ParseLevelExpData("LevelExp");
         ParseStatSpeedData("StatSpeed");
-        ParseStatSightData("StatSight");
+        ParseStatCooltimeData("StatCooltime");
         ParseStatMagnetData("StatMagnet");
         ParseDestroyableObjectData("DestroyableObject");
         ParseFurnitureData("Furniture");
@@ -76,7 +76,7 @@ public class DataTransformer : EditorWindow
                 continue;
             int i = 0;
 
-            loader.StatSpeeds.Add(new StatSpeedData()
+            loader.statSpeeds.Add(new StatSpeedData()
             {
                 Stats_Lv = int.Parse(row[i++]),
                 Stats_Speed = float.Parse(row[i++])
@@ -90,9 +90,9 @@ public class DataTransformer : EditorWindow
         AssetDatabase.Refresh();
     }
 
-    static void ParseStatSightData(string filename)
+    static void ParseStatCooltimeData(string filename)
     {
-        StatSightDataLoader loader = new StatSightDataLoader();
+        StatCooltimeDataLoader loader = new StatCooltimeDataLoader();
 
         #region ExcelData
         string[] lines = File.ReadAllText($"{Application.dataPath}/Resources/Data/Excel/{filename}Data.csv").Split("\n");
@@ -106,10 +106,10 @@ public class DataTransformer : EditorWindow
                 continue;
             int i = 0;
 
-            loader.StatSights.Add(new StatSightData()
+            loader.statCooltimes.Add(new StatCooltimeData()
             {
                 Stats_Lv = int.Parse(row[i++]),
-                Stats_Sight = float.Parse(row[i++])
+                Stats_Cooltime = float.Parse(row[i++])
             });
         }
 
@@ -136,7 +136,7 @@ public class DataTransformer : EditorWindow
                 continue;
             int i = 0;
 
-            loader.StatMagnets.Add(new StatMagnetData()
+            loader.statMagnets.Add(new StatMagnetData()
             {
                 Stats_Lv = int.Parse(row[i++]),
                 Stats_Magnet = float.Parse(row[i++])
@@ -209,7 +209,8 @@ public class DataTransformer : EditorWindow
                 F_Desc = row[i++],
                 F_Space_Num = int.Parse(row[i++]),
                 F_Happiness = int.Parse(row[i++]),
-                F_Gold = int.Parse(row[i++])
+                F_Gold = int.Parse(row[i++]),
+                F_Path = row[i++]
             });
         }
 

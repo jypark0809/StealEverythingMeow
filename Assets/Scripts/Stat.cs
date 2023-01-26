@@ -9,7 +9,7 @@ public class Stat : MonoBehaviour
     [SerializeField] protected int _hp = 3;
     [SerializeField] protected int _maxHp = 3;
     [SerializeField] protected int _map;
-    [SerializeField] protected int _maxMap = 5;
+    [SerializeField] protected int _maxMap = 3;
     [SerializeField] protected int _gold;
     [SerializeField] protected int _diamond;
     [SerializeField] protected int _wood;
@@ -17,10 +17,10 @@ public class Stat : MonoBehaviour
     [SerializeField] protected int _cotton;
     [SerializeField] protected int _stage = 1;
     [SerializeField] protected int _speedLv = 1;
-    [SerializeField] protected int _sightLv = 1;
+    [SerializeField] protected int _cooltimeLv = 1;
     [SerializeField] protected int _magnetLv = 1;
     [SerializeField] protected float _moveSpeed = 5;
-    [SerializeField] protected float _sightRange;
+    [SerializeField] protected float _cooltime = 20;
     [SerializeField] protected float _magnetRange;
 
     public int Level
@@ -89,6 +89,18 @@ public class Stat : MonoBehaviour
             _map = value;
 
             (Managers.UI.SceneUI as UI_GameScene).UpdateTreasureMapImage(_map, MaxMap);
+
+            if (_map < MaxMap && _map > 0)
+            {
+                (Managers.Scene.CurrentScene as GameScene).SpawnTreasureMap();
+            }
+
+            if (_map == MaxMap)
+            {
+                Managers.UI.ShowPopupUI<UI_NextStagePopup>();
+                (Managers.Scene.CurrentScene as GameScene).SpawnPortal();
+                Map = 0;
+            }
         }
     }
     public int MaxMap { get { return _maxMap; } set { _maxMap = value; } }
@@ -109,15 +121,15 @@ public class Stat : MonoBehaviour
             MoveSpeed = speedData.Stats_Speed;
         }
     }
-    public int SightLv
+    public int CooltimeLv
     {
-        get { return _sightLv; }
+        get { return _cooltimeLv; }
         set 
-        { 
-            _sightLv = value;
-            StatSightData sightData;
-            Managers.Data.StatSights.TryGetValue(_sightLv, out sightData);
-            SightRange = sightData.Stats_Sight;
+        {
+            _cooltimeLv = value;
+            StatCooltimeData cooltimeData;
+            Managers.Data.StatCooltimes.TryGetValue(_cooltimeLv, out cooltimeData);
+            CoolTime = cooltimeData.Stats_Cooltime;
         } 
     }
     public int MagnetLv
@@ -132,7 +144,7 @@ public class Stat : MonoBehaviour
         }
     }
     public float MoveSpeed { get { return _moveSpeed; } set { _moveSpeed = value; } }
-    public float SightRange { get { return _sightRange; } set { _sightRange = value; } }
+    public float CoolTime { get { return _cooltime; } set { _cooltime = value; } }
     public float MagnetRange
     {
         get { return _magnetRange; }

@@ -1,16 +1,16 @@
 {
-  "StatSights": [
+  "statCooltimes": [
     {
       "Stats_Lv": 1,
-      "Stats_Sight": 2.0
+      "Stats_Cooltime": 20.0
     },
     {
       "Stats_Lv": 2,
-      "Stats_Sight": 3.0
+      "Stats_Cooltime": 15.0
     },
     {
       "Stats_Lv": 3,
-      "Stats_Sight": 4.0
+      "Stats_Cooltime": 10.0
     }
   ]
 }

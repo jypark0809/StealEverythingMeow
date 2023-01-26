@@ -78,20 +78,21 @@ public class UI_DestroyableObjectPopup : UI_Popup
     }
 
     [SerializeField]
-    float _shakePower = 5f;
+    float _shakePower = 10f;
     [SerializeField]
-    float _shakeTime = 1f;
+    float _shakeTime = 0.3f;
 
     IEnumerator ShakeObject(float shakePower, float duration)
     {
+        Transform _transform = GetImage((int)Images.ObjectImage).gameObject.transform;
         while (duration > 0)
         {
-            GetImage((int)Images.ObjectImage).gameObject.transform.position +=
+            _transform.position +=
                 Random.insideUnitSphere * shakePower;
             duration -= Time.deltaTime;
             yield return null;
         }
-        GetImage((int)Images.ObjectImage).gameObject.transform.position = _originPos;
+        _transform.position = _originPos;
     }
 
     private void OnDestroy()
@@ -107,13 +108,13 @@ public class UI_DestroyableObjectPopup : UI_Popup
         switch(rand)
         {
             case 0:
-                Managers.Sound.Play(Define.Sound.Effect, "Effects/Punch_01", volume: 0.4f);
+                Managers.Sound.Play(Define.Sound.Effect, "Effects/Punch_01", volume: 0.1f);
                 break;
             case 1:
-                Managers.Sound.Play(Define.Sound.Effect, "Effects/Punch_02", volume: 0.4f);
+                Managers.Sound.Play(Define.Sound.Effect, "Effects/Punch_02", volume: 0.1f);
                 break;
             case 2:
-                Managers.Sound.Play(Define.Sound.Effect, "Effects/Punch_03", volume: 0.4f);
+                Managers.Sound.Play(Define.Sound.Effect, "Effects/Punch_03", volume: 0.1f);
                 break;
         }
     }

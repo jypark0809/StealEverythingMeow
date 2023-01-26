@@ -23,7 +23,7 @@ public class CommonItem : Item
     {
         if(isPull)
         {
-            transform.position = Vector2.MoveTowards(transform.position, _target.position, Time.deltaTime * 2f);
+            transform.position = Vector2.MoveTowards(transform.position, _target.position, Time.deltaTime * 4f);
         }
     }
 
