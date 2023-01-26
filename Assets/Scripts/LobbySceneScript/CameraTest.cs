@@ -49,7 +49,6 @@ public class CameraTest : MonoBehaviour
         {
             transform.position = Vector3.Lerp(this.transform.position, targetPos, Time.deltaTime * dragspeed);
         }
-        //pix.assetsPPU = (int)Mathf.Lerp(pix.assetsPPU, _zoom, Time.deltaTime* cameraZoomSpeed);
     }
     private void FixedUpdate()
     {

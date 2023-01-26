@@ -9,17 +9,24 @@ public class UI_UpgradeSom : UI_Popup
 {
     enum Texts
     {
-        GoldText,
-        CottonValue,
-        StoneValue,
-        WoodValue,
+        CurrentSoomLevel,
+        CurText,
+        NextText,
+        B1,
+        B2,
+        B3,
+        B4,
     }
 
+    enum Images
+    {
+        CurImages,
+        NextImages
+    }
     enum Buttons
     {
         CloseButton,
         OkayButton,
-        CancleButton,
     }
 
     void Start()
@@ -32,26 +39,27 @@ public class UI_UpgradeSom : UI_Popup
         base.Init();
 
         Bind<Button>(typeof(Buttons));
+        Bind<Image>(typeof(Images));
         Bind<TextMeshProUGUI>(typeof(Texts));
 
-        GetText((int)Texts.GoldText).text = "$999,999";
-        GetButton((int)Buttons.OkayButton).gameObject.BindEvent(OnOkayButton);
-        GetButton((int)Buttons.CancleButton).gameObject.BindEvent(OnCloseButton);
+        GetText((int)Texts.CurText).text = "Lv " + Managers.Game.SaveData.SoomLevel.ToString();
+        GetText((int)Texts.NextText).text = "Lv " + (Managers.Game.SaveData.SoomLevel + 1).ToString();
+
+        GetImage((int)Images.CurImages).sprite = Resources.Load<Sprite>(("Sprites/Furniture/" + Managers.Data.Sooms[1300 + Managers.Game.SaveData.SoomLevel].Soom_Int_Name).Split(".")[0]);
+        GetImage((int)Images.NextImages).sprite = Resources.Load<Sprite>(("Sprites/Furniture/" + Managers.Data.Sooms[1300 + Managers.Game.SaveData.SoomLevel + 1].Soom_Int_Name).Split(".")[0]);
+
+        GetText((int)Texts.B1).text = "- 고양이 수용량 +2";
+        GetText((int)Texts.B2).text = "- 공간해금 구간 확장";
+        GetText((int)Texts.B3).text = "- 행복도 + " + (Managers.Data.Sooms[1300 + Managers.Game.SaveData.SoomLevel + 1].Happiness).ToString();
+        GetText((int)Texts.B4).text = "- 감정표현 1종 획득";
+
+        GetButton((int)Buttons.OkayButton).gameObject.BindEvent(OnOpenUpCon);
         GetButton((int)Buttons.CloseButton).gameObject.BindEvent(OnCloseButton);
     }
 
-    void OnOkayButton(PointerEventData evt)
+    void OnOpenUpCon(PointerEventData evt)
     {
-        if (Managers.Game.SaveData.Gold < -1) //조건체크
-        {
-            Debug.Log("not enough money");
-            Managers.UI.ClosePopupUI();
-        }
-        else
-        {
-            Managers.UI.ShowPopupUI<UI_SucessUp>();
-        }
-
+        Managers.UI.ShowPopupUI<UI_Condition>();
     }
 
     void OnCloseButton(PointerEventData evt)

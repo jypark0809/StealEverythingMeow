@@ -35,8 +35,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -14.052205, y: -23.500002}
-  m_SizeDelta: {x: 80, y: 10}
+  m_AnchoredPosition: {x: -37.376163, y: -23.500002}
+  m_SizeDelta: {x: 59.42003, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1598636707478153382
 CanvasRenderer:
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 33.02658, w: 0}
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -406,7 +406,7 @@ GameObject:
   - component: {fileID: 653256488149388535}
   - component: {fileID: 8159136829157870640}
   m_Layer: 5
-  m_Name: UI_UnlockRoomPopup
+  m_Name: UI_UpgradeRoomPopup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1462,8 +1462,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -6.885538, y: -24.333334}
-  m_SizeDelta: {x: 80, y: 10}
+  m_AnchoredPosition: {x: -43.62935, y: -24.333334}
+  m_SizeDelta: {x: 59.42003, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6765945637243069957
 CanvasRenderer:
@@ -1556,7 +1556,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 38.46626, w: 0}
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1815,8 +1815,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -19.718868, y: -23.833336}
-  m_SizeDelta: {x: 80, y: 10}
+  m_AnchoredPosition: {x: -30.008854, y: -23.833336}
+  m_SizeDelta: {x: 59.42003, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4170031611650211392
 CanvasRenderer:
@@ -1909,7 +1909,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 19.03886, w: 0}
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1981,7 +1981,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8bbae931fdf979b4aab36a3fb7d3d792, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 73d0f306a3f60914aa2db15f4a9d1de7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
