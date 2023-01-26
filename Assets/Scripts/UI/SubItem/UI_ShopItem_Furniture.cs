@@ -8,12 +8,12 @@ using UnityEngine.UI;
 
 public class UI_ShopItem_Furniture : UI_Base
 {
-    [SerializeField]
-    int id;
-
+    public int id;
     public string itemName;
     public string itemDesc;
     public string itemPrice;
+    public string spritePath;
+    public bool isPurchasable; // true면 구매 가능
 
     enum Images
     {
@@ -44,6 +44,10 @@ public class UI_ShopItem_Furniture : UI_Base
         Bind<TextMeshProUGUI>(typeof(Texts));
 
         GetButton((int)Buttons.PurchaseButton).gameObject.BindEvent(OnButtonClicked);
+        GetButton((int)Buttons.PurchaseButton).interactable = isPurchasable;
+
+        GetImage((int)Images.ItemImage).sprite = Managers.Resource.Load<Sprite>(spritePath);
+        GetImage((int)Images.ItemImage).SetNativeSize();
         GetImage((int)Images.ItemImage).rectTransform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
 
         GetText((int)Texts.ItemName).text = itemName;
@@ -53,6 +57,9 @@ public class UI_ShopItem_Furniture : UI_Base
 
     void OnButtonClicked(PointerEventData evt)
     {
-        
+        if (GetButton((int)Buttons.PurchaseButton).interactable)
+        {
+
+        }
     }
 }

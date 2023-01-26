@@ -246,7 +246,7 @@ public class EnemyController : MonoBehaviour
         Managers.Object.Player.Stat.Hp--;
         Managers.Object.Player.gameObject.layer = 27;
         Managers.Object.Player.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2f);
         Managers.Object.Player.gameObject.layer = 29;
         Managers.Object.Player.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
     }

@@ -81,7 +81,7 @@ public class GameScene : BaseScene
         Managers.UI.ShowPopupUI<UI_GameOver>();
     }
 
-    void SpawnPortal()
+    public void SpawnPortal()
     {
         if (Managers.Object.Player.Stat.Stage > 3)
             return;
@@ -105,6 +105,7 @@ public class GameScene : BaseScene
     }
 
     List<int> indexList = new List<int>();
+
     void SpawnTreasureMap()
     {
         if (Managers.Object.Player.Stat.Stage > 3)

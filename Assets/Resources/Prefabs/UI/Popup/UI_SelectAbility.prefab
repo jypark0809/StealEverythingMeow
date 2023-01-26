@@ -524,7 +524,7 @@ GameObject:
   - component: {fileID: 4417055388175955755}
   - component: {fileID: 4417055388175955752}
   m_Layer: 5
-  m_Name: SightRangeButton
+  m_Name: CooltimeButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1303,8 +1303,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 6
-  m_fontSizeBase: 6
+  m_fontSize: 5
+  m_fontSizeBase: 5
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1438,8 +1438,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 6
-  m_fontSizeBase: 6
+  m_fontSize: 5
+  m_fontSizeBase: 5
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2016,7 +2016,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC2DC\uC57C\uBC94\uC704 \uC99D\uAC00\n(\uBBF8\uAD6C\uD604)"
+  m_text: "\uC2A4\uD0AC \uCFE8\uD0C0\uC784 \uAC10\uC18C\n25%"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: adb1f45eca7ba5840a2d91b77397abce, type: 2}
   m_sharedMaterial: {fileID: 5616210449787203681, guid: adb1f45eca7ba5840a2d91b77397abce, type: 2}
@@ -2043,8 +2043,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 6
-  m_fontSizeBase: 6
+  m_fontSize: 5
+  m_fontSizeBase: 5
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
