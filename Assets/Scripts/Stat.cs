@@ -9,7 +9,7 @@ public class Stat : MonoBehaviour
     [SerializeField] protected int _hp = 3;
     [SerializeField] protected int _maxHp = 3;
     [SerializeField] protected int _map;
-    [SerializeField] protected int _maxMap = 5;
+    [SerializeField] protected int _maxMap = 3;
     [SerializeField] protected int _gold;
     [SerializeField] protected int _diamond;
     [SerializeField] protected int _wood;
@@ -89,6 +89,18 @@ public class Stat : MonoBehaviour
             _map = value;
 
             (Managers.UI.SceneUI as UI_GameScene).UpdateTreasureMapImage(_map, MaxMap);
+
+            if (_map < MaxMap && _map > 0)
+            {
+                (Managers.Scene.CurrentScene as GameScene).SpawnTreasureMap();
+            }
+
+            if (_map == MaxMap)
+            {
+                Managers.UI.ShowPopupUI<UI_NextStagePopup>();
+                (Managers.Scene.CurrentScene as GameScene).SpawnPortal();
+                Map = 0;
+            }
         }
     }
     public int MaxMap { get { return _maxMap; } set { _maxMap = value; } }

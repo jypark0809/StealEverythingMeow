@@ -11,7 +11,7 @@ public class EnemyController : MonoBehaviour
     float _speed = 5;
 
     [SerializeField]
-    float CHASE_TIME = 5;
+    float CHASE_TIME = 3;
 
     Rigidbody2D _rigid;
     Animator _anim;
@@ -22,10 +22,14 @@ public class EnemyController : MonoBehaviour
 
     Transform _player;
     GameObject _sightScope;
+    GameObject _exclamationMark;
+
+    Coroutine detectedCoRoutine = null;
 
     public enum EnemyState
     {
         Patrol,
+        Detect,
         Attack,
         Idle,
     }
@@ -42,6 +46,9 @@ public class EnemyController : MonoBehaviour
             {
                 case EnemyState.Patrol:
                     _anim.Play("Run");
+                    break;
+                case EnemyState.Detect:
+                    _anim.Play("Idle");
                     break;
                 case EnemyState.Attack:
                     _anim.Play("Run");
@@ -63,6 +70,8 @@ public class EnemyController : MonoBehaviour
 
         _attackTimer = CHASE_TIME;
         _sightScope = Util.FindChild(gameObject, "SightScopeContainer", true);
+        _exclamationMark = Util.FindChild(gameObject, "ExclamationMark", false);
+        _exclamationMark.gameObject.SetActive(false);
     }
 
     void FixedUpdate()
@@ -71,6 +80,9 @@ public class EnemyController : MonoBehaviour
         {
             case EnemyState.Patrol:
                 UpdatePatrol();
+                break;
+            case EnemyState.Detect:
+                UpdateDetect();
                 break;
             case EnemyState.Attack:
                 UpdateAttack();
@@ -98,9 +110,19 @@ public class EnemyController : MonoBehaviour
         Patrol();
     }
 
+    void UpdateDetect()
+    {
+        if (detectedCoRoutine == null)
+        {
+            detectedCoRoutine = StartCoroutine(DetectPlayerCoroutine());
+        }
+    }
+
     float _attackTimer;
     void UpdateAttack()
     {
+        detectedCoRoutine = null;
+        _sightScope.SetActive(false);
         if (_player.gameObject.layer == 28)
         {
             State = EnemyState.Idle;
@@ -140,6 +162,7 @@ public class EnemyController : MonoBehaviour
     
     void Patrol()
     {
+        _sightScope.SetActive(true);
         if (transform.position == _transformList[index].position)
             setDestination();
         else
@@ -194,7 +217,7 @@ public class EnemyController : MonoBehaviour
             if (degree <= angleRange / 2f && Managers.Object.Player.gameObject.layer == 29)
             {
                 IsCollide = true;
-                State = EnemyState.Attack;
+                State = EnemyState.Detect;
             }
                 
             else
@@ -239,6 +262,14 @@ public class EnemyController : MonoBehaviour
     void LateUpdate()
     {
         _spriteRenderer.flipX = (lookDir.x < 0);
+    }
+
+    IEnumerator DetectPlayerCoroutine()
+    {
+        _exclamationMark.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        _exclamationMark.SetActive(false);
+        State = EnemyState.Attack;
     }
 
     IEnumerator ChangePlayerState()

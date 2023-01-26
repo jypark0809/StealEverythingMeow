@@ -178,7 +178,7 @@ MonoBehaviour:
   _hp: 3
   _maxHp: 3
   _map: 0
-  _maxMap: 5
+  _maxMap: 3
   _gold: 0
   _diamond: 0
   _wood: 0
@@ -186,10 +186,10 @@ MonoBehaviour:
   _cotton: 0
   _stage: 1
   _speedLv: 1
-  _sightLv: 1
+  _cooltimeLv: 1
   _magnetLv: 1
   _moveSpeed: 5
-  _sightRange: 0
+  _cooltime: 20
   _magnetRange: 0.4
 --- !u!114 &3761292257066619837
 MonoBehaviour:

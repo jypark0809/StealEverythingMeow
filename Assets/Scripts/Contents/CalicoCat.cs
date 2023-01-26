@@ -56,8 +56,6 @@ public class CalicoCat : MonoBehaviour
         _stat.MoveSpeed += 2;
         yield return new WaitForSeconds(skillTime);
         _stat.MoveSpeed -= 2;
-
-        skillCoroutine = null;
     }
 
     IEnumerator SetSkillCoolTime(float coolTime)
@@ -67,5 +65,6 @@ public class CalicoCat : MonoBehaviour
         coolTimeCoroutine = null;
         timer = 0;
         _coolTimeBar.gameObject.SetActive(false);
+        skillCoroutine = null;
     }
 }

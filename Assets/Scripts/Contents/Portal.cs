@@ -18,19 +18,7 @@ public class Portal : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            if (Managers.Object.Player.Stat.Stage == 3)
-            {
-                if (Managers.Object.Player.Stat.Map == Managers.Object.Player.Stat.MaxMap)
-                    NextStage();
-                else
-                {
-                    Managers.UI.ShowPopupUI<UI_NeedTreasureMapPopup>();
-                }
-            }
-            else
-            {
-                NextStage();
-            }
+            NextStage();
         }
     }
 
