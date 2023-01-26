@@ -34,44 +34,24 @@ public class UI_UnlockRoomPopup : UI_Popup
         Bind<Button>(typeof(Buttons));
         Bind<TextMeshProUGUI>(typeof(Texts));
 
-        GetText((int)Texts.GoldText).text = "$999,999";
         GetButton((int)Buttons.OkayButton).gameObject.BindEvent(OnOkayButton);
         GetButton((int)Buttons.CancleButton).gameObject.BindEvent(OnCloseButton);
         GetButton((int)Buttons.CloseButton).gameObject.BindEvent(OnCloseButton);
-        GetText((int)Texts.CottonValue).text = "999"; //차후 추가
-        GetText((int)Texts.StoneValue).text = "666";//차후 추가
-        GetText((int)Texts.WoodValue).text = "333";//차후 추가
-        //Util.FindChild(this.gameObject, "Cotton", true).SetActive(false);
+
+        
+        GetText((int)Texts.GoldText).text = Managers.Data.Spaces[1200 + Managers.Game.SaveData.RoomLevel + 1].Gold.ToString();
+        GetText((int)Texts.CottonValue).text = Managers.Data.Spaces[1200 + Managers.Game.SaveData.RoomLevel + 1].Cotton.ToString();
+        GetText((int)Texts.StoneValue).text = Managers.Data.Spaces[1200 + Managers.Game.SaveData.RoomLevel + 1].Stone.ToString();
+        GetText((int)Texts.WoodValue).text = Managers.Data.Spaces[1200 + Managers.Game.SaveData.RoomLevel + 1].Wood.ToString();
+
     }
 
     void OnOkayButton(PointerEventData evt)
     {
-        if (Managers.Game.SaveData.Gold < -1)
-        {
-            Debug.Log("not enough money");
-            Managers.UI.ClosePopupUI();
-        }
-        else
-        {
-            //Managers.Object.CatHouse.GetComponent<TileManager>().Open();
-            if (Managers.Game.SaveData.RoomLevel < 7)
-                Managers.Game.SaveData.RoomLevel++;
-            Managers.Game.SaveData.Gold -= 0;
-
-            // Save Data
-            //Managers.Game.SaveGame();
-            
-        }
+        Managers.Object.CatHouse.GetComponent<TileManager>().Open();
     }
-
     void OnCloseButton(PointerEventData evt)
     {
         Managers.UI.ClosePopupUI();
-    }
-
-    IEnumerator OpenRoom(string _name)
-    {
-        yield return new WaitForSeconds(1f);
-        Util.FindChild(Managers.Object.CatHouse.gameObject, _name, recursive: true).SetActive(false);
     }
 }

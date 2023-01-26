@@ -9,20 +9,22 @@ using static Define;
 public class GameData
 {
     public int Jelly;
-    public int Gold;
-    public int Dia;
+    public int Gold = 999999;
+    public int Dia = 999999;
 
     // 재료
-    public int Wood = 9999;
-    public int Cotton = 9999;
+    public int Wood = 1000;
+    public int Cotton = 1000;
     public int Stone = 9999;
 
-    public int RoomLevel ;
-    public int[] MaxFurniture = new int[11]; //추후 수정
+    public int RoomLevel = 1;
+    public int[] MaxFurniture = new int[11] {0,0,0,0,0,0,0,0,0,0,0}; //추후 수정
 
-    public int SoomLevel = 1;
-    public List<string> Emotion = new List<string>(); //배열 갱신
-    public List<float> EmotionTime = new List<float>(); //추후배열로 다시봐보기
+    public int SoomLevel = 0;
+    public bool[] Emotion = new bool[Define.MOTION_COUNT];
+
+    public bool IsRoomOpen;
+    public bool IsSoomUp = false;
 
     public bool BGMOn = true;
     public bool EffectSoundOn = true;
@@ -31,17 +33,6 @@ public class GameData
     public GameData()
     {
         Jelly = 5;
-
-        //초기 감정 배열선언
-        Emotion.Add("Sleep3");
-        Emotion.Add("Sleep2");
-        Emotion.Add("Blink");
-        Emotion.Add("Ennui");
-
-        EmotionTime.Add(10f);
-        EmotionTime.Add(10f);
-        EmotionTime.Add(5f);
-        EmotionTime.Add(10f);
     }
 }
 

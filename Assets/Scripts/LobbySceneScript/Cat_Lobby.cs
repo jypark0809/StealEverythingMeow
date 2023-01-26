@@ -13,6 +13,7 @@ public class Node
     // G : 시작으로부터 이동했던 거리, H : |가로|+|세로| 장애물 무시하여 목표까지의 거리, F : G + H
     public int x, y, G, H;
     public int F { get { return G + H; } }
+
 }
 public class Cat_Lobby : MonoBehaviour
 {
@@ -25,7 +26,12 @@ public class Cat_Lobby : MonoBehaviour
     private int _index;
     private string _indexstr;
 
-[SerializeField]
+
+    public List<string> Emotion = new List<string>(); //배열 갱신
+    public List<float> EmotionTime = new List<float>(); //추후배열로 다시봐보기
+
+
+    [SerializeField]
     public enum Catname
     {
         Black,
@@ -52,10 +58,35 @@ public class Cat_Lobby : MonoBehaviour
     private bool ReFind = true;
     private bool IsEmotion = false;
 
+    private void Awake()
+    {
+        Emotion.Add("Blink");
+        Emotion.Add("Ennui");
+        Emotion.Add("Dig");
+        Emotion.Add("Fly");
+        Emotion.Add("Lick");
+        Emotion.Add("Paw");
+        Emotion.Add("Relax");
+        Emotion.Add("Scratch");
+        Emotion.Add("Sleep1");
+        Emotion.Add("Sleep2");
+        Emotion.Add("Sleep3");
+        Emotion.Add("Sniff");
+        Emotion.Add("Stretch");
+        Emotion.Add("Sway");
+        Emotion.Add("Tail");
+        Emotion.Add("Attack");
+
+        EmotionTime.Add(10f);
+        EmotionTime.Add(10f);
+        EmotionTime.Add(5f);
+        EmotionTime.Add(10f);
+    }
     private void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+
     }
 
     private void Update()
@@ -67,13 +98,13 @@ public class Cat_Lobby : MonoBehaviour
             targetPos = new Vector2Int(Random.Range(bottomLeft.x, topRight.x), Random.Range(bottomLeft.y, topRight.y));
             PathFinding(this.transform, targetPos);
             StartCoroutine(boolFind());
-            InvokeRepeating("doEmotion", 3f, Random.Range(10f,15f));
+            Invoke("doEmotion", Random.Range(0f, 4f));
         }
         if (FinalNodeList.Count != 0 && !IsEmotion)
         {
-            MovePath();  
+            CancelInvoke();
+            MovePath();
         }
-
     }
 
     IEnumerator boolFind()
@@ -208,18 +239,19 @@ public class Cat_Lobby : MonoBehaviour
     {
         if (IsEmotion)
             return;
+
         IsEmotion = true;
-        _index = Random.Range(0, Managers.Game.SaveData.Emotion.Count);
-        _indexstr = Managers.Game.SaveData.Emotion[_index];
+        _index = Random.Range(0, Emotion.Count);
+        _indexstr = Emotion[_index];
         anim.SetBool(_indexstr, true);
-        StartCoroutine(IsEmoe(_indexstr, Managers.Game.SaveData.EmotionTime[_index]));
+        StartCoroutine(IsEmoe(_indexstr, Random.Range(5f,15f)));
     }
 
-    IEnumerator IsEmoe(string _str ,float _Time)
+    IEnumerator IsEmoe(string _str, float _Time)
     {
         yield return new WaitForSeconds(_Time);
+        anim.SetBool(_str, false);
         IsEmotion = false;
-        anim.SetBool(_str,false);
     }
     public void Love(string _food)
     {
@@ -235,7 +267,7 @@ public class Cat_Lobby : MonoBehaviour
         if (IsEmotion)
         {
             Managers.Sound.Play(Define.Sound.Effect, "Effects/CatTouch", 0.3f);
-            anim.SetBool(_indexstr, false );
+            anim.SetBool(_indexstr, false);
             IsEmotion = false;
         }
     }

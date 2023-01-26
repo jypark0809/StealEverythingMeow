@@ -164,6 +164,7 @@ public class SoomData
     public int Space_Num;
     public int Space_F_Count;
     public int Cap_Capacity;
+    public int Gold;
     public int Diamond;
     public int Wood;
     public int Stone;
@@ -220,3 +221,41 @@ public class SpaceDataLoader : ILoader<int, SpaceData>
         return dic;
     }
 }
+
+[Serializable]
+public class CatBookData
+{
+    public int Cat_Id;
+    public string Cat_Int_Name;
+    public string Cat_Name;
+    public string Cat_Desc;
+    public int Cat_Favor_Food;
+    public string Cat_Skill_Name;
+    public int Cat_Skill_Count;
+    public int Cat_Soom_Lv;
+    public string Cat_Skill_Desc;
+    public int Cat_Present_Type;
+    public int Cat_Present_Count;
+    public int Cat_Present_Time;
+    public int Happiness;
+    public int Soom_Lv;
+    public int Gold;
+    public int Diamond;
+    public int Cat_Path;
+}
+[Serializable]
+public class CatBookDataLoader : ILoader<int, CatBookData>
+{
+    public List<CatBookData> CatBooks = new List<CatBookData>();
+
+    public Dictionary<int, CatBookData> MakeDict()
+    {
+        Dictionary<int, CatBookData> dic = new Dictionary<int, CatBookData>();
+
+        foreach (CatBookData CatBookData in CatBooks)
+            dic.Add(CatBookData.Cat_Id, CatBookData);
+
+        return dic;
+    }
+}
+
