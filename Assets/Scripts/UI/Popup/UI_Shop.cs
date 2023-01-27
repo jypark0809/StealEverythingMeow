@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class UI_Shop : UI_Popup
@@ -19,6 +20,7 @@ public class UI_Shop : UI_Popup
         Content_Room,
         Content_Snack,
         Content_Diamond,
+        CloseButton,
     }
 
     void Start()
@@ -32,6 +34,7 @@ public class UI_Shop : UI_Popup
 
         Bind<GameObject>(typeof(GameObjects));
 
+        GetObject((int)GameObjects.CloseButton).BindEvent(OnCloseButtonClicked);
         GetObject((int)GameObjects.RoomToggle).GetComponent<Toggle>().onValueChanged.AddListener(OnRoomToggleSelected);
         GetObject((int)GameObjects.SnackToggle).GetComponent<Toggle>().onValueChanged.AddListener(OnSnackToggleSelected);
         GetObject((int)GameObjects.DiamondToggle).GetComponent<Toggle>().onValueChanged.AddListener(OnDiamondToggleSelected);
@@ -80,7 +83,11 @@ public class UI_Shop : UI_Popup
             GetObject((int)GameObjects.Content_Diamond).SetActive(boolean);
         }
     }
+    void OnCloseButtonClicked(PointerEventData evt)
+    {
+        ClosePopupUI();
+    }
     #endregion
 
-    
+
 }

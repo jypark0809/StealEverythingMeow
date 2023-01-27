@@ -93,7 +93,7 @@ public class UI_GameScene : UI_Scene
         GetObject((int)GameObjects.JoystickPanel).BindEvent(OnPointerUp, Define.UIEvent.PointerUp);
         GetObject((int)GameObjects.JoystickPanel).BindEvent(OnDrag, Define.UIEvent.Drag);
 
-        GetText((int)Texts.GoldText).text = Managers.Game.SaveData.Gold.ToString();
+        GetText((int)Texts.GoldText).text = Managers.Object.Player.Stat.Gold.ToString();
         GetButton((int)Buttons.PauseButton).gameObject.BindEvent(PopupPuaseUI);
         GetButton((int)Buttons.SkillButton).gameObject.BindEvent((PointerEventData evt) => skillHandler?.Invoke());
 
@@ -292,8 +292,8 @@ public class UI_GameScene : UI_Scene
         switch(PlayerPrefs.GetInt("SelectedCatNum"))
         {
             case 0:
-                GetImage((int)Images.SkillImage).sprite = Managers.Resource.Load<Sprite>("Sprites/UI/Skill_CalicoCat");
-                GetImage((int)Images.SkillImage).SetNativeSize();
+                //GetImage((int)Images.SkillImage).sprite = Managers.Resource.Load<Sprite>("Sprites/UI/Skill_CalicoCat");
+                //GetImage((int)Images.SkillImage).SetNativeSize();
                 break;
             case 1:
                 GetImage((int)Images.SkillImage).sprite = Managers.Resource.Load<Sprite>("Sprites/UI/Skill_BlackCat");

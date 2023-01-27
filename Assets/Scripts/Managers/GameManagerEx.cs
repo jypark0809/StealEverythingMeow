@@ -29,6 +29,7 @@ public class GameData
     public bool BGMOn = true;
     public bool EffectSoundOn = true;
 
+    public bool firstExecution = true;
 
     public GameData()
     {

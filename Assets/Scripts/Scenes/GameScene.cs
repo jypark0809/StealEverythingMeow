@@ -29,14 +29,19 @@ public class GameScene : BaseScene
         SetPlayer();
         Managers.Object.Camera.SetPlayer(_player.GetComponent<PlayerController>());
 
+        if (Managers.Game.SaveData.firstExecution == true)
+        {
+            Managers.UI.ShowPopupUI<UI_GameTutorialPopup>();
+            Time.timeScale = 0;
+            Managers.Game.SaveData.firstExecution = false;
+        }
+
         spawnPos = Util.FindChild(_stage, "TreasureMapSpawnPoint", false).GetComponentsInChildren<Transform>();
         CreateUnDuplicateRandom(1, spawnPos.Length, 4);
         SpawnTreasureMap();
 
         _gameSceneUI = Managers.UI.ShowSceneUI<UI_GameScene>();
         Managers.Sound.Play(Define.Sound.Bgm, "BGM/BGM_Game", volume: 0.1f);
-
-        // StartCoroutine(PortalScheduler(120));
     }
 
     private void Update()
@@ -107,8 +112,6 @@ public class GameScene : BaseScene
 
         CreateUnDuplicateRandom(1, spawnPos.Length, 4);
         SpawnTreasureMap();
-
-        // StartCoroutine(PortalScheduler(120));
     }
 
     Transform[] spawnPos;
@@ -141,18 +144,6 @@ public class GameScene : BaseScene
             }
         }
     }
-
-    //IEnumerator PortalScheduler(float time)
-    //{
-    //    while (time > 0)
-    //    {
-    //        yield return new WaitForSeconds(1);
-    //        time--;
-    //    }
-
-    //    Managers.UI.ShowPopupUI<UI_NextStagePopup>();
-    //    SpawnPortal();
-    //}
 
     public override void Clear()
     {

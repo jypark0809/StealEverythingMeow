@@ -19,14 +19,25 @@ public class UI_DestroyableObjectPopup : UI_Popup
 
             GetObject((int)GameObjects.TabBar).GetComponent<Slider>().value = (float)_touchCount/_maxTouchCount;
 
+            if ((float)_touchCount / _maxTouchCount > 0.5)
+            {
+                GetImage((int)Images.ObjectImage).sprite = _sprites[1];
+            }
+
             if (_touchCount == _maxTouchCount)
             {
-                Managers.UI.ClosePopupUI();
+                GetImage((int)Images.ObjectImage).sprite = _sprites[2];
+            }
+
+            if (_touchCount == _maxTouchCount)
+            {
+                StartCoroutine(GetReward());
             }
         } 
     }
     int _maxTouchCount;
     Vector3 _originPos;
+    Sprite[] _sprites;
 
     enum GameObjects
     {
@@ -60,21 +71,26 @@ public class UI_DestroyableObjectPopup : UI_Popup
         _id = PlayerPrefs.GetInt("DestoryableObject");
         Managers.Data.DestroyableObjects.TryGetValue(_id, out _object);
 
+        _sprites = Resources.LoadAll<Sprite>(_object.Image_Path);
+
         _maxTouchCount = _object.Touch_Count;
-        GetImage((int)Images.ObjectImage).sprite = Managers.Resource.Load<Sprite>(_object.Image_Path);
+        GetImage((int)Images.ObjectImage).sprite = _sprites[0];
         GetImage((int)Images.ObjectImage).SetNativeSize();
         GetImage((int)Images.TouchPanel).gameObject.BindEvent(OnTouchPanelClicked);
     }
 
     void OnTouchPanelClicked(PointerEventData evt)
     {
-        TouchCount++;
+        if (TouchCount < _maxTouchCount)
+        {
+            TouchCount++;
 
-        PlayRandomSound();
-        Vibration.Vibrate((long)50);
+            PlayRandomSound();
+            Vibration.Vibrate((long)50);
 
-        // Shake Object
-        StartCoroutine(ShakeObject(_shakePower, _shakeTime));
+            // Shake Object
+            StartCoroutine(ShakeObject(_shakePower, _shakeTime));
+        }
     }
 
     [SerializeField]
@@ -108,14 +124,21 @@ public class UI_DestroyableObjectPopup : UI_Popup
         switch(rand)
         {
             case 0:
-                Managers.Sound.Play(Define.Sound.Effect, "Effects/Punch_01", volume: 0.1f);
+                Managers.Sound.Play(Define.Sound.Effect, "Effects/Punch_01");
                 break;
             case 1:
-                Managers.Sound.Play(Define.Sound.Effect, "Effects/Punch_02", volume: 0.1f);
+                Managers.Sound.Play(Define.Sound.Effect, "Effects/Punch_02");
                 break;
             case 2:
-                Managers.Sound.Play(Define.Sound.Effect, "Effects/Punch_03", volume: 0.1f);
+                Managers.Sound.Play(Define.Sound.Effect, "Effects/Punch_03");
                 break;
         }
+    }
+
+    IEnumerator GetReward()
+    {
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/Clattering");
+        yield return new WaitForSeconds(2f);
+        Managers.UI.ClosePopupUI();
     }
 }
