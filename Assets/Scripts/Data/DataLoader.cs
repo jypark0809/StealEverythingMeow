@@ -140,13 +140,13 @@ public class FurnitureData
 [Serializable]
 public class FurnitureDataLoader : ILoader<int, FurnitureData>
 {
-    public List<FurnitureData> furnitures = new List<FurnitureData>();
+    public List<FurnitureData> Furnitures = new List<FurnitureData>();
 
     public Dictionary<int, FurnitureData> MakeDict()
     {
         Dictionary<int, FurnitureData> dic = new Dictionary<int, FurnitureData>();
 
-        foreach (FurnitureData furnitureData in furnitures)
+        foreach (FurnitureData furnitureData in Furnitures)
             dic.Add(furnitureData.F_Id, furnitureData);
 
         return dic;
@@ -243,7 +243,7 @@ public class CatBookData
     public int Soom_Lv;
     public int Gold;
     public int Diamond;
-    public int Cat_Path;
+    public string Cat_Path;
 }
 [Serializable]
 public class CatBookDataLoader : ILoader<int, CatBookData>

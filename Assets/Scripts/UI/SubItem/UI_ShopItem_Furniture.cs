@@ -59,7 +59,7 @@ public class UI_ShopItem_Furniture : UI_Base
     {
         if (GetButton((int)Buttons.PurchaseButton).interactable)
         {
-
+            Managers.UI.ShowPopupUI<UI_Temp>();
         }
     }
 }

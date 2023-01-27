@@ -21,7 +21,7 @@ public class TileManager : MonoBehaviour
 
     private void Update()
     {
-        IsRoomCheck();
+        // IsRoomCheck();
     }
     public void Open()
     {

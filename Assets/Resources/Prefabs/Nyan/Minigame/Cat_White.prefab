@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 95310373401613358}
   - component: {fileID: 5054063723122310583}
   - component: {fileID: -1472874440864893020}
+  - component: {fileID: 8441261450786403439}
   m_Layer: 29
   m_Name: Cat_White
   m_TagString: Player
@@ -190,6 +191,18 @@ MonoBehaviour:
   _moveSpeed: 5
   _cooltime: 20
   _magnetRange: 0.4
+--- !u!114 &8441261450786403439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386466672175172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f7632c7e0f58824195d85a7a93c4a02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &877875650621775535
 GameObject:
   m_ObjectHideFlags: 0

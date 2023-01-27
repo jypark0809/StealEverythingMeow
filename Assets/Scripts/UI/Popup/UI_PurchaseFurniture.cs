@@ -13,6 +13,7 @@ public class UI_PurchaseFurniture : UI_Popup
     {
         Blocker,
         Content,
+        CloseButton,
     }
 
     void Start()
@@ -27,6 +28,7 @@ public class UI_PurchaseFurniture : UI_Popup
         Bind<GameObject>(typeof(GameObjects));
 
         GetObject((int)GameObjects.Blocker).BindEvent(OnCloseButtonClicked);
+        GetObject((int)GameObjects.CloseButton).BindEvent(OnCloseButtonClicked);
         
         _curFurnitureCount = Managers.Game.SaveData.MaxFurniture[PlayerPrefs.GetInt("SpaceLevel")];
         Transform parent = GetObject((int)GameObjects.Content).transform;
@@ -60,6 +62,7 @@ public class UI_PurchaseFurniture : UI_Popup
 
     void OnCloseButtonClicked(PointerEventData evt)
     {
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
         ClosePopupUI();
     }
 }

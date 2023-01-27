@@ -299,7 +299,7 @@ public class DataTransformer : EditorWindow
                 Soom_Lv = int.Parse(row[i++]),
                 Gold = int.Parse(row[i++]),
                 Diamond = int.Parse(row[i++]),
-                Cat_Path = int.Parse(row[i++]),
+                Cat_Path = row[i++],
             });
 
         }
