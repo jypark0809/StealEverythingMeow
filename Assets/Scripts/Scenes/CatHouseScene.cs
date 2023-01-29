@@ -9,7 +9,6 @@ public class CatHouseScene : BaseScene
         base.Init();
 
         SceneType = Define.SceneType.CatHouseScene;
-
         StartCoroutine(CoWaitLoad());
     }
 
@@ -19,7 +18,6 @@ public class CatHouseScene : BaseScene
             yield return null;
 
         Managers.Object.SpawnCatHouse("CatHouse2");
-
         Managers.UI.ShowSceneUI<UI_CatHouseScene>();
         Managers.Sound.Play(Define.Sound.Bgm, "BGM/BGM_Home", volume: 0.1f);
     }

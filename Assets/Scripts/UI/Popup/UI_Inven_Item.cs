@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 public class UI_Inven_Item : UI_Base
 {
+    string Name;
+    int Count;
+
+
     enum GameObjects
     {
         ItemIcon,
         Num_Text,
     }
-    string _name;
     private void Start()
     {
         Init();
@@ -19,14 +23,15 @@ public class UI_Inven_Item : UI_Base
     public override void Init()
     {
         Bind<GameObject>(typeof(GameObjects));
-        //Get<GameObject>((int)GameObjects.ItemIcon);
-        Get<GameObject>((int)GameObjects.Num_Text).GetComponent<TextMeshProUGUI>().text = "999";// 보유수량 추가
-        Get<GameObject>((int)GameObjects.ItemIcon).gameObject.BindEvent(OnInstantPre);// 이벤트추가
 
+
+        Get<GameObject>((int)GameObjects.ItemIcon).GetComponent<Image>().sprite = Resources.Load<Sprite>(("Sprites/UI/" +Name));
+        Get<GameObject>((int)GameObjects.Num_Text).GetComponent<TextMeshProUGUI>().text = Count.ToString();
     }
-    void OnInstantPre(PointerEventData evt)
+
+    public void SetInfo(string _str, int _count)
     {
-        Managers.UI.ShowPopupUI<UI_Inven_Item_pre>();
+        Count = _count;
+        Name = _str;
     }
-
 }

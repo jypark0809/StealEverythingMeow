@@ -49,11 +49,13 @@ public class CameraTest : MonoBehaviour
         {
             transform.position = Vector3.Lerp(this.transform.position, targetPos, Time.deltaTime * dragspeed);
         }
-        //pix.assetsPPU = (int)Mathf.Lerp(pix.assetsPPU, _zoom, Time.deltaTime* cameraZoomSpeed);
     }
     private void FixedUpdate()
     {
-        CameraMove();
+        if(!IsMove)
+        {
+            CameraMove();
+        }
         LimitCameraArea();
     }
 
@@ -66,6 +68,8 @@ public class CameraTest : MonoBehaviour
                 beginMousePos = Input.mousePosition;
                 beginCamPos = transform.position;
             }
+            else
+                return;
         }
         else if (Input.GetMouseButton(0))
         {

@@ -48,7 +48,8 @@ public class UI_GameScene : UI_Scene
         Heart1,
         Heart2,
         Heart3,
-        TreasureMapImage
+        TreasureMapImage,
+        SkillImage
     }
 
     enum Buttons
@@ -80,17 +81,19 @@ public class UI_GameScene : UI_Scene
 
         player = Managers.Object.Player;
         _playerAnim = player.GetComponent<Animator>();
-
+        
         Bind<GameObject>(typeof(GameObjects));
         Bind<Image>(typeof(Images));
         Bind<TextMeshProUGUI>(typeof(Texts));
         Bind<Button>(typeof(Buttons));
 
+        SetSkillImage();
+
         GetObject((int)GameObjects.JoystickPanel).BindEvent(OnPointerDown, Define.UIEvent.PointerDown);
         GetObject((int)GameObjects.JoystickPanel).BindEvent(OnPointerUp, Define.UIEvent.PointerUp);
         GetObject((int)GameObjects.JoystickPanel).BindEvent(OnDrag, Define.UIEvent.Drag);
 
-        GetText((int)Texts.GoldText).text = Managers.Game.SaveData.Gold.ToString();
+        GetText((int)Texts.GoldText).text = Managers.Object.Player.Stat.Gold.ToString();
         GetButton((int)Buttons.PauseButton).gameObject.BindEvent(PopupPuaseUI);
         GetButton((int)Buttons.SkillButton).gameObject.BindEvent((PointerEventData evt) => skillHandler?.Invoke());
 
@@ -282,6 +285,34 @@ public class UI_GameScene : UI_Scene
     public void UpdateTreasureMapImage(int curMapCount, int maxMapCount)
     {
         GetImage((int)Images.TreasureMapImage).fillAmount = (float)curMapCount / maxMapCount;
+    }
+
+    void SetSkillImage()
+    {
+        switch(PlayerPrefs.GetInt("SelectedCatNum"))
+        {
+            case 0:
+                //GetImage((int)Images.SkillImage).sprite = Managers.Resource.Load<Sprite>("Sprites/UI/Skill_CalicoCat");
+                //GetImage((int)Images.SkillImage).SetNativeSize();
+                break;
+            case 1:
+                GetImage((int)Images.SkillImage).sprite = Managers.Resource.Load<Sprite>("Sprites/UI/Skill_BlackCat");
+                GetImage((int)Images.SkillImage).SetNativeSize();
+                break;
+            case 2:
+                Image img = GetImage((int)Images.SkillImage);
+                img.sprite = Managers.Resource.Load<Sprite>("Sprites/UI/Skill_CalicoCat");
+                GetImage((int)Images.SkillImage).SetNativeSize();
+                break;
+            case 3:
+                GetImage((int)Images.SkillImage).sprite = Managers.Resource.Load<Sprite>("Sprites/UI/Skill_CalicoCat");
+                GetImage((int)Images.SkillImage).SetNativeSize();
+                break;
+            case 4:
+                GetImage((int)Images.SkillImage).sprite = Managers.Resource.Load<Sprite>("Sprites/UI/Skill_CalicoCat");
+                GetImage((int)Images.SkillImage).SetNativeSize();
+                break;
+        }
     }
 
     #region EventHandler

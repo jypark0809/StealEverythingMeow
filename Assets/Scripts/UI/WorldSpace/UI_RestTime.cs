@@ -10,7 +10,6 @@ public class UI_RestTime : UI_Base
     enum Texts
     {
         TimeText,
-        
     }
 
     void Start()

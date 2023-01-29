@@ -5,6 +5,7 @@ using UnityEngine;
 public class ItemGenerator : MonoBehaviour
 {
     Item[] _items;
+    BoxCollider2D _boxCollider;
 
     [SerializeField]
     int respawnCount = 1;
@@ -69,5 +70,15 @@ public class ItemGenerator : MonoBehaviour
                 Managers.Resource.Instantiate("Item/ConstructionItem/Cotton", transform).transform.position = transform.position;
                 break;
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Managers.Object.Player.gameObject.layer = 27;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        Managers.Object.Player.gameObject.layer = 29;
     }
 }

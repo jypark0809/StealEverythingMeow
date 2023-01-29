@@ -4,125 +4,94 @@ using UnityEngine;
 
 public class TileManager : MonoBehaviour
 {
+    public bool IsRoomOpen;
+
+    public bool IsGold;
+    public bool IsWood;
+    public bool IsStone;
+    public bool IsCotton;
+    public bool IsFur;
+
+
+    private int CurRoomLevel;
+    private void Start()
+    {
+        CurRoomLevel = Managers.Game.SaveData.RoomLevel;
+    }
+
+    private void Update()
+    {
+        // IsRoomCheck();
+    }
     public void Open()
     {
-        Camera.main.GetComponent<CameraTest>().IsMove = true;
-        switch (Managers.Game.SaveData.RoomLevel)
+        if(!IsRoomOpen)
         {
-            case 1:
-                StartCoroutine(OpenRoom("Hide_LivingRoom2"));
-                StartCoroutine(OpenRoomBlock("Block_LivingRoom1"));
-                break;
+            Debug.Log("업글불가능");
+            //업글 불가능시 ui출력?
+            return;
+        }    
+        Camera.main.GetComponent<CameraTest>().IsMove = true;
+        StartCoroutine(OpenRoom());
+        //카메라 움직임 수정!
+        switch (CurRoomLevel)//Managers.Game.SaveData.RoomLevel)
+        {
             case 2:
-                StartCoroutine(OpenRoom("Hide_SmallRoom"));
-                StartCoroutine(OpenRoomBlock("Block_LivingRoom2"));
                 Camera.main.GetComponent<CameraTest>().targetPos = new Vector3(8, 0, -10);
                 break;
-            case 4:
-                StartCoroutine(OpenRoom("Hide_Kitchen"));
-                StartCoroutine(OpenRoomBlock("Block_smallRoom"));
+            case 3:
                 Camera.main.GetComponent<CameraTest>().targetPos = new Vector3(4, 13, -10);
                 break;
-            case 5:
-                StartCoroutine(OpenRoom("Hide_UtilityRoom"));
-                StartCoroutine(OpenRoomBlock("Block_kitchen"));
+            case 4:
                 Camera.main.GetComponent<CameraTest>().targetPos = new Vector3(14, 14, -10);
                 break;
-            case 6:
-                StartCoroutine(OpenRoom("Hide_BathRoom"));
-                StartCoroutine(OpenRoomBlock("Block_UtilityRoom"));
+            case 5:
                 Camera.main.GetComponent<CameraTest>().targetPos = new Vector3(-9, 14, -10);
                 break;
-            case 7:
-                StartCoroutine(OpenRoom("Hide_BigRoom"));
-                StartCoroutine(OpenRoomBlock("Block_BathRoom"));
+            case 6:
                 Camera.main.GetComponent<CameraTest>().targetPos = new Vector3(-19, -2, -10);
                 break;
-            case 8:
-                StartCoroutine(OpenRoom("Hide_Library"));
-                StartCoroutine(OpenRoomBlock("Block_BigRoom"));
+            case 7:
                 Camera.main.GetComponent<CameraTest>().targetPos = new Vector3(-28, 8, -10);
                 break;
-            case 9:
-                StartCoroutine(OpenRoom("Hide_PlayRoom"));
-                StartCoroutine(OpenRoomBlock("Block_Library"));
+            case 8:
                 Camera.main.GetComponent<CameraTest>().targetPos = new Vector3(-18, 12, -10);
                 break;
-            case 10:
-                StartCoroutine(OpenRoom("Hide_BigYard"));
+            case 9:
                 Camera.main.GetComponent<CameraTest>().targetPos = new Vector3(-6, -8, -10);
                 break;
         }
-        Util.FindChild(Managers.Object.CatHouse.gameObject,"Somsom",true).GetComponent<SomSom>().IsRoomOpen = false;
-
         Managers.UI.ClosePopupUI();
-        Managers.Game.SaveData.curFurnitureCount = 0;
+        Managers.Game.SaveData.RoomLevel++;
     }
-    IEnumerator OpenRoom(string _name)
+    IEnumerator OpenRoom()
     {
         yield return new WaitForSeconds(2f);
-
-        Util.FindChild(Managers.Object.CatHouse.gameObject, _name, true).SetActive(false);
+        Util.FindChild(Managers.Object.CatHouse.gameObject, "Hide_"+Managers.Data.Spaces[1200 + CurRoomLevel+1].Space_Int_Name, true).SetActive(false);
+        Util.FindChild(Managers.Object.CatHouse.gameObject, "Block_"+Managers.Data.Spaces[1200 + CurRoomLevel].Space_Int_Name, true).SetActive(false);
         Managers.UI.ShowPopupUI<UI_Sucess>();
         Camera.main.GetComponent<CameraTest>().IsMove = false;
         Managers.Sound.Play(Define.Sound.Effect, "Effects/RoomOpen");
-    }
-    IEnumerator OpenRoomBlock(string _name)
-    {
-        yield return new WaitForSeconds(2f);
-        Util.FindChild(Managers.Object.CatHouse.gameObject, _name, true).SetActive(false);
-    }
-    public void OpenF()
-    {
-        Camera.main.GetComponent<CameraTest>().IsMove = true;
-        //가구 배치or 해금
-        switch (Managers.Game.SaveData.curFurnitureCount)
-        {
-            case 0:
-                StartCoroutine(OpenFurniture("1"));
-                break;
-            case 1:
-                StartCoroutine(OpenFurniture("2"));
-                break;
-            case 2:
-                StartCoroutine(OpenFurniture("3"));
-                break;
-            case 3:
-                StartCoroutine(OpenFurniture("4"));
-                break;
-            case 4:
-                StartCoroutine(OpenFurniture("5"));
-                break;
-            
-        }
-        Managers.Game.SaveData.curFurnitureCount++;
-
-        Managers.UI.ClosePopupUI();
-        if (Managers.Game.SaveData.RoomLevel == 3 && Managers.Game.SaveData.curFurnitureCount == Managers.Game.SaveData.MaxFurniture[Managers.Game.SaveData.RoomLevel])
-        {
-            Managers.UI.ShowPopupUI<UI_TmpUp>();
-            return;
-        }
-        if (Managers.Game.SaveData.RoomLevel == 7 && Managers.Game.SaveData.curFurnitureCount == Managers.Game.SaveData.MaxFurniture[Managers.Game.SaveData.RoomLevel])
-        {
-            Managers.UI.ShowPopupUI<UI_TmpUp>();
-            return;
-        }
-        if (Managers.Game.SaveData.curFurnitureCount == Managers.Game.SaveData.MaxFurniture[Managers.Game.SaveData.RoomLevel])
-        {
-            Managers.UI.ShowPopupUI<UI_TmpUp>();
-            return;
-        }
+        CurRoomLevel++;
+        IsRoomOpen = false;
     }
 
-    IEnumerator OpenFurniture(string _name)
+    private void IsRoomCheck()
     {
-        Camera.main.GetComponent<CameraTest>().targetPos = (Util.FindChild(Managers.Object.CatHouse.gameObject, Managers.Game.SaveData.CurFurniture[Managers.Game.SaveData.RoomLevel] + _name, true)).transform.position;
-        yield return new WaitForSeconds(1.3f);
-        Managers.Sound.Play(Define.Sound.Effect, "Effects/OpenFurniture");
-        GameObject go = Managers.Resource.Instantiate("RoomFurniture/"+ Managers.Game.SaveData.CurFurniture[Managers.Game.SaveData.RoomLevel] +_name, Managers.Object.CatHouse.transform);
-        go.transform.position = (Util.FindChild(Managers.Object.CatHouse.gameObject, Managers.Game.SaveData.CurFurniture[Managers.Game.SaveData.RoomLevel]+_name, true)).transform.position;
-        Camera.main.GetComponent<CameraTest>().IsMove = false;
-    }
+        if (Managers.Game.SaveData.Gold >= Managers.Data.Spaces[1200 + CurRoomLevel + 1].Gold)
+            IsGold = true;
+        if (Managers.Game.SaveData.Wood >= Managers.Data.Spaces[1200 + CurRoomLevel + 1].Wood)
+            IsWood = true;
+        if (Managers.Game.SaveData.Stone >= Managers.Data.Spaces[1200 + CurRoomLevel + 1].Stone)
+            IsStone = true;
+        if (Managers.Game.SaveData.Cotton >= Managers.Data.Spaces[1200 + CurRoomLevel + 1].Cotton)
+            IsCotton = true;
 
+        //방체크,가구체크 >>가구경우 상점과 확인후 다시 수정필요
+        if (Managers.Game.SaveData.MaxFurniture[CurRoomLevel] == Managers.Data.Spaces[1200 + CurRoomLevel].Space_Furniture_Count)
+            IsFur = true;
+
+        if (IsGold & IsWood & IsStone & IsCotton & IsFur)
+            IsRoomOpen = true;
+    }
 }

@@ -24,7 +24,6 @@ public class DestroyableObject : MonoBehaviour
     IEnumerator UITest()
     {
         UI_DestroyableObjectPopup ui = Managers.UI.ShowPopupUI<UI_DestroyableObjectPopup>();
-
         while(ui != null)
         {
             yield return new WaitForSeconds(0.1f);

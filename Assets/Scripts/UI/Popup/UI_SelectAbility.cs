@@ -10,7 +10,7 @@ public class UI_SelectAbility : UI_Popup
     enum Buttons
     {
         MoveSpeedButton,
-        SightRangeButton,
+        CooltimeButton,
         MagnetRangeButton,
     }
 
@@ -45,15 +45,15 @@ public class UI_SelectAbility : UI_Popup
                 $"Lv {Managers.Object.Player.Stat.SpeedLv} >> Lv {Managers.Object.Player.Stat.SpeedLv + 1}";
         }
 
-        if (Managers.Object.Player.Stat.SightLv > Managers.Data.StatSights.Count - 1)
+        if (Managers.Object.Player.Stat.CooltimeLv > Managers.Data.StatCooltimes.Count - 1)
         {
-            GetButton((int)Buttons.SightRangeButton).interactable = false;
+            GetButton((int)Buttons.CooltimeButton).interactable = false;
             GetText((int)Texts.SightLevelText).text = "Lv Max";
         }
         else
         {
             GetText((int)Texts.SightLevelText).text =
-                $"Lv {Managers.Object.Player.Stat.SightLv} >> Lv {Managers.Object.Player.Stat.SightLv + 1}";
+                $"Lv {Managers.Object.Player.Stat.CooltimeLv} >> Lv {Managers.Object.Player.Stat.CooltimeLv + 1}";
         }
 
         if (Managers.Object.Player.Stat.MagnetLv > Managers.Data.StatMagnets.Count - 1)
@@ -68,9 +68,9 @@ public class UI_SelectAbility : UI_Popup
         }
         #endregion
 
-        Managers.Sound.Play(Define.Sound.Effect, "Effects/LevelUp", volume : 0.2f);
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/LevelUp");
         GetButton((int)Buttons.MoveSpeedButton).gameObject.BindEvent(OnMoveSpeedButtonClicked);
-        GetButton((int)Buttons.SightRangeButton).gameObject.BindEvent(OnSightRangeButtonClicked);
+        GetButton((int)Buttons.CooltimeButton).gameObject.BindEvent(OnSightRangeButtonClicked);
         GetButton((int)Buttons.MagnetRangeButton).gameObject.BindEvent(OnMagnetRangeButtonClicked);
     }
 
@@ -88,9 +88,9 @@ public class UI_SelectAbility : UI_Popup
     void OnSightRangeButtonClicked(PointerEventData evt)
     {
         Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
-        if (GetButton((int)Buttons.SightRangeButton).interactable)
+        if (GetButton((int)Buttons.CooltimeButton).interactable)
         {
-            Managers.Object.Player.Stat.SightLv++;
+            Managers.Object.Player.Stat.CooltimeLv++;
             Time.timeScale = 1;
             Managers.UI.ClosePopupUI();
         }

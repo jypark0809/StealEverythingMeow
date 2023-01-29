@@ -1,0 +1,16 @@
+{
+  "statCooltimes": [
+    {
+      "Stats_Lv": 1,
+      "Stats_Cooltime": 20.0
+    },
+    {
+      "Stats_Lv": 2,
+      "Stats_Cooltime": 15.0
+    },
+    {
+      "Stats_Lv": 3,
+      "Stats_Cooltime": 10.0
+    }
+  ]
+}

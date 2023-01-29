@@ -36,13 +36,13 @@ public class StatSpeedData
 [Serializable]
 public class StatSpeedDataLoader : ILoader<int, StatSpeedData>
 {
-    public List<StatSpeedData> StatSpeeds = new List<StatSpeedData>();
+    public List<StatSpeedData> statSpeeds = new List<StatSpeedData>();
 
     public Dictionary<int, StatSpeedData> MakeDict()
     {
         Dictionary<int, StatSpeedData> dic = new Dictionary<int, StatSpeedData>();
 
-        foreach (StatSpeedData speedData in StatSpeeds)
+        foreach (StatSpeedData speedData in statSpeeds)
             dic.Add(speedData.Stats_Lv, speedData);
 
         return dic;
@@ -50,23 +50,23 @@ public class StatSpeedDataLoader : ILoader<int, StatSpeedData>
 }
 
 [Serializable]
-public class StatSightData
+public class StatCooltimeData
 {
     public int Stats_Lv;
-    public float Stats_Sight;
+    public float Stats_Cooltime;
 }
 
 [Serializable]
-public class StatSightDataLoader : ILoader<int, StatSightData>
+public class StatCooltimeDataLoader : ILoader<int, StatCooltimeData>
 {
-    public List<StatSightData> StatSights = new List<StatSightData>();
+    public List<StatCooltimeData> statCooltimes = new List<StatCooltimeData>();
 
-    public Dictionary<int, StatSightData> MakeDict()
+    public Dictionary<int, StatCooltimeData> MakeDict()
     {
-        Dictionary<int, StatSightData> dic = new Dictionary<int, StatSightData>();
+        Dictionary<int, StatCooltimeData> dic = new Dictionary<int, StatCooltimeData>();
 
-        foreach (StatSightData sightData in StatSights)
-            dic.Add(sightData.Stats_Lv, sightData);
+        foreach (StatCooltimeData coolTimeData in statCooltimes)
+            dic.Add(coolTimeData.Stats_Lv, coolTimeData);
 
         return dic;
     }
@@ -82,13 +82,13 @@ public class StatMagnetData
 [Serializable]
 public class StatMagnetDataLoader : ILoader<int, StatMagnetData>
 {
-    public List<StatMagnetData> StatMagnets = new List<StatMagnetData>();
+    public List<StatMagnetData> statMagnets = new List<StatMagnetData>();
 
     public Dictionary<int, StatMagnetData> MakeDict()
     {
         Dictionary<int, StatMagnetData> dic = new Dictionary<int, StatMagnetData>();
 
-        foreach (StatMagnetData magnetData in StatMagnets)
+        foreach (StatMagnetData magnetData in statMagnets)
             dic.Add(magnetData.Stats_Lv, magnetData);
 
         return dic;
@@ -122,3 +122,142 @@ public class DestroyableObjectDataLoader : ILoader<int, DestroyableObjectData>
         return dic;
     }
 }
+
+
+[Serializable]
+public class FurnitureData
+{
+    public int F_Id;
+    public string F_Int_Name;
+    public string F_Name;
+    public string F_Desc;
+    public int F_Space_Num;
+    public int F_Happiness;
+    public int F_Gold;
+    public string F_Path;
+}
+
+[Serializable]
+public class FurnitureDataLoader : ILoader<int, FurnitureData>
+{
+    public List<FurnitureData> Furnitures = new List<FurnitureData>();
+
+    public Dictionary<int, FurnitureData> MakeDict()
+    {
+        Dictionary<int, FurnitureData> dic = new Dictionary<int, FurnitureData>();
+
+        foreach (FurnitureData furnitureData in Furnitures)
+            dic.Add(furnitureData.F_Id, furnitureData);
+
+        return dic;
+    }
+}
+
+[Serializable]
+public class SoomData
+{
+    public int Soom_Id;
+    public string Soom_Int_Name;
+    public string Soom_Name;
+    public string Soom_Desc;
+    public int Soom_Lv;
+    public int Happiness;
+    public int Space_Num;
+    public int Space_F_Count;
+    public int Cap_Capacity;
+    public int Gold;
+    public int Diamond;
+    public int Wood;
+    public int Stone;
+    public int Cotton;
+    public string Soom_Img;
+}
+
+[Serializable]
+public class SoomDataLoader : ILoader<int, SoomData>
+{
+    public List<SoomData> Sooms = new List<SoomData>();
+
+    public Dictionary<int, SoomData> MakeDict()
+    {
+        Dictionary<int, SoomData> dic = new Dictionary<int, SoomData>();
+
+        foreach (SoomData SoomData in Sooms)
+            dic.Add(SoomData.Soom_Id, SoomData);
+
+        return dic;
+    }
+}
+
+[Serializable]
+public class SpaceData
+{
+    public int Space_Id;
+    public string Space_Int_Name;
+    public string Space_Name;
+    public int Space_Lv;
+    public int Space_Furniture_Count;
+    public int Space_Gold_Plus;
+    public int Gold;
+    public int Wood;
+    public int Stone;
+    public int Cotton;
+    public int Happiness;
+    public int Space_Time;
+    public int Soom_Lv;
+
+}
+
+[Serializable]
+public class SpaceDataLoader : ILoader<int, SpaceData>
+{
+    public List<SpaceData> Spaces = new List<SpaceData>();
+
+    public Dictionary<int, SpaceData> MakeDict()
+    {
+        Dictionary<int, SpaceData> dic = new Dictionary<int, SpaceData>();
+
+        foreach (SpaceData objectData in Spaces)
+            dic.Add(objectData.Space_Id, objectData);
+
+        return dic;
+    }
+}
+
+[Serializable]
+public class CatBookData
+{
+    public int Cat_Id;
+    public string Cat_Int_Name;
+    public string Cat_Name;
+    public string Cat_Desc;
+    public int Cat_Favor_Food;
+    public string Cat_Skill_Name;
+    public int Cat_Skill_Count;
+    public int Cat_Soom_Lv;
+    public string Cat_Skill_Desc;
+    public int Cat_Present_Type;
+    public int Cat_Present_Count;
+    public int Cat_Present_Time;
+    public int Happiness;
+    public int Soom_Lv;
+    public int Gold;
+    public int Diamond;
+    public string Cat_Path;
+}
+[Serializable]
+public class CatBookDataLoader : ILoader<int, CatBookData>
+{
+    public List<CatBookData> CatBooks = new List<CatBookData>();
+
+    public Dictionary<int, CatBookData> MakeDict()
+    {
+        Dictionary<int, CatBookData> dic = new Dictionary<int, CatBookData>();
+
+        foreach (CatBookData CatBookData in CatBooks)
+            dic.Add(CatBookData.Cat_Id, CatBookData);
+
+        return dic;
+    }
+}
+
