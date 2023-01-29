@@ -13,15 +13,15 @@ public class GameData
     public int Dia = 999999;
 
     // 재료
-    public int Wood = 1000;
-    public int Cotton = 1000;
-    public int Stone = 9999;
+    public int Wood = 0;
+    public int Cotton = 0;
+    public int Stone = 1000;
 
     public int RoomLevel = 1;
     public int[] MaxFurniture = new int[11] {0,0,0,0,0,0,0,0,0,0,0}; //추후 수정
 
     public int SoomLevel = 0;
-    public bool[] Emotion = new bool[Define.MOTION_COUNT];
+    public bool[] Emotion = new bool[Define.MOTION_COUNT] {true, true, true, true, true, true, true, true, true, true, true, true};
 
     public bool IsRoomOpen;
     public bool IsSoomUp = false;
@@ -31,6 +31,8 @@ public class GameData
 
     public bool firstExecution = true;
 
+
+    public int[] Food = { 1, 2, 0, 4, 5 ,0};
     public GameData()
     {
         Jelly = 5;
