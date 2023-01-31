@@ -5,7 +5,7 @@ using TMPro;
 public class UI_RestTime : UI_Base
 {
     public float resttime = 20f;
-    public TextMeshProUGUI text;
+    private TextMeshProUGUI text;
 
     enum Texts
     {
@@ -29,6 +29,10 @@ public class UI_RestTime : UI_Base
         text.text = Mathf.Floor(resttime).ToString();
         if (resttime <= 0)
             Destroy(this.gameObject);
+    }
 
+    public void SetInfo(float _Time)
+    {
+        resttime = _Time;
     }
 }

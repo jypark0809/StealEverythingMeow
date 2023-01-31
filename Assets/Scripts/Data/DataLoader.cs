@@ -261,3 +261,30 @@ public class CatBookDataLoader : ILoader<int, CatBookData>
     }
 }
 
+[Serializable]
+public class ExpressBookData
+{
+    public int Express_Id;
+    public string Express_Int_Name;
+    public string Express_Name;
+    public string Express_Rwd;
+    public int Diamond;
+    public int Express_Time;
+    public string Express_Path;
+}
+[Serializable]
+public class ExpressBookDataLoader : ILoader<int, ExpressBookData>
+{
+    public List<ExpressBookData> ExpressBooks = new List<ExpressBookData>();
+
+    public Dictionary<int, ExpressBookData> MakeDict()
+    {
+        Dictionary<int, ExpressBookData> dic = new Dictionary<int, ExpressBookData>();
+
+        foreach (ExpressBookData ExpressBookData in ExpressBooks)
+            dic.Add(ExpressBookData.Express_Id, ExpressBookData);
+
+        return dic;
+    }
+}
+

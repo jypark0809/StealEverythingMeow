@@ -9,21 +9,23 @@ using static Define;
 public class GameData
 {
     public int Jelly;
-    public int Gold = 999999;
-    public int Dia = 999999;
+    public int Gold = 30000;
+    public int Dia = 20000;
 
     // 재료
     public int Wood = 1000;
     public int Cotton = 1000;
-    public int Stone = 9999;
+    public int Stone = 1000;
 
-    public int RoomLevel = 1;
-    public int[] MaxFurniture = new int[11] {0,0,0,0,0,0,0,0,0,0,0};
 
+    public int[] MaxFurniture = new int[11] {0,0,0,0,0,0,0,0,0,0,0}; //추후 수정
     public int SoomLevel = 0;
-    public bool[] Emotion = new bool[Define.MOTION_COUNT];
+    public bool[] Emotion = new bool[Define.MOTION_COUNT] {true, true, true, true, true, true, true, true, true, true, true, true};
 
+
+    public int SpaceLevel = 1;
     public bool IsRoomOpen;
+    public float RoomTime = 30f;
     public bool IsSoomUp = false;
 
     public bool BGMOn = true;
@@ -31,6 +33,10 @@ public class GameData
 
     public bool firstExecution = true;
 
+
+
+    //간식
+    public int[] Food = { 1, 2, 0, 4, 5 ,0};
     public GameData()
     {
         Jelly = 5;
@@ -40,9 +46,7 @@ public class GameData
 public class GameManagerEx
 {
     GameData _gameData = new GameData();
-    // List<FurnitureData> _fList = new List<FurnitureData>();
     public GameData SaveData { get { return _gameData; } set { _gameData = value; } }
-    // public List<FurnitureData> FurntureList { get { return _fList; } }
 
     #region Option
     public bool BGMOn
@@ -63,7 +67,6 @@ public class GameManagerEx
     public void Init()
     {
         _path = Application.persistentDataPath + "/SaveData.json";
-        // _fPath = Application.persistentDataPath + "/FurnitureSaveData.json";
         if (LoadGame())
             return;
 
@@ -74,14 +77,11 @@ public class GameManagerEx
 
     #region Save&Load
     string _path;
-    // string _fPath;
 
     public void SaveGame()
     {
-        string gameDataStr = JsonUtility.ToJson(Managers.Game.SaveData);
-        // string fDataStr = JsonUtility.ToJson(FurntureList);
-        File.WriteAllText(_path, gameDataStr);
-        // File.WriteAllText(_fPath, fDataStr);
+        string jsonStr = JsonUtility.ToJson(Managers.Game.SaveData);
+        File.WriteAllText(_path, jsonStr);
     }
 
     public bool LoadGame()
@@ -93,9 +93,6 @@ public class GameManagerEx
         GameData data = JsonUtility.FromJson<GameData>(fileStr);
         if (data != null)
             Managers.Game.SaveData = data;
-
-        // string fDataStr = File.ReadAllText(_fPath);
-
 
         IsLoaded = true;
         return true;

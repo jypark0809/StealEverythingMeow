@@ -8,8 +8,6 @@ public class UI_Inven_Item : UI_Base
 {
     string Name;
     int Count;
-
-
     enum GameObjects
     {
         ItemIcon,
@@ -25,7 +23,7 @@ public class UI_Inven_Item : UI_Base
         Bind<GameObject>(typeof(GameObjects));
 
 
-        Get<GameObject>((int)GameObjects.ItemIcon).GetComponent<Image>().sprite = Resources.Load<Sprite>(("Sprites/UI/" +Name));
+        Get<GameObject>((int)GameObjects.ItemIcon).GetComponent<Image>().sprite = Resources.Load<Sprite>(("Sprites/UI/" + Name));
         Get<GameObject>((int)GameObjects.Num_Text).GetComponent<TextMeshProUGUI>().text = Count.ToString();
     }
 
