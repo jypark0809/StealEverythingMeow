@@ -9,21 +9,23 @@ using static Define;
 public class GameData
 {
     public int Jelly;
-    public int Gold = 999999;
-    public int Dia = 999999;
+    public int Gold = 30000;
+    public int Dia = 20000;
 
     // 재료
     public int Wood = 1000;
     public int Cotton = 1000;
-    public int Stone = 9999;
+    public int Stone = 1000;
 
-    public int RoomLevel = 1;
+
     public int[] MaxFurniture = new int[11] {0,0,0,0,0,0,0,0,0,0,0}; //추후 수정
-
     public int SoomLevel = 0;
-    public bool[] Emotion = new bool[Define.MOTION_COUNT];
+    public bool[] Emotion = new bool[Define.MOTION_COUNT] {true, true, true, true, true, true, true, true, true, true, true, true};
 
+
+    public int SpaceLevel = 1;
     public bool IsRoomOpen;
+    public float RoomTime = 30f;
     public bool IsSoomUp = false;
 
     public bool BGMOn = true;
@@ -31,6 +33,10 @@ public class GameData
 
     public bool firstExecution = true;
 
+
+
+    //간식
+    public int[] Food = { 1, 2, 0, 4, 5 ,0};
     public GameData()
     {
         Jelly = 5;

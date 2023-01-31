@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,11 +13,12 @@ public class TileManager : MonoBehaviour
     public bool IsCotton;
     public bool IsFur;
 
-
+    private float OpenTime;
+    DateTime now;
     private int CurRoomLevel;
     private void Start()
     {
-        CurRoomLevel = Managers.Game.SaveData.RoomLevel;
+        CurRoomLevel = Managers.Game.SaveData.SpaceLevel;
     }
 
     private void Update()
@@ -32,41 +34,20 @@ public class TileManager : MonoBehaviour
             return;
         }    
         Camera.main.GetComponent<CameraTest>().IsMove = true;
-        StartCoroutine(OpenRoom());
+        IsRoomOpen = false;
+        OpenTime = Managers.Data.Spaces[1200 + CurRoomLevel+1].Space_Time;
+        StartCoroutine(OpenRoom(OpenTime));
+
+
+        Debug.Log(DateTime.Now);
         //카메라 움직임 수정!
-        switch (CurRoomLevel)//Managers.Game.SaveData.RoomLevel)
-        {
-            case 2:
-                Camera.main.GetComponent<CameraTest>().targetPos = new Vector3(8, 0, -10);
-                break;
-            case 3:
-                Camera.main.GetComponent<CameraTest>().targetPos = new Vector3(4, 13, -10);
-                break;
-            case 4:
-                Camera.main.GetComponent<CameraTest>().targetPos = new Vector3(14, 14, -10);
-                break;
-            case 5:
-                Camera.main.GetComponent<CameraTest>().targetPos = new Vector3(-9, 14, -10);
-                break;
-            case 6:
-                Camera.main.GetComponent<CameraTest>().targetPos = new Vector3(-19, -2, -10);
-                break;
-            case 7:
-                Camera.main.GetComponent<CameraTest>().targetPos = new Vector3(-28, 8, -10);
-                break;
-            case 8:
-                Camera.main.GetComponent<CameraTest>().targetPos = new Vector3(-18, 12, -10);
-                break;
-            case 9:
-                Camera.main.GetComponent<CameraTest>().targetPos = new Vector3(-6, -8, -10);
-                break;
-        }
         Managers.UI.ClosePopupUI();
-        Managers.Game.SaveData.RoomLevel++;
+        Managers.Game.SaveData.SpaceLevel++;
     }
-    IEnumerator OpenRoom()
+    IEnumerator OpenRoom(float _Time)
     {
-        yield return new WaitForSeconds(2f);
+        Managers.UI.MakeWorldSpaceUI<UI_RestTime>().SetInfo(_Time);
+        yield return new WaitForSeconds(_Time);
         Util.FindChild(Managers.Object.CatHouse.gameObject, "Hide_"+Managers.Data.Spaces[1200 + CurRoomLevel+1].Space_Int_Name, true).SetActive(false);
         Util.FindChild(Managers.Object.CatHouse.gameObject, "Block_"+Managers.Data.Spaces[1200 + CurRoomLevel].Space_Int_Name, true).SetActive(false);
         Managers.UI.ShowPopupUI<UI_Sucess>();
@@ -75,7 +56,6 @@ public class TileManager : MonoBehaviour
         CurRoomLevel++;
         IsRoomOpen = false;
     }
-
     private void IsRoomCheck()
     {
         if (Managers.Game.SaveData.Gold >= Managers.Data.Spaces[1200 + CurRoomLevel + 1].Gold)

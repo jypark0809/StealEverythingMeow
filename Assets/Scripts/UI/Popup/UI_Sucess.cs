@@ -9,7 +9,6 @@ public class UI_Sucess : UI_Popup
     enum Buttons
     {
         OkButton,
-
     }
 
     void Start()

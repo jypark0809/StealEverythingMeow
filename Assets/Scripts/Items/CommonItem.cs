@@ -34,8 +34,10 @@ public class CommonItem : Item
             Managers.Sound.Play(Define.Sound.Effect, "Effects/GetItem", volume : 0.4f);
 
             ig.isActive = true;
-            Managers.Object.Player.Stat.Gold += itemData.Gold * Managers.Object.Player.Stat.Stage;
+            int itemGold = itemData.Gold * Managers.Object.Player.Stat.Stage;
+            Managers.Object.Player.Stat.Gold += itemGold;
             Managers.Object.Player.Stat.Exp += itemData.Exp + (Managers.Object.Player.Stat.Stage - 1);
+            Managers.Object.ShowGoldText(transform.position, itemGold);
 
             (Managers.UI.SceneUI as UI_GameScene).UpdateGoldText();
             gameObject.SetActive(false);

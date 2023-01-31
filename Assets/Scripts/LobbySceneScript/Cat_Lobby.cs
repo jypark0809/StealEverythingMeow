@@ -17,20 +17,6 @@ public class Node
 }
 public class Cat_Lobby : MonoBehaviour
 {
-    public Vector2Int bottomLeft, topRight;
-    private Vector2Int startPos, targetPos;
-    public List<Node> FinalNodeList;
-    public bool allowDiagonal, dontCrossCorner;
-
-
-    private int _index;
-    private string _indexstr;
-
-
-    public List<string> Emotion = new List<string>(); //배열 갱신
-    public List<float> EmotionTime = new List<float>(); //추후배열로 다시봐보기
-
-
     [SerializeField]
     public enum Catname
     {
@@ -40,9 +26,25 @@ public class Cat_Lobby : MonoBehaviour
         Calico,
         White
     }
-
     public Catname cat;
 
+
+
+    private int _indexEmotion;
+    private string _curEmotion;
+
+    public List<string> Emotion = new List<string>(); //배열 갱신
+    private List<float> EmotionTime = new List<float>(); //추후배열로 다시봐보기
+    private string[] BasicEmotion = { "Blink", "Sleep1", "Sleep2", "Ennui" };
+    private string[] PlusEmotion = { "Dig", "Fly", "Lick", "Paw", "Relax", "Scratch", "Sleep3", "Sniff", "Stretch", "Sway", "Tail", "Attack" };
+    private bool IsEmotion = false;
+    private bool IsSpecialEmotion= false;
+
+
+    public Vector2Int bottomLeft, topRight;
+    private Vector2Int startPos, targetPos;
+    public List<Node> FinalNodeList;
+    public bool allowDiagonal, dontCrossCorner;
     int sizeX, sizeY;
     Node[,] NodeArray;
     Node StartNode, TargetNode, CurNode;
@@ -55,59 +57,50 @@ public class Cat_Lobby : MonoBehaviour
 
     int index = 0;
 
-    private bool ReFind = true;
-    private bool IsEmotion = false;
+    private bool ReFind = false;
+
 
     private void Awake()
     {
-        Emotion.Add("Blink");
-        Emotion.Add("Ennui");
-        Emotion.Add("Dig");
-        Emotion.Add("Fly");
-        Emotion.Add("Lick");
-        Emotion.Add("Paw");
-        Emotion.Add("Relax");
-        Emotion.Add("Scratch");
-        Emotion.Add("Sleep1");
-        Emotion.Add("Sleep2");
-        Emotion.Add("Sleep3");
-        Emotion.Add("Sniff");
-        Emotion.Add("Stretch");
-        Emotion.Add("Sway");
-        Emotion.Add("Tail");
-        Emotion.Add("Attack");
+        SetEmotionList();
+    }
 
-        EmotionTime.Add(10f);
-        EmotionTime.Add(10f);
-        EmotionTime.Add(5f);
-        EmotionTime.Add(10f);
+    private void SetEmotionList()
+    {
+        for (int i = 0; i < 12; i++)
+        {
+            if (Managers.Game.SaveData.Emotion[i] == true)
+            {
+                Emotion.Add(PlusEmotion[i]);
+            }
+        }
+
     }
     private void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-
+        Invoke("DoBasicEmotion", 2f);
+        StartCoroutine(IsReFind());
     }
 
     private void Update()
     {
         if (FinalNodeList.Count == 0 && ReFind)
         {
-            CancelInvoke();
             ReFind = false;
             targetPos = new Vector2Int(Random.Range(bottomLeft.x, topRight.x), Random.Range(bottomLeft.y, topRight.y));
             PathFinding(this.transform, targetPos);
-            StartCoroutine(boolFind());
-            Invoke("doEmotion", Random.Range(0f, 4f));
+            StartCoroutine(IsReFind());
+            DoBasicEmotion();
         }
-        if (FinalNodeList.Count != 0 && !IsEmotion)
+        if (FinalNodeList.Count != 0 && !IsEmotion && !IsSpecialEmotion)
         {
             CancelInvoke();
             MovePath();
         }
     }
-
-    IEnumerator boolFind()
+    IEnumerator IsReFind()
     {
         yield return new WaitForSeconds(10f);
         ReFind = true;
@@ -140,7 +133,6 @@ public class Cat_Lobby : MonoBehaviour
             Managers.Sound.Play(Define.Sound.Effect, "Effects/CatIdle");
         }
     }
-
     void PathFinding(Transform Catpos, Vector2Int targetPos)
     {
         // NodeArray의 크기 정해주고, isWall, x, y 대입
@@ -235,42 +227,95 @@ public class Cat_Lobby : MonoBehaviour
             }
         }
     }
-    private void doEmotion()
+
+    private void OnMouseDown()
+    {
+        SpecialEmotion();
+    }
+    private void DoBasicEmotion()
     {
         if (IsEmotion)
             return;
-
+        if (IsSpecialEmotion)
+            return;
         IsEmotion = true;
-        _index = Random.Range(0, Emotion.Count);
-        _indexstr = Emotion[_index];
-        anim.SetBool(_indexstr, true);
-        StartCoroutine(IsEmoe(_indexstr, Random.Range(5f,15f)));
+        _indexEmotion = Random.Range(0, 4);
+        _curEmotion = BasicEmotion[_indexEmotion];
+        anim.SetBool(_curEmotion, true);
+        StartCoroutine(CanBasicEmotion(_curEmotion, Random.Range(5f, 15f)));
+    }
+    private void SpecialEmotion()
+    {
+        if (IsSpecialEmotion)
+            return;
+        IsSpecialEmotion = true;
+        anim.SetBool(_curEmotion, false);
+        anim.SetBool("walk", false);
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/CatTouch", 0.3f);
+        _indexEmotion = Random.Range(0, Emotion.Count);
+        _curEmotion = Emotion[_indexEmotion];
+        anim.SetBool(_curEmotion, true);
+        StartCoroutine(CanSpcialEmotion(_curEmotion, Random.Range(5f, 8f)));
     }
 
-    IEnumerator IsEmoe(string _str, float _Time)
+    IEnumerator CanBasicEmotion(string _str, float _Time)
     {
         yield return new WaitForSeconds(_Time);
         anim.SetBool(_str, false);
         IsEmotion = false;
     }
+    IEnumerator CanSpcialEmotion(string _str, float _Time)
+    {
+        yield return new WaitForSeconds(_Time);
+        anim.SetBool(_str, false);
+        yield return new WaitForSeconds(2f);
+        IsSpecialEmotion = false;
+    }
     public void Love(string _food)
     {
-        Debug.Log("애정도가 올랐습니다");
-        //고양이별 간식 분류
-        //이벤트 추가 (애정도)
-        Managers.UI.ClosePopupUI();
-    }
 
-
-    private void OnMouseDown()
-    {
-        if (IsEmotion)
+        switch (_food)
         {
-            Managers.Sound.Play(Define.Sound.Effect, "Effects/CatTouch", 0.3f);
-            anim.SetBool(_indexstr, false);
-            IsEmotion = false;
+            case "chew":
+                if (cat == Catname.Black)
+                    Debug.Log("행복 15");
+                else
+                    Debug.Log("행복도 5");
+                Managers.Game.SaveData.Food[1]--;
+                break;
+            case "jerky":
+                if (cat == Catname.Tabby)
+                    Debug.Log("행복 15");
+                else
+                    Debug.Log("행복도 5");
+                Managers.Game.SaveData.Food[2]--;
+                break;
+            case "mackerel":
+                if (cat == Catname.Tabby)
+                    Debug.Log("행복 15");
+                else
+                    Debug.Log("행복도 5");
+                Managers.Game.SaveData.Food[3]--;
+                break;
+            case "salmon":
+                if (cat == Catname.Gray)
+                    Debug.Log("행복 15");
+                else
+                    Debug.Log("행복도 5");
+                Managers.Game.SaveData.Food[4]--;
+                break;
+            case "tunacan":
+                if (cat == Catname.Calico)
+                    Debug.Log("행복 15");
+                else
+                    Debug.Log("행복도 5");
+                Managers.Game.SaveData.Food[5]--;
+                break;
+            case "catnipcandy":
+                Debug.Log("행복 15");
+                Managers.Game.SaveData.Food[0]--;
+                break;
         }
     }
-
 }
 

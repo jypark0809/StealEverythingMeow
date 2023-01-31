@@ -1,17 +1,17 @@
-Express_Id,Express_Int_Name,Express_Name,Express_Rwd,Diamond
-1501,Blink,눈 깜빡,0,30
-1502,Dig,땅 파기,1,30
-1503,Ennui,권태,0,30
-1504,Fly,파리 꼬임,2,30
-1505,Lick,핥기,6,30
-1506,Paw,앞발로 긁기,2,30
-1507,Relax,누워서 허우적,4,30
-1508,Scratch,바닥 긁기,5,30
-1509,Sleep1,잠1,4,30
-1510,Sleep2,잠2,0,30
-1511,Sleep3,잠3,0,30
-1512,Sniff,코 킁킁,3,30
-1513,Stretch,기지개,3,30
-1514,Sway,엉덩이 흔들기,5,30
-1515,Tail,뒤 돌아서 꼬리 흔들기,1,30
-1516,Run,뛰기,6,30
+Express_Id,Express_Int_Name,Express_Name,Express_Rwd,Diamond,Express_Time,Express_Path
+1501,Blink,눈 깜빡,0,15,5,
+1502,Dig,땅 파기,1,15,13,
+1503,Ennui,권태,0,15,13,
+1504,Fly,파리 꼬임,2,15,13,
+1505,Lick,핥기,6,15,13,
+1506,Paw,앞발로 긁기,2,15,13,
+1507,Relax,누워서 허우적,4,15,13,
+1508,Scratch,바닥 긁기,5,15,8,
+1509,Sleep1,잠1,4,15,13,
+1510,Sleep2,잠2,0,15,13,
+1511,Sleep3,잠3,0,15,13,
+1512,Sniff,코 킁킁,3,15,8,
+1513,Stretch,기지개,3,15,3,
+1514,Sway,엉덩이 흔들기,5,15,5,
+1515,Tail,뒤 돌아서 꼬리 흔들기,1,15,13,
+1516,Run,뛰기,6,15,8,

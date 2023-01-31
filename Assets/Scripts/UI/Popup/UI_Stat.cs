@@ -7,52 +7,32 @@ using TMPro;
 
 public class UI_Stat : UI_Popup
 {
+    enum GameObjects
+    {
+        CatStat,
+        CatExpress
+    }
     enum Buttons
     {
         CloseButton,
         RightButton,
         LeftButton
-
     }
     enum Images
     {
         Cat,
     }
-    enum Texts
-    {
-        SkillText,
-        Name,
-    }
     void Start()
     {
         Init();
     }
-
-
-    int Catindex =1;
-
     public override void Init()
     {
         base.Init();
         Bind<Button>(typeof(Buttons));
-        Bind<Image>(typeof(Images));
-        Bind<TextMeshProUGUI>(typeof(Texts));
+        Bind<GameObject>(typeof(GameObjects));
 
         GetButton((int)Buttons.CloseButton).gameObject.BindEvent(OnCloseButton);
-
-        GetButton((int)Buttons.RightButton).gameObject.BindEvent(RightIndex);
-        GetButton((int)Buttons.LeftButton).gameObject.BindEvent(LeftIndex);
-
-        if(Managers.Data.CatBooks[1400 + Catindex].Cat_Skill_Name == "Null")
-        {
-            GetText((int)Texts.SkillText).text = "";
-        }
-        else
-        {
-            GetText((int)Texts.SkillText).text = Managers.Data.CatBooks[1400 + Catindex].Cat_Skill_Name;
-        }
-        GetText((int)Texts.Name).text = Managers.Data.CatBooks[1400 + Catindex].Cat_Name;
-        GetImage((int)Images.Cat).sprite = Resources.Load<Sprite>(("Sprites/"+Managers.Data.CatBooks[1400+Catindex].Cat_Int_Name));
     }
 
     void OnCloseButton(PointerEventData evt)
@@ -60,37 +40,19 @@ public class UI_Stat : UI_Popup
         Managers.UI.ClosePopupUI();
 
     }
+    void SetCat()
+    {
+        GameObject gridPanel = Get<GameObject>((int)GameObjects.CatStat);
 
-    void RightIndex(PointerEventData evt)
-    {
-        Catindex++; //예외처리할것
-        if (Catindex == 6)
-            Catindex = 1;
-        if (Managers.Data.CatBooks[1400 + Catindex].Cat_Skill_Name == "Null")
+        foreach (Transform child in gridPanel.transform)
+            Managers.Resource.Destroy(child.gameObject);
+
+        for (int i = 0; i < 6; i++)
         {
-            GetText((int)Texts.SkillText).text = "";
+            GameObject Item = Managers.Resource.Instantiate("UI/UI_CatSet");
+            Item.transform.SetParent(gridPanel.transform);
+            UI_CatSet inven_Food = Util.GetOrAddComponent<UI_CatSet>(Item);
+            //inven_Food.SetInfo(Managers.Data.CatBooks[1400+i].Cat_Name,);
         }
-        else
-        {
-            GetText((int)Texts.SkillText).text = Managers.Data.CatBooks[1400 + Catindex].Cat_Skill_Name;
-        }
-        GetText((int)Texts.Name).text = Managers.Data.CatBooks[1400 + Catindex].Cat_Name;
-        GetImage((int)Images.Cat).sprite = Resources.Load<Sprite>(("Sprites/" + Managers.Data.CatBooks[1400 + Catindex].Cat_Int_Name));
-    }
-    void LeftIndex(PointerEventData evt)
-    {
-        Catindex--; //예외처리할것
-        if (Catindex == 0)
-            Catindex = 5;
-        if (Managers.Data.CatBooks[1400 + Catindex].Cat_Skill_Name == "Null")
-        {
-            GetText((int)Texts.SkillText).text = "";
-        }
-        else
-        {
-            GetText((int)Texts.SkillText).text = Managers.Data.CatBooks[1400 + Catindex].Cat_Skill_Name;
-        }
-        GetText((int)Texts.Name).text = Managers.Data.CatBooks[1400 + Catindex].Cat_Name;
-        GetImage((int)Images.Cat).sprite = Resources.Load<Sprite>(("Sprites/" + Managers.Data.CatBooks[1400 + Catindex].Cat_Int_Name));
     }
 }

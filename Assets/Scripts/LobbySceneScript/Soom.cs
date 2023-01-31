@@ -31,10 +31,13 @@ public class Soom : MonoBehaviour
     }
     private void OnMouseDown()
     {
+        Managers.Object.CatHouse.gameObject.GetComponent<TileManager>().Open();
+        /*
         if(CurSoomLevel == 0)// 튜토리얼
             SomUpgrade();
         else if (CurSoomLevel <3)
             Managers.UI.ShowPopupUI<UI_UpgradeSom>(); 
+        */
     }
 
     public void SomUpgrade()
@@ -60,7 +63,7 @@ public class Soom : MonoBehaviour
             IsCotton = true;
 
         //방체크,가구체크 >>가구경우 상점과 확인후 다시 수정필요
-        if (Managers.Game.SaveData.RoomLevel == Managers.Data.Sooms[1300 + CurSoomLevel + 1].Space_Num)
+        if (Managers.Game.SaveData.SpaceLevel == Managers.Data.Sooms[1300 + CurSoomLevel + 1].Space_Num)
             IsRoom = true;
 
         /*
