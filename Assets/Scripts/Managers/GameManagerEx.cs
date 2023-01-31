@@ -18,7 +18,7 @@ public class GameData
     public int Stone = 9999;
 
     public int RoomLevel = 1;
-    public int[] MaxFurniture = new int[11] {0,0,0,0,0,0,0,0,0,0,0}; //추후 수정
+    public int[] MaxFurniture = new int[11] {0,0,0,0,0,0,0,0,0,0,0};
 
     public int SoomLevel = 0;
     public bool[] Emotion = new bool[Define.MOTION_COUNT];
@@ -40,7 +40,9 @@ public class GameData
 public class GameManagerEx
 {
     GameData _gameData = new GameData();
+    // List<FurnitureData> _fList = new List<FurnitureData>();
     public GameData SaveData { get { return _gameData; } set { _gameData = value; } }
+    // public List<FurnitureData> FurntureList { get { return _fList; } }
 
     #region Option
     public bool BGMOn
@@ -61,6 +63,7 @@ public class GameManagerEx
     public void Init()
     {
         _path = Application.persistentDataPath + "/SaveData.json";
+        // _fPath = Application.persistentDataPath + "/FurnitureSaveData.json";
         if (LoadGame())
             return;
 
@@ -71,11 +74,14 @@ public class GameManagerEx
 
     #region Save&Load
     string _path;
+    // string _fPath;
 
     public void SaveGame()
     {
-        string jsonStr = JsonUtility.ToJson(Managers.Game.SaveData);
-        File.WriteAllText(_path, jsonStr);
+        string gameDataStr = JsonUtility.ToJson(Managers.Game.SaveData);
+        // string fDataStr = JsonUtility.ToJson(FurntureList);
+        File.WriteAllText(_path, gameDataStr);
+        // File.WriteAllText(_fPath, fDataStr);
     }
 
     public bool LoadGame()
@@ -87,6 +93,9 @@ public class GameManagerEx
         GameData data = JsonUtility.FromJson<GameData>(fileStr);
         if (data != null)
             Managers.Game.SaveData = data;
+
+        // string fDataStr = File.ReadAllText(_fPath);
+
 
         IsLoaded = true;
         return true;
