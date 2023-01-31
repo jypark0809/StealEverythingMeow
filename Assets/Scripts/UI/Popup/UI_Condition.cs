@@ -50,9 +50,10 @@ public class UI_Condition : UI_Popup
 
         GameObject gridPanel = Get<GameObject>((int)GameObjects.ConRF);
 
-        GetText((int)Texts.RoomText).text = Managers.Data.Spaces[1200 + Managers.Game.SaveData.RoomLevel].Space_Name;
+        GetText((int)Texts.RoomText).text = Managers.Data.Spaces[1200 + Managers.Game.SaveData.SpaceLevel].Space_Name;
 
         //집체크, 가구체크
+        /*
         for (int i = 0; i < 4 ; i++) // 현재 최종단계의 집 + 가구 
         {
             GameObject ConIm = Managers.Resource.Instantiate("UI/UI_ConSet");
@@ -60,7 +61,7 @@ public class UI_Condition : UI_Popup
             UI_ConSet ConSet = Util.GetOrAddComponent<UI_ConSet>(ConIm);
             ConSet.SetInfo("234" , true); //가구이름추가
         }
-
+        */
         // 재화 체크
         CheckGoods();
 

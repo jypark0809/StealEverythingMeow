@@ -51,7 +51,4 @@ public class UI_Inven_Item_pre : UI_Popup, IDragHandler, IEndDragHandler
             ClosePopupUI();
         }
     }
-
-    
-
 }

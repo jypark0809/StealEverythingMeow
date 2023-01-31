@@ -8,8 +8,6 @@ public class UI_Inven_Item : UI_Base
 {
     string Name;
     int Count;
-
-
     enum GameObjects
     {
         ItemIcon,

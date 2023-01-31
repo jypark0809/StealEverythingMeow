@@ -39,10 +39,10 @@ public class UI_UnlockRoomPopup : UI_Popup
         GetButton((int)Buttons.CloseButton).gameObject.BindEvent(OnCloseButton);
 
         
-        GetText((int)Texts.GoldText).text = Managers.Data.Spaces[1200 + Managers.Game.SaveData.RoomLevel + 1].Gold.ToString();
-        GetText((int)Texts.CottonValue).text = Managers.Data.Spaces[1200 + Managers.Game.SaveData.RoomLevel + 1].Cotton.ToString();
-        GetText((int)Texts.StoneValue).text = Managers.Data.Spaces[1200 + Managers.Game.SaveData.RoomLevel + 1].Stone.ToString();
-        GetText((int)Texts.WoodValue).text = Managers.Data.Spaces[1200 + Managers.Game.SaveData.RoomLevel + 1].Wood.ToString();
+        GetText((int)Texts.GoldText).text = Managers.Data.Spaces[1200 + Managers.Game.SaveData.SpaceLevel + 1].Gold.ToString();
+        GetText((int)Texts.CottonValue).text = Managers.Data.Spaces[1200 + Managers.Game.SaveData.SpaceLevel + 1].Cotton.ToString();
+        GetText((int)Texts.StoneValue).text = Managers.Data.Spaces[1200 + Managers.Game.SaveData.SpaceLevel + 1].Stone.ToString();
+        GetText((int)Texts.WoodValue).text = Managers.Data.Spaces[1200 + Managers.Game.SaveData.SpaceLevel + 1].Wood.ToString();
 
     }
 
