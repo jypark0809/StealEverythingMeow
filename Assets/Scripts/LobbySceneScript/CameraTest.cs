@@ -20,21 +20,15 @@ public class CameraTest : MonoBehaviour
 
     public bool IsMove;
 
-
-
     Camera thecamera;
     PixelPerfectCamera pix;
 
-    Vector2 prePos;
-
-    private float dragspeed = 2f;
+    private float Movespeed = 2f;
     public Vector3 targetPos;
-    public int _zoom;
 
     float height;
     float width;
 
-    private bool dragmove;
     private void Awake()
     {
         thecamera = GetComponent<Camera>();
@@ -46,34 +40,57 @@ public class CameraTest : MonoBehaviour
     public void Update()
     {
         if (IsMove)
-        {
-            transform.position = Vector3.Lerp(this.transform.position, targetPos, Time.deltaTime * dragspeed);
-        }
-        //pix.assetsPPU = (int)Mathf.Lerp(pix.assetsPPU, _zoom, Time.deltaTime* cameraZoomSpeed);
+            transform.position = Vector3.Lerp(this.transform.position, targetPos, Time.deltaTime * Movespeed);
+
+
     }
+    private Vector3 vecl;
     private void FixedUpdate()
     {
-        CameraMove();
+        if(!IsMove)
+            CameraMove();
         LimitCameraArea();
     }
 
-    void CameraMove()
+    private Vector2 nowPos, prePos;
+    private Vector2 movePosDiff;
+    private Vector2 GetTouchDragValue()
     {
-        if (Input.GetMouseButtonDown(0))
+        movePosDiff = Vector3.zero;
+
+        if (Input.touchCount == 1)
         {
-            if (!EventSystem.current.IsPointerOverGameObject())
+            Touch Touch = Input.GetTouch(0);
+            if (Touch.phase == TouchPhase.Began)
             {
-                beginMousePos = Input.mousePosition;
-                beginCamPos = transform.position;
+                prePos = Touch.position - Touch.deltaPosition;
+            }
+            else if (Touch.phase == TouchPhase.Moved)
+            {
+                nowPos = Touch.position - Touch.deltaPosition;
+                movePosDiff = (Vector2)(prePos - nowPos) * Time.deltaTime * cameraMoveSpeed;
+                vecl = -movePosDiff.normalized;
+                prePos = Touch.position - Touch.deltaPosition;
+                transform.position = Vector3.SmoothDamp(this.transform.position, ((Vector3)(GetTouchDragValue()) + this.transform.position), ref vecl, cameraMoveSpeed);
             }
         }
-        else if (Input.GetMouseButton(0))
+        return movePosDiff;
+    }
+    void CameraMove()
+    {
+        if (!EventSystem.current.IsPointerOverGameObject())
         {
-            if (!EventSystem.current.IsPointerOverGameObject())
+
+            if (Input.GetMouseButtonDown(0))
             {
-                preMousePos = -(Input.mousePosition - beginMousePos) * cameraMoveSpeed;
-                Vector3 newCamPos = beginCamPos + preMousePos;
-                transform.position = newCamPos;
+                beginMousePos = Input.mousePosition;
+            }
+            if (Input.GetMouseButton(0))
+            {
+                Vector3 position = Camera.main.ScreenToViewportPoint((Vector2)Input.mousePosition - (Vector2)beginMousePos);
+                Vector3 Move = -position * (Time.deltaTime * cameraMoveSpeed);
+                vecl = Move.normalized;
+                transform.Translate(this.transform.position + Move);
             }
         }
     }

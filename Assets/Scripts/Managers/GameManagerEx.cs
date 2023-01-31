@@ -9,19 +9,35 @@ using static Define;
 public class GameData
 {
     public int Jelly;
-    public int Gold;
-    public int Dia;
-    public int RoomLevel = 1;
-    public int curFurnitureCount = 0;
-    public int[] MaxFurniture = {0,0,5,5,0,5,3,5}; //추후 수정
-    public string[] CurFurniture = {"N","L","L","S","N","K","U","B"}; //데이터테이블 연동
+    public int Gold = 30000;
+    public int Dia = 20000;
+
+    // 재료
+    public int Wood = 1000;
+    public int Cotton = 1000;
+    public int Stone = 1000;
+
+
+    public int[] MaxFurniture = new int[11] {0,0,0,0,0,0,0,0,0,0,0}; //추후 수정
+    public int SoomLevel = 0;
+    public bool[] Emotion = new bool[Define.MOTION_COUNT] {true, true, true, true, true, true, true, true, true, true, true, true};
+
+
+    public int SpaceLevel = 1;
+    public bool IsRoomOpen;
+    public float RoomTime = 30f;
+    public bool IsSoomUp = false;
 
     public bool BGMOn = true;
     public bool EffectSoundOn = true;
 
-    public int[] Motion = new int[MOTION_COUNT];
+    public bool firstExecution = true;
 
-    public GameData() 
+
+
+    //간식
+    public int[] Food = { 1, 2, 0, 4, 5 ,0};
+    public GameData()
     {
         Jelly = 5;
     }

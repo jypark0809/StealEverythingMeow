@@ -1,0 +1,434 @@
+{
+  "Furnitures": [
+    {
+      "F_Id": 1101,
+      "F_Int_Name": "Light_Set",
+      "F_Name": "카펫조명 세트",
+      "F_Desc": "카펫/ 큰 조명",
+      "F_Space_Num": 2,
+      "F_Happiness": 15,
+      "F_Gold": 15,
+      "F_Path": "Sprites/UI/ShopItem/Light_Set"
+    },
+    {
+      "F_Id": 1102,
+      "F_Int_Name": "Dtable_Set",
+      "F_Name": "장식장 세트",
+      "F_Desc": "장식장/ 옷걸이",
+      "F_Space_Num": 2,
+      "F_Happiness": 15,
+      "F_Gold": 15,
+      "F_Path": "Sprites/UI/ShopItem/Dtable_Set"
+    },
+    {
+      "F_Id": 1103,
+      "F_Int_Name": "Sofa_Set",
+      "F_Name": "소파테이블세트",
+      "F_Desc": "소파/ 작은테이블/ 전화기",
+      "F_Space_Num": 2,
+      "F_Happiness": 15,
+      "F_Gold": 20,
+      "F_Path": "Sprites/UI/ShopItem/Sofa_Set"
+    },
+    {
+      "F_Id": 1104,
+      "F_Int_Name": "Royal_Clock",
+      "F_Name": "괘종시계",
+      "F_Desc": "괘종시계",
+      "F_Space_Num": 2,
+      "F_Happiness": 15,
+      "F_Gold": 13,
+      "F_Path": "Sprites/UI/ShopItem/Royal_Clock"
+    },
+    {
+      "F_Id": 1105,
+      "F_Int_Name": "Plant",
+      "F_Name": "식물",
+      "F_Desc": "식물",
+      "F_Space_Num": 2,
+      "F_Happiness": 15,
+      "F_Gold": 10,
+      "F_Path": "Sprites/UI/ShopItem/Plant"
+    },
+    {
+      "F_Id": 1106,
+      "F_Int_Name": "Closet",
+      "F_Name": "옷장",
+      "F_Desc": "옷장",
+      "F_Space_Num": 3,
+      "F_Happiness": 15,
+      "F_Gold": 180,
+      "F_Path": "Sprites/UI/ShopItem/Closet"
+    },
+    {
+      "F_Id": 1107,
+      "F_Int_Name": "Mirr_Set",
+      "F_Name": "거울세트",
+      "F_Desc": "전신거울/ 벽시계",
+      "F_Space_Num": 3,
+      "F_Happiness": 15,
+      "F_Gold": 400,
+      "F_Path": "Sprites/UI/ShopItem/Mirr_Set"
+    },
+    {
+      "F_Id": 1108,
+      "F_Int_Name": "Pink_Bed",
+      "F_Name": "핑크 침대 세트",
+      "F_Desc": "분홍 침대/ 시계테이블",
+      "F_Space_Num": 3,
+      "F_Happiness": 15,
+      "F_Gold": 550,
+      "F_Path": "Sprites/UI/ShopItem/Pink_Bed"
+    },
+    {
+      "F_Id": 1109,
+      "F_Int_Name": "Carpet_Set",
+      "F_Name": "카펫 세트",
+      "F_Desc": "카펫/ 식물",
+      "F_Space_Num": 3,
+      "F_Happiness": 15,
+      "F_Gold": 100,
+      "F_Path": "Sprites/UI/ShopItem/Carpet_Set"
+    },
+    {
+      "F_Id": 1110,
+      "F_Int_Name": "Iron",
+      "F_Name": "다리미",
+      "F_Desc": "다리미",
+      "F_Space_Num": 3,
+      "F_Happiness": 15,
+      "F_Gold": 80,
+      "F_Path": "Sprites/UI/ShopItem/Iron"
+    },
+    {
+      "F_Id": 1111,
+      "F_Int_Name": "Sink",
+      "F_Name": "싱크대",
+      "F_Desc": "싱크대",
+      "F_Space_Num": 4,
+      "F_Happiness": 20,
+      "F_Gold": 400,
+      "F_Path": "Sprites/UI/ShopItem/Sink"
+    },
+    {
+      "F_Id": 1112,
+      "F_Int_Name": "Gasrange",
+      "F_Name": "가스레인지",
+      "F_Desc": "가스레인지/ 조리음식",
+      "F_Space_Num": 4,
+      "F_Happiness": 20,
+      "F_Gold": 380,
+      "F_Path": "Sprites/UI/ShopItem/Gasrange"
+    },
+    {
+      "F_Id": 1113,
+      "F_Int_Name": "Kitchen_Utensil",
+      "F_Name": "주방기구 세트",
+      "F_Desc": "주방기구 걸이/ 컵/ 접시/ 물병/ 통조림/ 사과/ 도마",
+      "F_Space_Num": 4,
+      "F_Happiness": 20,
+      "F_Gold": 350,
+      "F_Path": "Sprites/UI/ShopItem/Kitchen_Utensil"
+    },
+    {
+      "F_Id": 1114,
+      "F_Int_Name": "Dinnerware_Set",
+      "F_Name": "식탁 세트",
+      "F_Desc": "식탁/ 의자/ 음식/ 컵/ 주전자",
+      "F_Space_Num": 4,
+      "F_Happiness": 20,
+      "F_Gold": 420,
+      "F_Path": "Sprites/UI/ShopItem/Dinnerware_Set"
+    },
+    {
+      "F_Id": 1115,
+      "F_Int_Name": "Refrigerator",
+      "F_Name": "냉장고",
+      "F_Desc": "냉장고",
+      "F_Space_Num": 4,
+      "F_Happiness": 20,
+      "F_Gold": 450,
+      "F_Path": "Sprites/UI/ShopItem/Refrigerator"
+    },
+    {
+      "F_Id": 1116,
+      "F_Int_Name": "Washing_Machine",
+      "F_Name": "세탁기",
+      "F_Desc": "세탁기",
+      "F_Space_Num": 5,
+      "F_Happiness": 20,
+      "F_Gold": 2250,
+      "F_Path": "Sprites/UI/ShopItem/Washing_Machine"
+    },
+    {
+      "F_Id": 1117,
+      "F_Int_Name": "Laundry",
+      "F_Name": "빨래바구니",
+      "F_Desc": "빨래바구니",
+      "F_Space_Num": 5,
+      "F_Happiness": 20,
+      "F_Gold": 1700,
+      "F_Path": "Sprites/UI/ShopItem/Laundry"
+    },
+    {
+      "F_Id": 1118,
+      "F_Int_Name": "Detergent",
+      "F_Name": "세제",
+      "F_Desc": "세제/ 신문지",
+      "F_Space_Num": 5,
+      "F_Happiness": 20,
+      "F_Gold": 1560,
+      "F_Path": "Sprites/UI/ShopItem/Detergent"
+    },
+    {
+      "F_Id": 1119,
+      "F_Int_Name": "Tub",
+      "F_Name": "욕조",
+      "F_Desc": "욕조/ 장난감 오리",
+      "F_Space_Num": 6,
+      "F_Happiness": 20,
+      "F_Gold": 4860,
+      "F_Path": "Sprites/UI/ShopItem/Tub"
+    },
+    {
+      "F_Id": 1120,
+      "F_Int_Name": "Washstand",
+      "F_Name": "세면대",
+      "F_Desc": "세면대/ 칫솔꽂이",
+      "F_Space_Num": 6,
+      "F_Happiness": 20,
+      "F_Gold": 4000,
+      "F_Path": "Sprites/UI/ShopItem/Washstand"
+    },
+    {
+      "F_Id": 1121,
+      "F_Int_Name": "Cat_Toilet",
+      "F_Name": "고양이화장실",
+      "F_Desc": "고양이화장실",
+      "F_Space_Num": 6,
+      "F_Happiness": 20,
+      "F_Gold": 4300,
+      "F_Path": "Sprites/UI/ShopItem/Cat_Toilet"
+    },
+    {
+      "F_Id": 1122,
+      "F_Int_Name": "Toilet_Set",
+      "F_Name": "변기 세트",
+      "F_Desc": "변기/ 뚫어뻥 / 휴지걸이",
+      "F_Space_Num": 6,
+      "F_Happiness": 20,
+      "F_Gold": 4500,
+      "F_Path": "Sprites/UI/ShopItem/Toilet_Set"
+    },
+    {
+      "F_Id": 1123,
+      "F_Int_Name": "Toy_Set",
+      "F_Name": "장난감 세트",
+      "F_Desc": "장난감 상자/ 스크래쳐/ 장난감들",
+      "F_Space_Num": 7,
+      "F_Happiness": 25,
+      "F_Gold": 11000,
+      "F_Path": "Sprites/UI/ShopItem/Toy_Set"
+    },
+    {
+      "F_Id": 1124,
+      "F_Int_Name": "Cat_Tower",
+      "F_Name": "캣타워",
+      "F_Desc": "캣타워/ 카펫",
+      "F_Space_Num": 7,
+      "F_Happiness": 25,
+      "F_Gold": 13000,
+      "F_Path": "Sprites/UI/ShopItem/Cat_Tower"
+    },
+    {
+      "F_Id": 1125,
+      "F_Int_Name": "Closet_Set",
+      "F_Name": "수납장 세트",
+      "F_Desc": "수납장/ 액자",
+      "F_Space_Num": 7,
+      "F_Happiness": 25,
+      "F_Gold": 9800,
+      "F_Path": "Sprites/UI/ShopItem/Closet_Set"
+    },
+    {
+      "F_Id": 1126,
+      "F_Int_Name": "Sofa_Nin_Set",
+      "F_Name": "소파 닌텐도 세트",
+      "F_Desc": "소파/ 탁상/ 닌텐도",
+      "F_Space_Num": 7,
+      "F_Happiness": 25,
+      "F_Gold": 10000,
+      "F_Path": "Sprites/UI/ShopItem/Sofa_Nin_Set"
+    },
+    {
+      "F_Id": 1127,
+      "F_Int_Name": "Bed_Set",
+      "F_Name": "안방 침대 세트",
+      "F_Desc": "침대/ 서랍",
+      "F_Space_Num": 8,
+      "F_Happiness": 25,
+      "F_Gold": 28000,
+      "F_Path": "Sprites/UI/ShopItem/Bed_Set"
+    },
+    {
+      "F_Id": 1128,
+      "F_Int_Name": "Wardrobe_Set",
+      "F_Name": "옷장 세트",
+      "F_Desc": "옷장/ 벽시계",
+      "F_Space_Num": 8,
+      "F_Happiness": 25,
+      "F_Gold": 23000,
+      "F_Path": "Sprites/UI/ShopItem/Wardrobe_Set"
+    },
+    {
+      "F_Id": 1129,
+      "F_Int_Name": "Table_Set",
+      "F_Name": "책상 세트",
+      "F_Desc": "책상/ 노트북/ 신문/ 의자",
+      "F_Space_Num": 8,
+      "F_Happiness": 25,
+      "F_Gold": 25000,
+      "F_Path": "Sprites/UI/ShopItem/Table_Set"
+    },
+    {
+      "F_Id": 1130,
+      "F_Int_Name": "Hanger_Set",
+      "F_Name": "옷걸이 세트",
+      "F_Desc": "옷걸이 행거/ 옷걸이",
+      "F_Space_Num": 8,
+      "F_Happiness": 25,
+      "F_Gold": 20000,
+      "F_Path": "Sprites/UI/ShopItem/Hanger_Set"
+    },
+    {
+      "F_Id": 1131,
+      "F_Int_Name": "Safebox_Set",
+      "F_Name": "금고 세트",
+      "F_Desc": "금고/ 작은테이블/ 어항",
+      "F_Space_Num": 8,
+      "F_Happiness": 25,
+      "F_Gold": 20000,
+      "F_Path": "Sprites/UI/ShopItem/Safebox_Set"
+    },
+    {
+      "F_Id": 1132,
+      "F_Int_Name": "Light_T_Set",
+      "F_Name": "조명 세트",
+      "F_Desc": "조명/ 액자/ 쓰레기통",
+      "F_Space_Num": 8,
+      "F_Happiness": 25,
+      "F_Gold": 24000,
+      "F_Path": "Sprites/UI/ShopItem/Light_T_Set"
+    },
+    {
+      "F_Id": 1133,
+      "F_Int_Name": "Bookshelf",
+      "F_Name": "책장",
+      "F_Desc": "책장",
+      "F_Space_Num": 9,
+      "F_Happiness": 25,
+      "F_Gold": 55000,
+      "F_Path": "Sprites/UI/ShopItem/Bookshelf"
+    },
+    {
+      "F_Id": 1134,
+      "F_Int_Name": "Fireplace",
+      "F_Name": "벽난로",
+      "F_Desc": "벽난로",
+      "F_Space_Num": 9,
+      "F_Happiness": 25,
+      "F_Gold": 60000,
+      "F_Path": "Sprites/UI/ShopItem/Fireplace"
+    },
+    {
+      "F_Id": 1135,
+      "F_Int_Name": "Desk_Set",
+      "F_Name": "책상 세트",
+      "F_Desc": "책상 세트",
+      "F_Space_Num": 9,
+      "F_Happiness": 25,
+      "F_Gold": 65000,
+      "F_Path": "Sprites/UI/ShopItem/Desk_Set"
+    },
+    {
+      "F_Id": 1136,
+      "F_Int_Name": "Sofa_Lib",
+      "F_Name": "소파",
+      "F_Desc": "소파/ 식물",
+      "F_Space_Num": 9,
+      "F_Happiness": 25,
+      "F_Gold": 62000,
+      "F_Path": "Sprites/UI/ShopItem/Sofa_Lib"
+    },
+    {
+      "F_Id": 1137,
+      "F_Int_Name": "Music_Player",
+      "F_Name": "음악 플레이어",
+      "F_Desc": "음악 플레이어/ 액자",
+      "F_Space_Num": 9,
+      "F_Happiness": 25,
+      "F_Gold": 58000,
+      "F_Path": "Sprites/UI/ShopItem/Music_Player"
+    },
+    {
+      "F_Id": 1138,
+      "F_Int_Name": "Tree",
+      "F_Name": "나무",
+      "F_Desc": "나무",
+      "F_Space_Num": 10,
+      "F_Happiness": 25,
+      "F_Gold": 150000,
+      "F_Path": "Sprites/UI/ShopItem/Tree"
+    },
+    {
+      "F_Id": 1139,
+      "F_Int_Name": "Plant_Set",
+      "F_Name": "식물",
+      "F_Desc": "수풀/ 꽃/ 축구공",
+      "F_Space_Num": 10,
+      "F_Happiness": 25,
+      "F_Gold": 100000,
+      "F_Path": "Sprites/UI/ShopItem/Plant_Set"
+    },
+    {
+      "F_Id": 1140,
+      "F_Int_Name": "Clothesline",
+      "F_Name": "빨랫줄",
+      "F_Desc": "빨랫줄/ 신발",
+      "F_Space_Num": 10,
+      "F_Happiness": 25,
+      "F_Gold": 110000,
+      "F_Path": "Sprites/UI/ShopItem/Clothesline"
+    },
+    {
+      "F_Id": 1141,
+      "F_Int_Name": "Fish1",
+      "F_Name": "물고기1",
+      "F_Desc": "물고기1",
+      "F_Space_Num": 10,
+      "F_Happiness": 25,
+      "F_Gold": 200000,
+      "F_Path": "Sprites/UI/ShopItem/Fish1"
+    },
+    {
+      "F_Id": 1142,
+      "F_Int_Name": "Fish2",
+      "F_Name": "물고기2",
+      "F_Desc": "물고기2",
+      "F_Space_Num": 10,
+      "F_Happiness": 25,
+      "F_Gold": 200000,
+      "F_Path": "Sprites/UI/ShopItem/Fish2"
+    },
+    {
+      "F_Id": 1143,
+      "F_Int_Name": "Fish3",
+      "F_Name": "물고기3",
+      "F_Desc": "물고기3",
+      "F_Space_Num": 10,
+      "F_Happiness": 25,
+      "F_Gold": 200000,
+      "F_Path": "Sprites/UI/ShopItem/Fish3"
+    }
+  ]
+}

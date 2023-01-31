@@ -28,12 +28,20 @@ public class GameScene : BaseScene
 
         SetPlayer();
         Managers.Object.Camera.SetPlayer(_player.GetComponent<PlayerController>());
+
+        if (Managers.Game.SaveData.firstExecution == true)
+        {
+            Managers.UI.ShowPopupUI<UI_GameTutorialPopup>();
+            Time.timeScale = 0;
+            Managers.Game.SaveData.firstExecution = false;
+        }
+
+        spawnPos = Util.FindChild(_stage, "TreasureMapSpawnPoint", false).GetComponentsInChildren<Transform>();
+        CreateUnDuplicateRandom(1, spawnPos.Length, 4);
         SpawnTreasureMap();
 
         _gameSceneUI = Managers.UI.ShowSceneUI<UI_GameScene>();
         Managers.Sound.Play(Define.Sound.Bgm, "BGM/BGM_Game", volume: 0.1f);
-
-        StartCoroutine(PortalScheduler(120));
     }
 
     private void Update()
@@ -81,13 +89,13 @@ public class GameScene : BaseScene
         Managers.UI.ShowPopupUI<UI_GameOver>();
     }
 
-    void SpawnPortal()
+    public void SpawnPortal()
     {
         if (Managers.Object.Player.Stat.Stage > 3)
             return;
 
         Transform[] spawnPos = Util.FindChild(_stage, "PortalSpawnPoint", false).GetComponentsInChildren<Transform>();
-        Managers.Resource.Instantiate("PortalContainer", _stage.transform).transform.position = spawnPos[Random.Range(1,9)].position;
+        Managers.Resource.Instantiate("Stage/PortalContainer", _stage.transform).transform.position = spawnPos[Random.Range(1,9)].position;
     }
 
     public void GoToNextStage()
@@ -99,34 +107,24 @@ public class GameScene : BaseScene
         _player.transform.position = Util.FindChild(_stage, "PlayerSpawnPos").transform.position;
 
         // Set TreasureMap();
-        SpawnTreasureMap();
+        if (Managers.Object.Player.Stat.Stage < 4)
+            spawnPos = Util.FindChild(_stage, "TreasureMapSpawnPoint", false).GetComponentsInChildren<Transform>();
 
-        StartCoroutine(PortalScheduler(120));
+        CreateUnDuplicateRandom(1, spawnPos.Length, 4);
+        SpawnTreasureMap();
     }
 
+    Transform[] spawnPos;
     List<int> indexList = new List<int>();
-    void SpawnTreasureMap()
+    int index = 0;
+    public void SpawnTreasureMap()
     {
         if (Managers.Object.Player.Stat.Stage > 3)
             return;
-
-        Transform[] spawnPos = Util.FindChild(_stage, "TreasureMapSpawnPoint", false).GetComponentsInChildren<Transform>();
-        if (Managers.Object.Player.Stat.Stage == 1 || Managers.Object.Player.Stat.Stage == 2)
-        {
-            CreateUnDuplicateRandom(1, spawnPos.Length, 2);
-            for (int i = 0; i < indexList.Count; i++)
-            {
-                Managers.Resource.Instantiate("Item/FuntionalItem/TreasureMap",_stage.transform).transform.position = spawnPos[indexList[i]].position;
-            }
-        }
-        else if (Managers.Object.Player.Stat.Stage == 3)
-        {
-            CreateUnDuplicateRandom(1, spawnPos.Length, 1);
-            for (int i = 0; i < indexList.Count; i++)
-            {
-                Managers.Resource.Instantiate("Item/FuntionalItem/TreasureMap",_stage.transform).transform.position = spawnPos[indexList[i]].position;
-            }
-        }
+        
+        GameObject mapItem = Managers.Resource.Instantiate("Item/FuntionalItem/TreasureMap", _stage.transform);
+        mapItem.transform.position = spawnPos[indexList[index]].position;
+        index++;
     }
 
     void CreateUnDuplicateRandom(int min, int max, int count)
@@ -147,21 +145,10 @@ public class GameScene : BaseScene
         }
     }
 
-    IEnumerator PortalScheduler(float time)
-    {
-        while (time > 0)
-        {
-            yield return new WaitForSeconds(1);
-            time--;
-        }
-
-        Managers.UI.ShowPopupUI<UI_NextStagePopup>();
-        SpawnPortal();
-    }
-
     public override void Clear()
     {
         Managers.Resource.Destroy(_stage);
         indexList.Clear();
+        index = 0;
     }
 }

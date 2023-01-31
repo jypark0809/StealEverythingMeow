@@ -56,7 +56,6 @@ public class PlayerController : MonoBehaviour
             case Define.State.Die:
                 break;
             case Define.State.Idle:
-
                 break;
             case Define.State.Walk:
                 UpdateWalk();

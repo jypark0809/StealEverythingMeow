@@ -53,4 +53,11 @@ public class ObjectManager
         _stage = Managers.Resource.Instantiate(path, parent);
         return _stage;
     }
+
+    public void ShowGoldText(Vector2 pos, int gold)
+    {
+        GameObject go = Managers.Resource.Instantiate("Item/GoldText");
+        GoldText goldText = go.GetOrAddComponent<GoldText>();
+        goldText.SetInfo(pos, gold);
+    }
 }
