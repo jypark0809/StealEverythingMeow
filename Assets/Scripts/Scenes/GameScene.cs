@@ -95,7 +95,7 @@ public class GameScene : BaseScene
             return;
 
         Transform[] spawnPos = Util.FindChild(_stage, "PortalSpawnPoint", false).GetComponentsInChildren<Transform>();
-        Managers.Resource.Instantiate("PortalContainer", _stage.transform).transform.position = spawnPos[Random.Range(1,9)].position;
+        Managers.Resource.Instantiate("Stage/PortalContainer", _stage.transform).transform.position = spawnPos[Random.Range(1,9)].position;
     }
 
     public void GoToNextStage()
