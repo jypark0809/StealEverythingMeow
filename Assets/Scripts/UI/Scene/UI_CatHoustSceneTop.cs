@@ -26,6 +26,6 @@ public class UI_CatHoustSceneTop : UI_Base
         GetText((int)Texts.JellyText).text = Managers.Game.SaveData.Jelly +" /5";
         GetText((int)Texts.DiamondText).text = Managers.Game.SaveData.Dia.ToString();
         GetText((int)Texts.GoldText).text = Managers.Game.SaveData.Gold.ToString();
-        GetText((int)Texts.Current_Room_Text_Step).text = Managers.Game.SaveData.RoomLevel.ToString();
+        GetText((int)Texts.Current_Room_Text_Step).text = Managers.Game.SaveData.SpaceLevel.ToString();
     }
 }

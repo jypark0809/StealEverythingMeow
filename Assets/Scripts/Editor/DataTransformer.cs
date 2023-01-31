@@ -28,6 +28,7 @@ public class DataTransformer : EditorWindow
         ParseFurnitureData("Furniture");
         ParseSoomData("Soom");
         ParseCatBookData("CatBook");
+        ParseExpressBookData("ExpressBook");
     }
 
     static void ParseLevelExpData(string filename)
@@ -300,6 +301,42 @@ public class DataTransformer : EditorWindow
                 Gold = int.Parse(row[i++]),
                 Diamond = int.Parse(row[i++]),
                 Cat_Path = row[i++],
+            });
+
+        }
+
+        #endregion
+
+        string jsonStr = JsonConvert.SerializeObject(loader, Formatting.Indented);
+        File.WriteAllText($"{Application.dataPath}/Resources/Data/Json/{filename}Data.json", jsonStr);
+        AssetDatabase.Refresh();
+    }
+
+    static void ParseExpressBookData(string filename)
+    {
+        ExpressBookDataLoader loader = new ExpressBookDataLoader();
+
+        #region ExcelData
+        string[] lines = File.ReadAllText($"{Application.dataPath}/Resources/Data/Excel/{filename}Data.csv").Split("\n");
+
+        for (int y = 1; y < lines.Length; y++)
+        {
+            string[] row = lines[y].Replace("\r", "").Split(',');
+            if (row.Length == 0)
+                continue;
+            if (string.IsNullOrEmpty(row[0]))
+                continue;
+            int i = 0;
+
+            loader.ExpressBooks.Add(new ExpressBookData()
+            {
+                Express_Id = int.Parse(row[i++]),
+                Express_Int_Name = row[i++],
+                Express_Name = row[i++],
+                Express_Rwd = row[i++],
+                Diamond = int.Parse(row[i++]),
+                Express_Time = int.Parse(row[i++]),
+                Express_Path = row[i++],
             });
 
         }

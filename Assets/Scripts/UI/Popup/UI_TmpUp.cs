@@ -28,7 +28,7 @@ public class UI_TmpUp : UI_Popup
         Bind<TextMeshProUGUI>(typeof(Texts));
         GetButton((int)Buttons.OkButton).gameObject.BindEvent(OnCloseButton);
 
-        if (Managers.Game.SaveData.RoomLevel == 7)
+        if (Managers.Game.SaveData.SpaceLevel == 7)
         {
             GetText((int)Texts.Ment).text = "숨숨집 3단계를 기대해달라냥";
             return;
