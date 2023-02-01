@@ -15,8 +15,6 @@ public class UI_Stat : UI_Popup
     enum Buttons
     {
         CloseButton,
-        RightButton,
-        LeftButton
     }
     enum Images
     {
@@ -32,6 +30,8 @@ public class UI_Stat : UI_Popup
         Bind<Button>(typeof(Buttons));
         Bind<GameObject>(typeof(GameObjects));
 
+
+        SetCat();
         GetButton((int)Buttons.CloseButton).gameObject.BindEvent(OnCloseButton);
     }
 
@@ -47,12 +47,12 @@ public class UI_Stat : UI_Popup
         foreach (Transform child in gridPanel.transform)
             Managers.Resource.Destroy(child.gameObject);
 
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < 5; i++)
         {
             GameObject Item = Managers.Resource.Instantiate("UI/UI_CatSet");
             Item.transform.SetParent(gridPanel.transform);
             UI_CatSet inven_Food = Util.GetOrAddComponent<UI_CatSet>(Item);
-            //inven_Food.SetInfo(Managers.Data.CatBooks[1400+i].Cat_Name,);
+            inven_Food.SetInfo(i);
         }
     }
 }

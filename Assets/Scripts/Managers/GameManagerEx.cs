@@ -22,7 +22,7 @@ public class GameData
     public int SoomLevel = 0;
     public bool[] Emotion = new bool[Define.MOTION_COUNT] {true, true, true, true, true, true, true, true, true, true, true, true};
 
-
+    //공간
     public int SpaceLevel = 1;
     public bool IsRoomOpen;
     public float RoomTime = 30f;
@@ -34,6 +34,8 @@ public class GameData
     public bool firstExecution = true;
 
 
+    //고양이 보유여부 {White, Black, Grey, Calico, Tabby} 
+    public bool[] CatHave = new bool[5] { true, true, false, false, false };
 
     //간식
     public int[] Food = { 1, 2, 0, 4, 5 ,0};

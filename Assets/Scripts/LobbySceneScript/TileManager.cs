@@ -33,12 +33,12 @@ public class TileManager : MonoBehaviour
             //업글 불가능시 ui출력?
             return;
         }    
-        Camera.main.GetComponent<CameraTest>().IsMove = true;
+        Camera.main.GetComponent<CameraMove>().IsMove = true;
         IsRoomOpen = false;
         OpenTime = Managers.Data.Spaces[1200 + CurRoomLevel+1].Space_Time;
         StartCoroutine(OpenRoom(OpenTime));
 
-
+        //시간체크 함수 추가
         Debug.Log(DateTime.Now);
         //카메라 움직임 수정!
         Managers.UI.ClosePopupUI();
@@ -51,7 +51,7 @@ public class TileManager : MonoBehaviour
         Util.FindChild(Managers.Object.CatHouse.gameObject, "Hide_"+Managers.Data.Spaces[1200 + CurRoomLevel+1].Space_Int_Name, true).SetActive(false);
         Util.FindChild(Managers.Object.CatHouse.gameObject, "Block_"+Managers.Data.Spaces[1200 + CurRoomLevel].Space_Int_Name, true).SetActive(false);
         Managers.UI.ShowPopupUI<UI_Sucess>();
-        Camera.main.GetComponent<CameraTest>().IsMove = false;
+        Camera.main.GetComponent<CameraMove>().IsMove = false;
         Managers.Sound.Play(Define.Sound.Effect, "Effects/RoomOpen");
         CurRoomLevel++;
         IsRoomOpen = false;
