@@ -247,7 +247,6 @@ MonoBehaviour:
   center: {x: 0, y: 0}
   IsMove: 0
   targetPos: {x: 0, y: 0, z: 0}
-  _zoom: 0
 --- !u!114 &47552638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -449,7 +448,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &8321763271319638755
+--- !u!1001 &1776288741
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -502,7 +501,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6078204868564839723, guid: 6751d32e13611e943b1b59c53d72e23f, type: 3}
       propertyPath: m_Name
-      value: NEWNEWHOUSE
+      value: CatHouse
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6751d32e13611e943b1b59c53d72e23f, type: 3}
