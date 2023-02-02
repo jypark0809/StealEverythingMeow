@@ -288,3 +288,65 @@ public class ExpressBookDataLoader : ILoader<int, ExpressBookData>
     }
 }
 
+[Serializable]
+public class ShopData
+{
+    public int Shop_Id;
+    public string Shop_Int_Name;
+    public string Shop_Name;
+    public string Shop_Desc;
+    public int Shop_Type;
+    public int Shop_Limit_Num;
+    public int Ad;
+    public int Gold;
+    public int Diamond;
+    public int Money;
+    public string F_Size;
+    public string Shop_Path;
+}
+[Serializable]
+public class ShopDataLoader : ILoader<int, ShopData>
+{
+    public List<ShopData> Shops = new List<ShopData>();
+
+    public Dictionary<int, ShopData> MakeDict()
+    {
+        Dictionary<int, ShopData> dic = new Dictionary<int, ShopData>();
+
+        foreach (ShopData ShopData in Shops)
+            dic.Add(ShopData.Shop_Id, ShopData);
+
+        return dic;
+    }
+}
+
+
+[Serializable]
+public class HappinessData
+{
+    public int H_Id;
+    public int H_Lv;
+    public int H_Max;
+    public int H_Cat_Type;
+    public int H_Rwd_Wood;
+    public int H_Rwd_Stone;
+    public int H_Rwd_Cotton;
+    public int H_Rwd_Gold;
+    public int H_Rwd_Power;
+}
+[Serializable]
+public class HappinessDataLoader : ILoader<int, HappinessData>
+{
+    public List<HappinessData> Happinesses = new List<HappinessData>();
+
+    public Dictionary<int, HappinessData> MakeDict()
+    {
+        Dictionary<int, HappinessData> dic = new Dictionary<int, HappinessData>();
+
+        foreach (HappinessData HappinessData in Happinesses)
+            dic.Add(HappinessData.H_Id, HappinessData);
+
+        return dic;
+    }
+}
+

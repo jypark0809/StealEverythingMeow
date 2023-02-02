@@ -5,12 +5,11 @@ using UnityEngine.UI;
 using TMPro;
 public class UI_RestTime : UI_Base
 {
-    public float RestTime;
-    public float AllTime;
+    private float RestTime;
+    private float AllTime;
     private TextMeshProUGUI text1;
     private TextMeshProUGUI text2;
-    public Image BarImage;
-
+    private Image BarImage;
 
     enum Texts
     {

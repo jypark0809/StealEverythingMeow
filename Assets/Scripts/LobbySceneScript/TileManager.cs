@@ -37,9 +37,13 @@ public class TileManager : MonoBehaviour
         IsRoomOpen = false;
         OpenTime = Managers.Data.Spaces[1200 + CurRoomLevel+1].Space_Time;
         StartCoroutine(OpenRoom(OpenTime));
-
+        for (int i = 0; i < Managers.Game.SaveData.CatHave.Length; i++)
+        {
+            if (Managers.Game.SaveData.CatHave[i])
+                Managers.Game.SaveData.CatCurHappinessExp[i] += Managers.Data.Spaces[1200+CurRoomLevel].Happiness;
+        }
         //시간체크 함수 추가
-        Debug.Log(DateTime.Now);
+
         //카메라 움직임 수정!
         Managers.UI.ClosePopupUI();
         Managers.Game.SaveData.SpaceLevel++;

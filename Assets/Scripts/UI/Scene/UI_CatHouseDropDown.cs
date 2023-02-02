@@ -25,7 +25,7 @@ public class UI_CatHouseDropDown : UI_Base
     public void OnDropdownEvent(int index)
     {
         Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
-        GetDropDown((int)DropDown.MenuDropDown).value = 6;
+        GetDropDown((int)DropDown.MenuDropDown).value = GetDropDown((int)DropDown.MenuDropDown).options.Capacity -1;
         switch (index)
         {
             case 0://셋팅
@@ -34,16 +34,13 @@ public class UI_CatHouseDropDown : UI_Base
             case 1://스탯
                 Managers.UI.ShowPopupUI<UI_Stat>();
                 break;
-            case 2://도감
-                Managers.UI.ShowPopupUI<UI_Colletion>();
-                break;
-            case 3://상점
+            case 2://상점
                 Managers.UI.ShowPopupUI<UI_Shop>();
                 break;
-            case 4://퀘스트
+            case 3://퀘스트
                 Managers.UI.ShowPopupUI<UI_Quest>();
                 break;
-            case 5://가방
+            case 4://가방
                 Managers.UI.ShowPopupUI<UI_Bag>();
                 break;
         }

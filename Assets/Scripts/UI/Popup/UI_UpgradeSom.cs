@@ -45,8 +45,8 @@ public class UI_UpgradeSom : UI_Popup
         GetText((int)Texts.CurText).text = "Lv " + Managers.Game.SaveData.SoomLevel.ToString();
         GetText((int)Texts.NextText).text = "Lv " + (Managers.Game.SaveData.SoomLevel + 1).ToString();
 
-        GetImage((int)Images.CurImages).sprite = Resources.Load<Sprite>(("Sprites/Furniture/" + Managers.Data.Sooms[1300 + Managers.Game.SaveData.SoomLevel].Soom_Int_Name).Split(".")[0]);
-        GetImage((int)Images.NextImages).sprite = Resources.Load<Sprite>(("Sprites/Furniture/" + Managers.Data.Sooms[1300 + Managers.Game.SaveData.SoomLevel + 1].Soom_Int_Name).Split(".")[0]);
+        GetImage((int)Images.CurImages).sprite = Resources.Load<Sprite>(("Sprites/Furniture/Soom/" + Managers.Data.Sooms[1300 + Managers.Game.SaveData.SoomLevel].Soom_Int_Name).Split(".")[0]);
+        GetImage((int)Images.NextImages).sprite = Resources.Load<Sprite>(("Sprites/Furniture/Soom/" + Managers.Data.Sooms[1300 + Managers.Game.SaveData.SoomLevel + 1].Soom_Int_Name).Split(".")[0]);
 
         GetText((int)Texts.B1).text = "- 고양이 수용량 +2";
         GetText((int)Texts.B2).text = "- 공간해금 구간 확장";

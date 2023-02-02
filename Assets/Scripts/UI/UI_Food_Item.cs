@@ -7,9 +7,6 @@ using TMPro;
 
 public class UI_Food_Item : UI_Base
 {
-
-    Vector3 mousepos;
-    Vector3 worldpos;
     GameObject go;
 
     string Name;
@@ -46,8 +43,8 @@ public class UI_Food_Item : UI_Base
         {
             Get<Image>((int)Images.DragItem).gameObject.SetActive(false);
         }
-        Get<Image>((int)Images.ItemIcon).sprite = Resources.Load<Sprite>(("Sprites/UI/" + Name));
-        Get<Image>((int)Images.DragItem).sprite = Resources.Load<Sprite>(("Sprites/UI/" + Name));
+        Get<Image>((int)Images.ItemIcon).sprite = Resources.Load<Sprite>(("Sprites/UI/Bag/" + Name));
+        Get<Image>((int)Images.DragItem).sprite = Resources.Load<Sprite>(("Sprites/UI/Bag/" + Name));
         Get<GameObject>((int)GameObjects.Num_Text).GetComponent<TextMeshProUGUI>().text = Count.ToString();
     }
 
@@ -61,14 +58,36 @@ public class UI_Food_Item : UI_Base
     {
 
         go.transform.position = evt.position;
-        mousepos = Camera.main.ScreenToWorldPoint(evt.position);
+
+
+        Vector2 pos = Camera.main.ScreenToWorldPoint(evt.position);
+        RaycastHit hit;
+
+        Debug.DrawRay(pos, transform.forward * 1000, Color.blue);
+        if (Physics.Raycast(pos, transform.forward, out hit, 100f, LayerMask.GetMask("Cat")))
+        {
+            hit.transform.GetComponent<Cat_LobbyHappniess>().Love(Name);
+            go.transform.localPosition = new Vector3(0, 0, 0);
+            Count--;
+            Get<GameObject>((int)GameObjects.Num_Text).GetComponent<TextMeshProUGUI>().text = (Count).ToString();
+            if (Count == 0)
+            {
+                Get<Image>((int)Images.DragItem).gameObject.SetActive(false);
+            }
+            Debug.Log("실행");
+        }
     }
     void EndDrag(PointerEventData evt)
     {
-        if (Physics2D.Raycast(mousepos, transform.forward, LayerMask.GetMask("Cat")))
+        Vector2 pos = Camera.main.ScreenToWorldPoint(evt.position);
+        
+        var ray = Camera.main.ScreenPointToRay(pos);
+        RaycastHit hit;
+
+        Debug.DrawRay(pos, transform.forward * 1000, Color.blue);
+        if (Physics.Raycast(pos, transform.forward,out hit, 100f, LayerMask.GetMask("Cat")))
         {
-            RaycastHit2D hit = Physics2D.Raycast(mousepos, transform.forward, LayerMask.GetMask("Cat"));
-            hit.transform.GetComponent<Cat_Lobby>().Love(Name);
+            hit.transform.GetComponent<Cat_LobbyHappniess>().Love(Name);
             go.transform.localPosition = new Vector3(0, 0, 0);
             Count--;
             Get<GameObject>((int)GameObjects.Num_Text).GetComponent<TextMeshProUGUI>().text = (Count).ToString();
@@ -76,10 +95,11 @@ public class UI_Food_Item : UI_Base
             {
                 Get<Image>((int)Images.DragItem).gameObject.SetActive(false);
             }
+            Debug.Log("실행");
         }
         else
         {
-            go.transform.localPosition = new Vector3(0, 0, 0);
+            go.transform.localPosition = Vector3.zero;
         }
     }
 }

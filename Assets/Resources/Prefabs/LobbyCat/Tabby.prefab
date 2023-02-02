@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5512776683149875066}
   - component: {fileID: 5512776683149875067}
   - component: {fileID: 5512776683149875047}
+  - component: {fileID: 580549169244875855}
   m_Layer: 7
   m_Name: Tabby
   m_TagString: Untagged
@@ -119,7 +120,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -133,7 +134,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
 --- !u!95 &5512776683149875067
 Animator:
@@ -167,7 +168,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 054949f390f2e9c499dd241098223fc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cat: 2
   Emotion: []
   bottomLeft: {x: -50, y: -50}
   topRight: {x: 50, y: 50}
@@ -175,3 +175,17 @@ MonoBehaviour:
   allowDiagonal: 1
   dontCrossCorner: 1
   _Speed: 2
+--- !u!114 &580549169244875855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5512776683149875044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbe189863f743dc49864157f7cc72e52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cat: 4
+  CatIndex: 3

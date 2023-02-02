@@ -15,21 +15,8 @@ public class Node
     public int F { get { return G + H; } }
 
 }
-public class Cat_Lobby : MonoBehaviour
+public class Cat_LobbyMove : MonoBehaviour
 {
-    [SerializeField]
-    public enum Catname
-    {
-        Black,
-        Gray,
-        Tabby,
-        Calico,
-        White
-    }
-    public Catname cat;
-
-
-
     private int _indexEmotion;
     private string _curEmotion;
 
@@ -49,16 +36,13 @@ public class Cat_Lobby : MonoBehaviour
     Node[,] NodeArray;
     Node StartNode, TargetNode, CurNode;
     List<Node> OpenList, ClosedList;
+    private bool ReFind = false;
 
     Rigidbody2D rigid;
     Animator anim;
 
     public float _Speed;
-
     int index = 0;
-
-    private bool ReFind = false;
-
 
     private void Awake()
     {
@@ -270,52 +254,6 @@ public class Cat_Lobby : MonoBehaviour
         anim.SetBool(_str, false);
         yield return new WaitForSeconds(2f);
         IsSpecialEmotion = false;
-    }
-    public void Love(string _food)
-    {
-
-        switch (_food)
-        {
-            case "chew":
-                if (cat == Catname.Black)
-                    Debug.Log("행복 15");
-                else
-                    Debug.Log("행복도 5");
-                Managers.Game.SaveData.Food[1]--;
-                break;
-            case "jerky":
-                if (cat == Catname.Tabby)
-                    Debug.Log("행복 15");
-                else
-                    Debug.Log("행복도 5");
-                Managers.Game.SaveData.Food[2]--;
-                break;
-            case "mackerel":
-                if (cat == Catname.Tabby)
-                    Debug.Log("행복 15");
-                else
-                    Debug.Log("행복도 5");
-                Managers.Game.SaveData.Food[3]--;
-                break;
-            case "salmon":
-                if (cat == Catname.Gray)
-                    Debug.Log("행복 15");
-                else
-                    Debug.Log("행복도 5");
-                Managers.Game.SaveData.Food[4]--;
-                break;
-            case "tunacan":
-                if (cat == Catname.Calico)
-                    Debug.Log("행복 15");
-                else
-                    Debug.Log("행복도 5");
-                Managers.Game.SaveData.Food[5]--;
-                break;
-            case "catnipcandy":
-                Debug.Log("행복 15");
-                Managers.Game.SaveData.Food[0]--;
-                break;
-        }
     }
 }
 

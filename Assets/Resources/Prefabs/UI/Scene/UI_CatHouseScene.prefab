@@ -2454,15 +2454,13 @@ MonoBehaviour:
       m_Image: {fileID: 21300000, guid: 070bf5b75c9d2c1478c34a625a711eed, type: 3}
     - m_Text: Staus
       m_Image: {fileID: 21300000, guid: 20efff54c2de61d408bf0ea32cdbe5e1, type: 3}
-    - m_Text: Book
-      m_Image: {fileID: 21300000, guid: b5d6f052e0e4b4c4cbe63cbfd322cf99, type: 3}
     - m_Text: Shop
       m_Image: {fileID: 21300000, guid: 73f64a3b487c1db4b972bc8453b5ca74, type: 3}
     - m_Text: Quest
       m_Image: {fileID: 21300000, guid: 5e654241a529da94aa1738c3d47278e3, type: 3}
     - m_Text: Bag
       m_Image: {fileID: 21300000, guid: 79715c093c7afd8459049409b8a5c3c2, type: 3}
-    - m_Text: Bag
+    - m_Text: None
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
