@@ -125,7 +125,7 @@ public class DestroyableObjectDataLoader : ILoader<int, DestroyableObjectData>
 
 
 [Serializable]
-public class FurnitureData
+public class FurnitureData : IEquatable<FurnitureData>
 {
     public int F_Id;
     public string F_Int_Name;
@@ -135,6 +135,18 @@ public class FurnitureData
     public int F_Happiness;
     public int F_Gold;
     public string F_Path;
+
+    public bool Equals(FurnitureData other)
+    {
+        if (this.F_Id == other.F_Id)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
 
 [Serializable]
@@ -288,3 +300,32 @@ public class ExpressBookDataLoader : ILoader<int, ExpressBookData>
     }
 }
 
+[Serializable]
+public class ShopItemData
+{
+    public int Shop_Id;
+    public string Shop_Int_Name;
+    public string Shop_Name;
+    public string Shop_Desc;
+    public int Shop_Type;
+    public int Shop_Limit_Count;
+    public int PaymentType;
+    public int Value;
+    public float Scale;
+    public string ImgPath;
+}
+[Serializable]
+public class ShopItemDataLoader : ILoader<int, ShopItemData>
+{
+    public List<ShopItemData> ShopItems = new List<ShopItemData>();
+
+    public Dictionary<int, ShopItemData> MakeDict()
+    {
+        Dictionary<int, ShopItemData> dic = new Dictionary<int, ShopItemData>();
+
+        foreach (ShopItemData itemData in ShopItems)
+            dic.Add(itemData.Shop_Id, itemData);
+
+        return dic;
+    }
+}

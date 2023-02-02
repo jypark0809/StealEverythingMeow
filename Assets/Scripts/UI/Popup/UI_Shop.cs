@@ -8,18 +8,15 @@ using UnityEngine.UI;
 public class UI_Shop : UI_Popup
 {
     GameObject _contentRoom;
-    GameObject _contentSnack;
-    GameObject _contentDiamond;
+    GameObject _contentItem;
 
     enum GameObjects
     {
         ScrollViewPanel,
         RoomToggle,
-        SnackToggle,
-        DiamondToggle,
+        ItemToggle,
         Content_Room,
-        Content_Snack,
-        Content_Diamond,
+        Content_Item,
         CloseButton,
     }
 
@@ -36,13 +33,10 @@ public class UI_Shop : UI_Popup
 
         GetObject((int)GameObjects.CloseButton).BindEvent(OnCloseButtonClicked);
         GetObject((int)GameObjects.RoomToggle).GetComponent<Toggle>().onValueChanged.AddListener(OnRoomToggleSelected);
-        GetObject((int)GameObjects.SnackToggle).GetComponent<Toggle>().onValueChanged.AddListener(OnSnackToggleSelected);
-        GetObject((int)GameObjects.DiamondToggle).GetComponent<Toggle>().onValueChanged.AddListener(OnDiamondToggleSelected);
+        GetObject((int)GameObjects.ItemToggle).GetComponent<Toggle>().onValueChanged.AddListener(OnItemToggleSelected);
         _contentRoom = GetObject((int)GameObjects.Content_Room);
-        _contentSnack = GetObject((int)GameObjects.Content_Snack);
-        _contentDiamond = GetObject((int)GameObjects.Content_Diamond);
-        _contentSnack.SetActive(false);
-        _contentDiamond.SetActive(false);
+        _contentItem = GetObject((int)GameObjects.Content_Item);
+        _contentItem.SetActive(false);
     }
 
     #region Toggle EventHandler
@@ -58,29 +52,16 @@ public class UI_Shop : UI_Popup
             GetObject((int)GameObjects.Content_Room).SetActive(boolean);
         }
     }
-    void OnSnackToggleSelected(bool boolean)
+    void OnItemToggleSelected(bool boolean)
     {
         if (boolean)
         {
-            GetObject((int)GameObjects.Content_Snack).SetActive(boolean);
-            GetObject((int)GameObjects.ScrollViewPanel).GetComponent<ScrollRect>().content = _contentSnack.GetComponent<RectTransform>();
+            GetObject((int)GameObjects.Content_Item).SetActive(boolean);
+            GetObject((int)GameObjects.ScrollViewPanel).GetComponent<ScrollRect>().content = _contentItem.GetComponent<RectTransform>();
         }
         else
         {
-            GetObject((int)GameObjects.Content_Snack).SetActive(boolean);
-        }
-    }
-    void OnDiamondToggleSelected(bool boolean)
-    {
-        if (boolean)
-        {
-            GetObject((int)GameObjects.Content_Diamond).SetActive(boolean);
-            GetObject((int)GameObjects.ScrollViewPanel).GetComponent<ScrollRect>().content = _contentDiamond.GetComponent<RectTransform>();
-
-        }
-        else
-        {
-            GetObject((int)GameObjects.Content_Diamond).SetActive(boolean);
+            GetObject((int)GameObjects.Content_Item).SetActive(boolean);
         }
     }
     void OnCloseButtonClicked(PointerEventData evt)

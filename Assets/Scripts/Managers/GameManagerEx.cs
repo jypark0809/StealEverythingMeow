@@ -22,6 +22,8 @@ public class GameData
     public int SoomLevel = 0;
     public bool[] Emotion = new bool[Define.MOTION_COUNT] {true, true, true, true, true, true, true, true, true, true, true, true};
 
+    // Furniture List
+    public List<FurnitureData> FList = new List<FurnitureData>();
 
     public int SpaceLevel = 1;
     public bool IsRoomOpen;
@@ -32,8 +34,6 @@ public class GameData
     public bool EffectSoundOn = true;
 
     public bool firstExecution = true;
-
-
 
     //°£½Ä
     public int[] Food = { 1, 2, 0, 4, 5 ,0};

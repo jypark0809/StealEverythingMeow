@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class DataTransformer : EditorWindow
 {
@@ -29,6 +30,7 @@ public class DataTransformer : EditorWindow
         ParseSoomData("Soom");
         ParseCatBookData("CatBook");
         ParseExpressBookData("ExpressBook");
+        ParseShopItemData("ShopItem");
     }
 
     static void ParseLevelExpData(string filename)
@@ -337,6 +339,45 @@ public class DataTransformer : EditorWindow
                 Diamond = int.Parse(row[i++]),
                 Express_Time = int.Parse(row[i++]),
                 Express_Path = row[i++],
+            });
+
+        }
+
+        #endregion
+
+        string jsonStr = JsonConvert.SerializeObject(loader, Formatting.Indented);
+        File.WriteAllText($"{Application.dataPath}/Resources/Data/Json/{filename}Data.json", jsonStr);
+        AssetDatabase.Refresh();
+    }
+
+    static void ParseShopItemData(string filename)
+    {
+        ShopItemDataLoader loader = new ShopItemDataLoader();
+
+        #region ExcelData
+        string[] lines = File.ReadAllText($"{Application.dataPath}/Resources/Data/Excel/{filename}Data.csv").Split("\n");
+
+        for (int y = 1; y < lines.Length; y++)
+        {
+            string[] row = lines[y].Replace("\r", "").Split(',');
+            if (row.Length == 0)
+                continue;
+            if (string.IsNullOrEmpty(row[0]))
+                continue;
+            int i = 0;
+
+            loader.ShopItems.Add(new ShopItemData()
+            {
+                Shop_Id = int.Parse(row[i++]),
+                Shop_Int_Name = row[i++],
+                Shop_Name = row[i++],
+                Shop_Desc = row[i++],
+                Shop_Type = int.Parse(row[i++]),
+                Shop_Limit_Count = int.Parse(row[i++]),
+                PaymentType = int.Parse(row[i++]),
+                Value = int.Parse(row[i++]),
+                Scale = float.Parse(row[i++]),
+                ImgPath = row[i++]
             });
 
         }
