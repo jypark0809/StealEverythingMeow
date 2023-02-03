@@ -65,13 +65,14 @@ public class UI_Food_Item : UI_Base
     void EndDrag(PointerEventData evt)
     {
         Vector2 pos = Camera.main.ScreenToWorldPoint(evt.position);
-        var ray = Camera.main.ScreenPointToRay(evt.position);
+        var ray = Camera.main.ScreenPointToRay(pos);
         RaycastHit hit;
         Debug.DrawRay(pos, transform.forward * 1000, Color.blue);
-        if (Physics.Raycast(pos, transform.forward,out hit, 100f, LayerMask.GetMask("Cat")))
+        if (Physics.Raycast(pos, transform.forward, out hit, 100f, LayerMask.GetMask("Cat")))
         {
             hit.transform.GetComponent<Cat_LobbyHappniess>().Love(Name);
             go.transform.localPosition = new Vector3(0, 0, 0);
+            Debug.Log("»ç¶ûÇà");
             if(Managers.Game.SaveData.Food[Index] == 0)
             {
                 Get<Image>((int)Images.DragItem).gameObject.SetActive(false);
