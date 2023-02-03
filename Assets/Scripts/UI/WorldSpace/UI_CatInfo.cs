@@ -10,9 +10,9 @@ public class UI_CatInfo : UI_Base
     public int HappyLevel;
     public float CurExp;
     public float NextExp;
+    public Transform Target;
 
-
-    private float DeleteTime = 10f;
+    private float DeleteTime = 6f;
 
     enum GameObjects
     {
@@ -42,6 +42,7 @@ public class UI_CatInfo : UI_Base
 
     private void Update()
     {
+        this.transform.position = Target.position;
         DeleteTime -= Time.deltaTime;
         if (DeleteTime <= 0)
             Destroy(this.gameObject);
@@ -53,35 +54,36 @@ public class UI_CatInfo : UI_Base
         foreach (Transform child in gridPanel.transform)
             Managers.Resource.Destroy(child.gameObject);
 
-        for (int i = 0; i < HappyLevel; i++)
+        for (int i = 1; i < HappyLevel; i++)
         {
             GameObject Item = Managers.Resource.Instantiate("UI/UI_HeartSet");
             Item.transform.SetParent(gridPanel.transform);
             UI_HeartSet HerartSet = Util.GetOrAddComponent<UI_HeartSet>(Item);
             HerartSet.SetInfo(1, 1);
+            Debug.Log("1");
         }
-        for (int i = HappyLevel; i < HappyLevel + 1; i++)
-        {
-            GameObject Item = Managers.Resource.Instantiate("UI/UI_HeartSet");
-            Item.transform.SetParent(gridPanel.transform);
-            UI_HeartSet HerartSet = Util.GetOrAddComponent<UI_HeartSet>(Item);
-            HerartSet.SetInfo(CurExp, NextExp);
-        }
+        GameObject Item1 = Managers.Resource.Instantiate("UI/UI_HeartSet");
+        Item1.transform.SetParent(gridPanel.transform);
+        UI_HeartSet HerartSet1 = Util.GetOrAddComponent<UI_HeartSet>(Item1);
+        HerartSet1.SetInfo(CurExp, NextExp);
+        Debug.Log("2");
 
-        for (int i = HappyLevel + 1; i < 5; i++)
+        for (int i = HappyLevel + 1; i < 6; i++)
         {
             GameObject Item = Managers.Resource.Instantiate("UI/UI_HeartSet");
             Item.transform.SetParent(gridPanel.transform);
             UI_HeartSet HerartSet = Util.GetOrAddComponent<UI_HeartSet>(Item);
             HerartSet.SetInfo(0, 1);
+            Debug.Log("3");
         }
     }
 
-    public void SetInfo(string _str, int _int, float _float1, float _float2)
+    public void SetInfo(string _str, int _int, float _float1, float _float2 ,Transform tra)
     {
         CatName = _str;
         HappyLevel = _int;
         CurExp = _float1;
         NextExp = _float2;
+        Target = tra;
     }
 }

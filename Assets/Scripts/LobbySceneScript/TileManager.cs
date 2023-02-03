@@ -62,8 +62,8 @@ public class TileManager : MonoBehaviour
             IsCotton = true;
 
         //방체크,가구체크 >>가구경우 상점과 확인후 다시 수정필요
-        if (Managers.Game.SaveData.MaxFurniture[CurRoomLevel] == Managers.Data.Spaces[1200 + CurRoomLevel].Space_Furniture_Count)
-            IsFur = true;
+        //if (Managers.Game.SaveData.MaxFurniture[CurRoomLevel] == Managers.Data.Spaces[1200 + CurRoomLevel].Space_Furniture_Count)
+        IsFur = true;
 
         if (IsGold & IsWood & IsStone & IsCotton & IsFur)
             Managers.Game.SaveData.IsRoomOpen = true;

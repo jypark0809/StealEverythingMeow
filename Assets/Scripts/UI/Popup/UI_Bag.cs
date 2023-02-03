@@ -98,7 +98,7 @@ public class UI_Bag : UI_Popup
             GameObject Item2 = Managers.Resource.Instantiate("UI/UI_Food_Item");
             Item2.transform.SetParent(gridPanel.transform);
             UI_Food_Item inven_Food = Util.GetOrAddComponent<UI_Food_Item>(Item2);
-            inven_Food.SetInfo(FoodName[i], Managers.Game.SaveData.Food[i]);
+            inven_Food.SetInfo(FoodName[i], i);
         }
     }
 
