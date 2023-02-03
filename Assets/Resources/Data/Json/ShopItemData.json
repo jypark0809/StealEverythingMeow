@@ -10,7 +10,7 @@
       "PaymentType": 0,
       "Value": 100,
       "Scale": 1.0,
-      "ImgPath": "Sprites/UI/ShopItem/Iron"
+      "ImgPath": "Sprites/UI/ShopItem/Snack/Churu"
     },
     {
       "Shop_Id": 1602,
@@ -22,7 +22,7 @@
       "PaymentType": 0,
       "Value": 100,
       "Scale": 1.0,
-      "ImgPath": "Sprites/UI/ShopItem/Iron"
+      "ImgPath": "Sprites/UI/ShopItem/Snack/Mackerel"
     },
     {
       "Shop_Id": 1603,
@@ -34,7 +34,7 @@
       "PaymentType": 0,
       "Value": 100,
       "Scale": 1.0,
-      "ImgPath": "Sprites/UI/ShopItem/Iron"
+      "ImgPath": "Sprites/UI/ShopItem/Snack/Jerky"
     },
     {
       "Shop_Id": 1604,
@@ -46,7 +46,7 @@
       "PaymentType": 0,
       "Value": 100,
       "Scale": 1.0,
-      "ImgPath": "Sprites/UI/ShopItem/Iron"
+      "ImgPath": "Sprites/UI/ShopItem/Snack/Tuna"
     },
     {
       "Shop_Id": 1605,
@@ -58,7 +58,7 @@
       "PaymentType": 0,
       "Value": 100,
       "Scale": 1.0,
-      "ImgPath": "Sprites/UI/ShopItem/Iron"
+      "ImgPath": "Sprites/UI/ShopItem/Snack/Salmon"
     },
     {
       "Shop_Id": 1606,
@@ -70,7 +70,7 @@
       "PaymentType": 1,
       "Value": 5,
       "Scale": 1.0,
-      "ImgPath": "Sprites/UI/ShopItem/Iron"
+      "ImgPath": "Sprites/UI/ShopItem/Snack/CatnipCandy"
     },
     {
       "Shop_Id": 1607,
@@ -82,7 +82,7 @@
       "PaymentType": 0,
       "Value": 45000,
       "Scale": 1.0,
-      "ImgPath": "Sprites/UI/ShopItem/Iron"
+      "ImgPath": "Sprites/Items/Wood"
     },
     {
       "Shop_Id": 1608,
@@ -94,7 +94,7 @@
       "PaymentType": 0,
       "Value": 42000,
       "Scale": 1.0,
-      "ImgPath": "Sprites/UI/ShopItem/Iron"
+      "ImgPath": "Sprites/Items/Rock"
     },
     {
       "Shop_Id": 1609,
@@ -106,7 +106,7 @@
       "PaymentType": 0,
       "Value": 22500,
       "Scale": 1.0,
-      "ImgPath": "Sprites/UI/ShopItem/Iron"
+      "ImgPath": "Sprites/Items/Cotton"
     },
     {
       "Shop_Id": 1610,
@@ -118,7 +118,7 @@
       "PaymentType": 3,
       "Value": 0,
       "Scale": 1.0,
-      "ImgPath": "Sprites/UI/ShopItem/Iron"
+      "ImgPath": "Sprites/UI/ShopItem/Jelly/JellyAds"
     },
     {
       "Shop_Id": 1611,
@@ -130,7 +130,7 @@
       "PaymentType": 1,
       "Value": 23,
       "Scale": 1.0,
-      "ImgPath": "Sprites/UI/ShopItem/Iron"
+      "ImgPath": "Sprites/UI/ShopItem/Jelly/Jelly10"
     },
     {
       "Shop_Id": 1612,
@@ -142,7 +142,7 @@
       "PaymentType": 1,
       "Value": 207,
       "Scale": 1.0,
-      "ImgPath": "Sprites/UI/ShopItem/Iron"
+      "ImgPath": "Sprites/UI/ShopItem/Jelly/Jelly10"
     },
     {
       "Shop_Id": 1613,
@@ -154,7 +154,7 @@
       "PaymentType": 1,
       "Value": 575,
       "Scale": 1.0,
-      "ImgPath": "Sprites/UI/ShopItem/Iron"
+      "ImgPath": "Sprites/UI/ShopItem/Jelly/Jelly50"
     },
     {
       "Shop_Id": 1614,
@@ -166,7 +166,7 @@
       "PaymentType": 3,
       "Value": 0,
       "Scale": 1.0,
-      "ImgPath": "Sprites/UI/ShopItem/Iron"
+      "ImgPath": "Sprites/UI/ShopItem/Dia/DiaAds"
     },
     {
       "Shop_Id": 1615,
@@ -178,7 +178,7 @@
       "PaymentType": 2,
       "Value": 650,
       "Scale": 1.0,
-      "ImgPath": "Sprites/UI/ShopItem/Iron"
+      "ImgPath": "Sprites/UI/ShopItem/Dia/Dia50"
     },
     {
       "Shop_Id": 1616,
@@ -190,7 +190,7 @@
       "PaymentType": 2,
       "Value": 1500,
       "Scale": 1.0,
-      "ImgPath": "Sprites/UI/ShopItem/Iron"
+      "ImgPath": "Sprites/UI/ShopItem/Dia/Dia120"
     },
     {
       "Shop_Id": 1617,
@@ -202,7 +202,7 @@
       "PaymentType": 2,
       "Value": 3300,
       "Scale": 1.0,
-      "ImgPath": "Sprites/UI/ShopItem/Iron"
+      "ImgPath": "Sprites/UI/ShopItem/Dia/Dia300"
     },
     {
       "Shop_Id": 1618,
@@ -214,7 +214,7 @@
       "PaymentType": 2,
       "Value": 4600,
       "Scale": 1.0,
-      "ImgPath": "Sprites/UI/ShopItem/Iron"
+      "ImgPath": "Sprites/UI/ShopItem/Dia/Dia450"
     },
     {
       "Shop_Id": 1619,
@@ -226,7 +226,7 @@
       "PaymentType": 2,
       "Value": 6800,
       "Scale": 1.0,
-      "ImgPath": "Sprites/UI/ShopItem/Iron"
+      "ImgPath": "Sprites/UI/ShopItem/Dia/Dia700"
     },
     {
       "Shop_Id": 1620,
@@ -238,7 +238,7 @@
       "PaymentType": 3,
       "Value": 0,
       "Scale": 1.0,
-      "ImgPath": "Sprites/UI/ShopItem/Iron"
+      "ImgPath": "Sprites/UI/ShopItem/Gold/GoldAds"
     },
     {
       "Shop_Id": 1621,
@@ -250,7 +250,7 @@
       "PaymentType": 1,
       "Value": 60,
       "Scale": 1.0,
-      "ImgPath": "Sprites/UI/ShopItem/Iron"
+      "ImgPath": "Sprites/UI/ShopItem/Gold/Gold3000"
     },
     {
       "Shop_Id": 1622,
@@ -262,7 +262,7 @@
       "PaymentType": 1,
       "Value": 300,
       "Scale": 1.0,
-      "ImgPath": "Sprites/UI/ShopItem/Iron"
+      "ImgPath": "Sprites/UI/ShopItem/Gold/Gold20000"
     },
     {
       "Shop_Id": 1623,
@@ -274,7 +274,7 @@
       "PaymentType": 2,
       "Value": 1500,
       "Scale": 1.0,
-      "ImgPath": "Sprites/UI/ShopItem/Iron"
+      "ImgPath": "Sprites/UI/ShopItem/Package/Package_Beginner"
     },
     {
       "Shop_Id": 1624,
@@ -286,7 +286,7 @@
       "PaymentType": 2,
       "Value": 2900,
       "Scale": 1.0,
-      "ImgPath": "Sprites/UI/ShopItem/Iron"
+      "ImgPath": "Sprites/UI/ShopItem/Package/Package_Material_01"
     },
     {
       "Shop_Id": 1625,
@@ -298,7 +298,7 @@
       "PaymentType": 2,
       "Value": 3900,
       "Scale": 1.0,
-      "ImgPath": "Sprites/UI/ShopItem/Iron"
+      "ImgPath": "Sprites/UI/ShopItem/Package/Package_Material_02"
     },
     {
       "Shop_Id": 1626,
@@ -310,7 +310,7 @@
       "PaymentType": 2,
       "Value": 2800,
       "Scale": 1.0,
-      "ImgPath": "Sprites/UI/ShopItem/Iron"
+      "ImgPath": "Sprites/UI/ShopItem/Package/Package_Gold"
     }
   ]
 }

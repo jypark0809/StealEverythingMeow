@@ -47,6 +47,11 @@ public class GameScene : BaseScene
     private void Update()
     {
         _playTime += Time.deltaTime;
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            SpawnPortal();
+        }
     }
 
     void SetPlayer()
