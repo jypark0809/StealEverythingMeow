@@ -121,7 +121,7 @@ public class UI_StatDetail : UI_Popup
             HaveSkil.text = "";
             HaveSkillImage.sprite = null;
         }
-        HaveFoodName.text = Managers.Data.Shops[Managers.Data.CatBooks[1401 + _index].Cat_Favor_Food].Shop_Name;
+        HaveFoodName.text = Managers.Data.ShopItems[Managers.Data.CatBooks[1401 + _index].Cat_Favor_Food].Shop_Name;
         HaveFoodImage.sprite = Managers.Resource.Load<Sprite>("Sprites/UI/Bag/" + CatFood[Index]);
         HappyLevel = Managers.Game.SaveData.CatHappinessLevel[_index];
         GetText((int)Texts.NeedExp).text = "다음 레벨 까지 : " + (Managers.Data.Happinesses[1800 + _index * 5 + HappyLevel + 1].H_Max - Managers.Game.SaveData.CatCurHappinessExp[_index]).ToString();

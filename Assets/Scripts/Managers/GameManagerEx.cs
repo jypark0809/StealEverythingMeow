@@ -18,6 +18,8 @@ public class GameData
     public int Cotton = 1000;
     public int Stone = 1000;
 
+    // Furniture List
+    public List<FurnitureData> FList = new List<FurnitureData>();
 
     public int[] MaxFurniture = new int[11] {0,0,0,0,0,0,0,0,0,0,0}; //추후 수정
 

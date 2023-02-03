@@ -48,5 +48,12 @@ public class Define : MonoBehaviour
         PointerUp,
     }
 
+    public enum ShopPurchaseType
+    {
+        Gold,
+        Diamond,
+        Cash,
+        Ads,
+    }
     public const int MOTION_COUNT = 16;
 }

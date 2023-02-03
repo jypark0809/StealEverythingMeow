@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class DataTransformer : EditorWindow
 {
@@ -29,7 +30,7 @@ public class DataTransformer : EditorWindow
         ParseSoomData("Soom");
         ParseCatBookData("CatBook");
         ParseExpressBookData("ExpressBook");
-        ParseShopData("Shop");
+        ParseShopItemData("ShopItem");
         ParseHappinessData("Happiness");
     }
 
@@ -349,9 +350,10 @@ public class DataTransformer : EditorWindow
         File.WriteAllText($"{Application.dataPath}/Resources/Data/Json/{filename}Data.json", jsonStr);
         AssetDatabase.Refresh();
     }
-    static void ParseShopData(string filename)
+
+    static void ParseShopItemData(string filename)
     {
-        ShopDataLoader loader = new ShopDataLoader();
+        ShopItemDataLoader loader = new ShopItemDataLoader();
 
         #region ExcelData
         string[] lines = File.ReadAllText($"{Application.dataPath}/Resources/Data/Excel/{filename}Data.csv").Split("\n");
@@ -365,20 +367,18 @@ public class DataTransformer : EditorWindow
                 continue;
             int i = 0;
 
-            loader.Shops.Add(new ShopData()
+            loader.ShopItems.Add(new ShopItemData()
             {
                 Shop_Id = int.Parse(row[i++]),
                 Shop_Int_Name = row[i++],
                 Shop_Name = row[i++],
                 Shop_Desc = row[i++],
                 Shop_Type = int.Parse(row[i++]),
-                Shop_Limit_Num = int.Parse(row[i++]),
-                Ad = int.Parse(row[i++]),
-                Gold = int.Parse(row[i++]),
-                Diamond = int.Parse(row[i++]),
-                Money = int.Parse(row[i++]),
-                F_Size = row[i++],
-                Shop_Path = row[i++],
+                Shop_Limit_Count = int.Parse(row[i++]),
+                PaymentType = int.Parse(row[i++]),
+                Value = int.Parse(row[i++]),
+                Scale = float.Parse(row[i++]),
+                ImgPath = row[i++]
             });
 
         }

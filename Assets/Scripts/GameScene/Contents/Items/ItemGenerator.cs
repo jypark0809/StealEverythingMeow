@@ -74,7 +74,7 @@ public class ItemGenerator : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Managers.Object.Player.gameObject.layer = 27;
+        Managers.Object.Player.gameObject.layer = 25;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
