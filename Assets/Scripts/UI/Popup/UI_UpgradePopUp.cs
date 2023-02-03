@@ -28,10 +28,12 @@ public class UI_UpgradePopUp : UI_Popup
         Bind<Button>(typeof(Buttons));
         Bind<GameObject>(typeof(GameObjects));
 
+
         GetButton((int)Buttons.Space).gameObject.BindEvent(OpenSpace);
         GetButton((int)Buttons.Soom).gameObject.BindEvent(OpenSoom);
 
         GetButton((int)Buttons.CloseButton).gameObject.BindEvent(OnCloseButton);
+
     }
 
     void OpenSoom(PointerEventData evt)

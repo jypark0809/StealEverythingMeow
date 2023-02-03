@@ -21,11 +21,11 @@ public class TileManager : MonoBehaviour
 
     private void Update()
     {
-        IsRoomCheck();
+        if(Managers.Game.SaveData.SpaceLevel < 10)
+            IsRoomCheck();
     }
     public void Open()
     {
-        Camera.main.GetComponent<CameraMove>().IsMove = true;
         OpenTime = Managers.Data.Spaces[1200 + CurRoomLevel + 1].Space_Time;
         StartCoroutine(OpenRoom(OpenTime));
         for (int i = 0; i < Managers.Game.SaveData.CatHave.Length; i++)
