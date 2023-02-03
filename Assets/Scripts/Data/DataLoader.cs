@@ -329,3 +329,32 @@ public class ShopItemDataLoader : ILoader<int, ShopItemData>
         return dic;
     }
 }
+
+[Serializable]
+public class HappinessData
+{
+    public int H_Id;
+    public int H_Lv;
+    public int H_Max;
+    public int H_Cat_Type;
+    public int H_Rwd_Wood;
+    public int H_Rwd_Stone;
+    public int H_Rwd_Cotton;
+    public int H_Rwd_Gold;
+    public int H_Rwd_Power;
+}
+[Serializable]
+public class HappinessDataLoader : ILoader<int, HappinessData>
+{
+    public List<HappinessData> Happinesses = new List<HappinessData>();
+
+    public Dictionary<int, HappinessData> MakeDict()
+    {
+        Dictionary<int, HappinessData> dic = new Dictionary<int, HappinessData>();
+
+        foreach (HappinessData HappinessData in Happinesses)
+            dic.Add(HappinessData.H_Id, HappinessData);
+
+        return dic;
+    }
+}
