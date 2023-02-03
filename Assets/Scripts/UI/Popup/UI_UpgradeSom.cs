@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UI_UpgradeSom : UI_Popup
+public class UI_UpgradeSom : UI_Base
 {
     enum Texts
     {
@@ -25,7 +25,6 @@ public class UI_UpgradeSom : UI_Popup
     }
     enum Buttons
     {
-        CloseButton,
         OkayButton,
     }
 
@@ -36,8 +35,6 @@ public class UI_UpgradeSom : UI_Popup
 
     public override void Init()
     {
-        base.Init();
-
         Bind<Button>(typeof(Buttons));
         Bind<Image>(typeof(Images));
         Bind<TextMeshProUGUI>(typeof(Texts));
@@ -45,8 +42,8 @@ public class UI_UpgradeSom : UI_Popup
         GetText((int)Texts.CurText).text = "Lv " + Managers.Game.SaveData.SoomLevel.ToString();
         GetText((int)Texts.NextText).text = "Lv " + (Managers.Game.SaveData.SoomLevel + 1).ToString();
 
-        GetImage((int)Images.CurImages).sprite = Resources.Load<Sprite>(("Sprites/Furniture/" + Managers.Data.Sooms[1300 + Managers.Game.SaveData.SoomLevel].Soom_Int_Name).Split(".")[0]);
-        GetImage((int)Images.NextImages).sprite = Resources.Load<Sprite>(("Sprites/Furniture/" + Managers.Data.Sooms[1300 + Managers.Game.SaveData.SoomLevel + 1].Soom_Int_Name).Split(".")[0]);
+        GetImage((int)Images.CurImages).sprite = Resources.Load<Sprite>(("Sprites/Furniture/Soom/" + Managers.Data.Sooms[1300 + Managers.Game.SaveData.SoomLevel].Soom_Int_Name).Split(".")[0]);
+        GetImage((int)Images.NextImages).sprite = Resources.Load<Sprite>(("Sprites/Furniture/Soom/" + Managers.Data.Sooms[1300 + Managers.Game.SaveData.SoomLevel + 1].Soom_Int_Name).Split(".")[0]);
 
         GetText((int)Texts.B1).text = "- 고양이 수용량 +2";
         GetText((int)Texts.B2).text = "- 공간해금 구간 확장";
@@ -54,7 +51,7 @@ public class UI_UpgradeSom : UI_Popup
         GetText((int)Texts.B4).text = "- 감정표현 1종 획득";
 
         GetButton((int)Buttons.OkayButton).gameObject.BindEvent(OnOpenUpCon);
-        GetButton((int)Buttons.CloseButton).gameObject.BindEvent(OnCloseButton);
+
     }
 
     void OnOpenUpCon(PointerEventData evt)

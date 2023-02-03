@@ -8,7 +8,6 @@ public class UI_Condition : UI_Popup
 {
     enum Texts
     {
-
         CottonCount,
         WoodCount,
         StoneCount,

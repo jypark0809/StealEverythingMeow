@@ -25,6 +25,19 @@ public class ObjectManager
     GameObject _stage;
     public GameObject Stage { get { return _stage; } set { _stage = value; } }
 
+
+    Cat_LobbyHappniess _catLobbyWhite;
+    Cat_LobbyHappniess _catLobbyBlack;
+    Cat_LobbyHappniess _catLobbyGray;
+    Cat_LobbyHappniess _catLobbyCalico;
+    Cat_LobbyHappniess _catLobbyTabby;
+
+
+    public Cat_LobbyHappniess CatLobbyWhite { get { return _catLobbyWhite; } set { _catLobbyWhite = value; } }
+    public Cat_LobbyHappniess CatLobbyBlack { get { return _catLobbyBlack; } set { _catLobbyBlack = value; } }
+    public Cat_LobbyHappniess CatLobbyGray { get { return _catLobbyGray; } set { _catLobbyGray = value; } }
+    public Cat_LobbyHappniess CatLobbyCalico { get { return _catLobbyCalico; } set { _catLobbyCalico = value; } }
+    public Cat_LobbyHappniess CatLobbyTabby { get { return _catLobbyTabby; } set { _catLobbyTabby = value; } }
     public ObjectManager()
     {
         Init();
@@ -32,7 +45,7 @@ public class ObjectManager
 
     public void Init()
     {
-        
+
     }
 
     public GameObject SpawnPlayer(string path, Transform parent = null)
@@ -46,6 +59,36 @@ public class ObjectManager
     {
         GameObject go = Managers.Resource.Instantiate(path, parent);
         _catHouse = go.GetOrAddComponent<Grid>();
+    }
+
+    public void SpawnCat(string path, Transform parent = null)
+    {
+        if (Managers.Game.SaveData.CatHave[0])
+        {
+            GameObject go1 = Managers.Resource.Instantiate(path+ "White", parent);
+            _catLobbyWhite = go1.GetOrAddComponent<Cat_LobbyHappniess>();
+        }
+        if (Managers.Game.SaveData.CatHave[1])
+        {
+            GameObject go2 = Managers.Resource.Instantiate(path+ "Black", parent);
+            _catLobbyBlack = go2.GetOrAddComponent<Cat_LobbyHappniess>();
+        }
+        if (Managers.Game.SaveData.CatHave[2])
+        {
+            GameObject go3 = Managers.Resource.Instantiate(path + "Gray", parent);
+            _catLobbyGray = go3.GetOrAddComponent<Cat_LobbyHappniess>();
+        }
+        if (Managers.Game.SaveData.CatHave[3])
+        {
+            GameObject go4 = Managers.Resource.Instantiate(path + "Calico", parent);
+            _catLobbyCalico = go4.GetOrAddComponent<Cat_LobbyHappniess>();
+        }
+        if (Managers.Game.SaveData.CatHave[4])
+        {
+            GameObject go5 = Managers.Resource.Instantiate(path + "Tabby", parent);
+            _catLobbyTabby = go5.GetOrAddComponent<Cat_LobbyHappniess>();
+        }
+
     }
 
     public GameObject SpawnStage(string path, Transform parent = null)

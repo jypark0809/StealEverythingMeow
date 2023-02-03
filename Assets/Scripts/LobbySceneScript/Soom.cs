@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Soom : MonoBehaviour
-{ 
+{
     public bool IsWood;
     public bool IsStone;
     public bool IsCotton;
@@ -16,6 +16,7 @@ public class Soom : MonoBehaviour
     private void Awake()
     {
         CurSoomLevel = Managers.Game.SaveData.SoomLevel;
+        this.transform.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(("Sprites/Furniture/Soom/" + Managers.Data.Sooms[1300 + CurSoomLevel].Soom_Int_Name));
     }
 
     private void Update()
@@ -31,26 +32,40 @@ public class Soom : MonoBehaviour
     }
     private void OnMouseDown()
     {
-        Managers.Object.CatHouse.gameObject.GetComponent<TileManager>().Open();
+
         /*
         if(CurSoomLevel == 0)// 튜토리얼
             SomUpgrade();
         else if (CurSoomLevel <3)
             Managers.UI.ShowPopupUI<UI_UpgradeSom>(); 
         */
+        Managers.UI.ShowPopupUI<UI_UpgradePopUp>();
     }
 
     public void SomUpgrade()
     {
         CurSoomLevel++;
         Managers.Game.SaveData.SoomLevel++; //추후합치고 변수 재정립하기 
-        this.transform.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(("Sprites/Furniture/" + Managers.Data.Sooms[1300 + CurSoomLevel].Soom_Int_Name));
+        this.transform.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(("Sprites/Furniture/Soom/" + Managers.Data.Sooms[1300 + CurSoomLevel].Soom_Int_Name));
         Managers.Sound.Play(Define.Sound.Effect, "Effects/SomOpen");
-        if(Managers.Game.SaveData.SoomLevel == 3)
+        for (int i = 0; i < Managers.Game.SaveData.CatHave.Length; i++)
         {
-            Managers.Game.SaveData.IsSoomUp = false;
+            if (Managers.Game.SaveData.CatHave[i])
+                Managers.Game.SaveData.CatCurHappinessExp[i] += Managers.Data.Sooms[1300 + CurSoomLevel].Happiness;
         }
 
+        if(CurSoomLevel == 2)
+        {
+            Managers.Game.SaveData.Emotion[14] = true;
+            Managers.Game.SaveData.Emotion[15] = true;
+            Managers.UI.ShowPopupUI<UI_ExpressOpen>().Setinfo(14, 15);
+        }
+        if (CurSoomLevel == 3)
+        {
+            Managers.Game.SaveData.Emotion[1] = true;
+            Managers.Game.SaveData.Emotion[4] = true;
+            Managers.UI.ShowPopupUI<UI_ExpressOpen>().Setinfo(1, 4);
+        }
     }
     //좀더 효율적인코드가있을것같은기분..
     private void IsUpgrdaeCheck()
