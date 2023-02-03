@@ -55,5 +55,5 @@ public class Define : MonoBehaviour
         Cash,
         Ads,
     }
-    public const int MOTION_COUNT = 12;
+    public const int MOTION_COUNT = 16;
 }

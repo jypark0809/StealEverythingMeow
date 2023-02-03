@@ -31,6 +31,7 @@ public class DataTransformer : EditorWindow
         ParseCatBookData("CatBook");
         ParseExpressBookData("ExpressBook");
         ParseShopItemData("ShopItem");
+        ParseHappinessData("Happiness");
     }
 
     static void ParseLevelExpData(string filename)
@@ -378,6 +379,44 @@ public class DataTransformer : EditorWindow
                 Value = int.Parse(row[i++]),
                 Scale = float.Parse(row[i++]),
                 ImgPath = row[i++]
+            });
+
+        }
+
+        #endregion
+
+        string jsonStr = JsonConvert.SerializeObject(loader, Formatting.Indented);
+        File.WriteAllText($"{Application.dataPath}/Resources/Data/Json/{filename}Data.json", jsonStr);
+        AssetDatabase.Refresh();
+    }
+
+    static void ParseHappinessData(string filename)
+    {
+        HappinessDataLoader loader = new HappinessDataLoader();
+
+        #region ExcelData
+        string[] lines = File.ReadAllText($"{Application.dataPath}/Resources/Data/Excel/{filename}Data.csv").Split("\n");
+
+        for (int y = 1; y < lines.Length; y++)
+        {
+            string[] row = lines[y].Replace("\r", "").Split(',');
+            if (row.Length == 0)
+                continue;
+            if (string.IsNullOrEmpty(row[0]))
+                continue;
+            int i = 0;
+
+            loader.Happinesses.Add(new HappinessData()
+            {
+                H_Id = int.Parse(row[i++]),
+                H_Lv = int.Parse(row[i++]),
+                H_Max = int.Parse(row[i++]),
+                H_Cat_Type = int.Parse(row[i++]),
+                H_Rwd_Wood = int.Parse(row[i++]),
+                H_Rwd_Stone = int.Parse(row[i++]),
+                H_Rwd_Cotton = int.Parse(row[i++]),
+                H_Rwd_Gold = int.Parse(row[i++]),
+                H_Rwd_Power = int.Parse(row[i++]),
             });
 
         }
