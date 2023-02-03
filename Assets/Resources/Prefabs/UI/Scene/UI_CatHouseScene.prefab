@@ -2456,8 +2456,6 @@ MonoBehaviour:
       m_Image: {fileID: 21300000, guid: 20efff54c2de61d408bf0ea32cdbe5e1, type: 3}
     - m_Text: Shop
       m_Image: {fileID: 21300000, guid: 73f64a3b487c1db4b972bc8453b5ca74, type: 3}
-    - m_Text: Quest
-      m_Image: {fileID: 21300000, guid: 5e654241a529da94aa1738c3d47278e3, type: 3}
     - m_Text: Bag
       m_Image: {fileID: 21300000, guid: 79715c093c7afd8459049409b8a5c3c2, type: 3}
     - m_Text: None

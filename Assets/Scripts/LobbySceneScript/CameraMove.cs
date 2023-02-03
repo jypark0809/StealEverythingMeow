@@ -44,20 +44,14 @@ public class CameraMove : MonoBehaviour
 
     private void Start()
     {
-        Index = Managers.Game.SaveData.SoomLevel;
-        pix.enabled = false;
-        Invoke("SetPIX", 5f);
+        Index = Managers.Game.SaveData.SoomLevel-1;
     }
     public void Update()
     {
         if (IsMove)
             transform.position = Vector3.Lerp(this.transform.position, targetPos, Time.deltaTime * Movespeed);
-        thecamera.orthographicSize += Time.deltaTime * 1.5f;
     }
-    void SetPIX()
-    {
-        pix.enabled = true;
-    }
+
     private void FixedUpdate()
     {
         if(!IsMove)

@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UI_UpgradeSom : UI_Popup
+public class UI_UpgradeSom : UI_Base
 {
     enum Texts
     {
@@ -25,7 +25,6 @@ public class UI_UpgradeSom : UI_Popup
     }
     enum Buttons
     {
-        CloseButton,
         OkayButton,
     }
 
@@ -36,8 +35,6 @@ public class UI_UpgradeSom : UI_Popup
 
     public override void Init()
     {
-        base.Init();
-
         Bind<Button>(typeof(Buttons));
         Bind<Image>(typeof(Images));
         Bind<TextMeshProUGUI>(typeof(Texts));
@@ -54,7 +51,7 @@ public class UI_UpgradeSom : UI_Popup
         GetText((int)Texts.B4).text = "- °¨Á¤Ç¥Çö 1Á¾ È¹µæ";
 
         GetButton((int)Buttons.OkayButton).gameObject.BindEvent(OnOpenUpCon);
-        GetButton((int)Buttons.CloseButton).gameObject.BindEvent(OnCloseButton);
+
     }
 
     void OnOpenUpCon(PointerEventData evt)

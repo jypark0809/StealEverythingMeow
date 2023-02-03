@@ -6,6 +6,8 @@ using UnityEngine.EventSystems;
 using TMPro;
 public class UI_StatDetail : UI_Popup
 {
+    private string[] CatName = { "White", "Black", "Calico", "Tabby", "Gray" };
+    private string[] CatFood = { "chew" , "mackerel", "jerky", "tunacan", "salmon" };
     int Index;
     GameObject HaveGo, NotHaveGo;
     TextMeshProUGUI HaveText , NotHaveText, HaveDes, NotHaveDes ,HaveSkil, NotHaveSkill , HaveFoodName, CatPrice;
@@ -107,7 +109,7 @@ public class UI_StatDetail : UI_Popup
 
         //정보설정
         HaveText.text = Managers.Data.CatBooks[1401 + _index].Cat_Name;
-        HaveImage.sprite = Managers.Resource.Load<Sprite>(""+Managers.Data.CatBooks[1401 + _index].Cat_Int_Name);
+        HaveImage.sprite = Managers.Resource.Load<Sprite>("Sprites/Nyan/" + CatName[Index] + "/" + CatName[Index] + "_Walk1");
         HaveDes.text = Managers.Data.CatBooks[1401 + _index].Cat_Desc;
         if (Index != 0)
         {
@@ -120,7 +122,7 @@ public class UI_StatDetail : UI_Popup
             HaveSkillImage.sprite = null;
         }
         HaveFoodName.text = Managers.Data.Shops[Managers.Data.CatBooks[1401 + _index].Cat_Favor_Food].Shop_Name;
-        HaveFoodImage.sprite = Managers.Resource.Load<Sprite>("");
+        HaveFoodImage.sprite = Managers.Resource.Load<Sprite>("Sprites/UI/Bag/" + CatFood[Index]);
         HappyLevel = Managers.Game.SaveData.CatHappinessLevel[_index];
         GetText((int)Texts.NeedExp).text = "다음 레벨 까지 : " + (Managers.Data.Happinesses[1800 + _index * 5 + HappyLevel + 1].H_Max - Managers.Game.SaveData.CatCurHappinessExp[_index]).ToString();
         GetText((int)Texts.HappyLevel).text = "행복도 레벨 : " +  HappyLevel.ToString();
@@ -135,13 +137,13 @@ public class UI_StatDetail : UI_Popup
 
         //정보설정
         NotHaveText.text = Managers.Data.CatBooks[1401 + _index].Cat_Name;
-        NotHaveImage.sprite = Managers.Resource.Load<Sprite>("" + Managers.Data.CatBooks[1401 + _index].Cat_Int_Name);
+        NotHaveImage.sprite = Managers.Resource.Load<Sprite>("Sprites/Nyan/" + CatName[Index] + "/" + CatName[Index] + "_Walk1");
         NotHaveDes.text = Managers.Data.CatBooks[1401 + _index].Cat_Desc;
         NotHaveSkill.text = "특기 : " + Managers.Data.CatBooks[1401 + _index].Cat_Skill_Name;
         
         if(Managers.Data.CatBooks[1401+Index].Diamond >0)
         {
-            DiaGold.sprite = Managers.Resource.Load<Sprite>("");
+            DiaGold.sprite = Managers.Resource.Load<Sprite>("Sprites/UI/Diamond");
             CatPrice.text = Managers.Data.CatBooks[1401 + Index].Diamond.ToString();
             if (Managers.Data.CatBooks[1401 + Index].Diamond > Managers.Game.SaveData.Dia)
             {
@@ -150,7 +152,7 @@ public class UI_StatDetail : UI_Popup
         }    
         else if(Managers.Data.CatBooks[1401 + Index].Gold > 0)
         {
-            DiaGold.sprite = Managers.Resource.Load<Sprite>("");
+            DiaGold.sprite = Managers.Resource.Load<Sprite>("Sprites/UI/Gold");
             CatPrice.text = Managers.Data.CatBooks[1401 + Index].Gold.ToString();
             if (Managers.Data.CatBooks[1401 + Index].Gold > Managers.Game.SaveData.Dia)
             {

@@ -36,8 +36,10 @@ public class Cat_LobbyHappniess : MonoBehaviour
         {
             Managers.Game.SaveData.CatHappinessLevel[CatIndex]++;
             Managers.Game.SaveData.CatCurHappinessExp[CatIndex] -= Managers.Data.Happinesses[1800 + CatIndex * 5 + Managers.Game.SaveData.CatHappinessLevel[CatIndex] + 1].H_Max;
+            GetEmotion();
         }
     }
+
     public void Love(string _food)
     {
         if (Managers.Game.SaveData.CatHappinessLevel[CatIndex] == 5)
@@ -80,7 +82,7 @@ public class Cat_LobbyHappniess : MonoBehaviour
                 Managers.Game.SaveData.Food[5]--;
                 break;
             case "catnipcandy":
-                Managers.Game.SaveData.CatCurHappinessExp[CatIndex] += 300;
+                Managers.Game.SaveData.CatCurHappinessExp[CatIndex] += 5000;
                 Managers.Game.SaveData.Food[0]--;
                 break;
         }
@@ -91,6 +93,8 @@ public class Cat_LobbyHappniess : MonoBehaviour
             Infoset();
         if (!Isget)
             GetGoods();
+        Managers.Game.SaveData.CatCurHappinessExp[CatIndex] += 2000;
+        Debug.Log("Çàº¹µµ È¹µæ");
     }
     void Infoset()
     {
@@ -128,5 +132,59 @@ public class Cat_LobbyHappniess : MonoBehaviour
         Managers.Game.SaveData.CatCurHappinessExp[CatIndex]++;
         Debug.Log("È¹µæ!");
         Isget = true;
+    }
+
+
+    int GetMinMax(int[] array)
+    {
+        int min = array[0];
+        int max = array[0];
+
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (min > array[i])
+                min = array[i];
+
+            else if (min < array[i])
+                max = array[i];
+        }
+        return max;
+    }
+    void GetEmotion()
+    {
+        Debug.Log("°¨Á¤Ç¥Çö È¹µæ");
+
+        if (Managers.Game.SaveData.Emotion[3])
+            return;
+        if (Managers.Game.SaveData.Emotion[12])
+            return;
+        if (Managers.Game.SaveData.Emotion[8])
+            return;
+        if (Managers.Game.SaveData.Emotion[7])
+            return;
+
+        switch (GetMinMax(Managers.Game.SaveData.CatHappinessLevel))
+        {
+            case 2:
+                Managers.Game.SaveData.Emotion[3] = true;
+                Managers.Game.SaveData.Emotion[5] = true;
+                Managers.UI.ShowPopupUI<UI_ExpressOpen>().Setinfo(3, 5);
+                break;
+            case 3:
+                Managers.Game.SaveData.Emotion[12] = true;
+                Managers.Game.SaveData.Emotion[11] = true;
+                Managers.UI.ShowPopupUI<UI_ExpressOpen>().Setinfo(12, 11);
+                break;
+            case 4:
+                Managers.Game.SaveData.Emotion[8] = true;
+                Managers.Game.SaveData.Emotion[6] = true;
+                Managers.UI.ShowPopupUI<UI_ExpressOpen>().Setinfo(8, 6);
+                break;
+            case 5:
+                Managers.Game.SaveData.Emotion[7] = true;
+                Managers.Game.SaveData.Emotion[13] = true;
+                Managers.UI.ShowPopupUI<UI_ExpressOpen>().Setinfo(7, 13);
+                break;
+        }
     }
 }

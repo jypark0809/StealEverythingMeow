@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class TileManager : MonoBehaviour
 {
-    public bool IsRoomOpen;
-
     public bool IsGold;
     public bool IsWood;
     public bool IsStone;
@@ -23,42 +21,34 @@ public class TileManager : MonoBehaviour
 
     private void Update()
     {
-        // IsRoomCheck();
+        IsRoomCheck();
     }
     public void Open()
     {
-        if(!IsRoomOpen)
-        {
-            Debug.Log("업글불가능");
-            //업글 불가능시 ui출력?
-            return;
-        }    
         Camera.main.GetComponent<CameraMove>().IsMove = true;
-        IsRoomOpen = false;
-        OpenTime = Managers.Data.Spaces[1200 + CurRoomLevel+1].Space_Time;
+        OpenTime = Managers.Data.Spaces[1200 + CurRoomLevel + 1].Space_Time;
         StartCoroutine(OpenRoom(OpenTime));
         for (int i = 0; i < Managers.Game.SaveData.CatHave.Length; i++)
         {
             if (Managers.Game.SaveData.CatHave[i])
-                Managers.Game.SaveData.CatCurHappinessExp[i] += Managers.Data.Spaces[1200+CurRoomLevel].Happiness;
+                Managers.Game.SaveData.CatCurHappinessExp[i] += Managers.Data.Spaces[1200 + CurRoomLevel].Happiness;
         }
         //시간체크 함수 추가
 
         //카메라 움직임 수정!
         Managers.UI.ClosePopupUI();
-        Managers.Game.SaveData.SpaceLevel++;
     }
     IEnumerator OpenRoom(float _Time)
     {
         Managers.UI.MakeWorldSpaceUI<UI_RestTime>().SetInfo(_Time);
         yield return new WaitForSeconds(_Time);
-        Util.FindChild(Managers.Object.CatHouse.gameObject, "Hide_"+Managers.Data.Spaces[1200 + CurRoomLevel+1].Space_Int_Name, true).SetActive(false);
-        Util.FindChild(Managers.Object.CatHouse.gameObject, "Block_"+Managers.Data.Spaces[1200 + CurRoomLevel].Space_Int_Name, true).SetActive(false);
-        Managers.UI.ShowPopupUI<UI_Sucess>();
-        Camera.main.GetComponent<CameraMove>().IsMove = false;
-        Managers.Sound.Play(Define.Sound.Effect, "Effects/RoomOpen");
+        Managers.Destroy(Managers.Object.CatHouse.gameObject);
         CurRoomLevel++;
-        IsRoomOpen = false;
+        Managers.Game.SaveData.SpaceLevel++;
+        Managers.Object.SpawnCatHouse("CatHouse_" + Managers.Game.SaveData.SpaceLevel);
+        Managers.UI.ShowPopupUI<UI_Sucess>();
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/RoomOpen");
+
     }
     private void IsRoomCheck()
     {
@@ -76,6 +66,6 @@ public class TileManager : MonoBehaviour
             IsFur = true;
 
         if (IsGold & IsWood & IsStone & IsCotton & IsFur)
-            IsRoomOpen = true;
+            Managers.Game.SaveData.IsRoomOpen = true;
     }
 }
