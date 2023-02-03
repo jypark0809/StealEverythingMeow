@@ -1,15 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 public class UI_RestTime : UI_Base
 {
-    public float resttime = 20f;
-    private TextMeshProUGUI text;
+    private float RestTime;
+    private float AllTime;
+    private TextMeshProUGUI text1;
+    private TextMeshProUGUI text2;
+    private Image BarImage;
 
     enum Texts
     {
         TimeText,
+        PlaceText
+    }
+    enum Images
+    {
+        ImagesBar,
     }
 
     void Start()
@@ -20,19 +29,33 @@ public class UI_RestTime : UI_Base
     public override void Init()
     {
         Bind<TextMeshProUGUI>(typeof(Texts));
-        text = GetText((int)Texts.TimeText);
-        text.text = Mathf.Floor(resttime).ToString();
+        Bind<Image>(typeof(Images));
+
+        text1 = GetText((int)Texts.TimeText);
+        text2 = GetText((int)Texts.PlaceText);
+        BarImage = GetImage((int)Images.ImagesBar);
+
+        BarImage.fillAmount = 0f;
+        text1.text = Mathf.Floor(RestTime).ToString();
+        text2.text = Managers.Data.Spaces[1200 + Managers.Game.SaveData.SpaceLevel].Space_Name + "  °ø»çÁß..."; 
     }
     void Update()
     {
-        resttime -= Time.deltaTime;
-        text.text = Mathf.Floor(resttime).ToString();
-        if (resttime <= 0)
+        RestTime -= Time.deltaTime;
+        text1.text = Mathf.Floor(RestTime).ToString();
+        SetBarImage();
+        if (RestTime <= 0)
             Destroy(this.gameObject);
+    }
+
+    void  SetBarImage()
+    {
+        BarImage.fillAmount = 1- (RestTime / AllTime);
     }
 
     public void SetInfo(float _Time)
     {
-        resttime = _Time;
+        AllTime = _Time;
+        RestTime = _Time;
     }
 }

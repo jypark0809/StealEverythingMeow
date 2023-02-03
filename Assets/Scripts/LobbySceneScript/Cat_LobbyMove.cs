@@ -15,26 +15,13 @@ public class Node
     public int F { get { return G + H; } }
 
 }
-public class Cat_Lobby : MonoBehaviour
+public class Cat_LobbyMove : MonoBehaviour
 {
-    [SerializeField]
-    public enum Catname
-    {
-        Black,
-        Gray,
-        Tabby,
-        Calico,
-        White
-    }
-    public Catname cat;
-
-
-
     private int _indexEmotion;
     private string _curEmotion;
 
-    public List<string> Emotion = new List<string>(); //배열 갱신
-    private List<float> EmotionTime = new List<float>(); //추후배열로 다시봐보기
+    public List<string> Emotion = new List<string>(); 
+
     private string[] BasicEmotion = { "Blink", "Sleep1", "Sleep2", "Ennui" };
     private string[] PlusEmotion = { "Dig", "Fly", "Lick", "Paw", "Relax", "Scratch", "Sleep3", "Sniff", "Stretch", "Sway", "Tail", "Attack" };
     private bool IsEmotion = false;
@@ -49,16 +36,13 @@ public class Cat_Lobby : MonoBehaviour
     Node[,] NodeArray;
     Node StartNode, TargetNode, CurNode;
     List<Node> OpenList, ClosedList;
+    private bool ReFind = false;
 
     Rigidbody2D rigid;
     Animator anim;
 
     public float _Speed;
-
     int index = 0;
-
-    private bool ReFind = false;
-
 
     private void Awake()
     {
@@ -67,11 +51,11 @@ public class Cat_Lobby : MonoBehaviour
 
     private void SetEmotionList()
     {
-        for (int i = 0; i < 12; i++)
+        for (int i = 0; i < 16; i++)
         {
             if (Managers.Game.SaveData.Emotion[i] == true)
             {
-                Emotion.Add(PlusEmotion[i]);
+                Emotion.Add(Managers.Data.ExpressBooks[1501+i].Express_Int_Name);
             }
         }
 
@@ -255,7 +239,7 @@ public class Cat_Lobby : MonoBehaviour
         _indexEmotion = Random.Range(0, Emotion.Count);
         _curEmotion = Emotion[_indexEmotion];
         anim.SetBool(_curEmotion, true);
-        StartCoroutine(CanSpcialEmotion(_curEmotion, Random.Range(5f, 8f)));
+        StartCoroutine(CanSpcialEmotion(_curEmotion, Managers.Data.ExpressBooks[1501 + _indexEmotion].Express_Time));
     }
 
     IEnumerator CanBasicEmotion(string _str, float _Time)
@@ -270,52 +254,6 @@ public class Cat_Lobby : MonoBehaviour
         anim.SetBool(_str, false);
         yield return new WaitForSeconds(2f);
         IsSpecialEmotion = false;
-    }
-    public void Love(string _food)
-    {
-
-        switch (_food)
-        {
-            case "chew":
-                if (cat == Catname.Black)
-                    Debug.Log("행복 15");
-                else
-                    Debug.Log("행복도 5");
-                Managers.Game.SaveData.Food[1]--;
-                break;
-            case "jerky":
-                if (cat == Catname.Tabby)
-                    Debug.Log("행복 15");
-                else
-                    Debug.Log("행복도 5");
-                Managers.Game.SaveData.Food[2]--;
-                break;
-            case "mackerel":
-                if (cat == Catname.Tabby)
-                    Debug.Log("행복 15");
-                else
-                    Debug.Log("행복도 5");
-                Managers.Game.SaveData.Food[3]--;
-                break;
-            case "salmon":
-                if (cat == Catname.Gray)
-                    Debug.Log("행복 15");
-                else
-                    Debug.Log("행복도 5");
-                Managers.Game.SaveData.Food[4]--;
-                break;
-            case "tunacan":
-                if (cat == Catname.Calico)
-                    Debug.Log("행복 15");
-                else
-                    Debug.Log("행복도 5");
-                Managers.Game.SaveData.Food[5]--;
-                break;
-            case "catnipcandy":
-                Debug.Log("행복 15");
-                Managers.Game.SaveData.Food[0]--;
-                break;
-        }
     }
 }
 

@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
 using UnityEngine.EventSystems;
-public class CameraTest : MonoBehaviour
+public class CameraMove : MonoBehaviour
 {
     [SerializeField] private float cameraMoveSpeed;
     //[SerializeField] private float cameraZoomSpeed = 0.1f;
 
     [SerializeField]
-    Vector2 mapsize;
+    Vector2[] mapsize;
     [SerializeField]
-    Vector2 center;
+    Vector2[] center;
+
+    public int Index;
+
 
     private Vector3 beginMousePos = Vector3.zero;
     private Vector3 preMousePos = Vector3.zero;
@@ -25,6 +28,7 @@ public class CameraTest : MonoBehaviour
 
     private float Movespeed = 2f;
     public Vector3 targetPos;
+    private Vector3 vecl;
 
     float height;
     float width;
@@ -37,18 +41,21 @@ public class CameraTest : MonoBehaviour
         height = Camera.main.orthographicSize;
         width = height * Screen.width / Screen.height;
     }
+
+    private void Start()
+    {
+        Index = Managers.Game.SaveData.SoomLevel-1;
+    }
     public void Update()
     {
         if (IsMove)
             transform.position = Vector3.Lerp(this.transform.position, targetPos, Time.deltaTime * Movespeed);
-
-
     }
-    private Vector3 vecl;
+
     private void FixedUpdate()
     {
         if(!IsMove)
-            CameraMove();
+            MovingCamera();
         LimitCameraArea();
     }
 
@@ -76,7 +83,7 @@ public class CameraTest : MonoBehaviour
         }
         return movePosDiff;
     }
-    void CameraMove()
+    void MovingCamera()
     {
         if (!EventSystem.current.IsPointerOverGameObject())
         {
@@ -96,17 +103,18 @@ public class CameraTest : MonoBehaviour
     }
     void LimitCameraArea()
     {
-        float Lx = mapsize.x - width;
-        float clampX = Mathf.Clamp(transform.position.x, -Lx + center.x, Lx + center.x);
+        float Lx = mapsize[Index].x - width;
+        float clampX = Mathf.Clamp(transform.position.x, -Lx + center[Index].x, Lx + center[Index].x);
 
-        float Ly = mapsize.y - height;
-        float clampY = Mathf.Clamp(transform.position.y, -Ly + center.y, Ly + center.y);
+        float Ly = mapsize[Index].y - height;
+        float clampY = Mathf.Clamp(transform.position.y, -Ly + center[Index].y, Ly + center[Index].y);
 
         transform.position = new Vector3(clampX, clampY, -10f);
     }
+    
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(center, mapsize * 2);
+        Gizmos.DrawWireCube(center[Index], mapsize[Index] * 2);
     }
 }

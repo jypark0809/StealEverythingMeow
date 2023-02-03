@@ -48,5 +48,5 @@ public class Define : MonoBehaviour
         PointerUp,
     }
 
-    public const int MOTION_COUNT = 12;
+    public const int MOTION_COUNT = 16;
 }
