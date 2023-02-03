@@ -53,42 +53,42 @@ public class Cat_LobbyHappniess : MonoBehaviour
             return;
         switch (_food)
         {
-            case "chew":
+            case "Churu":
                 if (cat == Catname.Black)
                     Managers.Game.SaveData.CatCurHappinessExp[CatIndex] += 15;
                 else
                     Managers.Game.SaveData.CatCurHappinessExp[CatIndex] += 5;
                 Managers.Game.SaveData.Food[1]--;
                 break;
-            case "jerky":
+            case "Jerky":
                 if (cat == Catname.Tabby)
                     Managers.Game.SaveData.CatCurHappinessExp[CatIndex] += 15;
                 else
                     Managers.Game.SaveData.CatCurHappinessExp[CatIndex] += 5;
                 Managers.Game.SaveData.Food[2]--;
                 break;
-            case "mackerel":
+            case "Mackerel":
                 if (cat == Catname.Tabby)
                     Managers.Game.SaveData.CatCurHappinessExp[CatIndex] += 15;
                 else
                     Managers.Game.SaveData.CatCurHappinessExp[CatIndex] += 5;
                 Managers.Game.SaveData.Food[3]--;
                 break;
-            case "salmon":
+            case "Salmon":
                 if (cat == Catname.Gray)
                     Managers.Game.SaveData.CatCurHappinessExp[CatIndex] += 15;
                 else
                     Managers.Game.SaveData.CatCurHappinessExp[CatIndex] += 5;
                 Managers.Game.SaveData.Food[4]--;
                 break;
-            case "tunacan":
+            case "Tuna":
                 if (cat == Catname.Calico)
                     Managers.Game.SaveData.CatCurHappinessExp[CatIndex] += 15;
                 else
                     Managers.Game.SaveData.CatCurHappinessExp[CatIndex] += 5;
                 Managers.Game.SaveData.Food[5]--;
                 break;
-            case "catnipcandy":
+            case "CatnipCandy":
                 Managers.Game.SaveData.CatCurHappinessExp[CatIndex] += 1000;
                 Managers.Game.SaveData.Food[0]--;
                 break;
