@@ -7,11 +7,11 @@ using TMPro;
 public class UI_StatDetail : UI_Popup
 {
     private string[] CatName = { "White", "Black", "Calico", "Tabby", "Gray" };
-    private string[] CatFood = { "chew" , "mackerel", "jerky", "tunacan", "salmon" };
+    private string[] FoodName = { "Churu", "Jerky", "Mackerel", "Salmon", "Tuna", "CatnipCandy" };
     int Index;
     GameObject HaveGo, NotHaveGo;
-    TextMeshProUGUI HaveText , NotHaveText, HaveDes, NotHaveDes ,HaveSkil, NotHaveSkill , HaveFoodName, CatPrice;
-    Image HaveImage, NotHaveImage , HaveSkillImage, HaveFoodImage, DiaGold;
+    TextMeshProUGUI HaveText, NotHaveText, HaveDes, NotHaveDes, HaveSkil, NotHaveSkill, HaveFoodName, CatPrice;
+    Image HaveImage, NotHaveImage, HaveSkillImage, HaveFoodImage, DiaGold;
     Button Buy;
 
     private int HappyLevel;
@@ -113,8 +113,14 @@ public class UI_StatDetail : UI_Popup
         HaveDes.text = Managers.Data.CatBooks[1401 + _index].Cat_Desc;
         if (Index != 0)
         {
+            HaveSkillImage.gameObject.SetActive(true);
             HaveSkil.text = Managers.Data.CatBooks[1401 + _index].Cat_Skill_Name;
-            HaveSkillImage.sprite = Managers.Resource.Load<Sprite>("");
+            HaveSkillImage.sprite = Managers.Resource.Load<Sprite>("Sprites/UI/SkillIcon/Skill_" + CatName[Index] + "Cat");
+        }
+        else if (Index == 0)
+        {
+            HaveSkillImage.gameObject.SetActive(false);
+            HaveSkil.text = "없음";
         }
         else
         {
@@ -122,10 +128,10 @@ public class UI_StatDetail : UI_Popup
             HaveSkillImage.sprite = null;
         }
         HaveFoodName.text = Managers.Data.ShopItems[Managers.Data.CatBooks[1401 + _index].Cat_Favor_Food].Shop_Name;
-        HaveFoodImage.sprite = Managers.Resource.Load<Sprite>("Sprites/UI/Bag/" + CatFood[Index]);
+        HaveFoodImage.sprite = Managers.Resource.Load<Sprite>("Sprites/UI/ShopItem/Snack/" + FoodName[Index]);
         HappyLevel = Managers.Game.SaveData.CatHappinessLevel[_index];
         GetText((int)Texts.NeedExp).text = "다음 레벨 까지 : " + (Managers.Data.Happinesses[1800 + _index * 5 + HappyLevel + 1].H_Max - Managers.Game.SaveData.CatCurHappinessExp[_index]).ToString();
-        GetText((int)Texts.HappyLevel).text = "행복도 레벨 : " +  HappyLevel.ToString();
+        GetText((int)Texts.HappyLevel).text = "행복도 레벨 : " + HappyLevel.ToString();
         GetText((int)Texts.FeelText).text = " 현재 감정 : ";//추후추가
         SetHappiness();
 
@@ -140,8 +146,8 @@ public class UI_StatDetail : UI_Popup
         NotHaveImage.sprite = Managers.Resource.Load<Sprite>("Sprites/Nyan/" + CatName[Index] + "/" + CatName[Index] + "_Walk1");
         NotHaveDes.text = Managers.Data.CatBooks[1401 + _index].Cat_Desc;
         NotHaveSkill.text = "특기 : " + Managers.Data.CatBooks[1401 + _index].Cat_Skill_Name;
-        
-        if(Managers.Data.CatBooks[1401+Index].Diamond >0)
+
+        if (Managers.Data.CatBooks[1401 + Index].Diamond > 0)
         {
             DiaGold.sprite = Managers.Resource.Load<Sprite>("Sprites/UI/Diamond");
             CatPrice.text = Managers.Data.CatBooks[1401 + Index].Diamond.ToString();
@@ -149,8 +155,8 @@ public class UI_StatDetail : UI_Popup
             {
                 Buy.interactable = false;
             }
-        }    
-        else if(Managers.Data.CatBooks[1401 + Index].Gold > 0)
+        }
+        else if (Managers.Data.CatBooks[1401 + Index].Gold > 0)
         {
             DiaGold.sprite = Managers.Resource.Load<Sprite>("Sprites/UI/Gold");
             CatPrice.text = Managers.Data.CatBooks[1401 + Index].Gold.ToString();
@@ -168,12 +174,12 @@ public class UI_StatDetail : UI_Popup
     void RightButtonIndex(PointerEventData evt)
     {
         Index++;
-        if(Index == Managers.Game.SaveData.CatHave.Length)
+        if (Index == Managers.Game.SaveData.CatHave.Length)
         {
             Index = 0;
         }
 
-        if(Managers.Game.SaveData.CatHave[Index])
+        if (Managers.Game.SaveData.CatHave[Index])
         {
             SetHave(Index);
         }
@@ -187,7 +193,7 @@ public class UI_StatDetail : UI_Popup
         Index--;
         if (Index == -1)
         {
-            Index = Managers.Game.SaveData.CatHave.Length-1;
+            Index = Managers.Game.SaveData.CatHave.Length - 1;
         }
 
         if (Managers.Game.SaveData.CatHave[Index])
@@ -214,22 +220,20 @@ public class UI_StatDetail : UI_Popup
         foreach (Transform child in gridPanel.transform)
             Managers.Resource.Destroy(child.gameObject);
 
-        for (int i = 0; i < HappyLevel; i++)
+        for (int i = 1; i < HappyLevel; i++)
         {
             GameObject Item = Managers.Resource.Instantiate("UI/UI_HeartBook");
             Item.transform.SetParent(gridPanel.transform);
             UI_HeartSet HerartSet = Util.GetOrAddComponent<UI_HeartSet>(Item);
             HerartSet.SetInfo(1, 1);
         }
-        for (int i = HappyLevel; i < HappyLevel + 1; i++)
-        {
-            GameObject Item = Managers.Resource.Instantiate("UI/UI_HeartBook");
-            Item.transform.SetParent(gridPanel.transform);
-            UI_HeartSet HerartSet = Util.GetOrAddComponent<UI_HeartSet>(Item);
-            HerartSet.SetInfo(Managers.Game.SaveData.CatCurHappinessExp[Index], Managers.Data.Happinesses[1800 + Index * 5 + HappyLevel + 1].H_Max);
-        }
+        GameObject Item1 = Managers.Resource.Instantiate("UI/UI_HeartBook");
+        Item1.transform.SetParent(gridPanel.transform);
+        UI_HeartSet HerartSet1 = Util.GetOrAddComponent<UI_HeartSet>(Item1);
+        HerartSet1.SetInfo(Managers.Game.SaveData.CatCurHappinessExp[Index], Managers.Data.Happinesses[1800 + Index * 5 + HappyLevel + 1].H_Max);
 
-        for (int i = HappyLevel + 1; i < 5; i++)
+
+        for (int i = HappyLevel + 1; i < 6; i++)
         {
             GameObject Item = Managers.Resource.Instantiate("UI/UI_HeartBook");
             Item.transform.SetParent(gridPanel.transform);

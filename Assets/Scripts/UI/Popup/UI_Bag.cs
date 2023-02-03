@@ -6,8 +6,7 @@ using UnityEngine.EventSystems;
 
 public class UI_Bag : UI_Popup
 {
-
-    private string[] FoodName = { "catnipcandy", "chew", "jerky", "mackerel", "salmon", "tunacan" };
+    private string[] FoodName = { "CatnipCandy", "Churu", "Jerky", "Mackerel", "Salmon", "Tuna" };
     private bool[] CheckFood = new bool[6];
 
     enum GameObjects
@@ -83,7 +82,7 @@ public class UI_Bag : UI_Popup
         GameObject Item3 = Managers.Resource.Instantiate("UI/UI_Inven_Item");
         Item3.transform.SetParent(gridPanel.transform);
         UI_Inven_Item inven_item3 = Util.GetOrAddComponent<UI_Inven_Item>(Item3);
-        inven_item3.SetInfo("Stone", Managers.Game.SaveData.Stone);
+        inven_item3.SetInfo("Rock", Managers.Game.SaveData.Stone);
 
     }
     void SetFood()

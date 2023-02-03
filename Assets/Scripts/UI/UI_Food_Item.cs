@@ -42,8 +42,8 @@ public class UI_Food_Item : UI_Base
         {
             Get<Image>((int)Images.DragItem).gameObject.SetActive(false);
         }
-        Get<Image>((int)Images.ItemIcon).sprite = Resources.Load<Sprite>(("Sprites/UI/Bag/" + Name));
-        Get<Image>((int)Images.DragItem).sprite = Resources.Load<Sprite>(("Sprites/UI/Bag/" + Name));
+        Get<Image>((int)Images.ItemIcon).sprite = Resources.Load<Sprite>(("Sprites/UI/ShopItem/Snack/" + Name));
+        Get<Image>((int)Images.DragItem).sprite = Resources.Load<Sprite>(("Sprites/UI/ShopItem/Snack/" + Name));
         Get<GameObject>((int)GameObjects.Num_Text).GetComponent<TextMeshProUGUI>().text = Managers.Game.SaveData.Food[Index].ToString();
     }
 

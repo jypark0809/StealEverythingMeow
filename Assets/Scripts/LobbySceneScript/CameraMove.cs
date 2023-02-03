@@ -40,6 +40,8 @@ public class CameraMove : MonoBehaviour
         if (IsMove)
             transform.position = Vector3.Lerp(this.transform.position, targetPos, Time.deltaTime * Movespeed);
 
+
+        
         /*
         if (Input.GetMouseButton(0))
         {

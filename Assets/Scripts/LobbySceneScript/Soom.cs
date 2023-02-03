@@ -54,17 +54,20 @@ public class Soom : MonoBehaviour
                 Managers.Game.SaveData.CatCurHappinessExp[i] += Managers.Data.Sooms[1300 + CurSoomLevel].Happiness;
         }
 
-        if(CurSoomLevel == 2)
+        if (CurSoomLevel == 2)
         {
             Managers.Game.SaveData.Emotion[14] = true;
             Managers.Game.SaveData.Emotion[15] = true;
             Managers.UI.ShowPopupUI<UI_ExpressOpen>().Setinfo(14, 15);
+            Camera.main.GetComponent<CameraMove>().Index = 1;
         }
         if (CurSoomLevel == 3)
         {
             Managers.Game.SaveData.Emotion[1] = true;
             Managers.Game.SaveData.Emotion[4] = true;
             Managers.UI.ShowPopupUI<UI_ExpressOpen>().Setinfo(1, 4);
+            Camera.main.GetComponent<CameraMove>().Index = 2;
+            Managers.Game.SaveData.IsSoomUp = false;
         }
     }
     //좀더 효율적인코드가있을것같은기분..
@@ -78,8 +81,8 @@ public class Soom : MonoBehaviour
             IsCotton = true;
 
         //방체크,가구체크 >>가구경우 상점과 확인후 다시 수정필요
-        if (Managers.Game.SaveData.SpaceLevel == Managers.Data.Sooms[1300 + CurSoomLevel + 1].Space_Num)
-            IsRoom = true;
+        //if (Managers.Game.SaveData.SpaceLevel == Managers.Data.Sooms[1300 + CurSoomLevel + 1].Space_Num)
+
 
         /*
         int CurFur = 0;
@@ -90,6 +93,8 @@ public class Soom : MonoBehaviour
         if (CurFur == Managers.Data.Sooms[1300 + CurSoomLevel + 1].Space_F_Count)
             IsFur = true;
         */
+        IsRoom = true;
+        IsFur = true;
 
         if (IsWood & IsStone & IsCotton & IsFur & IsRoom)
         {
