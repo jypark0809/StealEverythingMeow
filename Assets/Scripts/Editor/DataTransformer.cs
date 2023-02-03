@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class DataTransformer : EditorWindow
 {
@@ -29,8 +30,7 @@ public class DataTransformer : EditorWindow
         ParseSoomData("Soom");
         ParseCatBookData("CatBook");
         ParseExpressBookData("ExpressBook");
-        ParseShopData("Shop");
-        ParseHappinessData("Happiness");
+        ParseShopItemData("ShopItem");
     }
 
     static void ParseLevelExpData(string filename)
@@ -349,9 +349,10 @@ public class DataTransformer : EditorWindow
         File.WriteAllText($"{Application.dataPath}/Resources/Data/Json/{filename}Data.json", jsonStr);
         AssetDatabase.Refresh();
     }
-    static void ParseShopData(string filename)
+
+    static void ParseShopItemData(string filename)
     {
-        ShopDataLoader loader = new ShopDataLoader();
+        ShopItemDataLoader loader = new ShopItemDataLoader();
 
         #region ExcelData
         string[] lines = File.ReadAllText($"{Application.dataPath}/Resources/Data/Excel/{filename}Data.csv").Split("\n");
@@ -365,58 +366,18 @@ public class DataTransformer : EditorWindow
                 continue;
             int i = 0;
 
-            loader.Shops.Add(new ShopData()
+            loader.ShopItems.Add(new ShopItemData()
             {
                 Shop_Id = int.Parse(row[i++]),
                 Shop_Int_Name = row[i++],
                 Shop_Name = row[i++],
                 Shop_Desc = row[i++],
                 Shop_Type = int.Parse(row[i++]),
-                Shop_Limit_Num = int.Parse(row[i++]),
-                Ad = int.Parse(row[i++]),
-                Gold = int.Parse(row[i++]),
-                Diamond = int.Parse(row[i++]),
-                Money = int.Parse(row[i++]),
-                F_Size = row[i++],
-                Shop_Path = row[i++],
-            });
-
-        }
-
-        #endregion
-
-        string jsonStr = JsonConvert.SerializeObject(loader, Formatting.Indented);
-        File.WriteAllText($"{Application.dataPath}/Resources/Data/Json/{filename}Data.json", jsonStr);
-        AssetDatabase.Refresh();
-    }
-
-    static void ParseHappinessData(string filename)
-    {
-        HappinessDataLoader loader = new HappinessDataLoader();
-
-        #region ExcelData
-        string[] lines = File.ReadAllText($"{Application.dataPath}/Resources/Data/Excel/{filename}Data.csv").Split("\n");
-
-        for (int y = 1; y < lines.Length; y++)
-        {
-            string[] row = lines[y].Replace("\r", "").Split(',');
-            if (row.Length == 0)
-                continue;
-            if (string.IsNullOrEmpty(row[0]))
-                continue;
-            int i = 0;
-
-            loader.Happinesses.Add(new HappinessData()
-            {
-                H_Id = int.Parse(row[i++]),
-                H_Lv = int.Parse(row[i++]),
-                H_Max = int.Parse(row[i++]),
-                H_Cat_Type = int.Parse(row[i++]),
-                H_Rwd_Wood = int.Parse(row[i++]),
-                H_Rwd_Stone = int.Parse(row[i++]),
-                H_Rwd_Cotton = int.Parse(row[i++]),
-                H_Rwd_Gold = int.Parse(row[i++]),
-                H_Rwd_Power = int.Parse(row[i++]),
+                Shop_Limit_Count = int.Parse(row[i++]),
+                PaymentType = int.Parse(row[i++]),
+                Value = int.Parse(row[i++]),
+                Scale = float.Parse(row[i++]),
+                ImgPath = row[i++]
             });
 
         }

@@ -24,8 +24,7 @@ public class DataManager
     public Dictionary<int, SpaceData> Spaces { get; private set; } = new Dictionary<int, SpaceData>();
     public Dictionary<int, CatBookData> CatBooks { get; private set; } = new Dictionary<int, CatBookData>();
     public Dictionary<int, ExpressBookData> ExpressBooks { get; private set; } = new Dictionary<int, ExpressBookData>();
-    public Dictionary<int, ShopData> Shops { get; private set; } = new Dictionary<int, ShopData>();
-    public Dictionary<int, HappinessData> Happinesses { get; private set; } = new Dictionary<int, HappinessData>();
+    public Dictionary<int, ShopItemData> ShopItems { get; private set; } = new Dictionary<int, ShopItemData>();
 
     public void Init()
     {
@@ -40,8 +39,7 @@ public class DataManager
         Spaces = LoadJson<SpaceDataLoader, int, SpaceData>("SpaceData").MakeDict();
         CatBooks = LoadJson<CatBookDataLoader, int, CatBookData>("CatBookData").MakeDict();
         ExpressBooks = LoadJson<ExpressBookDataLoader, int, ExpressBookData>("ExpressBookData").MakeDict();
-        Shops = LoadJson<ShopDataLoader, int, ShopData>("ShopData").MakeDict();
-        Happinesses = LoadJson<HappinessDataLoader, int, HappinessData>("HappinessData").MakeDict();
+        ShopItems = LoadJson<ShopItemDataLoader, int, ShopItemData>("ShopItemData").MakeDict();
     }
 
     public bool Loaded()

@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 209259210606023472}
   - component: {fileID: 209259210606023473}
   - component: {fileID: 209259210606023470}
+  - component: {fileID: -2300481494566981622}
   m_Layer: 5
   m_Name: UI_ConfirmPauchasePopup
   m_TagString: Untagged
@@ -224,6 +225,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &-2300481494566981622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209259210606023471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07935d34aa5d68c42ae72ab1ada0c930, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &209259210660616513
 GameObject:
   m_ObjectHideFlags: 0
@@ -723,7 +736,7 @@ GameObject:
   - component: {fileID: 209259210984282124}
   - component: {fileID: 209259210984282125}
   m_Layer: 5
-  m_Name: OkayButton
+  m_Name: PurchaseButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
