@@ -5,8 +5,8 @@ using UnityEngine.Experimental.Rendering.Universal;
 using UnityEngine.EventSystems;
 public class CameraMove : MonoBehaviour
 {
-    [SerializeField] private float cameraMoveSpeed;
-    //[SerializeField] private float cameraZoomSpeed = 0.1f;
+    float height;
+    float width;
 
     [SerializeField]
     Vector2[] mapsize;
@@ -14,13 +14,6 @@ public class CameraMove : MonoBehaviour
     Vector2[] center;
 
     public int Index;
-
-
-    private Vector3 beginMousePos = Vector3.zero;
-    private Vector3 preMousePos = Vector3.zero;
-    private Vector3 beginCamPos = Vector3.zero;
-
-
     public bool IsMove;
 
     Camera thecamera;
@@ -28,10 +21,6 @@ public class CameraMove : MonoBehaviour
 
     private float Movespeed = 2f;
     public Vector3 targetPos;
-    private Vector3 vecl;
-
-    float height;
-    float width;
 
     private void Awake()
     {
@@ -44,64 +33,61 @@ public class CameraMove : MonoBehaviour
 
     private void Start()
     {
-        Index = Managers.Game.SaveData.SoomLevel-1;
+        Index = Managers.Game.SaveData.SoomLevel - 1;
     }
     public void Update()
     {
         if (IsMove)
             transform.position = Vector3.Lerp(this.transform.position, targetPos, Time.deltaTime * Movespeed);
+
+
+        
+        /*
+        if (Input.GetMouseButton(0))
+        {
+            pix.enabled = false;
+            ZoomIn();
+        }
+        else
+        {
+            pix.enabled = true;
+        }
+        */
+
+    }
+    private void ZoomIn()
+    {
+        float scrollWheel = Input.GetAxis("Mouse ScrollWheel");
+        Camera.main.orthographicSize += scrollWheel * Time.deltaTime * scrollWheel;
     }
 
     private void FixedUpdate()
     {
-        if(!IsMove)
-            MovingCamera();
+        Moving();
         LimitCameraArea();
     }
-
-    private Vector2 nowPos, prePos;
-    private Vector2 movePosDiff;
-    private Vector2 GetTouchDragValue()
-    {
-        movePosDiff = Vector3.zero;
-
-        if (Input.touchCount == 1)
-        {
-            Touch Touch = Input.GetTouch(0);
-            if (Touch.phase == TouchPhase.Began)
-            {
-                prePos = Touch.position - Touch.deltaPosition;
-            }
-            else if (Touch.phase == TouchPhase.Moved)
-            {
-                nowPos = Touch.position - Touch.deltaPosition;
-                movePosDiff = (Vector2)(prePos - nowPos) * Time.deltaTime * cameraMoveSpeed;
-                vecl = -movePosDiff.normalized;
-                prePos = Touch.position - Touch.deltaPosition;
-                transform.position = Vector3.SmoothDamp(this.transform.position, ((Vector3)(GetTouchDragValue()) + this.transform.position), ref vecl, cameraMoveSpeed);
-            }
-        }
-        return movePosDiff;
-    }
-    void MovingCamera()
+    Vector2 clickPoint;
+    private void Moving()
     {
         if (!EventSystem.current.IsPointerOverGameObject())
         {
-
             if (Input.GetMouseButtonDown(0))
-            {
-                beginMousePos = Input.mousePosition;
-            }
+                clickPoint = Input.mousePosition;
+
             if (Input.GetMouseButton(0))
             {
-                Vector3 position = Camera.main.ScreenToViewportPoint((Vector2)Input.mousePosition - (Vector2)beginMousePos);
-                Vector3 Move = -position * (Time.deltaTime * cameraMoveSpeed);
-                vecl = Move.normalized;
-                transform.Translate(this.transform.position + Move);
+                Vector3 position
+                    = Camera.main.ScreenToViewportPoint((Vector2)Input.mousePosition - clickPoint);
+
+                Vector3 move = -position * (Time.deltaTime * 30f);
+
+                transform.Translate(move);
+                transform.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
             }
         }
     }
-    void LimitCameraArea()
+
+    private void LimitCameraArea()
     {
         float Lx = mapsize[Index].x - width;
         float clampX = Mathf.Clamp(transform.position.x, -Lx + center[Index].x, Lx + center[Index].x);
@@ -111,7 +97,7 @@ public class CameraMove : MonoBehaviour
 
         transform.position = new Vector3(clampX, clampY, -10f);
     }
-    
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

@@ -21,11 +21,11 @@ public class TileManager : MonoBehaviour
 
     private void Update()
     {
-        IsRoomCheck();
+        if(Managers.Game.SaveData.SpaceLevel < 10)
+            IsRoomCheck();
     }
     public void Open()
     {
-        Camera.main.GetComponent<CameraMove>().IsMove = true;
         OpenTime = Managers.Data.Spaces[1200 + CurRoomLevel + 1].Space_Time;
         StartCoroutine(OpenRoom(OpenTime));
         for (int i = 0; i < Managers.Game.SaveData.CatHave.Length; i++)
@@ -62,8 +62,8 @@ public class TileManager : MonoBehaviour
             IsCotton = true;
 
         //방체크,가구체크 >>가구경우 상점과 확인후 다시 수정필요
-        if (Managers.Game.SaveData.MaxFurniture[CurRoomLevel] == Managers.Data.Spaces[1200 + CurRoomLevel].Space_Furniture_Count)
-            IsFur = true;
+        //if (Managers.Game.SaveData.MaxFurniture[CurRoomLevel] == Managers.Data.Spaces[1200 + CurRoomLevel].Space_Furniture_Count)
+        IsFur = true;
 
         if (IsGold & IsWood & IsStone & IsCotton & IsFur)
             Managers.Game.SaveData.IsRoomOpen = true;

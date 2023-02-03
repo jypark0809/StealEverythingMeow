@@ -7,10 +7,10 @@ public class Cat_LobbyHappniess : MonoBehaviour
     [SerializeField]
     public enum Catname
     {
-        White, 
-        Black, 
-        Gray, 
-        Calico, 
+        White,
+        Black,
+        Gray,
+        Calico,
         Tabby,
     }
     public Catname cat;
@@ -28,15 +28,22 @@ public class Cat_LobbyHappniess : MonoBehaviour
 
     void HappinessLevelUp()
     {
-        if(Managers.Game.SaveData.CatHappinessLevel[CatIndex] == 5)
+        if (Managers.Game.SaveData.CatHappinessLevel[CatIndex] == 5)
+            return;
+
+        if (Managers.Game.SaveData.CatCurHappinessExp[CatIndex] >= Managers.Data.Happinesses[1800 + CatIndex * 5 + Managers.Game.SaveData.CatHappinessLevel[CatIndex] + 1].H_Max)
         {
-            Managers.Game.SaveData.CatCurHappinessExp[CatIndex] = 0;
-        }
-        if(Managers.Game.SaveData.CatCurHappinessExp[CatIndex] >= Managers.Data.Happinesses[1800 + CatIndex * 5 + Managers.Game.SaveData.CatHappinessLevel[CatIndex] + 1].H_Max)
-        {
+            int CurMaxLevel = GetMinMax(Managers.Game.SaveData.CatHappinessLevel);
             Managers.Game.SaveData.CatHappinessLevel[CatIndex]++;
             Managers.Game.SaveData.CatCurHappinessExp[CatIndex] -= Managers.Data.Happinesses[1800 + CatIndex * 5 + Managers.Game.SaveData.CatHappinessLevel[CatIndex] + 1].H_Max;
-            GetEmotion();
+            if (CurMaxLevel < GetMinMax(Managers.Game.SaveData.CatHappinessLevel))
+                GetEmotion();
+        }
+        if (Managers.Game.SaveData.CatHappinessLevel[CatIndex] == 5)
+        {
+            Managers.Game.SaveData.CatCurHappinessExp[CatIndex] = 0;
+            Managers.Game.SaveData.CatHappinessLevel[CatIndex] = 5;
+
         }
     }
 
@@ -82,31 +89,29 @@ public class Cat_LobbyHappniess : MonoBehaviour
                 Managers.Game.SaveData.Food[5]--;
                 break;
             case "catnipcandy":
-                Managers.Game.SaveData.CatCurHappinessExp[CatIndex] += 5000;
+                Managers.Game.SaveData.CatCurHappinessExp[CatIndex] += 1000;
                 Managers.Game.SaveData.Food[0]--;
                 break;
         }
     }
     private void OnMouseDown()
     {
-        if(!IsInfo)
+        if (!IsInfo)
             Infoset();
         if (!Isget)
             GetGoods();
-        Managers.Game.SaveData.CatCurHappinessExp[CatIndex] += 2000;
-        Debug.Log("Çàº¹µµ È¹µæ");
     }
     void Infoset()
     {
         GameObject go = Managers.UI.MakeWorldSpaceUI<UI_CatInfo>().gameObject;
-        go.GetComponent<UI_CatInfo>().SetInfo(Managers.Game.SaveData.CatName[CatIndex], Managers.Game.SaveData.CatHappinessLevel[CatIndex], Managers.Game.SaveData.CatHappinessLevel[CatIndex], Managers.Data.Happinesses[1800 + CatIndex * 5 + Managers.Game.SaveData.CatHappinessLevel[CatIndex] + 1].H_Max);
+        go.GetComponent<UI_CatInfo>().SetInfo(Managers.Game.SaveData.CatName[CatIndex], Managers.Game.SaveData.CatHappinessLevel[CatIndex], Managers.Game.SaveData.CatHappinessLevel[CatIndex], Managers.Data.Happinesses[1800 + CatIndex * 5 + Managers.Game.SaveData.CatHappinessLevel[CatIndex] + 1].H_Max, this.transform);
         go.transform.position = this.transform.position;
         IsInfo = true;
         StartCoroutine(trueInfo());
     }
     IEnumerator trueInfo()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(8f);
         IsInfo = false;
     }
     void GetGoods()
@@ -134,7 +139,6 @@ public class Cat_LobbyHappniess : MonoBehaviour
         Isget = true;
     }
 
-
     int GetMinMax(int[] array)
     {
         int min = array[0];
@@ -153,15 +157,6 @@ public class Cat_LobbyHappniess : MonoBehaviour
     void GetEmotion()
     {
         Debug.Log("°¨Á¤Ç¥Çö È¹µæ");
-
-        if (Managers.Game.SaveData.Emotion[3])
-            return;
-        if (Managers.Game.SaveData.Emotion[12])
-            return;
-        if (Managers.Game.SaveData.Emotion[8])
-            return;
-        if (Managers.Game.SaveData.Emotion[7])
-            return;
 
         switch (GetMinMax(Managers.Game.SaveData.CatHappinessLevel))
         {
