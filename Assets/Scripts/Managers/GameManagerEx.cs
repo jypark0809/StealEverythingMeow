@@ -56,6 +56,21 @@ public class GameManagerEx
     GameData _gameData = new GameData();
     public GameData SaveData { get { return _gameData; } set { _gameData = value; } }
 
+    public void SpendJelly()
+    {
+        SaveData.Jelly--;
+        SaveGame();
+
+        UI_CatHouseScene scene = (Managers.UI.SceneUI as UI_CatHouseScene);
+        scene._catHouseSceneTop.RefreshUI();
+
+        // MAX_COUNT - 1
+        if (Managers.Game.SaveData.Jelly == 4)
+        {
+            scene._catHouseSceneTop.SetActiveRechargeText();
+        }
+    }
+
     #region Option
     public bool BGMOn
     {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Soom : MonoBehaviour
 {
@@ -32,14 +33,16 @@ public class Soom : MonoBehaviour
     }
     private void OnMouseDown()
     {
-
+        if (!EventSystem.current.IsPointerOverGameObject())
+        {
+            Managers.UI.ShowPopupUI<UI_UpgradePopUp>();
+        }
         /*
         if(CurSoomLevel == 0)// Æ©Åä¸®¾ó
             SomUpgrade();
         else if (CurSoomLevel <3)
             Managers.UI.ShowPopupUI<UI_UpgradeSom>(); 
         */
-        Managers.UI.ShowPopupUI<UI_UpgradePopUp>();
     }
 
     public void SomUpgrade()

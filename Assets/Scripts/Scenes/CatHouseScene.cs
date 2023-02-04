@@ -30,6 +30,14 @@ public class CatHouseScene : BaseScene
         }
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            Managers.Game.SpendJelly();
+        }
+    }
+
     public override void Clear()
     {
     }

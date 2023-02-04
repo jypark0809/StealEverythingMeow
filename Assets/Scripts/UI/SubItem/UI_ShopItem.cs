@@ -82,7 +82,7 @@ public class UI_ShopItem : UI_Base
                 GetButton((int)Buttons.DiamondButton).gameObject.SetActive(false);
                 GetButton((int)Buttons.AdsButton).gameObject.SetActive(false);
                 GetButton((int)Buttons.CashButton).gameObject.SetActive(false);
-                GetText((int)Texts.GoldText).text = _iData.Value.ToString();
+                GetText((int)Texts.GoldText).text = $"{_iData.Value.ToString("N0")}G";
                 break;
             case (int)ShopPurchaseType.Diamond:
                 GetButton((int)Buttons.GoldButton).gameObject.SetActive(false);
@@ -94,7 +94,7 @@ public class UI_ShopItem : UI_Base
                 GetButton((int)Buttons.GoldButton).gameObject.SetActive(false);
                 GetButton((int)Buttons.DiamondButton).gameObject.SetActive(false);
                 GetButton((int)Buttons.AdsButton).gameObject.SetActive(false);
-                GetText((int)Texts.CashText).text = _iData.Value.ToString();
+                GetText((int)Texts.CashText).text = $"{_iData.Value.ToString("C")}";
                 break;
             case (int)ShopPurchaseType.Ads:
                 GetButton((int)Buttons.GoldButton).gameObject.SetActive(false);

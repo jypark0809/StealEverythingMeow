@@ -7,7 +7,6 @@ public class JellyScheduler : MonoBehaviour
 {
     private static JellyScheduler instance;
     public static JellyScheduler Instance { get { Init(); return instance; } }
-
     private DateTime laseQuitTime = new DateTime(2023, 1, 1).ToLocalTime();
     private const int MAX_COUNT = 5;
     int rechargeInterval = 30;
