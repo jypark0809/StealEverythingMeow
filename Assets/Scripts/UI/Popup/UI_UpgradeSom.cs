@@ -32,6 +32,7 @@ public class UI_UpgradeSom : UI_Base
     enum Buttons
     {
         OkayButton,
+        CloseButton
     }
 
     void Start()
@@ -45,8 +46,6 @@ public class UI_UpgradeSom : UI_Base
         Bind<Image>(typeof(Images));
         Bind<TextMeshProUGUI>(typeof(Texts));
         Bind<GameObject>(typeof(GameObjects));
-
-
 
         if (Managers.Game.SaveData.SoomLevel == 3)
         {
@@ -72,6 +71,7 @@ public class UI_UpgradeSom : UI_Base
 
             GetButton((int)Buttons.OkayButton).gameObject.BindEvent(OnOpenUpCon);
         }
+        GetButton((int)Buttons.CloseButton).gameObject.BindEvent(OnCloseButton);
     }
 
     void OnOpenUpCon(PointerEventData evt)

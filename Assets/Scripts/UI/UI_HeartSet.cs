@@ -26,6 +26,7 @@ public class UI_HeartSet : UI_Base
         FrontImage = GetImage((int)Images.FrontHeart);
         FrontImage.fillAmount = CurExp / NextExp;
     }
+
     public void SetInfo(float _cur, float _next)
     {
         CurExp = _cur;

@@ -10,6 +10,7 @@ public class TileManager : MonoBehaviour
     public bool IsStone;
     public bool IsCotton;
     public bool IsFur;
+    public bool Issoom;
 
     private float OpenTime;
     DateTime now;
@@ -27,7 +28,7 @@ public class TileManager : MonoBehaviour
     public void Open()
     {
         OpenTime = Managers.Data.Spaces[1200 + CurRoomLevel + 1].Space_Time;
-        StartCoroutine(OpenRoom(OpenTime));
+        StartCoroutine(OpenRoom(0f));//OpenTime));
         for (int i = 0; i < Managers.Game.SaveData.CatHave.Length; i++)
         {
             if (Managers.Game.SaveData.CatHave[i])
@@ -52,20 +53,47 @@ public class TileManager : MonoBehaviour
     }
     private void IsRoomCheck()
     {
-        if (Managers.Game.SaveData.Gold >= Managers.Data.Spaces[1200 + CurRoomLevel + 1].Gold)
+        if (Managers.Game.SaveData.Gold >= Managers.Data.Spaces[1200 + CurRoomLevel +1].Gold)
             IsGold = true;
-        if (Managers.Game.SaveData.Wood >= Managers.Data.Spaces[1200 + CurRoomLevel + 1].Wood)
+        else
+            IsGold = false;
+        if (Managers.Game.SaveData.Wood >= Managers.Data.Spaces[1200 + CurRoomLevel +1].Wood)
             IsWood = true;
+        else
+            IsWood = false;
         if (Managers.Game.SaveData.Stone >= Managers.Data.Spaces[1200 + CurRoomLevel + 1].Stone)
             IsStone = true;
+        else
+            IsStone = false;
         if (Managers.Game.SaveData.Cotton >= Managers.Data.Spaces[1200 + CurRoomLevel + 1].Cotton)
             IsCotton = true;
+        else
+            IsCotton = false;
+        if(Managers.Game.SaveData.SpaceLevel >=2)
+        {
+            int FurCount = Managers.Game.SaveData.FList.Count;
+            for (int i = 1; i<CurRoomLevel; i++)
+            {
+                FurCount -= Managers.Data.Spaces[1200 + i].Space_Furniture_Count;
+            }
 
-        //방체크,가구체크 >>가구경우 상점과 확인후 다시 수정필요
-        //if (Managers.Game.SaveData.MaxFurniture[CurRoomLevel] == Managers.Data.Spaces[1200 + CurRoomLevel].Space_Furniture_Count)
-        IsFur = true;
+            Debug.Log(FurCount);
 
-        if (IsGold & IsWood & IsStone & IsCotton & IsFur)
+            if (FurCount == (Managers.Data.Spaces[1200 + CurRoomLevel].Space_Furniture_Count))
+                IsFur = true;
+            else
+                IsFur = false;
+        }
+
+        if (Managers.Data.Spaces[1201 + CurRoomLevel +1].Soom_Lv == Managers.Game.SaveData.SoomLevel)
+            Issoom = true;
+        else
+            Issoom = false;
+
+
+        if (IsGold & IsWood & IsStone & IsCotton & IsFur && Issoom)
             Managers.Game.SaveData.IsRoomOpen = true;
+        else
+            Managers.Game.SaveData.IsRoomOpen = false;
     }
 }

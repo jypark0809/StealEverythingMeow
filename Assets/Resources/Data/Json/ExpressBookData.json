@@ -137,8 +137,8 @@
     },
     {
       "Express_Id": 1516,
-      "Express_Int_Name": "Run",
-      "Express_Name": "뛰기",
+      "Express_Int_Name": "Attack",
+      "Express_Name": "공격",
       "Express_Rwd": "6",
       "Diamond": 15,
       "Express_Time": 8,

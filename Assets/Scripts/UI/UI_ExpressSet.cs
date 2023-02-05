@@ -36,10 +36,16 @@ public class UI_ExpressSet : UI_Base
 
         Get<Image>((int)Images.ExpressImage).sprite = Resources.Load<Sprite>(("Sprites/Nyan/White/White_"+ Managers.Data.ExpressBooks[1501 + Index].Express_Int_Name));
         Get<TextMeshProUGUI>((int)Texts.ExpressName).GetComponent<TextMeshProUGUI>().text = Managers.Data.ExpressBooks[1501 + Index].Express_Name;
-        GetImage((int)Images.UI_ExpressSet).gameObject.BindEvent(OpenExpress, Define.UIEvent.Click);
+        GetImage((int)Images.BlockImage).gameObject.BindEvent(OpenExpress, Define.UIEvent.Click);
 
     }
-
+    private void Update()
+    {
+        if(Managers.Game.SaveData.Emotion[Index])
+        {
+            Get<Image>((int)Images.BlockImage).gameObject.SetActive(false);
+        }
+    }
     public void SetInfo(int _index)
     {
         Index = _index;
@@ -47,8 +53,8 @@ public class UI_ExpressSet : UI_Base
 
     public void OpenExpress(PointerEventData evt)
     {
+        Managers.UI.ShowPopupUI<UI_ExpressDia>().SetInfo(Index);
         Debug.Log("감정표현열기!");
-        //Managers.UI.ShowPopupUI<UI_StatDetail>().SetInfo(Index);
     }
 
 }
