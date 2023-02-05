@@ -16,6 +16,8 @@ public class DataTransformer : EditorWindow
         string path = Application.persistentDataPath + "/SaveData.json";
         if (File.Exists(path))
             File.Delete(path);
+
+        PlayerPrefs.DeleteAll();
     }
 
     [MenuItem("Tools/ParseExcel")]

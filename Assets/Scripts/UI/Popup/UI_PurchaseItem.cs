@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using static UnityEditor.Progress;
 
 public class UI_PurchaseItem : UI_Popup
 {
@@ -38,8 +37,7 @@ public class UI_PurchaseItem : UI_Popup
             if (iData.Shop_Type == PlayerPrefs.GetInt("ItemType"))
             {
                 UI_ShopItem shopItem = Managers.UI.MakeSubItem<UI_ShopItem>(parent.transform);
-                shopItem.id = iData.Shop_Id;
-                // shopItem.SetInfo(iData);
+                shopItem.SetInfo(iData);
             }
         }
     }

@@ -55,5 +55,25 @@ public class Define : MonoBehaviour
         Cash,
         Ads,
     }
+
+    public enum SnackType
+    {
+        CatnipCandy,
+        Churu,
+        Mackerel,
+        Jerky,
+        Tuna,
+        Salmon
+    }
+
+    public enum CatType
+    {
+        White,
+        Black,
+        Calico,
+        Tabby,
+        Grey
+    }
+
     public const int MOTION_COUNT = 16;
 }

@@ -6,7 +6,6 @@ using UnityEngine;
 public class GoldText : MonoBehaviour
 {
     TextMeshPro _GoldText;
-    Coroutine _coroutine = null;
     Color _alpha;
 
     public void SetInfo(Vector2 pos, int gold)
