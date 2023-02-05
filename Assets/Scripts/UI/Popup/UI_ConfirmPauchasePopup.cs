@@ -88,10 +88,10 @@ public class UI_ConfirmPauchasePopup : UI_Popup
         switch ((int)_purchaseType)
         {
             case (int)PurchaseType.Furniture:
-                ArrangeFurniture();
+                PurchaseFurniture();
                 break;
             case (int)PurchaseType.Item:
-                GetReward();
+                PurchaseItem();
                 break;
         }
     }
@@ -101,12 +101,12 @@ public class UI_ConfirmPauchasePopup : UI_Popup
         ClosePopupUI();
     }
 
-    void ArrangeFurniture()
+    void PurchaseFurniture()
     {
         // Happiness Point
 
-        // Gold
-        // Managers.Game.SaveData.Gold -= fData.F_Gold;
+        // Purchase
+        Managers.Game.SaveData.Gold -= _fData.F_Gold;
 
         // Add furniture to fList of save data
         Managers.Game.SaveData.FList.Add(_fData);
@@ -122,10 +122,20 @@ public class UI_ConfirmPauchasePopup : UI_Popup
         Managers.UI.CloseAllPopupUI();
     }
 
-    // °£½Ä [Ä¹ÀÙ»çÅÁ, Ãò¸£, °íµî¾î±¸ÀÌ, À°Æ÷, ÂüÄ¡Äµ, ¿¬¾î,]
-    void GetReward()
+    // °£½Ä [Ä¹ÀÙ»çÅÁ, Ãò¸£, °íµî¾î±¸ÀÌ, À°Æ÷, ÂüÄ¡Äµ, ¿¬¾î]
+    void PurchaseItem()
     {
-        switch(_iData.Shop_Id)
+        // Purchase
+        if (_iData.PaymentType == (int)ShopPurchaseType.Gold)
+            Managers.Game.SaveData.Gold -= _iData.Value;
+        else if (_iData.PaymentType == (int)ShopPurchaseType.Diamond)
+            Managers.Game.SaveData.Dia -= _iData.Value;
+
+        // Get Reward DB
+
+
+        // Exception : Snack Item
+        switch (_iData.Shop_Id)
         {
             case 1601:
                 Managers.Game.SaveData.Food[(int)Define.SnackType.Churu]++;
@@ -146,6 +156,9 @@ public class UI_ConfirmPauchasePopup : UI_Popup
                 Managers.Game.SaveData.Food[(int)Define.SnackType.CatnipCandy]++;
                 break;
         }
+
+        // Savd Data
+        Managers.Game.SaveGame();
 
         Managers.UI.ClosePopupUI();
     }

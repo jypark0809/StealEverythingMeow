@@ -22,6 +22,7 @@ public class GameData
     public List<FurnitureData> FList = new List<FurnitureData>();
 
     public bool[] Emotion = new bool[Define.MOTION_COUNT] {true, false, true , false, false, false, false, false, false, true, true, false, false, false, false, false };
+    public List<string> EmotionList = new List<string>();
 
     //°ø°£
     public int SpaceLevel = 1;

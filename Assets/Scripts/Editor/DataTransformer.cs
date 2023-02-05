@@ -23,17 +23,18 @@ public class DataTransformer : EditorWindow
     [MenuItem("Tools/ParseExcel")]
     public static void ParseExcel()
     {
+        ParseCatBookData("CatBook");
+        ParseDestroyableObjectData("DestroyableObject");
+        ParseExpressBookData("ExpressBook");
+        ParseFurnitureData("Furniture");
+        ParseHappinessData("Happiness");
         ParseLevelExpData("LevelExp");
-        ParseStatSpeedData("StatSpeed");
+        ParseShopItemData("ShopItem");
+        ParseSoomData("Soom");
+        ParseSpaceData("Space");
         ParseStatCooltimeData("StatCooltime");
         ParseStatMagnetData("StatMagnet");
-        ParseDestroyableObjectData("DestroyableObject");
-        ParseFurnitureData("Furniture");
-        ParseSoomData("Soom");
-        ParseCatBookData("CatBook");
-        ParseExpressBookData("ExpressBook");
-        ParseShopItemData("ShopItem");
-        ParseHappinessData("Happiness");
+        ParseStatSpeedData("StatSpeed");
     }
 
     static void ParseLevelExpData(string filename)
@@ -419,6 +420,48 @@ public class DataTransformer : EditorWindow
                 H_Rwd_Cotton = int.Parse(row[i++]),
                 H_Rwd_Gold = int.Parse(row[i++]),
                 H_Rwd_Power = int.Parse(row[i++]),
+            });
+
+        }
+
+        #endregion
+
+        string jsonStr = JsonConvert.SerializeObject(loader, Formatting.Indented);
+        File.WriteAllText($"{Application.dataPath}/Resources/Data/Json/{filename}Data.json", jsonStr);
+        AssetDatabase.Refresh();
+    }
+
+    static void ParseSpaceData(string filename)
+    {
+        SpaceDataLoader loader = new SpaceDataLoader();
+
+        #region ExcelData
+        string[] lines = File.ReadAllText($"{Application.dataPath}/Resources/Data/Excel/{filename}Data.csv").Split("\n");
+
+        for (int y = 1; y < lines.Length; y++)
+        {
+            string[] row = lines[y].Replace("\r", "").Split(',');
+            if (row.Length == 0)
+                continue;
+            if (string.IsNullOrEmpty(row[0]))
+                continue;
+            int i = 0;
+
+            loader.Spaces.Add(new SpaceData()
+            {
+                Space_Id = int.Parse(row[i++]),
+                Space_Int_Name = row[i++],
+                Space_Name = row[i++],
+                Space_Lv = int.Parse(row[i++]),
+                Space_Furniture_Count = int.Parse(row[i++]),
+                Space_Gold_Plus = int.Parse(row[i++]),
+                Gold = int.Parse(row[i++]),
+                Wood = int.Parse(row[i++]),
+                Stone = int.Parse(row[i++]),
+                Cotton = int.Parse(row[i++]),
+                Happiness = int.Parse(row[i++]),
+                Space_Time = int.Parse(row[i++]),
+                Soom_Lv = int.Parse(row[i++])
             });
 
         }
