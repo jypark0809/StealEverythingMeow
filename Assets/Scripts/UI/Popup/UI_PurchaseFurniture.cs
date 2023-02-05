@@ -40,7 +40,7 @@ public class UI_PurchaseFurniture : UI_Popup
             if (fData.F_Space_Num == PlayerPrefs.GetInt("SpaceLevel"))
             {
                 UI_ShopItem_Furniture item = Managers.UI.MakeSubItem<UI_ShopItem_Furniture>(parent.transform);
-                item.id = fData.F_Id;
+                item.SetInfo(fData);
                 
                 if (Managers.Game.SaveData.FList.Contains(fData))
                 {
