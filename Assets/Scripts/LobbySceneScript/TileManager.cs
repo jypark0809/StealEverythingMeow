@@ -84,6 +84,10 @@ public class TileManager : MonoBehaviour
             else
                 IsFur = false;
         }
+        else
+        {
+            IsFur = true;
+        }
 
         if (Managers.Data.Spaces[1201 + CurRoomLevel +1].Soom_Lv == Managers.Game.SaveData.SoomLevel)
             Issoom = true;
