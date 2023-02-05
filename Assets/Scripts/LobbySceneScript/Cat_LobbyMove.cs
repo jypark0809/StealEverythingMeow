@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 [System.Serializable]
 public class Node
@@ -20,10 +21,9 @@ public class Cat_LobbyMove : MonoBehaviour
     private int _indexEmotion;
     private string _curEmotion;
 
-    public List<string> Emotion = new List<string>(); 
+    private string[] BasicEmotion = { "Blink", "Ennui" ,"Sleep3", "Sniff", };
+    private string[] PlusEmotion = { "Dig", "Fly", "Lick", "Paw", "Relax", "Scratch", "Sleep1", "Sleep2", "Stretch", "Sway", "Tail", "Attack" };
 
-    private string[] BasicEmotion = { "Blink", "Sleep1", "Sleep2", "Ennui" };
-    private string[] PlusEmotion = { "Dig", "Fly", "Lick", "Paw", "Relax", "Scratch", "Sleep3", "Sniff", "Stretch", "Sway", "Tail", "Attack" };
     private bool IsEmotion = false;
     private bool IsSpecialEmotion= false;
 
@@ -49,15 +49,8 @@ public class Cat_LobbyMove : MonoBehaviour
         SetEmotionList();
     }
 
-    private void SetEmotionList()
+    public void SetEmotionList()
     {
-        for (int i = 0; i < 16; i++)
-        {
-            if (Managers.Game.SaveData.Emotion[i] == true)
-            {
-                Emotion.Add(Managers.Data.ExpressBooks[1501+i].Express_Int_Name);
-            }
-        }
 
     }
     private void Start()
@@ -214,7 +207,10 @@ public class Cat_LobbyMove : MonoBehaviour
 
     private void OnMouseDown()
     {
-        SpecialEmotion();
+        if (!EventSystem.current.IsPointerOverGameObject())
+        {
+            SpecialEmotion();
+        }
     }
     private void DoBasicEmotion()
     {
@@ -228,16 +224,31 @@ public class Cat_LobbyMove : MonoBehaviour
         anim.SetBool(_curEmotion, true);
         StartCoroutine(CanBasicEmotion(_curEmotion, Random.Range(5f, 15f)));
     }
+
+    public void EatEmotion()
+    {
+        anim.SetBool(_curEmotion, false);
+        anim.SetBool("walk", false);
+
+        anim.SetBool("Sniff", true);
+        StartCoroutine(CanBasicEmotion("Sniff", 3f));
+    }
     private void SpecialEmotion()
     {
+        if(Managers.Game.SaveData.EmotionList.Count ==0)
+        {
+            Managers.UI.ShowPopupUI<UI_NoEmotion>();
+            return;
+        }
+
         if (IsSpecialEmotion)
             return;
         IsSpecialEmotion = true;
         anim.SetBool(_curEmotion, false);
         anim.SetBool("walk", false);
         Managers.Sound.Play(Define.Sound.Effect, "Effects/CatTouch", 0.3f);
-        _indexEmotion = Random.Range(0, Emotion.Count);
-        _curEmotion = Emotion[_indexEmotion];
+        _indexEmotion = Random.Range(0, Managers.Game.SaveData.EmotionList.Count);
+        _curEmotion = Managers.Game.SaveData.EmotionList[_indexEmotion];
         anim.SetBool(_curEmotion, true);
         StartCoroutine(CanSpcialEmotion(_curEmotion, Managers.Data.ExpressBooks[1501 + _indexEmotion].Express_Time));
     }

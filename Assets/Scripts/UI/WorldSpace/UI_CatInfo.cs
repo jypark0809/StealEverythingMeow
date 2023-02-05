@@ -12,7 +12,7 @@ public class UI_CatInfo : UI_Base
     public float NextExp;
     public Transform Target;
 
-    private float DeleteTime = 6f;
+    private float DeleteTime = 8f;
 
     enum GameObjects
     {
@@ -54,24 +54,29 @@ public class UI_CatInfo : UI_Base
         foreach (Transform child in gridPanel.transform)
             Managers.Resource.Destroy(child.gameObject);
 
-        for (int i = 1; i < HappyLevel; i++)
+        for (int i = 0; i < 5; i++)
         {
-            GameObject Item = Managers.Resource.Instantiate("UI/UI_HeartSet");
-            Item.transform.SetParent(gridPanel.transform);
-            UI_HeartSet HerartSet = Util.GetOrAddComponent<UI_HeartSet>(Item);
-            HerartSet.SetInfo(1, 1);
-        }
-        GameObject Item1 = Managers.Resource.Instantiate("UI/UI_HeartSet");
-        Item1.transform.SetParent(gridPanel.transform);
-        UI_HeartSet HerartSet1 = Util.GetOrAddComponent<UI_HeartSet>(Item1);
-        HerartSet1.SetInfo(CurExp, NextExp);
-
-        for (int i = HappyLevel + 1; i < 6; i++)
-        {
-            GameObject Item = Managers.Resource.Instantiate("UI/UI_HeartSet");
-            Item.transform.SetParent(gridPanel.transform);
-            UI_HeartSet HerartSet = Util.GetOrAddComponent<UI_HeartSet>(Item);
-
+            if(i < HappyLevel)
+            {
+                GameObject Item = Managers.Resource.Instantiate("UI/UI_HeartSet");
+                Item.transform.SetParent(gridPanel.transform);
+                UI_HeartSet HerartSet = Util.GetOrAddComponent<UI_HeartSet>(Item);
+                HerartSet.SetInfo(1, 1);
+            }
+            else if(i == HappyLevel)
+            {
+                GameObject Item1 = Managers.Resource.Instantiate("UI/UI_HeartSet");
+                Item1.transform.SetParent(gridPanel.transform);
+                UI_HeartSet HerartSet1 = Util.GetOrAddComponent<UI_HeartSet>(Item1);
+                HerartSet1.SetInfo(CurExp, NextExp);
+            }
+            else if( i> HappyLevel)
+            {
+                GameObject Item = Managers.Resource.Instantiate("UI/UI_HeartSet");
+                Item.transform.SetParent(gridPanel.transform);
+                UI_HeartSet HerartSet = Util.GetOrAddComponent<UI_HeartSet>(Item);
+                HerartSet.SetInfo(0, 1);
+            }
         }
     }
 

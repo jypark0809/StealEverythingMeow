@@ -37,6 +37,14 @@ public class UI_CatSet : UI_Base
         GetImage((int)Images.UI_CatSet).gameObject.BindEvent(OpenDetail, Define.UIEvent.Click);
     }
 
+    private void Update()
+    {
+        if (Managers.Game.SaveData.CatHave[Index])
+        {
+            Get<Image>((int)Images.BlockImage).gameObject.SetActive(false);
+        }
+    }
+
     public void SetInfo(int _index)
     {
         Index = _index;

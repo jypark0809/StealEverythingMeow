@@ -13,7 +13,6 @@ public class UI_UpgradePopUp : UI_Popup
     }
     enum Buttons
     {
-        CloseButton,
         Space,
         Soom,
     }
@@ -32,7 +31,6 @@ public class UI_UpgradePopUp : UI_Popup
         GetButton((int)Buttons.Space).gameObject.BindEvent(OpenSpace);
         GetButton((int)Buttons.Soom).gameObject.BindEvent(OpenSoom);
 
-        GetButton((int)Buttons.CloseButton).gameObject.BindEvent(OnCloseButton);
 
     }
 
@@ -45,9 +43,5 @@ public class UI_UpgradePopUp : UI_Popup
     {
         GetObject((int)GameObjects.UI_UnlockRoomPopup).SetActive(true);
         GetObject((int)GameObjects.UI_UpgradeSom).SetActive(false);
-    }
-    void OnCloseButton(PointerEventData evt)
-    {
-        Managers.UI.ClosePopupUI();
     }
 }

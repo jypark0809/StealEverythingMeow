@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-
 public class Soom : MonoBehaviour
 {
     public bool IsWood;
@@ -33,16 +32,17 @@ public class Soom : MonoBehaviour
     }
     private void OnMouseDown()
     {
-        if (!EventSystem.current.IsPointerOverGameObject())
-        {
-            Managers.UI.ShowPopupUI<UI_UpgradePopUp>();
-        }
+
         /*
         if(CurSoomLevel == 0)// 튜토리얼
             SomUpgrade();
         else if (CurSoomLevel <3)
             Managers.UI.ShowPopupUI<UI_UpgradeSom>(); 
         */
+        if (!EventSystem.current.IsPointerOverGameObject())
+        {
+            Managers.UI.ShowPopupUI<UI_UpgradePopUp>();
+        }
     }
 
     public void SomUpgrade()
@@ -78,26 +78,24 @@ public class Soom : MonoBehaviour
     {
         if (Managers.Game.SaveData.Wood >= Managers.Data.Sooms[1300 + CurSoomLevel + 1].Wood)
             IsWood = true;
+        else
+            IsWood = false;
         if (Managers.Game.SaveData.Stone >= Managers.Data.Sooms[1300 + CurSoomLevel + 1].Stone)
             IsStone = true;
+        else
+            IsStone = false;
         if (Managers.Game.SaveData.Cotton >= Managers.Data.Sooms[1300 + CurSoomLevel + 1].Cotton)
             IsCotton = true;
-
-        //방체크,가구체크 >>가구경우 상점과 확인후 다시 수정필요
-        //if (Managers.Game.SaveData.SpaceLevel == Managers.Data.Sooms[1300 + CurSoomLevel + 1].Space_Num)
-
-
-        /*
-        int CurFur = 0;
-        for (int i = 0; i < Managers.Game.SaveData.RoomLevel; i++)
-        {
-            CurFur += Managers.Game.SaveData.MaxFurniture[i];
-        }
-        if (CurFur == Managers.Data.Sooms[1300 + CurSoomLevel + 1].Space_F_Count)
+        else
+            IsCotton = false;
+        if (Managers.Game.SaveData.SpaceLevel == Managers.Data.Sooms[1300 + CurSoomLevel].Space_Num)
+            IsRoom = true;
+        else
+            IsRoom = false;
+        if (Managers.Game.SaveData.FList.Count == Managers.Data.Sooms[1300 + CurSoomLevel].Space_F_Count)
             IsFur = true;
-        */
-        IsRoom = true;
-        IsFur = true;
+        else
+            IsFur = false;
 
         if (IsWood & IsStone & IsCotton & IsFur & IsRoom)
         {

@@ -72,7 +72,6 @@ public class UI_Food_Item : UI_Base
         {
             hit.transform.GetComponent<Cat_LobbyHappniess>().Love(Name);
             go.transform.localPosition = new Vector3(0, 0, 0);
-            Debug.Log("»ç¶ûÇà");
             if(Managers.Game.SaveData.Food[Index] == 0)
             {
                 Get<Image>((int)Images.DragItem).gameObject.SetActive(false);

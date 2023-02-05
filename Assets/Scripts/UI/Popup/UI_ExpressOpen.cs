@@ -43,6 +43,5 @@ public class UI_ExpressOpen : UI_Popup
     void OnCloseButton(PointerEventData evt)
     {
         Managers.UI.ClosePopupUI();
-
     }
 }

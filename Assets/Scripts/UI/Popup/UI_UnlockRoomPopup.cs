@@ -34,6 +34,7 @@ public class UI_UnlockRoomPopup : UI_Base
     enum Buttons
     {
         OkButton,
+        CloseButton,
     }
 
     void Start()
@@ -66,6 +67,8 @@ public class UI_UnlockRoomPopup : UI_Base
             GetText((int)Texts.GoldUpText).text = Managers.Data.Spaces[1200 + Managers.Game.SaveData.SpaceLevel + 1].Gold.ToString();
             GetText((int)Texts.TopText).text = Managers.Data.Spaces[1200 + Managers.Game.SaveData.SpaceLevel + 1].Space_Name.ToString() + " 해금하기";
         }
+
+        GetButton((int)Buttons.CloseButton).gameObject.BindEvent(OnCloseButton);
     }
 
     void OnOkayButton(PointerEventData evt)
@@ -112,7 +115,7 @@ public class UI_UnlockRoomPopup : UI_Base
             else
             {
                 GetObject((int)GameObjects.StonePanel).GetComponent<Image>().color = Color.cyan;
-                GetText((int)Texts.StoneCount).text = Managers.Game.SaveData.Stone + " / " + Managers.Data.Sooms[1200 + Managers.Game.SaveData.SpaceLevel + 1].Stone.ToString();
+                GetText((int)Texts.StoneCount).text = Managers.Game.SaveData.Stone + " / " + Managers.Data.Spaces[1200 + Managers.Game.SaveData.SpaceLevel + 1].Stone.ToString();
             }
         }
     }

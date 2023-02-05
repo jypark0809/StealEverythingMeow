@@ -80,12 +80,12 @@ public class ObjectManager
         }
         if (Managers.Game.SaveData.CatHave[3])
         {
-            GameObject go4 = Managers.Resource.Instantiate(path + "Calico", parent);
+            GameObject go4 = Managers.Resource.Instantiate(path + "Thcolor", parent);
             _catLobbyCalico = go4.GetOrAddComponent<Cat_LobbyHappniess>();
         }
         if (Managers.Game.SaveData.CatHave[4])
         {
-            GameObject go5 = Managers.Resource.Instantiate(path + "Tabby", parent);
+            GameObject go5 = Managers.Resource.Instantiate(path + "Cheeze", parent);
             _catLobbyTabby = go5.GetOrAddComponent<Cat_LobbyHappniess>();
         }
 

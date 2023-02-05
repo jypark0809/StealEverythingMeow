@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 using UnityEngine.EventSystems;
-
-public class UI_Quest : UI_Popup
+using UnityEngine.UI;
+public class UI_FullHappy : UI_Popup
 {
     enum Buttons
     {
-        CloseButton
+        OkButton,
     }
 
     void Start()
@@ -19,11 +19,9 @@ public class UI_Quest : UI_Popup
     public override void Init()
     {
         base.Init();
-
         Bind<Button>(typeof(Buttons));
-        GetButton((int)Buttons.CloseButton).gameObject.BindEvent(OnCloseButton);
+        GetButton((int)Buttons.OkButton).gameObject.BindEvent(OnCloseButton);
     }
-
     void OnCloseButton(PointerEventData evt)
     {
         Managers.UI.ClosePopupUI();
