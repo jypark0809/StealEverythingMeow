@@ -1,18 +1,113 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TimeScheduler : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private static TimeScheduler instance;
+    public static TimeScheduler Instance { get { Init(); return instance; } }
+    private DateTime lastQuitTime;
+
+    void Awake()
     {
-        
+        Init();
+        lastQuitTime = new DateTime(2023, 1, 1).ToLocalTime();
     }
 
-    // Update is called once per frame
-    void Update()
+    #region Unity Event Function
+    // 게임 초기화, 중간 이탈, 복귀 시 실행되는 함수
+    void OnApplicationFocus(bool focus)
     {
-        
+        if (focus)
+        {
+            LoadLastQuitTime();
+        }
+        else
+        {
+            SaveLastQuitTime();
+        }
+    }
+
+    //게임 종료 시 실행되는 함수
+    public void OnApplicationQuit()
+    {
+        SaveLastQuitTime();
+    }
+    #endregion
+
+    static void Init()
+    {
+        if (instance == null)
+        {
+            GameObject go = GameObject.Find("@Scheduler");
+            if (go == null)
+            {
+                go = new GameObject { name = "@Scheduler" };
+                go.AddComponent<TimeScheduler>();
+            }
+
+            instance = go.GetComponent<TimeScheduler>();
+        }
+    }
+
+    void Start()
+    {
+        // 마지막 접속한 날짜와 지금 접속한 날짜가 다를 때
+        if (lastQuitTime.Month != lastQuitTime.Month && lastQuitTime.Day != DateTime.Now.ToLocalTime().Day)
+        {
+            InitData();
+
+            // 고양이 행복도
+
+        }
+            
+        StartCoroutine(Timer());
+    }
+
+    public void LoadLastQuitTime()
+    {
+        Debug.Log($"LoadLastQuitTime HasKey : {PlayerPrefs.HasKey("LastQuitTime")}");
+        if (PlayerPrefs.HasKey("LastQuitTime"))
+        {
+            var getTime = string.Empty;
+            getTime = PlayerPrefs.GetString("LastQuitTime");
+            lastQuitTime = DateTime.FromBinary(Convert.ToInt64(getTime));
+            // Debug.Log($"LoadLastQuitTime : {lastQuitTime}");
+        }
+    }
+
+    public void SaveLastQuitTime()
+    {
+        var currentTime = DateTime.Now.ToLocalTime().ToBinary().ToString();
+        PlayerPrefs.SetString("LastQuitTime", currentTime);
+        // Debug.Log(PlayerPrefs.HasKey("LastQuitTime"));
+    }
+
+    public int GetUnconnectedTime()
+    {
+        return (int)((DateTime.Now.ToLocalTime() - lastQuitTime).TotalSeconds);
+    }
+
+    private IEnumerator Timer()
+    {
+        while (true)
+        {
+            DateTime now = DateTime.Now.ToLocalTime();
+            if (now.Hour == 0 && now.Minute == 0 && now.Minute == 0)
+            {
+                InitData(); // 데이터 초기화
+                
+                // 고양이 행복도 버튼 활성화
+
+            }
+
+            yield return new WaitForSeconds(60f);
+        }
+    }
+
+    void InitData()
+    {
+        // 데이터 초기화
     }
 }

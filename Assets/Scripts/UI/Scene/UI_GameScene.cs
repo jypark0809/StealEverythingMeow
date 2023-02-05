@@ -26,8 +26,6 @@ public class UI_GameScene : UI_Scene
 
     public Action skillHandler = null;
 
-    UI_Test _testUI;
-
     enum GameObjects
     {
         JoystickPanel,
