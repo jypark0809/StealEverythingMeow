@@ -51,13 +51,13 @@ public class UI_UnlockRoomPopup : UI_Base
         Bind<TextMeshProUGUI>(typeof(Texts));
         Bind<GameObject>(typeof(GameObjects));
 
-        if (Managers.Game.SaveData.SpaceLevel == 3)
+        if (Managers.Game.SaveData.SpaceLevel == 3 && Managers.Game.SaveData.SoomLevel != 2)
         {
             GetObject((int)GameObjects.Upgrade).gameObject.SetActive(false);
             GetObject((int)GameObjects.Full).gameObject.SetActive(true);
             GetText((int)Texts.FullText).text = Managers.Data.Spaces[1200 + Managers.Game.SaveData.SpaceLevel + 1].Space_Name +"을 해금하기 위해서는 \n 숨숨집 Lv.2가 필요하다냥 ";
         }
-        else if (Managers.Game.SaveData.SpaceLevel == 6)
+        else if (Managers.Game.SaveData.SpaceLevel == 6 && Managers.Game.SaveData.SoomLevel != 3)
         {
             GetObject((int)GameObjects.Upgrade).gameObject.SetActive(false);
             GetObject((int)GameObjects.Full).gameObject.SetActive(true);
@@ -68,7 +68,6 @@ public class UI_UnlockRoomPopup : UI_Base
             GetObject((int)GameObjects.Upgrade).gameObject.SetActive(false);
             GetObject((int)GameObjects.Full).gameObject.SetActive(true);
         }
-
         else
         {
             GetObject((int)GameObjects.Upgrade).gameObject.SetActive(true);
@@ -113,7 +112,7 @@ public class UI_UnlockRoomPopup : UI_Base
 
         foreach (Transform child in gridPanel.transform)
             Managers.Resource.Destroy(child.gameObject);
-
+        
         for (int i = 0; i < Count; i++)
         {
             GameObject Item = Managers.Resource.Instantiate("UI/UI_FurnitureCheckPanel");
@@ -134,6 +133,7 @@ public class UI_UnlockRoomPopup : UI_Base
             FurSet.SetInfo(Managers.Data.Furnitures[1101 + i + CurFurCount].F_Name, CurHave);
 
         }
+        
     }
 
     void CheckGoods()
