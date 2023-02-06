@@ -60,10 +60,12 @@ public class UI_Food_Item : UI_Base
 
     void drag(PointerEventData evt)
     {
+        Camera.main.GetComponent<CameraMove>().enabled = false;
         go.transform.position = evt.position;
     }
     void EndDrag(PointerEventData evt)
     {
+        Camera.main.GetComponent<CameraMove>().enabled = true;
         Vector2 pos = Camera.main.ScreenToWorldPoint(evt.position);
         var ray = Camera.main.ScreenPointToRay(pos);
         RaycastHit hit;
@@ -81,5 +83,7 @@ public class UI_Food_Item : UI_Base
         {
             go.transform.localPosition = Vector3.zero;
         }
+
+
     }
 }

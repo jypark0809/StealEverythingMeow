@@ -74,6 +74,26 @@ public class Define : MonoBehaviour
         Tabby,
         Grey
     }
+    public enum CatEmotion
+    {
+        Blink,
+        Dig,
+        Ennui,
+        Fly,
+        Lick,
+        Paw,
+        Relax,
+        Scratch, 
+        Sleep1, 
+        Sleep2,
+        Sleep3,
+        Sniff,
+        Stretch,
+        Sway, 
+        Tail, 
+        Attack
+    }
+
 
     public const int MOTION_COUNT = 16;
 }
