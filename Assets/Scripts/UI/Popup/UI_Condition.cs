@@ -66,7 +66,7 @@ public class UI_Condition : UI_Popup
         {
             GetButton((int)Buttons.DiaUp).interactable = false;
         }
-        if(Managers.Game.SaveData.IsSoomUp)
+        if (Managers.Game.SaveData.IsSoomUp)
         {
             GetButton((int)Buttons.GoldUp).gameObject.BindEvent(OnGoldUpgrdae);
             GetButton((int)Buttons.GoldUp).image.color = Color.yellow;
@@ -84,15 +84,16 @@ public class UI_Condition : UI_Popup
     {
         GameObject gridPanel = Get<GameObject>((int)GameObjects.ConditionSet);
 
-        int Index = Managers.Game.SaveData.SpaceLevel;
-        int CurSoomLevel = Managers.Game.SaveData.SoomLevel;
+        int SpaceLevel = Managers.Game.SaveData.SpaceLevel;
+        int SoomLevel = Managers.Game.SaveData.SoomLevel;
 
-        int Count = Managers.Data.Spaces[1200 + Index].Space_Furniture_Count;
-        int CurFurCount = 0;
-        int SoomCount = 0;
+        int MaxCount = Managers.Data.Spaces[1200 + Managers.Data.Sooms[1300 + SoomLevel].Space_Num].Space_Furniture_Count;
+        int StartSoomFur = 0;
+
         bool CurHave = false;
         bool CurRoom = false;
 
+<<<<<<< Updated upstream
 
         for (int i = 1; i < Index; i++)
         {
@@ -104,30 +105,47 @@ public class UI_Condition : UI_Popup
             SoomCount += Managers.Data.Spaces[1200 + i].Space_Furniture_Count;
         }
 
+=======
+        //방조건
+>>>>>>> Stashed changes
         foreach (Transform child in gridPanel.transform)
             Managers.Resource.Destroy(child.gameObject);
-
-
+        
         GameObject Item1 = Managers.Resource.Instantiate("UI/UI_FurnitureCheckPanel");
         Item1.transform.SetParent(gridPanel.transform);
         UI_FurnitureCheckPanel RoomSet = Util.GetOrAddComponent<UI_FurnitureCheckPanel>(Item1);
+<<<<<<< Updated upstream
 
 
         // 이따 수정할부분
         if (Managers.Game.SaveData.SpaceLevel == Managers.Data.Sooms[1300 + CurSoomLevel].Space_Num)
+=======
+        if (SpaceLevel == Managers.Data.Sooms[1300 + SoomLevel].Space_Num)
+>>>>>>> Stashed changes
             CurRoom = true;
         else
             CurRoom = false;
-        RoomSet.SetInfo(Managers.Data.Spaces[1200 + Managers.Data.Sooms[1300 + CurSoomLevel].Space_Num].Space_Name, CurRoom);
-
-        for (int i = 0; i < Count; i++)
+        RoomSet.SetInfo(Managers.Data.Spaces[1200 + Managers.Data.Sooms[1300 + SoomLevel].Space_Num].Space_Name, CurRoom);
+        
+        //가구조건
+        for (int i = 1; i < Managers.Data.Sooms[1300 + SoomLevel].Space_Num; i++)
         {
+            StartSoomFur += Managers.Data.Spaces[1200 + i].Space_Furniture_Count;
+        }
+        
+        for (int i = 0; i < MaxCount; i++)
+        {
+            /*
+            GameObject Item = Managers.UI.MakeSubItem<UI_FurnitureCheckPanel>().gameObject;
+            Item.transform.SetParent(gridPanel.transform);
+            UI_FurnitureCheckPanel FurSet = Util.GetOrAddComponent<UI_FurnitureCheckPanel>(Item);
+            */
             GameObject Item = Managers.Resource.Instantiate("UI/UI_FurnitureCheckPanel");
             Item.transform.SetParent(gridPanel.transform);
             UI_FurnitureCheckPanel FurSet = Util.GetOrAddComponent<UI_FurnitureCheckPanel>(Item);
-            for (int j = CurFurCount; j < Managers.Game.SaveData.FList.Count; j++)
+            for (int j = StartSoomFur; j < Managers.Game.SaveData.FList.Count; j++)
             {
-                if (Managers.Game.SaveData.FList[j].F_Name == Managers.Data.Furnitures[1101 + i + SoomCount].F_Name)
+                if (Managers.Game.SaveData.FList[j].F_Name == Managers.Data.Furnitures[1101 + i + StartSoomFur].F_Name)
                 {
                     CurHave = true;
                     break;
@@ -137,8 +155,8 @@ public class UI_Condition : UI_Popup
                     CurHave = false;
                 }
             }
-            FurSet.SetInfo(Managers.Data.Furnitures[1101 + i + SoomCount].F_Name, CurHave);
-
+            FurSet.SetInfo(Managers.Data.Furnitures[1101 + i + StartSoomFur].F_Name, CurHave);
+            
         }
     }
 
