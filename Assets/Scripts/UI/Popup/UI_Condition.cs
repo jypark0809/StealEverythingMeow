@@ -92,36 +92,31 @@ public class UI_Condition : UI_Popup
 
         bool CurHave = false;
         bool CurRoom = false;
-
-<<<<<<< Updated upstream
-
-        for (int i = 1; i < Index; i++)
+        
+        for (int i = 1; i < MaxCount; i++)
         {
-            CurFurCount += Managers.Data.Spaces[1200 + i].Space_Furniture_Count;
+            StartSoomFur += Managers.Data.Spaces[1200 + i].Space_Furniture_Count;
         }
 
-        for (int i = 1; i < Managers.Data.Sooms[1300+CurSoomLevel].Space_Num; i++)
+        for (int i = 1; i < Managers.Data.Sooms[1300+ SoomLevel].Space_Num; i++)
         {
-            SoomCount += Managers.Data.Spaces[1200 + i].Space_Furniture_Count;
+            StartSoomFur += Managers.Data.Spaces[1200 + i].Space_Furniture_Count;
         }
 
-=======
         //방조건
->>>>>>> Stashed changes
         foreach (Transform child in gridPanel.transform)
             Managers.Resource.Destroy(child.gameObject);
         
         GameObject Item1 = Managers.Resource.Instantiate("UI/UI_FurnitureCheckPanel");
         Item1.transform.SetParent(gridPanel.transform);
         UI_FurnitureCheckPanel RoomSet = Util.GetOrAddComponent<UI_FurnitureCheckPanel>(Item1);
-<<<<<<< Updated upstream
 
 
         // 이따 수정할부분
-        if (Managers.Game.SaveData.SpaceLevel == Managers.Data.Sooms[1300 + CurSoomLevel].Space_Num)
-=======
+        if (Managers.Game.SaveData.SpaceLevel == Managers.Data.Sooms[1300 + SoomLevel].Space_Num)
+
         if (SpaceLevel == Managers.Data.Sooms[1300 + SoomLevel].Space_Num)
->>>>>>> Stashed changes
+
             CurRoom = true;
         else
             CurRoom = false;
