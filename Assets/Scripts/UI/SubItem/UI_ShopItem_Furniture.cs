@@ -59,7 +59,7 @@ public class UI_ShopItem_Furniture : UI_Base
 
         GetText((int)Texts.ItemName).text = _fData.F_Name;
         GetText((int)Texts.ItemDesc).text = _fData.F_Desc;
-        GetText((int)Texts.PriceText).text = $"{_fData.F_Gold.ToString("N0")}G";
+        GetText((int)Texts.PriceText).text = $"{_fData.F_Gold.ToString("N0")}";
     }
 
     void OnButtonClicked(PointerEventData evt)
