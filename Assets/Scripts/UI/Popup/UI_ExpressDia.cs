@@ -33,7 +33,8 @@ public class UI_ExpressDia : UI_Popup
 
 
 
-        GetText((int)Texts.ConditionText).text = ($"'{Managers.Data.ExpressBooks[1501+Index].Express_Name}'를 획득하려면\n /<color = red >{Index}</color>를 달성해야 해요!");
+        GetText((int)Texts.ConditionText).text = ($"'{Managers.Data.ExpressBooks[1501+Index].Express_Name}'를 획득하려면\n <color=red>" + Managers.Data.ExpressBooks[1501 + Index].Express_Path+"</color> 를 달성해야 해요!" + "\n다이아를 사용해서 획득하시겠습니까?");
+
 
 
         if (Managers.Game.SaveData.Dia<100)
@@ -55,8 +56,10 @@ public class UI_ExpressDia : UI_Popup
 
     void GetEmotion(PointerEventData evt)
     {
-        Debug.Log("획득");
+        Managers.Game.SaveData.EmotionList.Add(Managers.Data.ExpressBooks[1501+Index].Express_Int_Name);
         Managers.Game.SaveData.Emotion[Index] = true;
+        Managers.Game.SaveData.Dia -= 100;
+        Managers.Game.SaveGame();
         Managers.UI.ClosePopupUI();
     }
     void OnCloseButton(PointerEventData evt)

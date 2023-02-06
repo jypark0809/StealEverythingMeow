@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TileManager : MonoBehaviour
+public class Room : MonoBehaviour
 {
     public bool IsGold;
     public bool IsWood;
@@ -12,8 +12,8 @@ public class TileManager : MonoBehaviour
     public bool IsFur;
     public bool Issoom;
 
-    private float OpenTime;
-    DateTime now;
+    private float DurationTime;
+    DateTime OpenTime;
     private int CurRoomLevel;
     private void Start()
     {
@@ -24,41 +24,45 @@ public class TileManager : MonoBehaviour
     {
         if(Managers.Game.SaveData.SpaceLevel < 10)
             IsRoomCheck();
+
+        /*
+        if(Managers.Game.SaveData.DoingRoomUpgrade)
+        {
+            if(DateTime.Now >= OpenTime)
+            {
+                OpenRoom();
+            }
+        }
+        */
     }
     public void Open()
     {
-        OpenTime = Managers.Data.Spaces[1200 + CurRoomLevel + 1].Space_Time;
-        StartCoroutine(OpenRoom(0f));//OpenTime));
+        Managers.Game.SaveData.DoingRoomUpgrade = true;
+        DurationTime = Managers.Data.Spaces[1200 + CurRoomLevel + 1].Space_Time;
+        OpenTime = DateTime.Now.AddSeconds(DurationTime);
+        Debug.Log(DateTime.Now);
+        Debug.Log(OpenTime);
+        //Managers.UI.MakeWorldSpaceUI<UI_RestTime>().SetInfo(DurationTime);
+        Managers.UI.ClosePopupUI();
+        OpenRoom();
+    }
+    private void OpenRoom()
+    {
+        //Managers.Game.SaveData.DoingRoomUpgrade = false;
+        //행복도 추가
         for (int i = 0; i < Managers.Game.SaveData.CatHave.Length; i++)
         {
             if (Managers.Game.SaveData.CatHave[i])
                 Managers.Game.SaveData.CatCurHappinessExp[i] += Managers.Data.Spaces[1200 + CurRoomLevel].Happiness;
         }
-        //시간체크 함수 추가
 
         //카메라 움직임 추가
-
-        //행복도 추가
-        Managers.UI.ClosePopupUI();
-    }
-    IEnumerator OpenRoom(float _Time)
-    {
-        // Managers.Game.SaveData.DoingRoomUpgrade = true;
-        Managers.UI.MakeWorldSpaceUI<UI_RestTime>().SetInfo(_Time);
-        yield return new WaitForSeconds(_Time);
-
         Managers.Resource.Destroy(Managers.Object.CatHouse.gameObject);
-        Managers.Game.SaveGame();
-
         Managers.UI.ShowPopupUI<UI_Sucess>();
         CurRoomLevel++;
         Managers.Game.SaveData.SpaceLevel++;
         Managers.Object.SpawnCatHouse("CatHouse_" + Managers.Game.SaveData.SpaceLevel);
         Managers.Sound.Play(Define.Sound.Effect, "Effects/RoomOpen");
-        //yield return new WaitForSeconds(2f);
-        //Managers.Game.SaveData.DoingRoomUpgrade = false;
-        //Debug.Log(Managers.Game.SaveData.DoingRoomUpgrade);
-        //Managers.Game.SaveGame();
     }
     private void IsRoomCheck()
     {

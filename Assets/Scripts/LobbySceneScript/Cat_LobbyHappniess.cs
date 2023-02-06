@@ -47,6 +47,7 @@ public class Cat_LobbyHappniess : MonoBehaviour
             Managers.Game.SaveData.CatCurHappinessExp[CatIndex] = 0;
             Managers.Game.SaveData.CatHappinessLevel[CatIndex] = 5;
         }
+        Managers.Game.SaveGame();
     }
 
     public void Love(string _food)
@@ -162,38 +163,86 @@ public class Cat_LobbyHappniess : MonoBehaviour
     }
     void GetEmotion()
     {
-        Debug.Log("°¨Á¤Ç¥Çö È¹µæ");
-
+        int _Index1 = 0;
+        bool _Index1bool = false;
+        int _Index2 = 0;
+        bool _Index2bool = false;
         switch (GetMinMax(Managers.Game.SaveData.CatHappinessLevel))
         {
             case 2:
-                Managers.Game.SaveData.Emotion[3] = true;
-                Managers.Game.SaveData.Emotion[5] = true;
-                Managers.UI.ShowPopupUI<UI_ExpressOpen>().Setinfo(3, 5);
-                Managers.Game.SaveData.EmotionList.Add(Managers.Data.ExpressBooks[1504].Express_Int_Name);
-                Managers.Game.SaveData.EmotionList.Add(Managers.Data.ExpressBooks[1506].Express_Int_Name);
+                _Index1 = (int)Define.CatEmotion.Tail;
+                _Index2 = (int)Define.CatEmotion.Dig;
+                if(!Managers.Game.SaveData.Emotion[_Index1])
+                {
+                    Managers.Game.SaveData.Emotion[_Index1] = true;
+                    Managers.Game.SaveData.EmotionList.Add(Managers.Data.ExpressBooks[1501+ _Index1].Express_Int_Name);
+                    _Index1bool = true;
+                }
+                if (!Managers.Game.SaveData.Emotion[_Index2])
+                {
+                    Managers.Game.SaveData.Emotion[_Index2] = true;
+                    Managers.Game.SaveData.EmotionList.Add(Managers.Data.ExpressBooks[1501 + _Index2].Express_Int_Name);
+                    _Index2bool = true;
+                }
+                if (_Index1bool || _Index2bool)
+                    Managers.UI.ShowPopupUI<UI_ExpressOpen>();
                 break;
             case 3:
-                Managers.Game.SaveData.Emotion[12]   = true;
-                Managers.Game.SaveData.Emotion[9] = true;
-                Managers.UI.ShowPopupUI<UI_ExpressOpen>().Setinfo(12, 9);
-                Managers.Game.SaveData.EmotionList.Add(Managers.Data.ExpressBooks[1513].Express_Int_Name);
-                Managers.Game.SaveData.EmotionList.Add(Managers.Data.ExpressBooks[1510].Express_Int_Name);
+                _Index1 = (int)Define.CatEmotion.Fly;
+                _Index2 = (int)Define.CatEmotion.Paw;
+                if (!Managers.Game.SaveData.Emotion[_Index1])
+                {
+                    Managers.Game.SaveData.Emotion[_Index1] = true;
+                    Managers.Game.SaveData.EmotionList.Add(Managers.Data.ExpressBooks[1501 + _Index1].Express_Int_Name);
+                    _Index1bool = true;
+                }
+                if (!Managers.Game.SaveData.Emotion[_Index2])
+                {
+                    Managers.Game.SaveData.Emotion[_Index2] = true;
+                    Managers.Game.SaveData.EmotionList.Add(Managers.Data.ExpressBooks[1501 + _Index2].Express_Int_Name);
+                    _Index2bool = true;
+ 
+                }
+                if (_Index1bool || _Index2bool)
+                    Managers.UI.ShowPopupUI<UI_ExpressOpen>();
                 break;
             case 4:
-                Managers.Game.SaveData.Emotion[8] = true;
-                Managers.Game.SaveData.Emotion[6] = true;
-                Managers.UI.ShowPopupUI<UI_ExpressOpen>().Setinfo(8, 6);
-                Managers.Game.SaveData.EmotionList.Add(Managers.Data.ExpressBooks[1509].Express_Int_Name);
-                Managers.Game.SaveData.EmotionList.Add(Managers.Data.ExpressBooks[1507].Express_Int_Name);
+                _Index1 = (int)Define.CatEmotion.Stretch;
+                _Index2 = (int)Define.CatEmotion.Sleep2;
+                if (!Managers.Game.SaveData.Emotion[_Index1])
+                {
+                    Managers.Game.SaveData.Emotion[_Index1] = true;
+                    Managers.Game.SaveData.EmotionList.Add(Managers.Data.ExpressBooks[1501 + _Index1].Express_Int_Name);
+                    _Index1bool = true;
+                }
+                if (!Managers.Game.SaveData.Emotion[_Index2])
+                {
+                    Managers.Game.SaveData.Emotion[_Index2] = true;
+                    Managers.Game.SaveData.EmotionList.Add(Managers.Data.ExpressBooks[1501 + _Index2].Express_Int_Name);
+                    _Index2bool = true;
+                }
+                if (_Index1bool || _Index2bool)
+                    Managers.UI.ShowPopupUI<UI_ExpressOpen>();
                 break;
             case 5:
-                Managers.Game.SaveData.Emotion[7] = true;
-                Managers.Game.SaveData.Emotion[13] = true;
-                Managers.UI.ShowPopupUI<UI_ExpressOpen>().Setinfo(7, 13);
-                Managers.Game.SaveData.EmotionList.Add(Managers.Data.ExpressBooks[1508].Express_Int_Name);
-                Managers.Game.SaveData.EmotionList.Add(Managers.Data.ExpressBooks[1514].Express_Int_Name);
+                _Index1 = (int)Define.CatEmotion.Sleep1;
+                _Index2 = (int)Define.CatEmotion.Relax;
+                if (!Managers.Game.SaveData.Emotion[_Index1])
+                {
+                    Managers.Game.SaveData.Emotion[_Index1] = true;
+                    Managers.Game.SaveData.EmotionList.Add(Managers.Data.ExpressBooks[1501 + _Index1].Express_Int_Name);
+                    _Index1bool = true;
+                }
+                if (!Managers.Game.SaveData.Emotion[_Index2])
+                {
+                    Managers.Game.SaveData.Emotion[_Index2] = true;
+                    Managers.Game.SaveData.EmotionList.Add(Managers.Data.ExpressBooks[1501 + _Index2].Express_Int_Name);
+                    _Index2bool = true;
+                }
+                if (_Index1bool || _Index2bool)
+                    Managers.UI.ShowPopupUI<UI_ExpressOpen>();
                 break;
         }
+                
     }
 }
