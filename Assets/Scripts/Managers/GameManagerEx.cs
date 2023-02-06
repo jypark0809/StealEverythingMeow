@@ -23,8 +23,8 @@ public class GameData
 
 
     public bool[] Emotion = new bool[Define.MOTION_COUNT] {true, false, true , false, false, false, false, false, false, true, true, false, false, false, false, false };
-    public List<string> EmotionList = new List<string>();
-
+    public List<string> EmotionList = new List<string>()
+        ;
     //°ø°£
     public int SpaceLevel = 1;
     public int SoomLevel = 1;
@@ -44,7 +44,7 @@ public class GameData
     public float[] CatCurHappinessExp = new float[5] { 0, 0, 0, 0, 0 };
     public string[] CatName = {"ÇÏ¾çÀÌ","±î¸ÁÀÌ","»ï»öÀÌ","Ä¡Áî", "È¸»öÀÌ"};
 
-    // °£½Ä [Ä¹ÀÙ»çÅÁ, Ãò¸£, °íµî¾î±¸ÀÌ, À°Æ÷, ÂüÄ¡Äµ, ¿¬¾î]
+    // °£½Ä [Ä¹ÀÙ»çÅÁ, Ãò¸£, °íµî¾î±¸ÀÌ, À°Æ÷, ÂüÄ¡Äµ, ¿¬¾î,]
     public int[] Food = { 100, 2, 0, 4, 5 ,100};
     public GameData()
     {

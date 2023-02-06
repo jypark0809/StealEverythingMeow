@@ -257,7 +257,6 @@ public class CatBookData
     public int Diamond;
     public string Cat_Path;
 }
-
 [Serializable]
 public class CatBookDataLoader : ILoader<int, CatBookData>
 {
@@ -285,7 +284,6 @@ public class ExpressBookData
     public int Express_Time;
     public string Express_Path;
 }
-
 [Serializable]
 public class ExpressBookDataLoader : ILoader<int, ExpressBookData>
 {
@@ -310,14 +308,12 @@ public class ShopItemData
     public string Shop_Name;
     public string Shop_Desc;
     public int Shop_Type;
-    public int Shop_Limit_Num;
-    public int Pay_Type;
-    public int Pay_Value;
-    public int Reward;
+    public int Shop_Limit_Count;
+    public int PaymentType;
+    public int Value;
     public float Scale;
     public string ImgPath;
 }
-
 [Serializable]
 public class ShopItemDataLoader : ILoader<int, ShopItemData>
 {
@@ -347,7 +343,6 @@ public class HappinessData
     public int H_Rwd_Gold;
     public int H_Rwd_Power;
 }
-
 [Serializable]
 public class HappinessDataLoader : ILoader<int, HappinessData>
 {
@@ -359,34 +354,6 @@ public class HappinessDataLoader : ILoader<int, HappinessData>
 
         foreach (HappinessData HappinessData in Happinesses)
             dic.Add(HappinessData.H_Id, HappinessData);
-
-        return dic;
-    }
-}
-
-[Serializable]
-public class RewardData
-{
-    public int Id;
-    public int Gold;
-    public int Diamond;
-    public int Wood;
-    public int Stone;
-    public int Cotton;
-    public int Jelly;
-}
-
-[Serializable]
-public class RewardDataLoader : ILoader<int, RewardData>
-{
-    public List<RewardData> Rewards = new List<RewardData>();
-
-    public Dictionary<int, RewardData> MakeDict()
-    {
-        Dictionary<int, RewardData> dic = new Dictionary<int, RewardData>();
-
-        foreach (RewardData reward in Rewards)
-            dic.Add(reward.Id, reward);
 
         return dic;
     }
