@@ -5,6 +5,8 @@ using UnityEngine.Experimental.Rendering.Universal;
 using UnityEngine.EventSystems;
 public class CameraMove : MonoBehaviour
 {
+    int pointerId;
+
     float height;
     float width;
 
@@ -29,6 +31,12 @@ public class CameraMove : MonoBehaviour
 
         height = Camera.main.orthographicSize;
         width = height * Screen.width / Screen.height;
+
+#if UNITY_EDITOR
+        pointerId = -1;
+#elif UNITY_ANDROID
+        pointerId = 0;
+#endif
     }
 
     private void Start()
@@ -69,11 +77,15 @@ public class CameraMove : MonoBehaviour
     Vector2 clickPoint;
     private void Moving()
     {
-        if (!EventSystem.current.IsPointerOverGameObject())
+        if (!EventSystem.current.IsPointerOverGameObject(pointerId))
         {
+            
             if (Input.GetMouseButtonDown(0))
+            {
+                Debug.Log(EventSystem.current.IsPointerOverGameObject());
                 clickPoint = Input.mousePosition;
-
+            }
+                
             if (Input.GetMouseButton(0))
             {
                 Vector3 position
