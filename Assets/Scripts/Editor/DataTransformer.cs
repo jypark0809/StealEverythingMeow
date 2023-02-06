@@ -34,10 +34,7 @@ public class DataTransformer : EditorWindow
         ParseExpressBookData("ExpressBook");
         ParseShopItemData("ShopItem");
         ParseHappinessData("Happiness");
-<<<<<<< Updated upstream
         ParseSpaceData("Space");
-=======
->>>>>>> Stashed changes
     }
 
     static void ParseLevelExpData(string filename)

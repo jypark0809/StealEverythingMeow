@@ -20,10 +20,11 @@ public class Cat_LobbyHappniess : MonoBehaviour
     private bool IsInfo;
     private bool Isget;
 
-
+    public float Exp;
     void Update()
     {
         HappinessLevelUp();
+        Exp = Managers.Game.SaveData.CatCurHappinessExp[CatIndex];
     }
 
     void HappinessLevelUp()

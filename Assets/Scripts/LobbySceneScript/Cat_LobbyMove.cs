@@ -22,7 +22,6 @@ public class Cat_LobbyMove : MonoBehaviour
     private string _curEmotion;
 
     private string[] BasicEmotion = { "Blink", "Ennui" ,"Sleep3", "Sniff", };
-    private string[] PlusEmotion = { "Dig", "Fly", "Lick", "Paw", "Relax", "Scratch", "Sleep1", "Sleep2", "Stretch", "Sway", "Tail", "Attack" };
 
     private bool IsEmotion = false;
     private bool IsSpecialEmotion= false;
@@ -33,7 +32,9 @@ public class Cat_LobbyMove : MonoBehaviour
     public List<Node> FinalNodeList;
     public bool allowDiagonal, dontCrossCorner;
     int sizeX, sizeY;
-    Node[,] NodeArray;
+
+    public Node[,] NodeArray;
+
     Node StartNode, TargetNode, CurNode;
     List<Node> OpenList, ClosedList;
     private bool ReFind = false;
@@ -46,12 +47,7 @@ public class Cat_LobbyMove : MonoBehaviour
 
     private void Awake()
     {
-        SetEmotionList();
-    }
-
-    public void SetEmotionList()
-    {
-
+       
     }
     private void Start()
     {
@@ -86,8 +82,8 @@ public class Cat_LobbyMove : MonoBehaviour
     {
         int InputX = FinalNodeList[index].x;
         int InputY = FinalNodeList[index].y;
-        Vector2Int targetNode = new Vector2Int(InputX, InputY);
-        transform.position = Vector2.MoveTowards(transform.position, targetNode, _Speed * Time.deltaTime);
+        Vector3Int targetNode = new Vector3Int(InputX, InputY,1);
+        transform.position = Vector3.MoveTowards(transform.position, targetNode, _Speed * Time.deltaTime);
         if ((transform.position.x == targetNode.x && transform.position.y == targetNode.y))
         {
             index++;
@@ -122,7 +118,7 @@ public class Cat_LobbyMove : MonoBehaviour
             for (int j = 0; j < sizeY; j++)
             {
                 bool isWall = false;
-                foreach (Collider2D col in Physics2D.OverlapCircleAll(new Vector2(i + bottomLeft.x, j + bottomLeft.y), 0.4f))
+                foreach (Collider2D col in Physics2D.OverlapCircleAll(new Vector2(i + bottomLeft.x, j + bottomLeft.y), 0.45f))
                     if (col.gameObject.layer == LayerMask.NameToLayer("Wall")) isWall = true;
 
                 NodeArray[i, j] = new Node(isWall, i + bottomLeft.x, j + bottomLeft.y);
@@ -227,11 +223,12 @@ public class Cat_LobbyMove : MonoBehaviour
 
     public void EatEmotion()
     {
+        IsSpecialEmotion = true;
         anim.SetBool(_curEmotion, false);
         anim.SetBool("walk", false);
-
         anim.SetBool("Sniff", true);
-        StartCoroutine(CanBasicEmotion("Sniff", 3f));
+
+        StartCoroutine(CanSpcialEmotion("Sniff", 1f));
     }
     private void SpecialEmotion()
     {
@@ -250,6 +247,7 @@ public class Cat_LobbyMove : MonoBehaviour
         _indexEmotion = Random.Range(0, Managers.Game.SaveData.EmotionList.Count);
         _curEmotion = Managers.Game.SaveData.EmotionList[_indexEmotion];
         anim.SetBool(_curEmotion, true);
+
         StartCoroutine(CanSpcialEmotion(_curEmotion, Managers.Data.ExpressBooks[1501 + _indexEmotion].Express_Time));
     }
 
