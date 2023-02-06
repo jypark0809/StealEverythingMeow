@@ -103,7 +103,6 @@ public class UI_Condition : UI_Popup
         {
             SoomCount += Managers.Data.Spaces[1200 + i].Space_Furniture_Count;
         }
-
         foreach (Transform child in gridPanel.transform)
             Managers.Resource.Destroy(child.gameObject);
 
@@ -112,8 +111,6 @@ public class UI_Condition : UI_Popup
         Item1.transform.SetParent(gridPanel.transform);
         UI_FurnitureCheckPanel RoomSet = Util.GetOrAddComponent<UI_FurnitureCheckPanel>(Item1);
 
-
-        // 이따 수정할부분
         if (Managers.Game.SaveData.SpaceLevel == Managers.Data.Sooms[1300 + CurSoomLevel].Space_Num)
             CurRoom = true;
         else
