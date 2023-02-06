@@ -54,7 +54,6 @@ public class UI_ExpressSet : UI_Base
     public void OpenExpress(PointerEventData evt)
     {
         Managers.UI.ShowPopupUI<UI_ExpressDia>().SetInfo(Index);
-        Debug.Log("감정표현열기!");
     }
 
 }

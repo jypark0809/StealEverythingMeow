@@ -65,8 +65,8 @@ public class UI_Stat : UI_Popup
     {
         Get<GameObject>((int)GameObjects.CatStats).SetActive(true);
         Get<GameObject>((int)GameObjects.CatExpresses).SetActive(false);
-        GetButton((int)Buttons.CatStatButton).interactable = false;
-        GetButton((int)Buttons.CatExpressButton).interactable = true;
+        GetButton((int)Buttons.CatStatButton).interactable = true;
+        GetButton((int)Buttons.CatExpressButton).interactable = false;
     }
 
 
@@ -74,15 +74,17 @@ public class UI_Stat : UI_Popup
     {
         Get<GameObject>((int)GameObjects.CatStats).SetActive(true);
         Get<GameObject>((int)GameObjects.CatExpresses).SetActive(false);
-        GetButton((int)Buttons.CatStatButton).interactable = false;
-        GetButton((int)Buttons.CatExpressButton).interactable = true;
+        GetButton((int)Buttons.CatStatButton).interactable = true;
+        GetButton((int)Buttons.CatExpressButton).interactable = false;
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
     }
     void OpenExpress(PointerEventData evt)
     {
         Get<GameObject>((int)GameObjects.CatStats).SetActive(false);
         Get<GameObject>((int)GameObjects.CatExpresses).SetActive(true);
-        GetButton((int)Buttons.CatStatButton).interactable = true;
-        GetButton((int)Buttons.CatExpressButton).interactable = false;
+        GetButton((int)Buttons.CatStatButton).interactable = false;
+        GetButton((int)Buttons.CatExpressButton).interactable = true;
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
     }
 
     void SetCat()
@@ -98,10 +100,8 @@ public class UI_Stat : UI_Popup
             {
                 catNum++;
             }
-            GameObject Item = Managers.Resource.Instantiate("UI/UI_CatSet");
-            Item.transform.SetParent(gridPanel.transform);
-            UI_CatSet inven_Food = Util.GetOrAddComponent<UI_CatSet>(Item);
-            inven_Food.SetInfo(i);
+            UI_CatSet Item = Managers.UI.MakeSubItem<UI_CatSet>(gridPanel.transform);
+            Item.SetInfo(i);
         }
     }
     void SetExpress()
@@ -117,10 +117,8 @@ public class UI_Stat : UI_Popup
             {
                 ExpressNum++;
             }
-            GameObject Item = Managers.Resource.Instantiate("UI/UI_ExpressSet");
-            Item.transform.SetParent(gridPanel.transform);
-            UI_ExpressSet inven_Food = Util.GetOrAddComponent<UI_ExpressSet>(Item);
-            inven_Food.SetInfo(i);
+            UI_ExpressSet Item = Managers.UI.MakeSubItem<UI_ExpressSet>(gridPanel.transform);
+            Item.SetInfo(i);
         }
     }
     void OnCloseButton(PointerEventData evt)

@@ -10,8 +10,8 @@ public class GameData
 {
     //재화
     public int Jelly;
-    public int Gold = 80000;
-    public int Dia = 90000;
+    public int Gold = 10000;
+    public int Dia = 10000;
 
     // 재료
     public int Wood = 1000;
@@ -22,8 +22,9 @@ public class GameData
     public List<FurnitureData> FList = new List<FurnitureData>();
 
 
-    public bool[] Emotion = new bool[Define.MOTION_COUNT] {true, false, true , false, false, false, false, false, false, true, true, false, false, false, false, false };
+    public bool[] Emotion = new bool[Define.MOTION_COUNT];
     public List<string> EmotionList = new List<string>();
+
 
     //공간
     public int SpaceLevel = 1;
@@ -50,6 +51,12 @@ public class GameData
     public GameData()
     {
         Jelly = 5;
+
+        //감정표현 기본세팅
+        Emotion[(int)Define.CatEmotion.Blink] = true;
+        Emotion[(int)Define.CatEmotion.Sleep3] = true;
+        Emotion[(int)Define.CatEmotion.Sniff] = true;
+        Emotion[(int)Define.CatEmotion.Ennui] = true;
     }
 }
 

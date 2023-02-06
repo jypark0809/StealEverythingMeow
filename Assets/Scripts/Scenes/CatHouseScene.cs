@@ -18,6 +18,7 @@ public class CatHouseScene : BaseScene
             yield return null;
 
         Managers.Object.SpawnCatHouse("CatHouse_" +Managers.Game.SaveData.SpaceLevel);
+        Managers.Object.SpawnSoom("Soom");
         Managers.Object.SpawnCat("LobbyCat/");
         Managers.UI.ShowSceneUI<UI_CatHouseScene>();
         Managers.Sound.Play(Define.Sound.Bgm, "BGM/BGM_Home", volume: 0.1f);

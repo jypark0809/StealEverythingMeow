@@ -152,10 +152,14 @@ public class UI_StatDetail : UI_Popup
             CatPrice.text = Managers.Data.CatBooks[1401 + Index].Diamond.ToString();
             if (Managers.Data.CatBooks[1401 + Index].Diamond > Managers.Game.SaveData.Dia)
             {
+                CatPrice.color = Color.red; 
                 Buy.interactable = false;
+                Buy.gameObject.BindEvent(CannotBuy);
             }
             else
             {
+                CatPrice.color = Color.black;
+                Buy.interactable = true;
                 Buy.gameObject.BindEvent(BuyCat);
             }
         }
@@ -165,15 +169,21 @@ public class UI_StatDetail : UI_Popup
             CatPrice.text = Managers.Data.CatBooks[1401 + Index].Gold.ToString();
             if (Managers.Data.CatBooks[1401 + Index].Gold > Managers.Game.SaveData.Dia)
             {
+                CatPrice.color = Color.red;
                 Buy.interactable = false;
+                Buy.gameObject.BindEvent(CannotBuy);
             }
             else
             {
+                CatPrice.color = Color.black;
+                Buy.interactable = true;
                 Buy.gameObject.BindEvent(BuyCat);
             }
         }
 
     }
+
+    
     public void SetInfo(int _index)
     {
         Index = _index;
@@ -215,11 +225,33 @@ public class UI_StatDetail : UI_Popup
 
     void BuyCat(PointerEventData evt)
     {
-        Managers.Game.SaveData.CatHave[Index] = true;
-        Managers.Resource.Instantiate("LobbyCat/" + Managers.Data.CatBooks[1401 + Index].Cat_Int_Name.Substring(2));
-        Managers.UI.CloseAllPopupUI();
+        if(Managers.Game.SaveData.CatCount < Managers.Data.Sooms[1300 +Managers.Game.SaveData.SoomLevel].Cap_Capacity)
+        {
+            Managers.Game.SaveData.CatCount++;
+            Managers.Game.SaveData.CatHave[Index] = true;
+            Managers.Resource.Instantiate("LobbyCat/" + Managers.Data.CatBooks[1401 + Index].Cat_Int_Name.Substring(2));
+
+            if (Managers.Data.CatBooks[1401 + Index].Diamond > 0)
+            {
+                Managers.Game.SaveData.Dia -= Managers.Data.CatBooks[1401 + Index].Diamond;
+            }
+            else if (Managers.Data.CatBooks[1401 + Index].Gold > 0)
+            {
+                Managers.Game.SaveData.Gold -= Managers.Data.CatBooks[1401 + Index].Gold;
+            }
+            Managers.Game.SaveGame();
+            Managers.UI.CloseAllPopupUI();
+        }
+        else
+        {
+            Managers.UI.ShowPopupUI<UI_MoreSoom>();
+        }
     }
 
+    void CannotBuy(PointerEventData evt)
+    {
+        return;
+    }
     void SetHappiness()
     {
         GameObject gridPanel = Get<GameObject>((int)GameObjects.HeartSet);
