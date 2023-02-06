@@ -35,7 +35,7 @@ public class UI_DiaUp : UI_Popup
 
     private void OnOkeButton(PointerEventData evt)
     {
-        Util.FindChild(Managers.Object.CatHouse.gameObject, "Soom", true).GetComponent<Soom>().SomUpgrade();
+        Managers.Object.SoomOpen.SomUpgrade(); ;
         Managers.UI.CloseAllPopupUI();
     }
     private void OnCloseButton(PointerEventData evt)
