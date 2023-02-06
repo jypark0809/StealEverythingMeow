@@ -48,9 +48,12 @@ public class Soom : MonoBehaviour
     public void SomUpgrade()
     {
         CurSoomLevel++;
-        Managers.Game.SaveData.SoomLevel++; //추후합치고 변수 재정립하기 
+        Managers.Game.SaveData.SoomLevel++;
+        Managers.Game.SaveData.CatCount += 2;
         this.transform.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(("Sprites/Furniture/Soom/" + Managers.Data.Sooms[1300 + CurSoomLevel].Soom_Int_Name));
         Managers.Sound.Play(Define.Sound.Effect, "Effects/SomOpen");
+
+        //행복도 증가
         for (int i = 0; i < Managers.Game.SaveData.CatHave.Length; i++)
         {
             if (Managers.Game.SaveData.CatHave[i])
@@ -72,8 +75,9 @@ public class Soom : MonoBehaviour
             Camera.main.GetComponent<CameraMove>().Index = 2;
             Managers.Game.SaveData.IsSoomUp = false;
         }
+
+        Managers.Game.SaveGame();
     }
-    //좀더 효율적인코드가있을것같은기분..
     private void IsUpgrdaeCheck()
     {
         if (Managers.Game.SaveData.Wood >= Managers.Data.Sooms[1300 + CurSoomLevel + 1].Wood)
