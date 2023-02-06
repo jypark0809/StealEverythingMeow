@@ -26,7 +26,6 @@ public class DataManager
     public Dictionary<int, ExpressBookData> ExpressBooks { get; private set; } = new Dictionary<int, ExpressBookData>();
     public Dictionary<int, ShopItemData> ShopItems { get; private set; } = new Dictionary<int, ShopItemData>();
     public Dictionary<int, HappinessData> Happinesses { get; private set; } = new Dictionary<int, HappinessData>();
-    public Dictionary<int, RewardData> Rewards { get; private set; } = new Dictionary<int, RewardData>();
 
     public void Init()
     {
@@ -43,7 +42,6 @@ public class DataManager
         ExpressBooks = LoadJson<ExpressBookDataLoader, int, ExpressBookData>("ExpressBookData").MakeDict();
         ShopItems = LoadJson<ShopItemDataLoader, int, ShopItemData>("ShopItemData").MakeDict();
         Happinesses = LoadJson<HappinessDataLoader, int, HappinessData>("HappinessData").MakeDict();
-        Rewards = LoadJson<RewardDataLoader, int, RewardData>("RewardData").MakeDict();
     }
 
     public bool Loaded()
