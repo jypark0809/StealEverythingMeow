@@ -43,22 +43,22 @@ public class TileManager : MonoBehaviour
     }
     IEnumerator OpenRoom(float _Time)
     {
-        // Managers.Game.SaveData.DoingRoomUpgrade = true;
+        Managers.Game.SaveData.DoingRoomUpgrade = true;
         Managers.UI.MakeWorldSpaceUI<UI_RestTime>().SetInfo(_Time);
         yield return new WaitForSeconds(_Time);
-
-        Managers.Resource.Destroy(Managers.Object.CatHouse.gameObject);
-        Managers.Game.SaveGame();
-
         Managers.UI.ShowPopupUI<UI_Sucess>();
         CurRoomLevel++;
         Managers.Game.SaveData.SpaceLevel++;
         Managers.Object.SpawnCatHouse("CatHouse_" + Managers.Game.SaveData.SpaceLevel);
         Managers.Sound.Play(Define.Sound.Effect, "Effects/RoomOpen");
-        //yield return new WaitForSeconds(2f);
-        //Managers.Game.SaveData.DoingRoomUpgrade = false;
-        //Debug.Log(Managers.Game.SaveData.DoingRoomUpgrade);
-        //Managers.Game.SaveGame();
+
+        /*
+        yield return new WaitForSeconds(2f);
+        Managers.Game.SaveData.DoingRoomUpgrade = false;
+        Debug.Log(Managers.Game.SaveData.DoingRoomUpgrade);
+        Managers.Game.SaveGame();
+        Managers.Destroy(Managers.Object.CatHouse.gameObject);
+        */
     }
     private void IsRoomCheck()
     {

@@ -2,12 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UIElements;
-
 public class Soom : MonoBehaviour
 {
-    int pointerId;
-
     public bool IsWood;
     public bool IsStone;
     public bool IsCotton;
@@ -21,12 +17,6 @@ public class Soom : MonoBehaviour
     {
         CurSoomLevel = Managers.Game.SaveData.SoomLevel;
         this.transform.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(("Sprites/Furniture/Soom/" + Managers.Data.Sooms[1300 + CurSoomLevel].Soom_Int_Name));
-
-#if UNITY_EDITOR
-        pointerId = -1;
-#elif UNITY_ANDROID
-        pointerId = 0;
-#endif
     }
 
     private void Update()
@@ -42,13 +32,14 @@ public class Soom : MonoBehaviour
     }
     private void OnMouseDown()
     {
+
         /*
         if(CurSoomLevel == 0)// Æ©Åä¸®¾ó
             SomUpgrade();
         else if (CurSoomLevel <3)
             Managers.UI.ShowPopupUI<UI_UpgradeSom>(); 
         */
-        if (!EventSystem.current.IsPointerOverGameObject(pointerId))
+        if (!EventSystem.current.IsPointerOverGameObject())
         {
             Managers.UI.ShowPopupUI<UI_UpgradePopUp>();
         }
