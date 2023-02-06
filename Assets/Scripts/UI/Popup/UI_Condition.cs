@@ -106,7 +106,6 @@ public class UI_Condition : UI_Popup
         foreach (Transform child in gridPanel.transform)
             Managers.Resource.Destroy(child.gameObject);
 
-
         GameObject Item1 = Managers.Resource.Instantiate("UI/UI_FurnitureCheckPanel");
         Item1.transform.SetParent(gridPanel.transform);
         UI_FurnitureCheckPanel RoomSet = Util.GetOrAddComponent<UI_FurnitureCheckPanel>(Item1);

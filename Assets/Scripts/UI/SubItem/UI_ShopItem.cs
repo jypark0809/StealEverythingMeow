@@ -11,6 +11,13 @@ public class UI_ShopItem : UI_Base
 {
     public int id;
     ShopItemData _iData;
+    RectTransform _goldGroup, _diaGroup;
+
+    enum GameObjects
+    {
+        GoldGroup,
+        DiaGroup
+    }
 
     enum Images
     {
@@ -41,6 +48,7 @@ public class UI_ShopItem : UI_Base
         Bind<Button>(typeof(Buttons));
         Bind<Image>(typeof(Images));
         Bind<TextMeshProUGUI>(typeof(Texts));
+        Bind<GameObject>(typeof(GameObjects));
     }
 
     void Start()
@@ -50,6 +58,9 @@ public class UI_ShopItem : UI_Base
 
     public override void Init()
     {
+        _goldGroup = GetObject((int)GameObjects.GoldGroup).GetComponent<RectTransform>();
+        _diaGroup = GetObject((int)GameObjects.DiaGroup).GetComponent<RectTransform>();
+
         GetButton((int)Buttons.GoldButton).gameObject.BindEvent(OnGoldButtonClicked);
         GetButton((int)Buttons.DiamondButton).gameObject.BindEvent(OnDiaButtonClicked);
         GetButton((int)Buttons.AdsButton).gameObject.BindEvent(OnAdsButtonClicked);
@@ -76,13 +87,14 @@ public class UI_ShopItem : UI_Base
         else
             GetText((int)Texts.PurchaseCountText).text = $"0/{_iData.Shop_Limit_Num}";
 
-        switch(_iData.Pay_Type)
+        switch (_iData.Pay_Type)
         {
             case (int)ShopPurchaseType.Gold:
+                TextMeshProUGUI goldText = GetText((int)Texts.GoldText);
                 GetButton((int)Buttons.DiamondButton).gameObject.SetActive(false);
                 GetButton((int)Buttons.AdsButton).gameObject.SetActive(false);
                 GetButton((int)Buttons.CashButton).gameObject.SetActive(false);
-                GetText((int)Texts.GoldText).text = $"{_iData.Pay_Value.ToString("N0")}G";
+                goldText.text = $"{_iData.Pay_Value.ToString("N0")}";
                 break;
             case (int)ShopPurchaseType.Diamond:
                 GetButton((int)Buttons.GoldButton).gameObject.SetActive(false);
@@ -100,6 +112,33 @@ public class UI_ShopItem : UI_Base
                 GetButton((int)Buttons.GoldButton).gameObject.SetActive(false);
                 GetButton((int)Buttons.DiamondButton).gameObject.SetActive(false);
                 GetButton((int)Buttons.CashButton).gameObject.SetActive(false);
+                break;
+        }
+
+        // arrangeUI();
+    }
+
+    void arrangeUI()
+    {
+        switch (_iData.Pay_Type)
+        {
+            case (int)ShopPurchaseType.Gold:
+                RectTransform goldTextRect = GetText((int)Texts.GoldText).gameObject.GetComponent<RectTransform>();
+                {
+                    float textWidth = goldTextRect.sizeDelta.x;
+                    float imageWidth = 16 * 0.4f;
+                    float spaceInterval = 3;
+                    _goldGroup.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, goldTextRect.sizeDelta.x + imageWidth + spaceInterval);
+                }
+                break;
+            case (int)ShopPurchaseType.Diamond:
+                RectTransform diaTextRect = GetText((int)Texts.DiamondText).gameObject.GetComponent<RectTransform>();
+                {
+                    float textWidth = diaTextRect.sizeDelta.x;
+                    float imageWidth = 19 * 0.4f;
+                    float spaceInterval = 3;
+                    _goldGroup.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, diaTextRect.sizeDelta.x + imageWidth + spaceInterval);
+                }
                 break;
         }
     }

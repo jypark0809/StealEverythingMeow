@@ -23,6 +23,7 @@ public class UI_FurnitureCheckPanel : UI_Base
     {
         Init();
     }
+
     public override void Init()
     {
         Bind<TextMeshProUGUI>(typeof(Texts));
@@ -35,6 +36,7 @@ public class UI_FurnitureCheckPanel : UI_Base
         else
             GetImage((int)Images.CheckImages).GetComponent<Image>().sprite = Resources.Load<Sprite>(("Sprites/UI/Panel2/Checkbox2"));
     }
+
     public void SetInfo(string FurName, bool IsNeed = true)
     {
         _FurName = FurName;
