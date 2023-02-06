@@ -12,6 +12,7 @@ public class UI_Condition : UI_Popup
         WoodCount,
         StoneCount,
 
+        RoomText,
         GoldUpText,
         DiaUpText
     }
@@ -31,8 +32,7 @@ public class UI_Condition : UI_Popup
         CottonPanel,
         WoodPanel,
         StonePanel,
-
-        ConditionSet
+        ConRF,
     }
     void Start()
     {
@@ -47,10 +47,22 @@ public class UI_Condition : UI_Popup
         Bind<TextMeshProUGUI>(typeof(Texts));
         Bind<GameObject>(typeof(GameObjects));
 
+        GameObject gridPanel = Get<GameObject>((int)GameObjects.ConRF);
+
+        GetText((int)Texts.RoomText).text = Managers.Data.Spaces[1200 + Managers.Game.SaveData.SpaceLevel].Space_Name;
+
+        //집체크, 가구체크
+        /*
+        for (int i = 0; i < 4 ; i++) // 현재 최종단계의 집 + 가구 
+        {
+            GameObject ConIm = Managers.Resource.Instantiate("UI/UI_ConSet");
+            ConIm.transform.SetParent(gridPanel.transform);
+            UI_ConSet ConSet = Util.GetOrAddComponent<UI_ConSet>(ConIm);
+            ConSet.SetInfo("234" , true); //가구이름추가
+        }
+        */
         // 재화 체크
         CheckGoods();
-        SetFur();
-
 
         GetText((int)Texts.GoldUpText).text = Managers.Data.Sooms[1300 + Managers.Game.SaveData.SoomLevel + 1].Gold.ToString();
         GetText((int)Texts.DiaUpText).text = Managers.Data.Sooms[1300 + Managers.Game.SaveData.SoomLevel + 1].Diamond.ToString();
@@ -76,69 +88,6 @@ public class UI_Condition : UI_Popup
             GetButton((int)Buttons.GoldUp).interactable = false;
         }
     }
-
-
-
-
-    void SetFur()
-    {
-        GameObject gridPanel = Get<GameObject>((int)GameObjects.ConditionSet);
-
-        int Index = Managers.Game.SaveData.SpaceLevel;
-        int CurSoomLevel = Managers.Game.SaveData.SoomLevel;
-
-        int Count = Managers.Data.Spaces[1200 + Index].Space_Furniture_Count;
-        int CurFurCount = 0;
-        int SoomCount = 0;
-        bool CurHave = false;
-        bool CurRoom = false;
-
-
-        for (int i = 1; i < Index; i++)
-        {
-            CurFurCount += Managers.Data.Spaces[1200 + i].Space_Furniture_Count;
-        }
-
-        for (int i = 1; i < Managers.Data.Sooms[1300+CurSoomLevel].Space_Num; i++)
-        {
-            SoomCount += Managers.Data.Spaces[1200 + i].Space_Furniture_Count;
-        }
-        foreach (Transform child in gridPanel.transform)
-            Managers.Resource.Destroy(child.gameObject);
-
-
-        GameObject Item1 = Managers.Resource.Instantiate("UI/UI_FurnitureCheckPanel");
-        Item1.transform.SetParent(gridPanel.transform);
-        UI_FurnitureCheckPanel RoomSet = Util.GetOrAddComponent<UI_FurnitureCheckPanel>(Item1);
-
-        if (Managers.Game.SaveData.SpaceLevel == Managers.Data.Sooms[1300 + CurSoomLevel].Space_Num)
-            CurRoom = true;
-        else
-            CurRoom = false;
-        RoomSet.SetInfo(Managers.Data.Spaces[1200 + Managers.Data.Sooms[1300 + CurSoomLevel].Space_Num].Space_Name, CurRoom);
-
-        for (int i = 0; i < Count; i++)
-        {
-            GameObject Item = Managers.Resource.Instantiate("UI/UI_FurnitureCheckPanel");
-            Item.transform.SetParent(gridPanel.transform);
-            UI_FurnitureCheckPanel FurSet = Util.GetOrAddComponent<UI_FurnitureCheckPanel>(Item);
-            for (int j = CurFurCount; j < Managers.Game.SaveData.FList.Count; j++)
-            {
-                if (Managers.Game.SaveData.FList[j].F_Name == Managers.Data.Furnitures[1101 + i + SoomCount].F_Name)
-                {
-                    CurHave = true;
-                    break;
-                }
-                else
-                {
-                    CurHave = false;
-                }
-            }
-            FurSet.SetInfo(Managers.Data.Furnitures[1101 + i + SoomCount].F_Name, CurHave);
-
-        }
-    }
-
 
     void OnCloseButton(PointerEventData evt)
     {

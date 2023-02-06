@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 
-public class UI_RoomCehckPanel : UI_Base
+public class UI_ConSet : UI_Base
 {
     enum Texts
     {
@@ -28,7 +28,7 @@ public class UI_RoomCehckPanel : UI_Base
         Bind<Image>(typeof(Images));
 
         GetText((int)Texts.ConText).text = _FurName;
-        if (_Need)
+        if(_Need)
             GetImage((int)Images.CheckImages).GetComponent<Image>().sprite = Resources.Load<Sprite>(("Sprites/UI/Check"));
     }
     public void SetInfo(string FurName, bool IsNeed)

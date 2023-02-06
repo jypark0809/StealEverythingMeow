@@ -36,22 +36,18 @@ public class TileManager : MonoBehaviour
         }
         //시간체크 함수 추가
 
-        //카메라 움직임 추가
-
-        //행복도 추가
+        //카메라 움직임 수정!
         Managers.UI.ClosePopupUI();
     }
     IEnumerator OpenRoom(float _Time)
     {
         Managers.UI.MakeWorldSpaceUI<UI_RestTime>().SetInfo(_Time);
         yield return new WaitForSeconds(_Time);
-
         Managers.Destroy(Managers.Object.CatHouse.gameObject);
-        Managers.UI.ShowPopupUI<UI_Sucess>();
         CurRoomLevel++;
         Managers.Game.SaveData.SpaceLevel++;
         Managers.Object.SpawnCatHouse("CatHouse_" + Managers.Game.SaveData.SpaceLevel);
-        Managers.Game.SaveGame();
+        Managers.UI.ShowPopupUI<UI_Sucess>();
         Managers.Sound.Play(Define.Sound.Effect, "Effects/RoomOpen");
 
     }
@@ -73,7 +69,6 @@ public class TileManager : MonoBehaviour
             IsCotton = true;
         else
             IsCotton = false;
-
         if(Managers.Game.SaveData.SpaceLevel >=2)
         {
             int FurCount = Managers.Game.SaveData.FList.Count;
@@ -81,17 +76,16 @@ public class TileManager : MonoBehaviour
             {
                 FurCount -= Managers.Data.Spaces[1200 + i].Space_Furniture_Count;
             }
+
+            Debug.Log(FurCount);
+
             if (FurCount == (Managers.Data.Spaces[1200 + CurRoomLevel].Space_Furniture_Count))
                 IsFur = true;
             else
                 IsFur = false;
         }
-        else
-        {
-            IsFur = true;
-        }
 
-        if (Managers.Data.Spaces[1200 + CurRoomLevel +1].Soom_Lv == Managers.Game.SaveData.SoomLevel)
+        if (Managers.Data.Spaces[1201 + CurRoomLevel +1].Soom_Lv == Managers.Game.SaveData.SoomLevel)
             Issoom = true;
         else
             Issoom = false;

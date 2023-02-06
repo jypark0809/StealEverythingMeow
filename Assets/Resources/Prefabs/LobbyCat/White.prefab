@@ -121,8 +121,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 054949f390f2e9c499dd241098223fc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bottomLeft: {x: -32, y: -7}
-  topRight: {x: 15, y: 19}
+  Emotion: []
+  bottomLeft: {x: -20, y: -20}
+  topRight: {x: 20, y: 20}
   FinalNodeList: []
   allowDiagonal: 1
   dontCrossCorner: 1
