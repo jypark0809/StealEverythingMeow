@@ -44,11 +44,6 @@ public class UI_ConfirmPauchasePopup : UI_Popup
     public override void Init()
     {
         base.Init();
-        //id = PlayerPrefs.GetInt("ItemId");
-        //Managers.Data.Furnitures.TryGetValue(id, out fData);
-
-        //GetText((int)Texts.ItemNameText).text = fData.F_Name;
-        //GetText((int)Texts.PriceText).text = fData.F_Gold.ToString();
 
         GetButton((int)Buttons.PurchaseButton).gameObject.BindEvent(OnPurchaseButtonClicked);
         GetButton((int)Buttons.CancleButton).gameObject.BindEvent(CancleButtonClicked);
@@ -78,7 +73,7 @@ public class UI_ConfirmPauchasePopup : UI_Popup
                 break;
             case (int)PurchaseType.Item:
                 GetText((int)Texts.ItemNameText).text = _iData.Shop_Name;
-                GetText((int)Texts.PriceText).text = _iData.Value.ToString();
+                GetText((int)Texts.PriceText).text = _iData.Pay_Value.ToString();
                 break;
         }
     }
@@ -118,6 +113,9 @@ public class UI_ConfirmPauchasePopup : UI_Popup
         // Save Data
         Managers.Game.SaveGame();
 
+        // Refresh UI
+        (Managers.UI.SceneUI as UI_CatHouseScene)._catHouseSceneTop.RefreshUI();
+
         // Close All Popup UI;
         Managers.UI.CloseAllPopupUI();
     }
@@ -126,13 +124,21 @@ public class UI_ConfirmPauchasePopup : UI_Popup
     void PurchaseItem()
     {
         // Purchase
-        if (_iData.PaymentType == (int)ShopPurchaseType.Gold)
-            Managers.Game.SaveData.Gold -= _iData.Value;
-        else if (_iData.PaymentType == (int)ShopPurchaseType.Diamond)
-            Managers.Game.SaveData.Dia -= _iData.Value;
+        if (_iData.Pay_Type == (int)ShopPurchaseType.Gold)
+            Managers.Game.SaveData.Gold -= _iData.Pay_Value;
+        else if (_iData.Pay_Type == (int)ShopPurchaseType.Diamond)
+            Managers.Game.SaveData.Dia -= _iData.Pay_Value;
 
         // Get Reward DB
+        RewardData rData;
+        Managers.Data.Rewards.TryGetValue(_iData.Reward, out rData);
 
+        Managers.Game.SaveData.Gold += rData.Gold;
+        Managers.Game.SaveData.Dia += rData.Diamond;
+        Managers.Game.SaveData.Wood += rData.Wood;
+        Managers.Game.SaveData.Stone += rData.Stone;
+        Managers.Game.SaveData.Cotton += rData.Cotton;
+        Managers.Game.SaveData.Jelly += rData.Jelly;
 
         // Exception : Snack Item
         switch (_iData.Shop_Id)
@@ -159,6 +165,9 @@ public class UI_ConfirmPauchasePopup : UI_Popup
 
         // Savd Data
         Managers.Game.SaveGame();
+
+        // Refresh UI
+        (Managers.UI.SceneUI as UI_CatHouseScene)._catHouseSceneTop.RefreshUI();
 
         Managers.UI.ClosePopupUI();
     }
