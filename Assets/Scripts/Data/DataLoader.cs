@@ -135,6 +135,7 @@ public class FurnitureData : IEquatable<FurnitureData>
     public int F_Happiness;
     public int F_Gold;
     public string F_Path;
+    public float F_Size;
 
     public bool Equals(FurnitureData other)
     {

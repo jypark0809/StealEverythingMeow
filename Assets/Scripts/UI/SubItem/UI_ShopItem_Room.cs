@@ -49,6 +49,7 @@ public class UI_ShopItem_Room : UI_Base
 
     void OnButtonClicked(PointerEventData evt)
     {
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
         if (GetButton((int)Buttons.ShopItem_Room).interactable)
         {
             Managers.UI.ShowPopupUI<UI_PurchaseFurniture>();

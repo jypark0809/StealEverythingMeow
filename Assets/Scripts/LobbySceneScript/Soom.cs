@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UIElements;
-
 public class Soom : MonoBehaviour
 {
-    int pointerId;
+    int pointerID;
 
     public bool IsWood;
     public bool IsStone;
@@ -23,9 +21,9 @@ public class Soom : MonoBehaviour
         this.transform.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(("Sprites/Furniture/Soom/" + Managers.Data.Sooms[1300 + CurSoomLevel].Soom_Int_Name));
 
 #if UNITY_EDITOR
-        pointerId = -1;
+        pointerID = -1; //PC나 유니티 상에서는 -1
 #elif UNITY_ANDROID
-        pointerId = 0;
+        pointerID = 0;  // 휴대폰이나 이외에서 터치 상에서는 0 
 #endif
     }
 
@@ -48,7 +46,7 @@ public class Soom : MonoBehaviour
         else if (CurSoomLevel <3)
             Managers.UI.ShowPopupUI<UI_UpgradeSom>(); 
         */
-        if (!EventSystem.current.IsPointerOverGameObject(pointerId))
+        if (!EventSystem.current.IsPointerOverGameObject(pointerID))
         {
             Managers.UI.ShowPopupUI<UI_UpgradePopUp>();
         }

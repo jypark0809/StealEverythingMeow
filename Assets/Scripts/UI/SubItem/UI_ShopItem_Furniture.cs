@@ -55,7 +55,7 @@ public class UI_ShopItem_Furniture : UI_Base
     {
         GetImage((int)Images.ItemImage).sprite = Managers.Resource.Load<Sprite>(_fData.F_Path);
         GetImage((int)Images.ItemImage).SetNativeSize();
-        GetImage((int)Images.ItemImage).rectTransform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+        GetImage((int)Images.ItemImage).rectTransform.localScale = new Vector3(_fData.F_Size, _fData.F_Size, _fData.F_Size);
 
         GetText((int)Texts.ItemName).text = _fData.F_Name;
         GetText((int)Texts.ItemDesc).text = _fData.F_Desc;
@@ -64,6 +64,7 @@ public class UI_ShopItem_Furniture : UI_Base
 
     void OnButtonClicked(PointerEventData evt)
     {
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
         if (GetButton((int)Buttons.PurchaseButton).interactable)
         {
             UI_ConfirmPauchasePopup ui = Managers.UI.ShowPopupUI<UI_ConfirmPauchasePopup>();

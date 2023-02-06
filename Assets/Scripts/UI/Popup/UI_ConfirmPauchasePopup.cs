@@ -30,10 +30,17 @@ public class UI_ConfirmPauchasePopup : UI_Popup
         CancleButton
     }
 
+    enum Images
+    {
+        GoldImage,
+        DiaImage
+    }
+
     void Awake()
     {
         Bind<Button>(typeof(Buttons));
         Bind<TextMeshProUGUI>(typeof(Texts));
+        Bind<Image>(typeof(Images));
     }
 
     void Start()
@@ -69,17 +76,29 @@ public class UI_ConfirmPauchasePopup : UI_Popup
         {
             case (int)PurchaseType.Furniture:
                 GetText((int)Texts.ItemNameText).text = _fData.F_Name;
-                GetText((int)Texts.PriceText).text = _fData.F_Gold.ToString();
+                GetText((int)Texts.PriceText).text = _fData.F_Gold.ToString("N0");
+                GetImage((int)Images.DiaImage).gameObject.SetActive(false);
                 break;
             case (int)PurchaseType.Item:
                 GetText((int)Texts.ItemNameText).text = _iData.Shop_Name;
-                GetText((int)Texts.PriceText).text = _iData.Pay_Value.ToString();
+                GetText((int)Texts.PriceText).text = _iData.Pay_Value.ToString("N0");
+
+                if (_iData.Pay_Type == (int)Define.ShopPurchaseType.Gold)
+                {
+                    GetImage((int)Images.DiaImage).gameObject.SetActive(false);
+                }
+                else if (_iData.Pay_Type == (int)Define.ShopPurchaseType.Diamond)
+                {
+                    GetImage((int)Images.GoldImage).gameObject.SetActive(false);
+                }
+
                 break;
         }
     }
 
     void OnPurchaseButtonClicked(PointerEventData evt)
     {
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
         switch ((int)_purchaseType)
         {
             case (int)PurchaseType.Furniture:
@@ -93,6 +112,7 @@ public class UI_ConfirmPauchasePopup : UI_Popup
 
     void CancleButtonClicked(PointerEventData evt)
     {
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
         ClosePopupUI();
     }
 

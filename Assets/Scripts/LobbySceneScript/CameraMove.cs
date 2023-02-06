@@ -5,7 +5,7 @@ using UnityEngine.Experimental.Rendering.Universal;
 using UnityEngine.EventSystems;
 public class CameraMove : MonoBehaviour
 {
-    int pointerId;
+    int pointerID;
 
     float height;
     float width;
@@ -33,9 +33,9 @@ public class CameraMove : MonoBehaviour
         width = height * Screen.width / Screen.height;
 
 #if UNITY_EDITOR
-        pointerId = -1;
+        pointerID = -1; //PC나 유니티 상에서는 -1
 #elif UNITY_ANDROID
-        pointerId = 0;
+        pointerID = 0;  // 휴대폰이나 이외에서 터치 상에서는 0 
 #endif
     }
 
@@ -77,15 +77,11 @@ public class CameraMove : MonoBehaviour
     Vector2 clickPoint;
     private void Moving()
     {
-        if (!EventSystem.current.IsPointerOverGameObject(pointerId))
+        if (!EventSystem.current.IsPointerOverGameObject(pointerID))
         {
-            
             if (Input.GetMouseButtonDown(0))
-            {
-                Debug.Log(EventSystem.current.IsPointerOverGameObject());
                 clickPoint = Input.mousePosition;
-            }
-                
+
             if (Input.GetMouseButton(0))
             {
                 Vector3 position

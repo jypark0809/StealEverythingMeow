@@ -1,44 +1,44 @@
-F_Id,F_Int_Name,F_Name,F_Desc,F_Space_Lv,F_Happiness,F_Gold,F_Path
-1101,Light_Set,카펫조명 세트,카펫/ 큰 조명,2,15,15,Sprites/UI/ShopItem/Light_Set
-1102,Dtable_Set,장식장 세트,장식장/ 옷걸이,2,15,15,Sprites/UI/ShopItem/Dtable_Set
-1103,Sofa_Set,소파테이블세트,소파/ 작은테이블/ 전화기,2,15,20,Sprites/UI/ShopItem/Sofa_Set
-1104,Royal_Clock,괘종시계,괘종시계,2,15,13,Sprites/UI/ShopItem/Royal_Clock
-1105,Plant,식물,식물,2,15,10,Sprites/UI/ShopItem/Plant
-1106,Closet,옷장,옷장,3,15,180,Sprites/UI/ShopItem/Closet
-1107,Mirr_Set,거울세트,전신거울/ 벽시계,3,15,400,Sprites/UI/ShopItem/Mirr_Set
-1108,Pink_Bed,핑크 침대 세트,분홍 침대/ 시계테이블,3,15,550,Sprites/UI/ShopItem/Pink_Bed
-1109,Carpet_Set,카펫 세트,카펫/ 식물,3,15,100,Sprites/UI/ShopItem/Carpet_Set
-1110,Iron,다리미,다리미,3,15,80,Sprites/UI/ShopItem/Iron
-1111,Sink,싱크대,싱크대,4,20,400,Sprites/UI/ShopItem/Sink
-1112,Gasrange,가스레인지,가스레인지/ 조리음식,4,20,380,Sprites/UI/ShopItem/Gasrange
-1113,Kitchen_Utensil,주방기구 세트,주방기구 걸이/ 컵/ 접시/ 물병/ 통조림/ 사과/ 도마,4,20,350,Sprites/UI/ShopItem/Kitchen_Utensil
-1114,Dinnerware_Set,식탁 세트,식탁/ 의자/ 음식/ 컵/ 주전자,4,20,420,Sprites/UI/ShopItem/Dinnerware_Set
-1115,Refrigerator,냉장고,냉장고,4,20,450,Sprites/UI/ShopItem/Refrigerator
-1116,Washing_Machine,세탁기,세탁기,5,20,2250,Sprites/UI/ShopItem/Washing_Machine
-1117,Laundry,빨래바구니,빨래바구니,5,20,1700,Sprites/UI/ShopItem/Laundry
-1118,Detergent,세제,세제/ 신문지,5,20,1560,Sprites/UI/ShopItem/Detergent
-1119,Tub,욕조,욕조/ 장난감 오리,6,20,4860,Sprites/UI/ShopItem/Tub
-1120,Washstand,세면대,세면대/ 칫솔꽂이,6,20,4000,Sprites/UI/ShopItem/Washstand
-1121,Cat_Toilet,고양이화장실,고양이화장실,6,20,4300,Sprites/UI/ShopItem/Cat_Toilet
-1122,Toilet_Set,변기 세트,변기/ 뚫어뻥 / 휴지걸이,6,20,4500,Sprites/UI/ShopItem/Toilet_Set
-1123,Toy_Set,장난감 세트,장난감 상자/ 스크래쳐/ 장난감들,7,25,11000,Sprites/UI/ShopItem/Toy_Set
-1124,Cat_Tower,캣타워,캣타워/ 카펫,7,25,13000,Sprites/UI/ShopItem/Cat_Tower
-1125,Closet_Set,수납장 세트,수납장/ 액자,7,25,9800,Sprites/UI/ShopItem/Closet_Set
-1126,Sofa_Nin_Set,소파 닌텐도 세트,소파/ 탁상/ 닌텐도,7,25,10000,Sprites/UI/ShopItem/Sofa_Nin_Set
-1127,Bed_Set,안방 침대 세트,침대/ 서랍,8,25,28000,Sprites/UI/ShopItem/Bed_Set
-1128,Wardrobe_Set,옷장 세트,옷장/ 벽시계,8,25,23000,Sprites/UI/ShopItem/Wardrobe_Set
-1129,Table_Set,책상 세트,책상/ 노트북/ 신문/ 의자,8,25,25000,Sprites/UI/ShopItem/Table_Set
-1130,Hanger_Set,옷걸이 세트,옷걸이 행거/ 옷걸이,8,25,20000,Sprites/UI/ShopItem/Hanger_Set
-1131,Safebox_Set,금고 세트,금고/ 작은테이블/ 어항,8,25,20000,Sprites/UI/ShopItem/Safebox_Set
-1132,Light_T_Set,조명 세트,조명/ 액자/ 쓰레기통,8,25,24000,Sprites/UI/ShopItem/Light_T_Set
-1133,Bookshelf,책장,책장,9,25,55000,Sprites/UI/ShopItem/Bookshelf
-1134,Fireplace,벽난로,벽난로,9,25,60000,Sprites/UI/ShopItem/Fireplace
-1135,Desk_Set,책상 세트,책상 세트,9,25,65000,Sprites/UI/ShopItem/Desk_Set
-1136,Sofa_Lib,소파,소파/ 식물,9,25,62000,Sprites/UI/ShopItem/Sofa_Lib
-1137,Music_Player,음악 플레이어,음악 플레이어/ 액자,9,25,58000,Sprites/UI/ShopItem/Music_Player
-1138,Tree,나무,나무,10,25,150000,Sprites/UI/ShopItem/Tree
-1139,Plant_Set,식물,수풀/ 꽃/ 축구공,10,25,100000,Sprites/UI/ShopItem/Plant_Set
-1140,Clothesline,빨랫줄,빨랫줄/ 신발,10,25,110000,Sprites/UI/ShopItem/Clothesline
-1141,Fish1,물고기1,물고기1,10,25,200000,Sprites/UI/ShopItem/Fish1
-1142,Fish2,물고기2,물고기2,10,25,200000,Sprites/UI/ShopItem/Fish2
-1143,Fish3,물고기3,물고기3,10,25,200000,Sprites/UI/ShopItem/Fish3
+F_Id,F_Int_Name,F_Name,F_Desc,F_Space_Lv,F_Happiness,F_Gold,F_Path,F_Size
+1101,Light_Set,카펫조명 세트,카펫/ 큰 조명,2,15,165,Sprites/UI/ShopItem/Light_Set,0.6
+1102,Dtable_Set,장식장 세트,장식장/ 옷걸이,2,15,165,Sprites/UI/ShopItem/Dtable_Set,0.5
+1103,Sofa_Set,소파테이블 세트,소파/ 작은테이블/ 전화기,2,15,170,Sprites/UI/ShopItem/Sofa_Set,0.5
+1104,Royal_Clock,괘종시계,괘종시계,2,15,163,Sprites/UI/ShopItem/Royal_Clock,0.7
+1105,Plant,식물,식물,2,15,160,Sprites/UI/ShopItem/Plant,0.7
+1106,Closet,옷장,옷장,3,15,340,Sprites/UI/ShopItem/Closet,0.65
+1107,Mirr_Set,거울 세트,전신거울/ 벽시계,3,15,550,Sprites/UI/ShopItem/Mirr_Set,0.6
+1108,Pink_Bed,핑크 침대 세트,분홍 침대/ 시계테이블,3,15,700,Sprites/UI/ShopItem/Pink_Bed,0.7
+1109,Carpet_Set,카펫 세트,카펫/ 식물,3,15,250,Sprites/UI/ShopItem/Carpet_Set,0.5
+1110,Iron,다리미,다리미,3,15,230,Sprites/UI/ShopItem/Iron,0.7
+1111,Sink,싱크대,싱크대,4,20,580,Sprites/UI/ShopItem/Sink,0.3
+1112,Gasrange,가스레인지,가스레인지/ 조리음식,4,20,540,Sprites/UI/ShopItem/Gasrange,0.6
+1113,Kitchen_Utensil,주방기구 세트,주방기구 걸이/ 컵/ 접시/ 물병/ 통조림/ 사과/ 도마,4,20,510,Sprites/UI/ShopItem/Kitchen_Utensil,0.5
+1114,Dinnerware_Set,식탁 세트,식탁/ 의자/ 음식/ 컵/ 주전자,4,20,600,Sprites/UI/ShopItem/Dinnerware_Set,0.3
+1115,Refrigerator,냉장고,냉장고,4,20,640,Sprites/UI/ShopItem/Refrigerator,0.55
+1116,Washing_Machine,세탁기,세탁기,5,20,2400,Sprites/UI/ShopItem/Washing_Machine,0.9
+1117,Laundry,빨래바구니,빨래바구니,5,20,1850,Sprites/UI/ShopItem/Laundry,0.9
+1118,Detergent,세제,세제/ 신문지,5,20,1710,Sprites/UI/ShopItem/Detergent,0.8
+1119,Tub,욕조,욕조/ 장난감 오리,6,20,5010,Sprites/UI/ShopItem/Tub,0.6
+1120,Washstand,세면대,세면대/ 칫솔꽂이,6,20,4150,Sprites/UI/ShopItem/Washstand,1
+1121,Cat_Toilet,고양이화장실 세트,고양이화장실+화장실카펫,6,20,4450,Sprites/UI/ShopItem/Cat_Toilet,1
+1122,Toilet_Set,변기 세트,변기/ 뚫어뻥 / 휴지걸이,6,20,4650,Sprites/UI/ShopItem/Toilet_Set,0.8
+1123,Toy_Set,장난감 세트,장난감 상자/ 스크래쳐/ 장난감들,7,25,10850,Sprites/UI/ShopItem/Toy_Set,0.6
+1124,Cat_Tower,캣타워,캣타워/ 카펫,7,25,12850,Sprites/UI/ShopItem/Cat_Tower,0.8
+1125,Closet_Set,수납장 세트,수납장/ 액자,7,25,9650,Sprites/UI/ShopItem/Closet_Set,0.8
+1126,Sofa_Nin_Set,소파 닌텐도 세트,소파/ 탁상/ 닌텐도,7,25,10000,Sprites/UI/ShopItem/Sofa_Nin_Set,1
+1127,Bed_Set,안방 침대 세트,침대/ 서랍,8,25,27850,Sprites/UI/ShopItem/Bed_Set,0.9
+1128,Wardrobe_Set,옷장 세트,옷장/ 벽시계,8,25,22850,Sprites/UI/ShopItem/Wardrobe_Set,0.5
+1129,Table_Set,책상 세트,책상/ 노트북/ 신문/ 의자,8,25,24850,Sprites/UI/ShopItem/Table_Set,0.8
+1130,Hanger_Set,옷걸이 세트,옷걸이 행거/ 옷걸이,8,25,19850,Sprites/UI/ShopItem/Hanger_Set,0.7
+1131,Safebox_Set,금고 세트,금고/ 작은테이블/ 어항,8,25,19850,Sprites/UI/ShopItem/Safebox_Set,0.7
+1132,Light_T_Set,조명 세트,조명/ 액자/ 쓰레기통,8,25,23850,Sprites/UI/ShopItem/Light_T_Set,0.8
+1133,Bookshelf,책장,책장,9,25,54850,Sprites/UI/ShopItem/Bookshelf,0.5
+1134,Fireplace,벽난로,벽난로,9,25,59850,Sprites/UI/ShopItem/Fireplace,0.8
+1135,Desk_Set,책상 세트,책상 세트,9,25,64850,Sprites/UI/ShopItem/Desk_Set,0.6
+1136,Sofa_Lib,소파,소파/ 식물,9,25,61850,Sprites/UI/ShopItem/Sofa_Lib,0.5
+1137,Music_Player,음악 플레이어,음악 플레이어/ 액자,9,25,57850,Sprites/UI/ShopItem/Music_Player,0.65
+1138,Tree,나무,나무,10,25,150000,Sprites/UI/ShopItem/Tree,0.5
+1139,Plant_Set,식물,수풀/ 꽃/ 축구공,10,25,100000,Sprites/UI/ShopItem/Plant_Set,0.5
+1140,Clothesline,빨랫줄,빨랫줄/ 신발,10,25,110000,Sprites/UI/ShopItem/Clothesline,0.8
+1141,Fish1,물고기1,물고기1,10,25,190000,Sprites/UI/ShopItem/Fish1,1
+1142,Fish2,물고기2,물고기2,10,25,199000,Sprites/UI/ShopItem/Fish2,0.8
+1143,Fish3,물고기3,물고기3,10,25,200000,Sprites/UI/ShopItem/Fish3,0.7

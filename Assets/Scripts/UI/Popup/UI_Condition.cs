@@ -88,18 +88,25 @@ public class UI_Condition : UI_Popup
         int SoomLevel = Managers.Game.SaveData.SoomLevel;
 
         int MaxCount = Managers.Data.Spaces[1200 + Managers.Data.Sooms[1300 + SoomLevel].Space_Num].Space_Furniture_Count;
-        //숨숨집 업글시 필요 가구수
-
-        //숨숨집 가구 넘버링 시작점
         int StartSoomFur = 0;
 
         bool CurHave = false;
         bool CurRoom = false;
-        
+
+        for (int i = 1; i < MaxCount; i++)
+        {
+            StartSoomFur += Managers.Data.Spaces[1200 + i].Space_Furniture_Count;
+        }
+
+        for (int i = 1; i < Managers.Data.Sooms[1300 + SoomLevel].Space_Num; i++)
+        {
+            StartSoomFur += Managers.Data.Spaces[1200 + i].Space_Furniture_Count;
+        }
+
         //방조건
         foreach (Transform child in gridPanel.transform)
             Managers.Resource.Destroy(child.gameObject);
-        
+
         GameObject Item1 = Managers.Resource.Instantiate("UI/UI_FurnitureCheckPanel");
         Item1.transform.SetParent(gridPanel.transform);
         UI_FurnitureCheckPanel RoomSet = Util.GetOrAddComponent<UI_FurnitureCheckPanel>(Item1);
@@ -108,19 +115,19 @@ public class UI_Condition : UI_Popup
         // 이따 수정할부분
         if (Managers.Game.SaveData.SpaceLevel == Managers.Data.Sooms[1300 + SoomLevel].Space_Num)
 
-        if (SpaceLevel == Managers.Data.Sooms[1300 + SoomLevel].Space_Num)
+            if (SpaceLevel == Managers.Data.Sooms[1300 + SoomLevel].Space_Num)
 
-            CurRoom = true;
-        else
-            CurRoom = false;
+                CurRoom = true;
+            else
+                CurRoom = false;
         RoomSet.SetInfo(Managers.Data.Spaces[1200 + Managers.Data.Sooms[1300 + SoomLevel].Space_Num].Space_Name, CurRoom);
-        
+
         //가구조건
         for (int i = 1; i < Managers.Data.Sooms[1300 + SoomLevel].Space_Num; i++)
         {
             StartSoomFur += Managers.Data.Spaces[1200 + i].Space_Furniture_Count;
         }
-        
+
         for (int i = 0; i < MaxCount; i++)
         {
             /*
@@ -144,7 +151,7 @@ public class UI_Condition : UI_Popup
                 }
             }
             FurSet.SetInfo(Managers.Data.Furnitures[1101 + i + StartSoomFur].F_Name, CurHave);
-            
+
         }
     }
 

@@ -13,11 +13,9 @@ public class UI_Setting : UI_Popup
     }
     enum Buttons
     {
-        InstagramButton,
-        BlogButton,
-        CloseButton,
-        GoldButton,
-        DiaButton
+        Insta,
+        Blog,
+        CloseButton
     }
 
     void Start()
@@ -40,10 +38,8 @@ public class UI_Setting : UI_Popup
 
 
         GetButton((int)Buttons.CloseButton).gameObject.BindEvent(OnCloseButton);
-        GetButton((int)Buttons.InstagramButton).gameObject.BindEvent(InstaOpen);
-        GetButton((int)Buttons.BlogButton).gameObject.BindEvent(BlogOpen);
-        GetButton((int)Buttons.GoldButton).gameObject.BindEvent(OnGoldButtonClicked);
-        GetButton((int)Buttons.DiaButton).gameObject.BindEvent(OnDiaButtonClicked);
+        GetButton((int)Buttons.Insta).gameObject.BindEvent(InstaOpen);
+        GetButton((int)Buttons.Blog).gameObject.BindEvent(BlogOpen);
     }
 
     void OnBgmToggleSelected(bool boolean)
@@ -81,17 +77,5 @@ public class UI_Setting : UI_Popup
     void BlogOpen(PointerEventData evt)
     {
         Application.OpenURL("https://blog.naver.com/stealeverything_meow");
-    }
-
-    void OnGoldButtonClicked(PointerEventData evt)
-    {
-        Managers.Game.SaveData.Gold += 100000;
-        (Managers.UI.SceneUI as UI_CatHouseScene)._catHouseSceneTop.RefreshUI();
-    }
-
-    void OnDiaButtonClicked(PointerEventData evt)
-    {
-        Managers.Game.SaveData.Dia += 100000;
-        (Managers.UI.SceneUI as UI_CatHouseScene)._catHouseSceneTop.RefreshUI();
     }
 }

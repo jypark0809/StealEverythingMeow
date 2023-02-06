@@ -28,6 +28,7 @@ public class UI_ShopItem_ItemType : UI_Base
 
     void OnButtonClicked(PointerEventData evt)
     {
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
         Managers.UI.ShowPopupUI<UI_PurchaseItem>();
         PlayerPrefs.SetInt("ItemType", itemType);
     }
