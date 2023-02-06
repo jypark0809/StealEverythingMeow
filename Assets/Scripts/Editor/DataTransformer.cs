@@ -218,7 +218,8 @@ public class DataTransformer : EditorWindow
                 F_Space_Num = int.Parse(row[i++]),
                 F_Happiness = int.Parse(row[i++]),
                 F_Gold = int.Parse(row[i++]),
-                F_Path = row[i++]
+                F_Path = row[i++],
+                F_Size = float.Parse(row[i++])
             });
         }
 
