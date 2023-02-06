@@ -64,6 +64,7 @@ public class UI_ShopItem_Furniture : UI_Base
 
     void OnButtonClicked(PointerEventData evt)
     {
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
         if (GetButton((int)Buttons.PurchaseButton).interactable)
         {
             UI_ConfirmPauchasePopup ui = Managers.UI.ShowPopupUI<UI_ConfirmPauchasePopup>();

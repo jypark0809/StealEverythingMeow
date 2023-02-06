@@ -42,6 +42,7 @@ public class UI_Shop : UI_Popup
     #region Toggle EventHandler
     void OnRoomToggleSelected(bool boolean)
     {
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
         if (boolean)
         {
             GetObject((int)GameObjects.Content_Room).SetActive(boolean);
@@ -54,6 +55,7 @@ public class UI_Shop : UI_Popup
     }
     void OnItemToggleSelected(bool boolean)
     {
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
         if (boolean)
         {
             GetObject((int)GameObjects.Content_Item).SetActive(boolean);
@@ -66,6 +68,7 @@ public class UI_Shop : UI_Popup
     }
     void OnCloseButtonClicked(PointerEventData evt)
     {
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
         ClosePopupUI();
     }
     #endregion

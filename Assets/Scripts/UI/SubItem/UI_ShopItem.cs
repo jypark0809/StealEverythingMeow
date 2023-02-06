@@ -77,7 +77,7 @@ public class UI_ShopItem : UI_Base
     {
         GetImage((int)Images.ItemImage).sprite = Managers.Resource.Load<Sprite>(_iData.ImgPath);
         GetImage((int)Images.ItemImage).SetNativeSize();
-        GetImage((int)Images.ItemImage).rectTransform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+        GetImage((int)Images.ItemImage).rectTransform.localScale = new Vector3(_iData.Scale, _iData.Scale, _iData.Scale);
 
         GetText((int)Texts.ItemName).text = _iData.Shop_Name;
         GetText((int)Texts.ItemDesc).text = _iData.Shop_Desc;
@@ -169,6 +169,7 @@ public class UI_ShopItem : UI_Base
     // Gold
     void OnGoldButtonClicked(PointerEventData evt)
     {
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
         UI_ConfirmPauchasePopup goldUI = Managers.UI.ShowPopupUI<UI_ConfirmPauchasePopup>();
         goldUI.SetItemInfo(_iData);
     }
@@ -176,6 +177,7 @@ public class UI_ShopItem : UI_Base
     // Dia
     void OnDiaButtonClicked(PointerEventData evt)
     {
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
         UI_ConfirmPauchasePopup diaUI = Managers.UI.ShowPopupUI<UI_ConfirmPauchasePopup>();
         diaUI.SetItemInfo(_iData);
     }
@@ -183,6 +185,7 @@ public class UI_ShopItem : UI_Base
     // IAP
     void OnIAPButtonClicked(PointerEventData evt)
     {
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
         Debug.Log("OnIAPButtonClicked");
         Managers.IAP.Purchase(_iData.Shop_Id.ToString(), (product, failureReason) =>
         {
@@ -196,6 +199,7 @@ public class UI_ShopItem : UI_Base
     // Ads
     void OnAdsButtonClicked(PointerEventData evt)
     {
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
         Managers.Ads.ShowRewardedAds(() => { GetReward(); });
     }
     #endregion
