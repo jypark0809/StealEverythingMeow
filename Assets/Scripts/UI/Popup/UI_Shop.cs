@@ -69,6 +69,4 @@ public class UI_Shop : UI_Popup
         ClosePopupUI();
     }
     #endregion
-
-
 }

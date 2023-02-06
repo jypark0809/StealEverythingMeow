@@ -21,13 +21,10 @@ public class GameData
     // Furniture List
     public List<FurnitureData> FList = new List<FurnitureData>();
 
-    public bool[] Emotion = new bool[Define.MOTION_COUNT] {true, false, true , false, false, false, false, false, false, true, true, false, false, false, false, false };
-<<<<<<< Updated upstream
-    public List<string> EmotionList = new List<string>()
-        ;
-=======
 
->>>>>>> Stashed changes
+    public bool[] Emotion = new bool[Define.MOTION_COUNT] {true, false, true , false, false, false, false, false, false, true, true, false, false, false, false, false };
+    public List<string> EmotionList = new List<string>();
+
     //공간
     public int SpaceLevel = 1;
     public int SoomLevel = 1;
@@ -41,12 +38,13 @@ public class GameData
 
 
     // 고양이 보유여부 [White, Black, Calico, Tabby, Grey]
-    public bool[] CatHave = new bool[5] { true, true, false, false, false };
+    public int CatCount = 1;
+    public bool[] CatHave = new bool[5] { true, false, false, false, false };
     public int[] CatHappinessLevel = new int[5] { 1, 1, 1, 1, 1 };
     public float[] CatCurHappinessExp = new float[5] { 0, 0, 0, 0, 0 };
     public string[] CatName = {"하양이","까망이","삼색이","치즈", "회색이"};
 
-    // 간식 [캣잎사탕, 츄르, 고등어구이, 육포, 참치캔, 연어,]
+    // 간식 [캣잎사탕, 츄르, 고등어구이, 육포, 참치캔, 연어]
     public int[] Food = { 100, 2, 0, 4, 5 ,100};
     public GameData()
     {

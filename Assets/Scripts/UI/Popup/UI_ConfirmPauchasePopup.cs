@@ -44,11 +44,6 @@ public class UI_ConfirmPauchasePopup : UI_Popup
     public override void Init()
     {
         base.Init();
-        //id = PlayerPrefs.GetInt("ItemId");
-        //Managers.Data.Furnitures.TryGetValue(id, out fData);
-
-        //GetText((int)Texts.ItemNameText).text = fData.F_Name;
-        //GetText((int)Texts.PriceText).text = fData.F_Gold.ToString();
 
         GetButton((int)Buttons.PurchaseButton).gameObject.BindEvent(OnPurchaseButtonClicked);
         GetButton((int)Buttons.CancleButton).gameObject.BindEvent(CancleButtonClicked);
@@ -78,7 +73,7 @@ public class UI_ConfirmPauchasePopup : UI_Popup
                 break;
             case (int)PurchaseType.Item:
                 GetText((int)Texts.ItemNameText).text = _iData.Shop_Name;
-                GetText((int)Texts.PriceText).text = _iData.Value.ToString();
+                GetText((int)Texts.PriceText).text = _iData.Pay_Value.ToString();
                 break;
         }
     }
@@ -88,10 +83,10 @@ public class UI_ConfirmPauchasePopup : UI_Popup
         switch ((int)_purchaseType)
         {
             case (int)PurchaseType.Furniture:
-                ArrangeFurniture();
+                PurchaseFurniture();
                 break;
             case (int)PurchaseType.Item:
-                GetReward();
+                PurchaseItem();
                 break;
         }
     }
@@ -101,12 +96,12 @@ public class UI_ConfirmPauchasePopup : UI_Popup
         ClosePopupUI();
     }
 
-    void ArrangeFurniture()
+    void PurchaseFurniture()
     {
         // Happiness Point
 
-        // Gold
-        // Managers.Game.SaveData.Gold -= fData.F_Gold;
+        // Purchase
+        Managers.Game.SaveData.Gold -= _fData.F_Gold;
 
         // Add furniture to fList of save data
         Managers.Game.SaveData.FList.Add(_fData);
@@ -118,14 +113,35 @@ public class UI_ConfirmPauchasePopup : UI_Popup
         // Save Data
         Managers.Game.SaveGame();
 
+        // Refresh UI
+        (Managers.UI.SceneUI as UI_CatHouseScene)._catHouseSceneTop.RefreshUI();
+
         // Close All Popup UI;
         Managers.UI.CloseAllPopupUI();
     }
 
-    // °£½Ä [Ä¹ÀÙ»çÅÁ, Ãò¸£, °íµî¾î±¸ÀÌ, À°Æ÷, ÂüÄ¡Äµ, ¿¬¾î,]
-    void GetReward()
+    // °£½Ä [Ä¹ÀÙ»çÅÁ, Ãò¸£, °íµî¾î±¸ÀÌ, À°Æ÷, ÂüÄ¡Äµ, ¿¬¾î]
+    void PurchaseItem()
     {
-        switch(_iData.Shop_Id)
+        // Purchase
+        if (_iData.Pay_Type == (int)ShopPurchaseType.Gold)
+            Managers.Game.SaveData.Gold -= _iData.Pay_Value;
+        else if (_iData.Pay_Type == (int)ShopPurchaseType.Diamond)
+            Managers.Game.SaveData.Dia -= _iData.Pay_Value;
+
+        // Get Reward DB
+        RewardData rData;
+        Managers.Data.Rewards.TryGetValue(_iData.Reward, out rData);
+
+        Managers.Game.SaveData.Gold += rData.Gold;
+        Managers.Game.SaveData.Dia += rData.Diamond;
+        Managers.Game.SaveData.Wood += rData.Wood;
+        Managers.Game.SaveData.Stone += rData.Stone;
+        Managers.Game.SaveData.Cotton += rData.Cotton;
+        Managers.Game.SaveData.Jelly += rData.Jelly;
+
+        // Exception : Snack Item
+        switch (_iData.Shop_Id)
         {
             case 1601:
                 Managers.Game.SaveData.Food[(int)Define.SnackType.Churu]++;
@@ -146,6 +162,12 @@ public class UI_ConfirmPauchasePopup : UI_Popup
                 Managers.Game.SaveData.Food[(int)Define.SnackType.CatnipCandy]++;
                 break;
         }
+
+        // Savd Data
+        Managers.Game.SaveGame();
+
+        // Refresh UI
+        (Managers.UI.SceneUI as UI_CatHouseScene)._catHouseSceneTop.RefreshUI();
 
         Managers.UI.ClosePopupUI();
     }
