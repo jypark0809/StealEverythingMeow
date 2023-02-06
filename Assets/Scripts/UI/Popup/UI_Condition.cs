@@ -93,16 +93,6 @@ public class UI_Condition : UI_Popup
         bool CurHave = false;
         bool CurRoom = false;
 
-        for (int i = 1; i < MaxCount; i++)
-        {
-            StartSoomFur += Managers.Data.Spaces[1200 + i].Space_Furniture_Count;
-        }
-
-        for (int i = 1; i < Managers.Data.Sooms[1300 + SoomLevel].Space_Num; i++)
-        {
-            StartSoomFur += Managers.Data.Spaces[1200 + i].Space_Furniture_Count;
-        }
-
         //¹æÁ¶°Ç
         foreach (Transform child in gridPanel.transform)
             Managers.Resource.Destroy(child.gameObject);
@@ -166,7 +156,7 @@ public class UI_Condition : UI_Popup
     }
     void OnGoldUpgrdae(PointerEventData evt)
     {
-        Util.FindChild(Managers.Object.CatHouse.gameObject, "Soom", true).GetComponent<Soom>().SomUpgrade();
+        Managers.Object.SoomOpen.SomUpgrade();
         Managers.UI.CloseAllPopupUI();
     }
     void CheckGoods()
