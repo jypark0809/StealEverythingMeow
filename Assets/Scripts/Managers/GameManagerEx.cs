@@ -30,7 +30,8 @@ public class GameData
     public int SoomLevel = 1;
     public bool IsRoomOpen = false;
     public bool IsSoomUp = false;
-
+    public bool DoingRoomUpgrade;
+    public bool DoingSoomUpgrdae;
 
     public bool BGMOn = true;
     public bool EffectSoundOn = true;

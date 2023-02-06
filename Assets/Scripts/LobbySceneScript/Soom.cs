@@ -96,6 +96,7 @@ public class Soom : MonoBehaviour
             IsRoom = true;
         else
             IsRoom = false;
+
         if (Managers.Game.SaveData.FList.Count == Managers.Data.Sooms[1300 + CurSoomLevel].Space_F_Count)
             IsFur = true;
         else

@@ -38,12 +38,15 @@ public class Cat_LobbyMove : MonoBehaviour
     Node StartNode, TargetNode, CurNode;
     List<Node> OpenList, ClosedList;
     private bool ReFind = false;
+    public bool IsChange;
 
+  
     Rigidbody2D rigid;
     Animator anim;
 
     public float _Speed;
     int index = 0;
+
 
     private void Awake()
     {
@@ -59,7 +62,8 @@ public class Cat_LobbyMove : MonoBehaviour
 
     private void Update()
     {
-        if (FinalNodeList.Count == 0 && ReFind)
+        IsChange = Managers.Game.SaveData.DoingRoomUpgrade;
+        if (FinalNodeList.Count == 0 && ReFind && !IsChange)
         {
             ReFind = false;
             targetPos = new Vector2Int(Random.Range(bottomLeft.x, topRight.x), Random.Range(bottomLeft.y, topRight.y));
