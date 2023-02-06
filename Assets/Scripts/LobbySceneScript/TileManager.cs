@@ -51,11 +51,14 @@ public class TileManager : MonoBehaviour
         Managers.Game.SaveData.SpaceLevel++;
         Managers.Object.SpawnCatHouse("CatHouse_" + Managers.Game.SaveData.SpaceLevel);
         Managers.Sound.Play(Define.Sound.Effect, "Effects/RoomOpen");
+
+        /*
         yield return new WaitForSeconds(2f);
         Managers.Game.SaveData.DoingRoomUpgrade = false;
         Debug.Log(Managers.Game.SaveData.DoingRoomUpgrade);
         Managers.Game.SaveGame();
         Managers.Destroy(Managers.Object.CatHouse.gameObject);
+        */
     }
     private void IsRoomCheck()
     {
