@@ -49,7 +49,6 @@ public class Soom : MonoBehaviour
     {
         CurSoomLevel++;
         Managers.Game.SaveData.SoomLevel++;
-        Managers.Game.SaveData.CatCount += 2;
         this.transform.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(("Sprites/Furniture/Soom/" + Managers.Data.Sooms[1300 + CurSoomLevel].Soom_Int_Name));
         Managers.Sound.Play(Define.Sound.Effect, "Effects/SomOpen");
 
@@ -59,7 +58,7 @@ public class Soom : MonoBehaviour
             if (Managers.Game.SaveData.CatHave[i])
                 Managers.Game.SaveData.CatCurHappinessExp[i] += Managers.Data.Sooms[1300 + CurSoomLevel].Happiness;
         }
-
+        /*
         if (CurSoomLevel == 2)
         {
             Managers.Game.SaveData.Emotion[14] = true;
@@ -75,7 +74,7 @@ public class Soom : MonoBehaviour
             Camera.main.GetComponent<CameraMove>().Index = 2;
             Managers.Game.SaveData.IsSoomUp = false;
         }
-
+        */
         Managers.Game.SaveGame();
     }
     private void IsUpgrdaeCheck()

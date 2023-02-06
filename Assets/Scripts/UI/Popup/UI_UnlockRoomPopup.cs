@@ -89,7 +89,7 @@ public class UI_UnlockRoomPopup : UI_Base
     }
     void OnOkayButton(PointerEventData evt)
     {
-        Managers.Object.CatHouse.GetComponent<TileManager>().Open();
+       Managers.Object.RoomOpen.Open();
     }
     void OnCloseButton(PointerEventData evt)
     {

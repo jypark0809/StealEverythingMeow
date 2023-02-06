@@ -146,7 +146,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "\u2018\uB545 \uD30C\uAE30\u2019\uB97C \uD68D\uB4DD\uD558\uB824\uBA74\r\n<color=red>\uD589\uBCF5\uB3C4
-    Lv. 2 </color>\uB97C \uB2EC\uC131\uD574\uC57C \uD574\uC694!"
+    Lv. 2 </color>\uB97C \uB2EC\uC131\uD574\uC57C \uD574\uC694!\n\uB2E4\uC774\uC544\uB97C
+    \uC0AC\uC6A9\uD574\uC11C \uD68D\uB4DD\uD558\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 55da9bf4fbab3b04a99f48ebdd7431d5, type: 2}
   m_sharedMaterial: {fileID: 2240069245312190547, guid: 55da9bf4fbab3b04a99f48ebdd7431d5, type: 2}
@@ -531,7 +532,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.5882353}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -822,7 +823,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 11.135136, y: 0}
+  m_AnchoredPosition: {x: 13.5, y: 0}
   m_SizeDelta: {x: 14.344, y: 20}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &8570036643653763674

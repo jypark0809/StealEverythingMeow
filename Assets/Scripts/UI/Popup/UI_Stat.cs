@@ -117,14 +117,8 @@ public class UI_Stat : UI_Popup
             {
                 ExpressNum++;
             }
-            UI_CatSet Item = Managers.UI.MakeSubItem<UI_CatSet>(gridPanel.transform);
+            UI_ExpressSet Item = Managers.UI.MakeSubItem<UI_ExpressSet>(gridPanel.transform);
             Item.SetInfo(i);
-            /*
-            GameObject Item = Managers.Resource.Instantiate("UI/UI_CatSet");
-            Item.transform.SetParent(gridPanel.transform);
-            UI_CatSet inven_Food = Util.GetOrAddComponent<UI_CatSet>(Item);
-            inven_Food.SetInfo(i);
-            */
         }
     }
     void OnCloseButton(PointerEventData evt)

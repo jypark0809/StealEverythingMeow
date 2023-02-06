@@ -61,6 +61,18 @@ public class ObjectManager
         _catHouse = go.GetOrAddComponent<Grid>();
     }
 
+    Soom _Soom;
+    Room _Room;
+    public Soom SoomOpen { get { return _Soom; } set { _Soom = value; } }
+    public Room RoomOpen { get { return _Room; } set { _Room = value; } }
+
+    public void SpawnSoom(string path, Transform parent = null)
+    {
+        GameObject go = Managers.Resource.Instantiate(path, parent);
+        _Room = go.GetOrAddComponent<Room>();
+        _Soom = go.GetOrAddComponent<Soom>();
+
+    }
     public void SpawnCat(string path, Transform parent = null)
     {
         if (Managers.Game.SaveData.CatHave[(int)Define.CatType.White])

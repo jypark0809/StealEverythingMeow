@@ -181,8 +181,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u2018\uB208\uAE5C\uBE61\uD558\uAE30 \uC640 '\uBE14\uB9C1\uD06C\u2019'
-    \uB97C \uD68D\uB4DD\uD588\uC5B4\uC694.\n\uB3C4\uAC10\uC5D0\uC11C \uD655\uC778\uD574\uC8FC\uC138\uC694"
+  m_text: "'\u3141d' , 'asd' \uB97C \uD68D\uB4DD\uD588\uC2B5\uB2C8\uB2E4"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 55da9bf4fbab3b04a99f48ebdd7431d5, type: 2}
   m_sharedMaterial: {fileID: 2240069245312190547, guid: 55da9bf4fbab3b04a99f48ebdd7431d5, type: 2}
@@ -310,7 +309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.5882353}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
