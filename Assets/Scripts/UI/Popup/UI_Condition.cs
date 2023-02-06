@@ -88,21 +88,14 @@ public class UI_Condition : UI_Popup
         int SoomLevel = Managers.Game.SaveData.SoomLevel;
 
         int MaxCount = Managers.Data.Spaces[1200 + Managers.Data.Sooms[1300 + SoomLevel].Space_Num].Space_Furniture_Count;
+        //숨숨집 업글시 필요 가구수
+
+        //숨숨집 가구 넘버링 시작점
         int StartSoomFur = 0;
 
         bool CurHave = false;
         bool CurRoom = false;
         
-        for (int i = 1; i < MaxCount; i++)
-        {
-            StartSoomFur += Managers.Data.Spaces[1200 + i].Space_Furniture_Count;
-        }
-
-        for (int i = 1; i < Managers.Data.Sooms[1300+ SoomLevel].Space_Num; i++)
-        {
-            StartSoomFur += Managers.Data.Spaces[1200 + i].Space_Furniture_Count;
-        }
-
         //방조건
         foreach (Transform child in gridPanel.transform)
             Managers.Resource.Destroy(child.gameObject);

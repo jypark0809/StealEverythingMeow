@@ -26,8 +26,8 @@ public class GameData
     public List<string> EmotionList = new List<string>();
 
     //°ø°£
-    public int SpaceLevel = 1;
-    public int SoomLevel = 1;
+    public int SpaceLevel = 5;
+    public int SoomLevel = 2;
     public bool IsRoomOpen = false;
     public bool IsSoomUp = false;
     public bool DoingRoomUpgrade;
