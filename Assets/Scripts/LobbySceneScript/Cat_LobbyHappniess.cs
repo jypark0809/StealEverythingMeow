@@ -104,8 +104,6 @@ public class Cat_LobbyHappniess : MonoBehaviour
     }
     private void OnMouseDown()
     {
-
-        Managers.Game.SaveData.Gold += 1000000;
         if (!IsInfo)
             Infoset();
         if (!Isget)
