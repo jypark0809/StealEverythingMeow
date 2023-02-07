@@ -95,8 +95,8 @@ public class UI_PauseGamePopup : UI_Popup
     {
         Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
         Time.timeScale = 1;
-        LoadingScene.LoadScene("CatHouseScene");
-        //Managers.Scene.LoadScene(Define.SceneType.CatHouseScene);
+        //LoadingScene.LoadScene("CatHouseScene");
+        Managers.Scene.LoadScene(Define.SceneType.CatHouseScene);
     }
     #endregion
 }

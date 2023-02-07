@@ -99,8 +99,8 @@ public class UI_StageClear : UI_Popup
     {
         Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
         Time.timeScale = 1;
-        LoadingScene.LoadScene("CatHouseScene");
-        //Managers.Scene.LoadScene(Define.SceneType.CatHouseScene);
+        //LoadingScene.LoadScene("CatHouseScene");
+        Managers.Scene.LoadScene(Define.SceneType.CatHouseScene);
 
 
         // Save Data

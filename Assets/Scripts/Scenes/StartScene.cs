@@ -56,13 +56,9 @@ public class StartScene : BaseScene
                 if (progressBar.fillAmount == 1.0f)
                 {
                     Ondo = true;
-                    if (!Fade)
-                    { 
-                        StartCoroutine(Alpa());
-                    }
                     if (canOpen)
                     {
-                        yield return new WaitForSeconds(1f);
+                        yield return new WaitForSeconds(0.5f);
                         async.allowSceneActivation = true;
                         break;
                     }
