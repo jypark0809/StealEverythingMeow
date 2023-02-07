@@ -68,6 +68,8 @@ public class UI_PauseGamePopup : UI_Popup
             Managers.Sound.Play(Define.Sound.Bgm);
         else
             Managers.Sound.Stop(Define.Sound.Bgm);
+
+        Managers.Game.SaveGame();
     }
 
     void OnEffectSoundToggleSelected(bool boolean)
@@ -78,6 +80,8 @@ public class UI_PauseGamePopup : UI_Popup
         {
             Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
         }
+
+        Managers.Game.SaveGame();
     }
 
     void OnCloseButtonClicked(PointerEventData evt)

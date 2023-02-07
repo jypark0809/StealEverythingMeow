@@ -32,7 +32,7 @@ public class UI_HappyLevelUp : UI_Popup
         Bind<Button>(typeof(Buttons));
 
         
-        GetText((int)Texts.RwdText).text = " 행복도가 Lv " + Managers.Game.SaveData.CatHappinessLevel[CatIndex] + " 로 돌았어요.";
+        GetText((int)Texts.RwdText).text = "행복도가 Lv " + Managers.Game.SaveData.CatHappinessLevel[CatIndex] + " 로 올랐어요.";
         GetButton((int)Buttons.OkButton).gameObject.BindEvent(OnCloseButton);
     }
 

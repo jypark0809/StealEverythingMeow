@@ -102,7 +102,7 @@ public class UI_ConfirmPauchasePopup : UI_Popup
         switch ((int)_purchaseType)
         {
             case (int)PurchaseType.Furniture:
-                PurchaseFurniture();
+                    PurchaseFurniture();
                 break;
             case (int)PurchaseType.Item:
                 PurchaseItem();
@@ -118,6 +118,13 @@ public class UI_ConfirmPauchasePopup : UI_Popup
 
     void PurchaseFurniture()
     {
+        if (Managers.Game.SaveData.Gold < _fData.F_Gold)
+        {
+            UI_NotEnoughGoods ui = Managers.UI.ShowPopupUI<UI_NotEnoughGoods>();
+            ui.SetFurnitureInfo(_fData);
+            return;
+        }
+
         // Happiness Point
 
         // Purchase
@@ -140,14 +147,33 @@ public class UI_ConfirmPauchasePopup : UI_Popup
         Managers.UI.CloseAllPopupUI();
     }
 
-    // °£½Ä [Ä¹ÀÙ»çÅÁ, Ãò¸£, °íµî¾î±¸ÀÌ, À°Æ÷, ÂüÄ¡Äµ, ¿¬¾î]
+    
     void PurchaseItem()
     {
-        // Purchase
+        // Check Enough [Gold / Dia]
         if (_iData.Pay_Type == (int)ShopPurchaseType.Gold)
+        {
+            if (Managers.Game.SaveData.Gold < _iData.Pay_Value)
+            {
+                UI_NotEnoughGoods ui = Managers.UI.ShowPopupUI<UI_NotEnoughGoods>();
+                ui.SetItemInfo(_iData);
+                return;
+            }
+
             Managers.Game.SaveData.Gold -= _iData.Pay_Value;
+        }
         else if (_iData.Pay_Type == (int)ShopPurchaseType.Diamond)
+        {
+            if (Managers.Game.SaveData.Dia < _iData.Pay_Value)
+            {
+                UI_NotEnoughGoods ui = Managers.UI.ShowPopupUI<UI_NotEnoughGoods>();
+                ui.SetItemInfo(_iData);
+                return;
+            }
+
             Managers.Game.SaveData.Dia -= _iData.Pay_Value;
+        }
+            
 
         // Get Reward DB
         RewardData rData;
@@ -161,6 +187,7 @@ public class UI_ConfirmPauchasePopup : UI_Popup
         Managers.Game.SaveData.Jelly += rData.Jelly;
 
         // Exception : Snack Item
+        // Snack [CatnipCandy, Churu, Mackerel, Jerky, Tuna, Salmon]
         switch (_iData.Shop_Id)
         {
             case 1601:
