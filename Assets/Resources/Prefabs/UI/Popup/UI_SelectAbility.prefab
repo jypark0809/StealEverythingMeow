@@ -2016,7 +2016,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC2A4\uD0AC \uCFE8\uD0C0\uC784 \uAC10\uC18C\n25%"
+  m_text: "\uC2A4\uD0AC \uCFE8\uD0C0\uC784 \uAC10\uC18C\n5\uCD08"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: adb1f45eca7ba5840a2d91b77397abce, type: 2}
   m_sharedMaterial: {fileID: 5616210449787203681, guid: adb1f45eca7ba5840a2d91b77397abce, type: 2}

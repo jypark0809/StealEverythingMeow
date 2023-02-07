@@ -783,7 +783,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shakePower: 10
-  _shakeTime: 0.3
+  _shakeTime: 0
 --- !u!1 &8761194687085605175
 GameObject:
   m_ObjectHideFlags: 0

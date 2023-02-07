@@ -10,8 +10,8 @@ public class GameData
 {
     //재화
     public int Jelly;
-    public int Gold = 10000;
-    public int Dia = 10000;
+    public int Gold = 1000000;
+    public int Dia;
 
     // 재료
     public int Wood = 1000;
@@ -47,7 +47,7 @@ public class GameData
     public string[] CatName = {"하양이","까망이","삼색이","치즈", "회색이"};
 
     // 간식 [캣잎사탕, 츄르, 고등어구이, 육포, 참치캔, 연어]
-    public int[] Food = { 100, 2, 0, 4, 5 ,100};
+    public int[] Food = { 0, 0, 0, 0, 0 ,0 };
     public GameData()
     {
         Jelly = 5;

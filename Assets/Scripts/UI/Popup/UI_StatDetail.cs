@@ -131,7 +131,6 @@ public class UI_StatDetail : UI_Popup
         HappyLevel = Managers.Game.SaveData.CatHappinessLevel[_index];
         GetText((int)Texts.NeedExp).text = "다음 레벨 까지 : " + (Managers.Data.Happinesses[1800 + _index * 5 + HappyLevel + 1].H_Max - Managers.Game.SaveData.CatCurHappinessExp[_index]).ToString();
         GetText((int)Texts.HappyLevel).text = "행복도 레벨 : " + HappyLevel.ToString();
-        GetText((int)Texts.FeelText).text = " 현재 감정 : ";//추후추가
         SetHappiness();
 
     }
@@ -254,36 +253,36 @@ public class UI_StatDetail : UI_Popup
     }
     void SetHappiness()
     {
-        GameObject gridPanel = Get<GameObject>((int)GameObjects.HeartSet);
+        //GameObject gridPanel = Get<GameObject>((int)GameObjects.HeartSet);
 
-        foreach (Transform child in gridPanel.transform)
-            Managers.Resource.Destroy(child.gameObject);
+        //foreach (Transform child in gridPanel.transform)
+        //    Managers.Resource.Destroy(child.gameObject);
 
 
-        for (int i = 0; i < 5; i++)
-        {
-            if (i < HappyLevel)
-            {
-                GameObject Item = Managers.Resource.Instantiate("UI/UI_HeartSet");
-                Item.transform.SetParent(gridPanel.transform);
-                UI_HeartSet HerartSet = Util.GetOrAddComponent<UI_HeartSet>(Item);
-                HerartSet.SetInfo(1, 1);
-            }
-            else if (i == HappyLevel)
-            {
-                GameObject Item1 = Managers.Resource.Instantiate("UI/UI_HeartSet");
-                Item1.transform.SetParent(gridPanel.transform);
-                UI_HeartSet HerartSet1 = Util.GetOrAddComponent<UI_HeartSet>(Item1);
-                HerartSet1.SetInfo(Managers.Game.SaveData.CatCurHappinessExp[Index], Managers.Data.Happinesses[1800 + Index * 5 + HappyLevel + 1].H_Max);
-            }
-            else if (i > HappyLevel)
-            {
-                GameObject Item = Managers.Resource.Instantiate("UI/UI_HeartSet");
-                Item.transform.SetParent(gridPanel.transform);
-                UI_HeartSet HerartSet = Util.GetOrAddComponent<UI_HeartSet>(Item);
-                HerartSet.SetInfo(0, 1);
-            }
-        }
+        //for (int i = 0; i < 5; i++)
+        //{
+        //    if (i < HappyLevel)
+        //    {
+        //        GameObject Item = Managers.Resource.Instantiate("UI/UI_HeartSet");
+        //        Item.transform.SetParent(gridPanel.transform);
+        //        UI_HeartSet HerartSet = Util.GetOrAddComponent<UI_HeartSet>(Item);
+        //        HerartSet.SetInfo(1, 1);
+        //    }
+        //    else if (i == HappyLevel)
+        //    {
+        //        GameObject Item1 = Managers.Resource.Instantiate("UI/UI_HeartSet");
+        //        Item1.transform.SetParent(gridPanel.transform);
+        //        UI_HeartSet HerartSet1 = Util.GetOrAddComponent<UI_HeartSet>(Item1);
+        //        HerartSet1.SetInfo(Managers.Game.SaveData.CatCurHappinessExp[Index], Managers.Data.Happinesses[1800 + Index * 5 + HappyLevel + 1].H_Max);
+        //    }
+        //    else if (i > HappyLevel)
+        //    {
+        //        GameObject Item = Managers.Resource.Instantiate("UI/UI_HeartSet");
+        //        Item.transform.SetParent(gridPanel.transform);
+        //        UI_HeartSet HerartSet = Util.GetOrAddComponent<UI_HeartSet>(Item);
+        //        HerartSet.SetInfo(0, 1);
+        //    }
+        //}
     }
     void OnCloseButton(PointerEventData evt)
     {

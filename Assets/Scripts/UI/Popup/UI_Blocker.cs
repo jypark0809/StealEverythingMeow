@@ -51,7 +51,7 @@ public class UI_Blocker : UI_Popup
             yield return null;
         }
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.5f);
         Managers.UI.ClosePopupUI();
     }
 }

@@ -9,7 +9,7 @@ Shop_Id,Shop_Int_Name,Shop_Name,Shop_Desc,Shop_Type,Shop_Limit_Num,Pay_Type,Pay_
 1608,S_Stone,돌,20개,1,0,0,42000,3203,0.15,Sprites/UI/ShopItem/Material/Stone_Package
 1609,S_Cotton,솜,10개,1,0,0,22500,3204,0.15,Sprites/UI/ShopItem/Material/Cotton_Package
 1610,S_Power_Ad,광고(젤리),광고 시청시 젤리 1개 획득.,2,3,3,0,3205,0.5,Sprites/UI/ShopItem/Jelly/JellyAds
-1611,S_Power_1,젤리1,젤리1개,2,0,1,23,3206,0.5,Sprites/UI/ShopItem/Jelly/Jelly10
+1611,S_Power_1,젤리1,젤리1개,2,0,1,23,3205,0.5,Sprites/UI/ShopItem/Jelly/Jelly10
 1612,S_Power_10,젤리10,젤리10개,2,0,1,207,3207,0.5,Sprites/UI/ShopItem/Jelly/Jelly10
 1613,S_Power_50,젤리50,젤리50개,2,0,1,575,3208,0.5,Sprites/UI/ShopItem/Jelly/Jelly50
 1614,S_Diamond_Ad,광고(다이아),광고 시청시 다이아10개 획득.,3,3,3,0,3209,0.5,Sprites/UI/ShopItem/Dia/DiaAds

@@ -95,6 +95,7 @@ public class UI_GameScene : UI_Scene
         GetButton((int)Buttons.PauseButton).gameObject.BindEvent(PopupPuaseUI);
         GetButton((int)Buttons.SkillButton).gameObject.BindEvent((PointerEventData evt) => skillHandler?.Invoke());
 
+        // Joystick
         joystickRadius = GetObject((int)GameObjects.OutLineCircle).GetComponent<RectTransform>().sizeDelta.y * 1.2f;
         GetObject((int)GameObjects.OutLineCircle).SetActive(false);
         GetObject((int)GameObjects.FiiledCircle).SetActive(false);
@@ -284,6 +285,8 @@ public class UI_GameScene : UI_Scene
     {
         GetImage((int)Images.TreasureMapImage).fillAmount = (float)curMapCount / maxMapCount;
     }
+
+
 
     void SetSkillImage()
     {

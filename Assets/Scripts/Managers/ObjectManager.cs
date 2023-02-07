@@ -115,4 +115,11 @@ public class ObjectManager
         GoldText goldText = go.GetOrAddComponent<GoldText>();
         goldText.SetInfo(pos, gold);
     }
+
+    public void ShowTimeText(Vector2 pos)
+    {
+        GameObject go = Managers.Resource.Instantiate("Item/TimeText");
+        TimeText timeText = go.GetOrAddComponent<TimeText>();
+        timeText.SetInfo(pos);
+    }
 }
