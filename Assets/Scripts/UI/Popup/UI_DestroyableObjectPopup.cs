@@ -38,7 +38,6 @@ public class UI_DestroyableObjectPopup : UI_Popup
     Vector3 _originPos;
     Sprite[] _sprites;
     Transform _imageTransform;
-    bool isShake = false;
 
     [SerializeField]
     float _shakePower = 10f;
