@@ -15,16 +15,16 @@ public class UI_CatHoustSceneTop : UI_Base
     enum Texts
     {
         LevelText,
-        JellyText,
+        // JellyText,
         DiamondText,
         GoldText,
-        RechargeText
+        // RechargeText
     }
 
     private void Awake()
     {
         Bind<TextMeshProUGUI>(typeof(Texts));
-        remainTimeText = GetText((int)Texts.RechargeText).gameObject;
+        // remainTimeText = GetText((int)Texts.RechargeText).gameObject;
     }
 
     public override void Init()
@@ -62,24 +62,24 @@ public class UI_CatHoustSceneTop : UI_Base
         }
     }
 
-    void OnApplicationFocus(bool focus)
-    {
-        if (focus)
-        {
-            LoadLastRemainTime();
-            RechargeJelly();
-            InitRechargeTimeText();
-        }
-        else
-        {
-            SaveLastRemainTime();
-        }
-    }
+    //void OnApplicationFocus(bool focus)
+    //{
+    //    if (focus)
+    //    {
+    //        LoadLastRemainTime();
+    //        RechargeJelly();
+    //        InitRechargeTimeText();
+    //    }
+    //    else
+    //    {
+    //        SaveLastRemainTime();
+    //    }
+    //}
 
-    void OnApplicationQuit()
-    {
-        SaveLastRemainTime();
-    }
+    //void OnApplicationQuit()
+    //{
+    //    SaveLastRemainTime();
+    //}
 
     void InitRechargeTimeText()
     {
@@ -89,7 +89,7 @@ public class UI_CatHoustSceneTop : UI_Base
             _lastRemainTime = RECHARGE_INTERVAL;
         }
 
-        GetText((int)Texts.JellyText).text = $"{Managers.Game.SaveData.Jelly}/5";
+        // GetText((int)Texts.JellyText).text = $"{Managers.Game.SaveData.Jelly}/5";
         setTimeFormatString(_lastRemainTime);
     }
 
@@ -152,7 +152,7 @@ public class UI_CatHoustSceneTop : UI_Base
 
     public void RefreshUI()
     {
-        GetText((int)Texts.JellyText).text = $"{Managers.Game.SaveData.Jelly}/5";
+        // GetText((int)Texts.JellyText).text = $"{Managers.Game.SaveData.Jelly}/5";
         GetText((int)Texts.LevelText).text = Managers.Game.SaveData.SpaceLevel.ToString();
         GetText((int)Texts.DiamondText).text = String.Format("{0:#,0}", Managers.Game.SaveData.Dia);
         GetText((int)Texts.GoldText).text = String.Format("{0:#,0}", Managers.Game.SaveData.Gold);
@@ -163,6 +163,6 @@ public class UI_CatHoustSceneTop : UI_Base
         int min = totalSec / 60;
         int sec = totalSec % 60;
         string result = sec.ToString("D2");
-        GetText((int)Texts.RechargeText).text = $"{min}:{result}";
+        // GetText((int)Texts.RechargeText).text = $"{min}:{result}";
     }
 }
