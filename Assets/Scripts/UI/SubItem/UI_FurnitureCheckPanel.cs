@@ -34,7 +34,7 @@ public class UI_FurnitureCheckPanel : UI_Base
         if(_Need)
             GetImage((int)Images.CheckImages).GetComponent<Image>().sprite = Resources.Load<Sprite>(("Sprites/UI/Panel2/Checkbox3"));
         else
-            GetImage((int)Images.CheckImages).GetComponent<Image>().sprite = Resources.Load<Sprite>(("Sprites/UI/Panel2/Checkbox2"));
+            GetImage((int)Images.CheckImages).GetComponent<Image>().sprite = Resources.Load<Sprite>(("Sprites/UI/Panel2/Checkbox4"));
     }
 
     public void SetInfo(string FurName, bool IsNeed = true)

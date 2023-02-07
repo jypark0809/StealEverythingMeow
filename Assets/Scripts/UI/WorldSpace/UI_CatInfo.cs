@@ -58,21 +58,21 @@ public class UI_CatInfo : UI_Base
         {
             if(i < HappyLevel)
             {
-                GameObject Item = Managers.Resource.Instantiate("UI/UI_HeartSet");
+                GameObject Item = Managers.Resource.Instantiate("UI/SubItem/UI_HeartSet");
                 Item.transform.SetParent(gridPanel.transform);
                 UI_HeartSet HerartSet = Util.GetOrAddComponent<UI_HeartSet>(Item);
                 HerartSet.SetInfo(1, 1);
             }
             else if(i == HappyLevel)
             {
-                GameObject Item1 = Managers.Resource.Instantiate("UI/UI_HeartSet");
+                GameObject Item1 = Managers.Resource.Instantiate("UI/SubItem/UI_HeartSet");
                 Item1.transform.SetParent(gridPanel.transform);
                 UI_HeartSet HerartSet1 = Util.GetOrAddComponent<UI_HeartSet>(Item1);
                 HerartSet1.SetInfo(CurExp, NextExp);
             }
             else if( i> HappyLevel)
             {
-                GameObject Item = Managers.Resource.Instantiate("UI/UI_HeartSet");
+                GameObject Item = Managers.Resource.Instantiate("UI/SubItem/UI_HeartSet");
                 Item.transform.SetParent(gridPanel.transform);
                 UI_HeartSet HerartSet = Util.GetOrAddComponent<UI_HeartSet>(Item);
                 HerartSet.SetInfo(0, 1);

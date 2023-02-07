@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UI_UnlockRoomPopup : UI_Base
+public class UI_UnlockRoomPopup : UI_Popup
 {
     enum Texts
     {
@@ -47,6 +47,7 @@ public class UI_UnlockRoomPopup : UI_Base
 
     public override void Init()
     {
+        base.Init();
         Bind<Button>(typeof(Buttons));
         Bind<TextMeshProUGUI>(typeof(Texts));
         Bind<GameObject>(typeof(GameObjects));
@@ -73,7 +74,7 @@ public class UI_UnlockRoomPopup : UI_Base
             GetObject((int)GameObjects.Upgrade).gameObject.SetActive(true);
             GetObject((int)GameObjects.Full).gameObject.SetActive(false);
 
-            if (Managers.Game.SaveData.IsRoomOpen)
+            if (Managers.Game.SaveData.IsRoomOpen && !Managers.Game.SaveData.DoingRoomUpgrade)
                 GetButton((int)Buttons.OkButton).gameObject.BindEvent(OnOkayButton);
             else
                 GetButton((int)Buttons.OkButton).interactable = false;
@@ -115,9 +116,7 @@ public class UI_UnlockRoomPopup : UI_Base
         
         for (int i = 0; i < Count; i++)
         {
-            GameObject Item = Managers.Resource.Instantiate("UI/UI_FurnitureCheckPanel");
-            Item.transform.SetParent(gridPanel.transform);
-            UI_FurnitureCheckPanel FurSet = Util.GetOrAddComponent<UI_FurnitureCheckPanel>(Item);
+            UI_FurnitureCheckPanel Item = Managers.UI.MakeSubItem<UI_FurnitureCheckPanel>(gridPanel.transform);
             for (int j = CurFurCount; j < Managers.Game.SaveData.FList.Count; j++)
             {
                 if (Managers.Game.SaveData.FList[j].F_Name == Managers.Data.Furnitures[1101 + i + CurFurCount].F_Name)
@@ -130,14 +129,40 @@ public class UI_UnlockRoomPopup : UI_Base
                     CurHave = false;
                 }
             }
-            FurSet.SetInfo(Managers.Data.Furnitures[1101 + i + CurFurCount].F_Name, CurHave);
-
+            Item.SetInfo(Managers.Data.Furnitures[1101 + i + CurFurCount].F_Name, CurHave);
         }
         
     }
 
     void CheckGoods()
     {
+        //³ª¹«
+        if (Managers.Data.Spaces[1200 + Managers.Game.SaveData.SpaceLevel + 1].Wood == 0)
+            Managers.Resource.Destroy(GetObject((int)GameObjects.ConSetWood));
+        else
+        {
+            if (Managers.Data.Spaces[1200 + Managers.Game.SaveData.SpaceLevel + 1].Wood > Managers.Game.SaveData.Wood)
+                GetText((int)Texts.WoodCount).text = "<color=red>" + Managers.Game.SaveData.Wood + "</color> / " + Managers.Data.Spaces[1200 + Managers.Game.SaveData.SpaceLevel + 1].Wood.ToString();
+            else
+            { 
+                GetText((int)Texts.WoodCount).text = Managers.Game.SaveData.Wood + " / " + Managers.Data.Spaces[1200 + Managers.Game.SaveData.SpaceLevel + 1].Wood.ToString();
+            }
+        }
+
+        //µ¹
+        if (Managers.Data.Spaces[1200 + Managers.Game.SaveData.SpaceLevel + 1].Stone == 0)
+            Managers.Resource.Destroy(GetObject((int)GameObjects.ConSetStone));
+        else
+        {
+            if (Managers.Data.Spaces[1200 + Managers.Game.SaveData.SpaceLevel + 1].Stone > Managers.Game.SaveData.Cotton)
+                GetText((int)Texts.StoneCount).text = "<color=red>" + Managers.Game.SaveData.Stone + "</color> / " + Managers.Data.Spaces[1300 + Managers.Game.SaveData.SpaceLevel + 1].Stone.ToString();
+            else
+            {
+                GetText((int)Texts.StoneCount).text = Managers.Game.SaveData.Stone + " / " + Managers.Data.Spaces[1200 + Managers.Game.SaveData.SpaceLevel + 1].Stone.ToString();
+            }
+        }
+
+        //¼Ø
         if (Managers.Data.Spaces[1200 + Managers.Game.SaveData.SpaceLevel + 1].Cotton == 0)
             Managers.Resource.Destroy(GetObject((int)GameObjects.ConSetCotton));
         else
@@ -146,32 +171,7 @@ public class UI_UnlockRoomPopup : UI_Base
                 GetText((int)Texts.CottonCount).text = "<color=red>" + Managers.Game.SaveData.Cotton + "</color> / " + Managers.Data.Spaces[1200 + Managers.Game.SaveData.SpaceLevel + 1].Cotton.ToString();
             else
             {
-                GetObject((int)GameObjects.CottonPanel).GetComponent<Image>().color = Color.cyan;
                 GetText((int)Texts.CottonCount).text = Managers.Game.SaveData.Cotton + " / " + Managers.Data.Spaces[1200 + Managers.Game.SaveData.SpaceLevel + 1].Cotton.ToString();
-            }
-        }
-        if (Managers.Data.Spaces[1200 + Managers.Game.SaveData.SpaceLevel + 1].Wood == 0)
-            Managers.Resource.Destroy(GetObject((int)GameObjects.ConSetWood));
-        else
-        {
-            if (Managers.Data.Spaces[1200 + Managers.Game.SaveData.SpaceLevel + 1].Wood > Managers.Game.SaveData.Wood)
-                GetText((int)Texts.WoodCount).text = "<color=red>" + Managers.Game.SaveData.Wood + "</color> / " + Managers.Data.Spaces[1200 + Managers.Game.SaveData.SoomLevel + 1].Wood.ToString();
-            else
-            {
-                GetObject((int)GameObjects.WoodPanel).GetComponent<Image>().color = Color.cyan;
-                GetText((int)Texts.WoodCount).text = Managers.Game.SaveData.Wood + " / " + Managers.Data.Spaces[1200 + Managers.Game.SaveData.SoomLevel + 1].Wood.ToString();
-            }
-        }
-        if (Managers.Data.Spaces[1200 + Managers.Game.SaveData.SpaceLevel + 1].Stone == 0)
-            Managers.Resource.Destroy(GetObject((int)GameObjects.ConSetStone));
-        else
-        {
-            if (Managers.Data.Spaces[1200 + Managers.Game.SaveData.SpaceLevel + 1].Stone > Managers.Game.SaveData.Cotton)
-                GetText((int)Texts.StoneCount).text = "<color=red>" + Managers.Game.SaveData.Stone + "</color> / " + Managers.Data.Sooms[1300 + Managers.Game.SaveData.SpaceLevel + 1].Stone.ToString();
-            else
-            {
-                GetObject((int)GameObjects.StonePanel).GetComponent<Image>().color = Color.cyan;
-                GetText((int)Texts.StoneCount).text = Managers.Game.SaveData.Stone + " / " + Managers.Data.Spaces[1200 + Managers.Game.SaveData.SpaceLevel + 1].Stone.ToString();
             }
         }
     }
