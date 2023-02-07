@@ -137,12 +137,12 @@
     },
     {
       "Id": 3216,
-      "Gold": 70000,
+      "Gold": 100000,
       "Diamond": 400,
       "Wood": 0,
       "Stone": 0,
       "Cotton": 0,
-      "Jelly": 10
+      "Jelly": 0
     },
     {
       "Id": 3217,
@@ -164,12 +164,12 @@
     },
     {
       "Id": 3219,
-      "Gold": 200000,
+      "Gold": 300000,
       "Diamond": 500,
       "Wood": 0,
       "Stone": 0,
       "Cotton": 0,
-      "Jelly": 15
+      "Jelly": 0
     }
   ]
 }

@@ -17,6 +17,7 @@ public class UI_PauseGamePopup : UI_Popup
     {
         CloseButton,
         MainMenuButton,
+        HelpButton
     }
 
     enum Texts
@@ -44,6 +45,8 @@ public class UI_PauseGamePopup : UI_Popup
 
         GetButton((int)Buttons.CloseButton).gameObject.BindEvent(OnCloseButtonClicked);
         GetButton((int)Buttons.MainMenuButton).gameObject.BindEvent(OnMainMenuButtonClicked);
+        GetButton((int)Buttons.HelpButton).gameObject.BindEvent(OnHelpButtonButtonClicked);
+
         GetObject((int)Toggles.BgmToggle).GetComponent<Toggle>().onValueChanged.AddListener(OnBgmToggleSelected);
         GetObject((int)Toggles.BgmToggle).GetComponent<Toggle>().isOn = Managers.Game.BGMOn;
         GetObject((int)Toggles.EffectSoundToggle).GetComponent<Toggle>().onValueChanged.AddListener(OnEffectSoundToggleSelected);
@@ -96,6 +99,12 @@ public class UI_PauseGamePopup : UI_Popup
         Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
         Time.timeScale = 1;
         Managers.Scene.LoadScene(Define.SceneType.CatHouseScene);
+    }
+
+    void OnHelpButtonButtonClicked(PointerEventData evt)
+    {
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
+        Managers.UI.ShowPopupUI<UI_GameTutorialPopup>();
     }
     #endregion
 }

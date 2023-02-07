@@ -43,9 +43,11 @@ public class Define : MonoBehaviour
     public enum UIEvent
     {
         Click,
-        Drag,
         PointerDown,
         PointerUp,
+        BeginDrag,
+        Drag,
+        EndDrag
     }
 
     public enum ShopPurchaseType

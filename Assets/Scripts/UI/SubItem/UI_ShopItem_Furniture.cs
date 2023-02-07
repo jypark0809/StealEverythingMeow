@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 public class UI_ShopItem_Furniture : UI_Base
 {
+    public ScrollRect _scrollRect;
+    bool isDrag = false;
+
     FurnitureData _fData;
     public bool isPurchasable; // true면 구매 가능
 
@@ -18,6 +21,7 @@ public class UI_ShopItem_Furniture : UI_Base
     enum Buttons
     {
         PurchaseButton,
+        PurchasedButton
     }
 
     enum Texts
@@ -41,8 +45,26 @@ public class UI_ShopItem_Furniture : UI_Base
 
     public override void Init()
     {
-        GetButton((int)Buttons.PurchaseButton).gameObject.BindEvent(OnButtonClicked);
-        GetButton((int)Buttons.PurchaseButton).interactable = isPurchasable;
+        _scrollRect = transform.parent.parent.parent.GetComponent<ScrollRect>();
+
+        GetButton((int)Buttons.PurchaseButton).gameObject.BindEvent(OnPurchaseButtonClicked, Define.UIEvent.Click);
+        GetButton((int)Buttons.PurchaseButton).gameObject.BindEvent(OnBeginDrag, Define.UIEvent.BeginDrag);
+        GetButton((int)Buttons.PurchaseButton).gameObject.BindEvent(OnDrag, Define.UIEvent.Drag);
+        GetButton((int)Buttons.PurchaseButton).gameObject.BindEvent(OnEndDrag, Define.UIEvent.EndDrag);
+
+        GetButton((int)Buttons.PurchasedButton).gameObject.BindEvent(OnPurchasedButtonClicked, Define.UIEvent.Click);
+        GetButton((int)Buttons.PurchasedButton).gameObject.BindEvent(OnBeginDrag, Define.UIEvent.BeginDrag);
+        GetButton((int)Buttons.PurchasedButton).gameObject.BindEvent(OnDrag, Define.UIEvent.Drag);
+        GetButton((int)Buttons.PurchasedButton).gameObject.BindEvent(OnEndDrag, Define.UIEvent.EndDrag);
+
+        if (isPurchasable)
+        {
+            GetButton((int)Buttons.PurchasedButton).gameObject.SetActive(false);
+        }
+        else
+        {
+            GetButton((int)Buttons.PurchaseButton).gameObject.SetActive(false);
+        }
     }
 
     public void SetInfo(FurnitureData fData)
@@ -62,19 +84,43 @@ public class UI_ShopItem_Furniture : UI_Base
         GetText((int)Texts.PriceText).text = $"{_fData.F_Gold.ToString("N0")}";
     }
 
-    void OnButtonClicked(PointerEventData evt)
+    void OnPurchaseButtonClicked(PointerEventData evt)
     {
+        // Disable click when draging
+        if (isDrag == true)
+            return;
+
         Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
 
-        // 첫 구매
-        if (GetButton((int)Buttons.PurchaseButton).interactable)
-        {
-            UI_ConfirmPauchasePopup ui = Managers.UI.ShowPopupUI<UI_ConfirmPauchasePopup>();
-            ui.SetFurnitureInfo(_fData);
-        }
-        else
-        {
+        UI_ConfirmPauchasePopup ui = Managers.UI.ShowPopupUI<UI_ConfirmPauchasePopup>();
+        ui.SetFurnitureInfo(_fData);
+    }
 
-        }
+    void OnPurchasedButtonClicked(PointerEventData evt)
+    {
+        // Disable click when draging
+        if (isDrag == true)
+            return;
+
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
+
+        Debug.Log("This furniture is already purchased");
+    }
+
+    void OnBeginDrag(PointerEventData evt)
+    {
+        isDrag = true;
+        _scrollRect.OnBeginDrag(evt);
+    }
+
+    void OnDrag(PointerEventData evt)
+    {
+        _scrollRect.OnDrag(evt);
+    }
+
+    void OnEndDrag(PointerEventData evt)
+    {
+        isDrag = false;
+        _scrollRect.OnEndDrag(evt);
     }
 }

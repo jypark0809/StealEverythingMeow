@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Purchasing;
@@ -9,9 +10,10 @@ using static Define;
 
 public class UI_ShopItem : UI_Base
 {
-    public int id;
     ShopItemData _iData;
     RectTransform _goldGroup, _diaGroup;
+    public ScrollRect _scrollRect;
+    bool isDrag = false;
 
     enum GameObjects
     {
@@ -58,13 +60,29 @@ public class UI_ShopItem : UI_Base
 
     public override void Init()
     {
+        _scrollRect = transform.parent.parent.parent.GetComponent<ScrollRect>();
         _goldGroup = GetObject((int)GameObjects.GoldGroup).GetComponent<RectTransform>();
         _diaGroup = GetObject((int)GameObjects.DiaGroup).GetComponent<RectTransform>();
 
-        GetButton((int)Buttons.GoldButton).gameObject.BindEvent(OnGoldButtonClicked);
-        GetButton((int)Buttons.DiamondButton).gameObject.BindEvent(OnDiaButtonClicked);
-        GetButton((int)Buttons.AdsButton).gameObject.BindEvent(OnAdsButtonClicked);
-        GetButton((int)Buttons.CashButton).gameObject.BindEvent(OnIAPButtonClicked);
+        GetButton((int)Buttons.GoldButton).gameObject.BindEvent(OnGoldButtonClicked, Define.UIEvent.Click);
+        GetButton((int)Buttons.GoldButton).gameObject.BindEvent(OnBeginDrag, Define.UIEvent.BeginDrag);
+        GetButton((int)Buttons.GoldButton).gameObject.BindEvent(OnDrag, Define.UIEvent.Drag);
+        GetButton((int)Buttons.GoldButton).gameObject.BindEvent(OnEndDrag, Define.UIEvent.EndDrag);
+
+        GetButton((int)Buttons.DiamondButton).gameObject.BindEvent(OnDiaButtonClicked, Define.UIEvent.Click);
+        GetButton((int)Buttons.DiamondButton).gameObject.BindEvent(OnBeginDrag, Define.UIEvent.BeginDrag);
+        GetButton((int)Buttons.DiamondButton).gameObject.BindEvent(OnDrag, Define.UIEvent.Drag);
+        GetButton((int)Buttons.DiamondButton).gameObject.BindEvent(OnEndDrag, Define.UIEvent.EndDrag);
+
+        GetButton((int)Buttons.AdsButton).gameObject.BindEvent(OnAdsButtonClicked, Define.UIEvent.Click);
+        GetButton((int)Buttons.AdsButton).gameObject.BindEvent(OnBeginDrag, Define.UIEvent.BeginDrag);
+        GetButton((int)Buttons.AdsButton).gameObject.BindEvent(OnDrag, Define.UIEvent.Drag);
+        GetButton((int)Buttons.AdsButton).gameObject.BindEvent(OnEndDrag, Define.UIEvent.EndDrag);
+
+        GetButton((int)Buttons.CashButton).gameObject.BindEvent(OnIAPButtonClicked, Define.UIEvent.Click);
+        GetButton((int)Buttons.CashButton).gameObject.BindEvent(OnBeginDrag, Define.UIEvent.BeginDrag);
+        GetButton((int)Buttons.CashButton).gameObject.BindEvent(OnDrag, Define.UIEvent.Drag);
+        GetButton((int)Buttons.CashButton).gameObject.BindEvent(OnEndDrag, Define.UIEvent.EndDrag);
     }
 
     public void SetInfo(ShopItemData iData)
@@ -169,6 +187,10 @@ public class UI_ShopItem : UI_Base
     // Gold
     void OnGoldButtonClicked(PointerEventData evt)
     {
+        // Disable click when draging
+        if (isDrag == true)
+            return;
+
         Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
         UI_ConfirmPauchasePopup goldUI = Managers.UI.ShowPopupUI<UI_ConfirmPauchasePopup>();
         goldUI.SetItemInfo(_iData);
@@ -177,6 +199,10 @@ public class UI_ShopItem : UI_Base
     // Dia
     void OnDiaButtonClicked(PointerEventData evt)
     {
+        // Disable click when draging
+        if (isDrag == true)
+            return;
+
         Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
         UI_ConfirmPauchasePopup diaUI = Managers.UI.ShowPopupUI<UI_ConfirmPauchasePopup>();
         diaUI.SetItemInfo(_iData);
@@ -185,6 +211,10 @@ public class UI_ShopItem : UI_Base
     // IAP
     void OnIAPButtonClicked(PointerEventData evt)
     {
+        // Disable click when draging
+        if (isDrag == true)
+            return;
+
         Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
         Debug.Log("OnIAPButtonClicked");
         Managers.IAP.Purchase(_iData.Shop_Id.ToString(), (product, failureReason) =>
@@ -199,8 +229,29 @@ public class UI_ShopItem : UI_Base
     // Ads
     void OnAdsButtonClicked(PointerEventData evt)
     {
+        // Disable click when draging
+        if (isDrag == true)
+            return;
+
         Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
         Managers.Ads.ShowRewardedAds(() => { GetReward(); });
+    }
+
+    void OnBeginDrag(PointerEventData evt)
+    {
+        isDrag = true;
+        _scrollRect.OnBeginDrag(evt);
+    }
+
+    void OnDrag(PointerEventData evt)
+    {
+        _scrollRect.OnDrag(evt);
+    }
+
+    void OnEndDrag(PointerEventData evt)
+    {
+        isDrag = false;
+        _scrollRect.OnEndDrag(evt);
     }
     #endregion
 }
