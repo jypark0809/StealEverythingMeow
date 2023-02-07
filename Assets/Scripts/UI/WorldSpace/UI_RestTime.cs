@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
+
 public class UI_RestTime : UI_Base
 {
-    private float RestTime;
-    private float AllTime;
     private TextMeshProUGUI text1;
     private TextMeshProUGUI text2;
     private Image BarImage;
+
+    DateTime st;
 
     enum Texts
     {
@@ -20,6 +22,12 @@ public class UI_RestTime : UI_Base
     {
         ImagesBar,
     }
+
+
+    int min;
+    int sec;
+    int DeltaTime;
+    private float AllTime;
 
     void Start()
     {
@@ -34,28 +42,34 @@ public class UI_RestTime : UI_Base
         text1 = GetText((int)Texts.TimeText);
         text2 = GetText((int)Texts.PlaceText);
         BarImage = GetImage((int)Images.ImagesBar);
+        text2.text = Managers.Data.Spaces[1200 + Managers.Game.SaveData.SpaceLevel].Space_Name + "  공사중...";
 
-        BarImage.fillAmount = 0f;
-        text1.text = Mathf.Floor(RestTime).ToString();
-        text2.text = Managers.Data.Spaces[1200 + Managers.Game.SaveData.SpaceLevel].Space_Name + "  공사중..."; 
+        st = DateTime.ParseExact(PlayerPrefs.GetString("OpenTime"), "yyyyMMddHHmmss", System.Globalization.CultureInfo.InvariantCulture);
     }
     void Update()
     {
-        RestTime -= Time.deltaTime;
-        text1.text = Mathf.Floor(RestTime).ToString();
+        SetTime();
         SetBarImage();
-        if (RestTime <= 0)
+        if (DeltaTime < 0 || !Managers.Game.SaveData.DoingRoomUpgrade)
             Destroy(this.gameObject);
     }
 
+    void SetTime()
+    {
+        DeltaTime = (int)(st - DateTime.Now).TotalSeconds;
+
+        min = (int)(st - DateTime.Now).TotalSeconds / 60;
+        sec = (int)(st - DateTime.Now).TotalSeconds % 60;
+        string result = sec.ToString("D2");
+        text1.text = $"{min}:{result}";
+
+    }
     void  SetBarImage()
     {
-        BarImage.fillAmount = 1- (RestTime / AllTime);
+        BarImage.fillAmount = 1- (DeltaTime / AllTime);
     }
-
     public void SetInfo(float _Time)
     {
         AllTime = _Time;
-        RestTime = _Time;
     }
 }

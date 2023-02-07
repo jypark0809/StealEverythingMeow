@@ -6,15 +6,11 @@ using UnityEngine.UI;
 
 public class UI_UpgradePopUp : UI_Popup
 {
-    enum GameObjects
-    {
-        UI_UnlockRoomPopup,
-        UI_UpgradeSom
-    }
     enum Buttons
     {
         Space,
         Soom,
+        CloseButton
     }
     void Start()
     {
@@ -25,23 +21,22 @@ public class UI_UpgradePopUp : UI_Popup
     {
         base.Init();
         Bind<Button>(typeof(Buttons));
-        Bind<GameObject>(typeof(GameObjects));
-
 
         GetButton((int)Buttons.Space).gameObject.BindEvent(OpenSpace);
         GetButton((int)Buttons.Soom).gameObject.BindEvent(OpenSoom);
-
-
+        GetButton((int)Buttons.CloseButton).gameObject.BindEvent(OnCloseButton);
     }
 
     void OpenSoom(PointerEventData evt)
     {
-        GetObject((int)GameObjects.UI_UnlockRoomPopup).SetActive(false);
-        GetObject((int)GameObjects.UI_UpgradeSom).SetActive(true);
+        Managers.UI.ShowPopupUI<UI_UnlockSoomPopup>();
     }
     void OpenSpace(PointerEventData evt)
     {
-        GetObject((int)GameObjects.UI_UnlockRoomPopup).SetActive(true);
-        GetObject((int)GameObjects.UI_UpgradeSom).SetActive(false);
+        Managers.UI.ShowPopupUI<UI_UnlockRoomPopup>();
+    }
+    void OnCloseButton(PointerEventData evt)
+    {
+        Managers.UI.CloseAllPopupUI();
     }
 }

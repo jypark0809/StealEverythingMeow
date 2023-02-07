@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UI_UpgradeSom : UI_Base
+public class UI_UnlockSoomPopup : UI_Popup
 {
     enum GameObjects
     {
@@ -42,6 +42,7 @@ public class UI_UpgradeSom : UI_Base
 
     public override void Init()
     {
+        base.Init();
         Bind<Button>(typeof(Buttons));
         Bind<Image>(typeof(Images));
         Bind<TextMeshProUGUI>(typeof(Texts));
@@ -76,7 +77,7 @@ public class UI_UpgradeSom : UI_Base
 
     void OnOpenUpCon(PointerEventData evt)
     {
-        Managers.UI.ShowPopupUI<UI_Condition>();
+        Managers.UI.ShowPopupUI<UI_UpgradeSoomPopUp>();
     }
 
     void OnCloseButton(PointerEventData evt)

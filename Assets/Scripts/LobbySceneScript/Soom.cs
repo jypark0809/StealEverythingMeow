@@ -54,6 +54,13 @@ public class Soom : MonoBehaviour
 
     public void SomUpgrade()
     {
+        //재화소모
+        Managers.Game.SaveData.Wood -= Managers.Data.Sooms[1300 + CurSoomLevel + 1].Wood;
+        Managers.Game.SaveData.Stone -= Managers.Data.Sooms[1300 + CurSoomLevel + 1].Stone;
+        Managers.Game.SaveData.Cotton -= Managers.Data.Sooms[1300 + CurSoomLevel + 1].Cotton;
+        (Managers.UI.SceneUI as UI_CatHouseScene)._catHouseSceneTop.RefreshUI();
+
+
         CurSoomLevel++;
         Managers.Game.SaveData.SoomLevel++;
         this.transform.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(("Sprites/Furniture/Soom/" + Managers.Data.Sooms[1300 + CurSoomLevel].Soom_Int_Name));
@@ -65,24 +72,27 @@ public class Soom : MonoBehaviour
             if (Managers.Game.SaveData.CatHave[i])
                 Managers.Game.SaveData.CatCurHappinessExp[i] += Managers.Data.Sooms[1300 + CurSoomLevel].Happiness;
         }
-        /*
         if (CurSoomLevel == 2)
         {
-            Managers.Game.SaveData.Emotion[14] = true;
-            Managers.Game.SaveData.Emotion[15] = true;
-            Managers.UI.ShowPopupUI<UI_ExpressOpen>().Setinfo(14, 15);
+            Managers.Game.SaveData.Emotion[(int)Define.CatEmotion.Scratch] = true;
+            Managers.Game.SaveData.Emotion[(int)Define.CatEmotion.Sway] = true;
+            Managers.Game.SaveData.EmotionList.Add(Managers.Data.ExpressBooks[1501 + (int)Define.CatEmotion.Scratch].Express_Int_Name);
+            Managers.Game.SaveData.EmotionList.Add(Managers.Data.ExpressBooks[1501 + (int)Define.CatEmotion.Sway].Express_Int_Name);
+            Managers.UI.ShowPopupUI<UI_ExpressOpen>();
             Camera.main.GetComponent<CameraMove>().Index = 1;
         }
         if (CurSoomLevel == 3)
         {
-            Managers.Game.SaveData.Emotion[1] = true;
-            Managers.Game.SaveData.Emotion[4] = true;
-            Managers.UI.ShowPopupUI<UI_ExpressOpen>().Setinfo(1, 4);
+            Managers.Game.SaveData.Emotion[(int)Define.CatEmotion.Attack] = true;
+            Managers.Game.SaveData.Emotion[(int)Define.CatEmotion.Lick] = true;
+            Managers.Game.SaveData.EmotionList.Add(Managers.Data.ExpressBooks[1501 + (int)Define.CatEmotion.Attack].Express_Int_Name);
+            Managers.Game.SaveData.EmotionList.Add(Managers.Data.ExpressBooks[1501 + (int)Define.CatEmotion.Lick].Express_Int_Name);
+            Managers.UI.ShowPopupUI<UI_ExpressOpen>();
             Camera.main.GetComponent<CameraMove>().Index = 2;
             Managers.Game.SaveData.IsSoomUp = false;
         }
-        */
         Managers.Game.SaveGame();
+        Managers.UI.CloseAllPopupUI();
     }
     private void IsUpgrdaeCheck()
     {
