@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class Room : MonoBehaviour
 {
     public bool IsGold;
@@ -15,6 +15,7 @@ public class Room : MonoBehaviour
     private float DurationTime;
     DateTime OpenTime;
     private int CurRoomLevel;
+    private bool IsTime;
     private void Start()
     {
         CurRoomLevel = Managers.Game.SaveData.SpaceLevel;
@@ -25,30 +26,46 @@ public class Room : MonoBehaviour
         if(Managers.Game.SaveData.SpaceLevel < 10)
             IsRoomCheck();
 
-        /*
         if(Managers.Game.SaveData.DoingRoomUpgrade)
         {
-            if(DateTime.Now >= OpenTime)
+            DateTime st = DateTime.ParseExact(PlayerPrefs.GetString("OpenTime"), "yyyyMMddHHmmss", System.Globalization.CultureInfo.InvariantCulture);
+            if (DateTime.Now >= st)
             {
                 OpenRoom();
             }
+            else
+            {
+                if (!IsTime)
+                {
+                    Managers.UI.MakeWorldSpaceUI<UI_RestTime>().SetInfo(Managers.Data.Spaces[1200 + CurRoomLevel + 1].Space_Time);
+                    IsTime = true;
+                }
+            }
         }
-        */
+
     }
     public void Open()
     {
+        //재화소모
+        Managers.Game.SaveData.Gold -= Managers.Data.Spaces[1200 + CurRoomLevel + 1].Gold;
+        Managers.Game.SaveData.Wood -= Managers.Data.Spaces[1200 + CurRoomLevel + 1].Wood;
+        Managers.Game.SaveData.Stone -= Managers.Data.Spaces[1200 + CurRoomLevel + 1].Stone;
+        Managers.Game.SaveData.Cotton -= Managers.Data.Spaces[1200 + CurRoomLevel + 1].Cotton;
+        (Managers.UI.SceneUI as UI_CatHouseScene)._catHouseSceneTop.RefreshUI();
+
         Managers.Game.SaveData.DoingRoomUpgrade = true;
         DurationTime = Managers.Data.Spaces[1200 + CurRoomLevel + 1].Space_Time;
         OpenTime = DateTime.Now.AddSeconds(DurationTime);
-        Debug.Log(DateTime.Now);
-        Debug.Log(OpenTime);
-        //Managers.UI.MakeWorldSpaceUI<UI_RestTime>().SetInfo(DurationTime);
-        Managers.UI.ClosePopupUI();
-        OpenRoom();
+        PlayerPrefs.SetString("OpenTime", OpenTime.ToString("yyyyMMddHHmmss"));
+        IsTime = true;
+        Managers.UI.MakeWorldSpaceUI<UI_RestTime>().SetInfo(DurationTime);
+        Managers.Game.SaveGame();
+        Managers.UI.CloseAllPopupUI();
     }
     private void OpenRoom()
     {
-        //Managers.Game.SaveData.DoingRoomUpgrade = false;
+        IsTime = false;
+        Managers.Game.SaveData.DoingRoomUpgrade = false;
         //행복도 추가
         for (int i = 0; i < Managers.Game.SaveData.CatHave.Length; i++)
         {
@@ -57,12 +74,15 @@ public class Room : MonoBehaviour
         }
 
         //카메라 움직임 추가
+
+        //생성
         Managers.Resource.Destroy(Managers.Object.CatHouse.gameObject);
         Managers.UI.ShowPopupUI<UI_Sucess>();
         CurRoomLevel++;
         Managers.Game.SaveData.SpaceLevel++;
         Managers.Object.SpawnCatHouse("CatHouse_" + Managers.Game.SaveData.SpaceLevel);
         Managers.Sound.Play(Define.Sound.Effect, "Effects/RoomOpen");
+        Managers.Game.SaveGame();
     }
     private void IsRoomCheck()
     {
