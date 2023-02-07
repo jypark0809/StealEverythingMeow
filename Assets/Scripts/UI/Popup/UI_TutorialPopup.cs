@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UI_GameTutorialPopup : UI_Popup
+public class UI_TutorialPopup : UI_Popup
 {
     int _index = 0;
     int Index
@@ -23,6 +23,7 @@ public class UI_GameTutorialPopup : UI_Popup
             {
                 _leftButton.SetActive(true);
                 _rightButton.SetActive(false);
+                GetObject((int)GameObjects.CloseButton).gameObject.SetActive(true);
             }
             else
             {
@@ -63,6 +64,7 @@ public class UI_GameTutorialPopup : UI_Popup
         _leftButton.BindEvent(OnLeftButtonClicked);
         _rightButton.BindEvent(OnRightButtonClicked);
         GetObject((int)GameObjects.CloseButton).BindEvent(OnCloseButtonClicked);
+        GetObject((int)GameObjects.CloseButton).gameObject.SetActive(false);
     }
 
     void OnLeftButtonClicked(PointerEventData evt)

@@ -29,6 +29,12 @@ public class CatHouseScene : BaseScene
             GameObject go = Managers.Resource.Instantiate($"Furniture/{fData.F_Space_Num}/{fData.F_Int_Name}");
             go.transform.position = new Vector2(go.transform.localPosition.x + 0.5f, go.transform.localPosition.y + 0.5f);
         }
+
+        if (Managers.Game.SaveData.firstExecution == true)
+        {
+            Managers.UI.ShowPopupUI<UI_FindHelp>();
+            Time.timeScale = 0;
+        }
     }
 
     private void Update()
