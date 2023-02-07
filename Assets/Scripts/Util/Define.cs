@@ -31,6 +31,8 @@ public class Define : MonoBehaviour
         Unknown,
         GameScene,
         CatHouseScene,
+        StartScene,
+        LoadingScene,
     }
 
     public enum Sound
