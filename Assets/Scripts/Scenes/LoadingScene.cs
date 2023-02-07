@@ -44,7 +44,6 @@ public class LoadingScene : BaseScene
         }
         else
         {
-            Debug.Log("½ÇÇà");
             ToGame.gameObject.SetActive(false);
             ToCatHouse.gameObject.SetActive(true);
         }
