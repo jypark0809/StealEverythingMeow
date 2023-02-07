@@ -26,22 +26,22 @@ public class Room : MonoBehaviour
         if(Managers.Game.SaveData.SpaceLevel < 10)
             IsRoomCheck();
 
-        if(Managers.Game.SaveData.DoingRoomUpgrade)
-        {
-            DateTime st = DateTime.ParseExact(PlayerPrefs.GetString("OpenTime"), "yyyyMMddHHmmss", System.Globalization.CultureInfo.InvariantCulture);
-            if (DateTime.Now >= st)
-            {
-                OpenRoom();
-            }
-            else
-            {
-                if (!IsTime)
-                {
-                    Managers.UI.MakeWorldSpaceUI<UI_RestTime>().SetInfo(Managers.Data.Spaces[1200 + CurRoomLevel + 1].Space_Time);
-                    IsTime = true;
-                }
-            }
-        }
+        //if(Managers.Game.SaveData.DoingRoomUpgrade)
+        //{
+        //    DateTime st = DateTime.ParseExact(PlayerPrefs.GetString("OpenTime"), "yyyyMMddHHmmss", System.Globalization.CultureInfo.InvariantCulture);
+        //    if (DateTime.Now >= st)
+        //    {
+        //        OpenRoom();
+        //    }
+        //    else
+        //    {
+        //        if (!IsTime)
+        //        {
+        //            Managers.UI.MakeWorldSpaceUI<UI_RestTime>().SetInfo(Managers.Data.Spaces[1200 + CurRoomLevel + 1].Space_Time);
+        //            IsTime = true;
+        //        }
+        //    }
+        //}
 
     }
     public void Open()
@@ -58,9 +58,10 @@ public class Room : MonoBehaviour
         OpenTime = DateTime.Now.AddSeconds(DurationTime);
         PlayerPrefs.SetString("OpenTime", OpenTime.ToString("yyyyMMddHHmmss"));
         IsTime = true;
-        Managers.UI.MakeWorldSpaceUI<UI_RestTime>().SetInfo(DurationTime);
+        // Managers.UI.MakeWorldSpaceUI<UI_RestTime>().SetInfo(DurationTime);
+        Managers.UI.ClosePopupUI();
+        OpenRoom();
         Managers.Game.SaveGame();
-        Managers.UI.CloseAllPopupUI();
     }
     private void OpenRoom()
     {

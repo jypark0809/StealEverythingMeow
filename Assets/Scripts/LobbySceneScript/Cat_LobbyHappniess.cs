@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Cat_LobbyHappniess : MonoBehaviour
 {
+    int pointerID;
+
     [SerializeField]
     public enum Catname
     {
