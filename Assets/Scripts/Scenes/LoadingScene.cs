@@ -7,10 +7,15 @@ using UnityEngine.UI;
 public class LoadingScene : BaseScene
 {
     public static string nextScene;
+    public static bool GoGame;
+
 
     [SerializeField]
     private Image progressBar;
-
+    [SerializeField]
+    private Image ToGame;
+    [SerializeField]
+    private Image ToCatHouse;
 
     private AsyncOperation async;
 
@@ -23,14 +28,26 @@ public class LoadingScene : BaseScene
     }
 
 
-    public static void LoadScene(string sceneName)
+    public static void LoadScene(string sceneName, bool ToGame = false)
     {
         nextScene = sceneName;
+        GoGame = ToGame;
         SceneManager.LoadScene("LoadingScene");
     }
 
     private void Start()
     {
+        if(GoGame)
+        {
+            ToGame.gameObject.SetActive(true);
+            ToCatHouse.gameObject.SetActive(false);
+        }
+        else
+        {
+            Debug.Log("½ÇÇà");
+            ToGame.gameObject.SetActive(false);
+            ToCatHouse.gameObject.SetActive(true);
+        }
         StartCoroutine(Load());
     }
 
