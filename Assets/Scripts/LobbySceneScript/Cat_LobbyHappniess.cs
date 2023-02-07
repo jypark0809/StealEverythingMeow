@@ -21,6 +21,15 @@ public class Cat_LobbyHappniess : MonoBehaviour
     private bool Isget;
 
     public float Exp;
+
+    void Awake()
+    {
+#if UNITY_EDITOR
+        pointerID = -1; //PC나 유니티 상에서는 -1
+#elif UNITY_ANDROID
+        pointerID = 0;  // 휴대폰이나 이외에서 터치 상에서는 0 
+#endif
+    }
     void Update()
     {
         HappinessLevelUp();
@@ -102,12 +111,16 @@ public class Cat_LobbyHappniess : MonoBehaviour
         this.GetComponent<Cat_LobbyMove>().EatEmotion();
 
     }
+
     private void OnMouseDown()
     {
-        if (!IsInfo)
-            Infoset();
-        if (!Isget)
-            GetGoods();
+        if(!EventSystem.current.IsPointerOverGameObject(pointerID))
+        {
+            if (!IsInfo)
+                Infoset();
+            if (!Isget)
+                GetGoods();
+        }
     }
     void Infoset()
     {
