@@ -208,6 +208,7 @@ public class SpaceData
     public int Space_Id;
     public string Space_Int_Name;
     public string Space_Name;
+    public string Space_Desc;
     public int Space_Lv;
     public int Space_Furniture_Count;
     public int Space_Gold_Plus;

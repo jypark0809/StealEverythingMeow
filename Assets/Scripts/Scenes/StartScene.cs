@@ -3,21 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-public class StartScene : BaseScene
+public class StartScene : MonoBehaviour
 {
     [SerializeField]
     private Image progressBar;
     [SerializeField]
     private Image Tab;
 
-    private AsyncOperation async;
     public bool canOpen = false;
-    protected override void Init()
-    {
-        base.Init();
-        SceneType = Define.SceneType.StartScene;
 
-    }
     public void SetCanOpen()
     {
         if (Ondo)
@@ -34,7 +28,7 @@ public class StartScene : BaseScene
     IEnumerator Load()
     {
         yield return null;
-        async = SceneManager.LoadSceneAsync("CatHouseScene");
+        AsyncOperation async = SceneManager.LoadSceneAsync("CatHouseScene");
         async.allowSceneActivation = false;
         float timer = 0.0f;
 
@@ -87,10 +81,6 @@ public class StartScene : BaseScene
             Tab.color = color;
         }
         */
-    }
-
-    public override void Clear()
-    {
     }
 }
 
