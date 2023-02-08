@@ -11,7 +11,7 @@ F_Id,F_Int_Name,F_Name,F_Desc,F_Space_Lv,F_Happiness,F_Gold,F_Path,F_Size
 1110,Iron,다리미,,3,15,230,Sprites/UI/ShopItem/Iron,0.7
 1111,Sink,싱크대,,4,20,580,Sprites/UI/ShopItem/Sink,0.3
 1112,Gasrange,가스레인지,가스레인지/ 조리음식,4,20,540,Sprites/UI/ShopItem/Gasrange,0.6
-1113,Kitchen_Utensil,주방기구 세트,주방기구 걸이/ 컵/ 접시/ 물병/\n통조림/ 사과/ 도마,4,20,510,Sprites/UI/ShopItem/Kitchen_Utensil,0.5
+1113,Kitchen_Utensil,주방기구 세트,주방기구 걸이/ 컵/ 접시/ 물병/ \n통조림/ 사과/ 도마,4,20,510,Sprites/UI/ShopItem/Kitchen_Utensil,0.5
 1114,Dinnerware_Set,식탁 세트,식탁/ 의자/ 음식/ 컵/ 주전자,4,20,600,Sprites/UI/ShopItem/Dinnerware_Set,0.3
 1115,Refrigerator,냉장고,,4,20,640,Sprites/UI/ShopItem/Refrigerator,0.55
 1116,Washing_Machine,세탁기,,5,20,2400,Sprites/UI/ShopItem/Washing_Machine,0.9

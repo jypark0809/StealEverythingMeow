@@ -296,7 +296,7 @@
       "Pay_Type": 2,
       "Pay_Value": 1500,
       "Reward": 3216,
-      "Scale": 0.5,
+      "Scale": 0.45,
       "ImgPath": "Sprites/UI/ShopItem/Package/Package_Beginner"
     },
     {
@@ -335,7 +335,7 @@
       "Pay_Type": 2,
       "Pay_Value": 2800,
       "Reward": 3219,
-      "Scale": 0.5,
+      "Scale": 0.45,
       "ImgPath": "Sprites/UI/ShopItem/Package/Package_Gold"
     }
   ]

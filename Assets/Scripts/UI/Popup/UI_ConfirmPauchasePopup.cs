@@ -186,6 +186,7 @@ public class UI_ConfirmPauchasePopup : UI_Popup
         Managers.Game.SaveData.Cotton += rData.Cotton;
         Managers.Game.SaveData.Jelly += rData.Jelly;
 
+
         // Exception : Snack Item
         // Snack [CatnipCandy, Churu, Mackerel, Jerky, Tuna, Salmon]
         switch (_iData.Shop_Id)

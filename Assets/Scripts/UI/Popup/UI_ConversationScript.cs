@@ -154,11 +154,6 @@ public class UI_ConversationScript : UI_Popup
         _isType = false;
     }
 
-    void PlayEndingBgm()
-    {
-        Managers.Sound.Play(Define.Sound.Bgm, "HappyEnding");
-    }
-
     List<Script> InitScripts()
     {
         List<Script> scripts = new List<Script>();
