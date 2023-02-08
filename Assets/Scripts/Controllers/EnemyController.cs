@@ -98,11 +98,9 @@ public class EnemyController : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             // TODO : Player -> PlayerController로 넘기기
-            StartCoroutine(ChangePlayerState());
+            Managers.Object.Player.TakeDamage();
 
             // Enemy
-            Vibration.Vibrate((long)50);
-            Managers.Sound.Play(Define.Sound.Effect, "Effects/CatCry", volume: 0.4f);
             State = EnemyState.Idle;
         }
     }

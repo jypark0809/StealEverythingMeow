@@ -5,7 +5,6 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 public class UI_Setting : UI_Popup
 {
-
     enum Toggles
     {
         BgmToggle,
@@ -86,5 +85,6 @@ public class UI_Setting : UI_Popup
     void OnHelpButtonClicked(PointerEventData evt)
     {
         // Help
+        Managers.UI.ShowPopupUI<UI_TutorialPopup>();
     }
 }
