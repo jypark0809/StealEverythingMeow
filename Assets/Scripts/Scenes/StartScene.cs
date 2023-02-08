@@ -19,7 +19,7 @@ public class StartScene : MonoBehaviour
     }
 
     private bool Fade;
-    private bool Ondo = false;
+    private bool Ondo = true;
 
     private void Start()
     {
@@ -49,10 +49,9 @@ public class StartScene : MonoBehaviour
                 progressBar.fillAmount = Mathf.Lerp(progressBar.fillAmount, 1f, timer);
                 if (progressBar.fillAmount == 1.0f)
                 {
-                    Ondo = true;
+
                     if (canOpen)
                     {
-                        yield return new WaitForSeconds(0.5f);
                         async.allowSceneActivation = true;
                         break;
                     }
