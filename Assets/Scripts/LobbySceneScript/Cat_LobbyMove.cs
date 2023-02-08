@@ -240,6 +240,7 @@ public class Cat_LobbyMove : MonoBehaviour
     }
     private void SpecialEmotion()
     {
+        
         if(Managers.Game.SaveData.EmotionList.Count ==0)
         {
             Managers.UI.ShowPopupUI<UI_NoEmotion>();
@@ -251,6 +252,8 @@ public class Cat_LobbyMove : MonoBehaviour
         IsSpecialEmotion = true;
         anim.SetBool(_curEmotion, false);
         anim.SetBool("walk", false);
+        anim.SetFloat("dirX", 0);
+        anim.SetFloat("dirY", -1f);
         Managers.Sound.Play(Define.Sound.Effect, "Effects/CatTouch", 0.3f);
         _indexEmotion = Random.Range(0, Managers.Game.SaveData.EmotionList.Count);
         _curEmotion = Managers.Game.SaveData.EmotionList[_indexEmotion];
@@ -269,7 +272,6 @@ public class Cat_LobbyMove : MonoBehaviour
     {
         yield return new WaitForSeconds(_Time);
         anim.SetBool(_str, false);
-        yield return new WaitForSeconds(2f);
         IsSpecialEmotion = false;
     }
     public bool IsPointerOverUIObject(Vector2 touchPos)
