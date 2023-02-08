@@ -17,12 +17,11 @@ public class CatHouseScene : BaseScene
         while (Managers.Data.Loaded() == false)
             yield return null;
 
-        Managers.Object.SpawnCatHouse("CatHouse_" +Managers.Game.SaveData.SpaceLevel);
+        Managers.Object.SpawnCatHouse("CatHouse_" + Managers.Game.SaveData.SpaceLevel);
         Managers.Object.SpawnSoom("Soom");
         Managers.Object.SpawnCat("LobbyCat/");
         Managers.UI.ShowSceneUI<UI_CatHouseScene>();
-        Managers.Sound.Play(Define.Sound.Bgm, "BGM/BGM_Home", volume: 0.1f);
-
+        
         for (int i = 0; i < Managers.Game.SaveData.FList.Count; i++)
         {
             FurnitureData fData = Managers.Game.SaveData.FList[i];
@@ -31,10 +30,9 @@ public class CatHouseScene : BaseScene
         }
 
         if (Managers.Game.SaveData.firstExecution == true)
-        {
-            Managers.UI.ShowPopupUI<UI_FindHelp>();
-            Time.timeScale = 0;
-        }
+            Managers.UI.ShowPopupUI<UI_ConversationScript>();
+        else
+            Managers.Sound.Play(Define.Sound.Bgm, "BGM/BGM_Home", volume: 0.1f);
     }
 
     private void Update()

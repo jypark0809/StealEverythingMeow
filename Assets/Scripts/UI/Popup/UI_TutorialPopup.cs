@@ -86,8 +86,6 @@ public class UI_TutorialPopup : UI_Popup
     void OnCloseButtonClicked(PointerEventData evt)
     {
         Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
-        Time.timeScale = 1;
-        Managers.Game.SaveGame();
         Managers.UI.ClosePopupUI();
     }
 }

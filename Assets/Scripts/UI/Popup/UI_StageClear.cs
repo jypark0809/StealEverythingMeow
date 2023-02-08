@@ -83,6 +83,9 @@ public class UI_StageClear : UI_Popup
         Managers.Game.SaveData.Stone += Managers.Object.Player.Stat.Rock;
         Managers.Game.SaveData.Cotton += Managers.Object.Player.Stat.Cotton;
 
+        if (Managers.Game.SaveData.firstExecution)
+            Managers.Game.SaveData.firstExecution = false;
+
         Managers.Game.SaveGame();
     }
 
@@ -102,8 +105,6 @@ public class UI_StageClear : UI_Popup
         //LoadingScene.LoadScene("CatHouseScene");
         Managers.Scene.LoadScene(Define.SceneType.CatHouseScene);
 
-
-        // Save Data
 
         ClosePopupUI();
     }

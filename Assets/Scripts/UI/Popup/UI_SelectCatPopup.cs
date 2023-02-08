@@ -136,7 +136,7 @@ public class UI_SelectCatPopup : UI_Popup
     {
         Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
         //LoadingScene.LoadScene("GameScene", true);
-        Managers.Scene.LoadScene(Define.SceneType.LoadingScene);
+        Managers.Scene.LoadScene(Define.SceneType.GameScene);
     }
 
     void OnCloseButtonClicked(PointerEventData evt)
