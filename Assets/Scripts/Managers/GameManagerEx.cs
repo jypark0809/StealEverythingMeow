@@ -10,13 +10,13 @@ public class GameData
 {
     //재화
     public int Jelly;
-    public int Gold = 2000000;
-    public int Dia = 100000;
+    public int Gold = 0;
+    public int Dia = 0;
 
     // 재료
-    public int Wood = 2000;
-    public int Cotton = 2000;
-    public int Stone = 2000;
+    public int Wood = 30;
+    public int Cotton = 0;
+    public int Stone = 0;
 
     // Furniture List
     public List<FurnitureData> FList = new List<FurnitureData>();
