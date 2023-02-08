@@ -107,7 +107,7 @@ public class UI_DestroyableObjectPopup : UI_Popup
             TouchCount++;
 
             PlayRandomSound();
-            Vibration.Vibrate((long)50);
+            // Vibration.Vibrate((long)50);
 
             // Shake Object
             _shakeTime += 0.3f;
