@@ -54,7 +54,7 @@ public class Room : MonoBehaviour
         (Managers.UI.SceneUI as UI_CatHouseScene)._catHouseSceneTop.RefreshUI();
 
         Managers.Game.SaveData.DoingRoomUpgrade = true;
-        DurationTime = 30f; //Managers.Data.Spaces[1200 + CurRoomLevel + 1].Space_Time;
+        DurationTime = Managers.Data.Spaces[1200 + CurRoomLevel + 1].Space_Time;
         OpenTime = DateTime.Now.AddSeconds(DurationTime);
         PlayerPrefs.SetString("OpenTime", OpenTime.ToString("yyyyMMddHHmmss"));
         IsTime = true;
