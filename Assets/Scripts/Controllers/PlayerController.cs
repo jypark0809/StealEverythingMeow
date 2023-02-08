@@ -84,16 +84,15 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage()
     {
         Managers.Sound.Play(Define.Sound.Effect, "Effects/CatCry", volume: 0.4f);
-        Vibration.Vibrate((long)50);
-
+        // Vibration.Vibrate((long)50);
+        Stat.Hp--;
         StartCoroutine(PlayerInvincible());
     }
 
     IEnumerator PlayerInvincible()
     {
-        Stat.Hp--;
         gameObject.layer = 27;
-        GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
+        GetComponent<SpriteRenderer>().color = new Color(1, 0.5f, 0.5f, 1f);
         yield return new WaitForSeconds(2f);
         gameObject.layer = 29;
         GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
