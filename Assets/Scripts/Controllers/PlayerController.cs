@@ -79,4 +79,23 @@ public class PlayerController : MonoBehaviour
         Vector2 nextVec = MoveVec * Stat.MoveSpeed * Time.fixedDeltaTime;
         _rigid.MovePosition(_rigid.position + nextVec);
     }
+
+    // 피격 판정
+    public void TakeDamage()
+    {
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/CatCry", volume: 0.4f);
+        Vibration.Vibrate((long)50);
+
+        StartCoroutine(PlayerInvincible());
+    }
+
+    IEnumerator PlayerInvincible()
+    {
+        Stat.Hp--;
+        gameObject.layer = 27;
+        GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
+        yield return new WaitForSeconds(2f);
+        gameObject.layer = 29;
+        GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
+    }
 }
