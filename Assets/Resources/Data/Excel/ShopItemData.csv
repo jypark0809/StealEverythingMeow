@@ -21,7 +21,7 @@ Shop_Id,Shop_Int_Name,Shop_Name,Shop_Desc,Shop_Type,Shop_Limit_Num,Pay_Type,Pay_
 1620,S_Gold_Ad,광고(골드),광고 시청시 공간 Lv별 골드 획득.,4,3,3,0,3201,0.5,Sprites/UI/ShopItem/Gold/GoldAds
 1621,S_Gold_30000,30000 골드,,4,0,1,60,3214,0.5,Sprites/UI/ShopItem/Gold/Moneysack30k
 1622,S_Gold_200000,200000 골드,,4,0,1,300,3215,0.45,Sprites/UI/ShopItem/Gold/Moneysack200k
-1623,S_Pkg_Beginner,초보자 패키지,다이아 400/ 골드 100000,5,0,2,1500,3216,0.5,Sprites/UI/ShopItem/Package/Package_Beginner
+1623,S_Pkg_Beginner,초보자 패키지,다이아 400/ 골드 100000,5,0,2,1500,3216,0.45,Sprites/UI/ShopItem/Package/Package_Beginner
 1624,S_Pkg_Material1,건축재료 패키지I,나무 200/ 돌 70/ 솜 30,5,0,2,2900,3217,0.4,Sprites/UI/ShopItem/Package/Package_Material_01
 1625,S_Pkg_Material2,건축재료 패키지II,나무 300/ 돌12/ 솜 63,5,0,2,3900,3218,0.4,Sprites/UI/ShopItem/Package/Package_Material_02
-1626,S_Pkg_Gold,재화 패키지,다이아 500/ 골드 300000,5,0,2,2800,3219,0.5,Sprites/UI/ShopItem/Package/Package_Gold
+1626,S_Pkg_Gold,재화 패키지,다이아 500/ 골드 300000,5,0,2,2800,3219,0.45,Sprites/UI/ShopItem/Package/Package_Gold
