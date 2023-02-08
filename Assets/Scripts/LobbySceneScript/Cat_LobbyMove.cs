@@ -18,6 +18,8 @@ public class Node
 }
 public class Cat_LobbyMove : MonoBehaviour
 {
+    int pointerID;
+
     private int _indexEmotion;
     private string _curEmotion;
 
@@ -49,7 +51,11 @@ public class Cat_LobbyMove : MonoBehaviour
 
     private void Awake()
     {
-       
+#if UNITY_EDITOR
+        pointerID = -1; //PC나 유니티 상에서는 -1
+#elif UNITY_ANDROID
+        pointerID = 0;  // 휴대폰이나 이외에서 터치 상에서는 0 
+#endif
     }
     private void Start()
     {
@@ -205,7 +211,7 @@ public class Cat_LobbyMove : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (!EventSystem.current.IsPointerOverGameObject())
+        if (!IsPointerOverUIObject(Input.mousePosition))
         {
             SpecialEmotion();
         }
@@ -266,5 +272,15 @@ public class Cat_LobbyMove : MonoBehaviour
         yield return new WaitForSeconds(2f);
         IsSpecialEmotion = false;
     }
+    public bool IsPointerOverUIObject(Vector2 touchPos)
+    {
+
+        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+        eventDataCurrentPosition.position = touchPos;
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+        return results.Count > 0;
+    }
 }
+
 
