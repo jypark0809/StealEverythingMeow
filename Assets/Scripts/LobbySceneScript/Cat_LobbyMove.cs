@@ -19,7 +19,7 @@ public class Node
 public class Cat_LobbyMove : MonoBehaviour
 {
     int pointerID;
-
+    
     private int _indexEmotion;
     private string _curEmotion;
 
