@@ -59,6 +59,7 @@ public class UI_ExpressDia : UI_Popup
         Managers.Game.SaveData.EmotionList.Add(Managers.Data.ExpressBooks[1501+Index].Express_Int_Name);
         Managers.Game.SaveData.Emotion[Index] = true;
         Managers.Game.SaveData.Dia -= 100;
+        (Managers.UI.SceneUI as UI_CatHouseScene)._catHouseSceneTop.RefreshUI();
         Managers.Game.SaveGame();
         Managers.UI.ClosePopupUI();
     }

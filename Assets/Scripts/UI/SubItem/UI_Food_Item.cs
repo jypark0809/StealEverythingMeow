@@ -38,7 +38,7 @@ public class UI_Food_Item : UI_Base
         go.BindEvent(drag, Define.UIEvent.Drag);
         go.BindEvent(EndDrag, Define.UIEvent.PointerUp);
 
-        if (Managers.Game.SaveData.Food[Index] == 0)
+        if (Managers.Game.SaveData.Food[Index] <= 0)
         {
             Get<Image>((int)Images.DragItem).gameObject.SetActive(false);
         }

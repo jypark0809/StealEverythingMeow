@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 
 public class UI_Bag : UI_Popup
 {
+    // °£½Ä [Ä¹ÀÙ»çÅÁ, Ãò¸£, °íµî¾î±¸ÀÌ, À°Æ÷, ÂüÄ¡Äµ, ¿¬¾î]
     //[Ä¹ÀÙ»çÅÁ, Ãò¸£, °íµî¾î±¸ÀÌ, À°Æ÷, ÂüÄ¡Äµ, ¿¬¾î]
     private string[] FoodName = { "CatnipCandy", "Churu", "Mackerel", "Jerky", "Tuna", "Salmon" };
     private bool[] CheckFood = new bool[6];

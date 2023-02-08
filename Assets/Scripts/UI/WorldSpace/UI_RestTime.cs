@@ -42,7 +42,7 @@ public class UI_RestTime : UI_Base
         text1 = GetText((int)Texts.TimeText);
         text2 = GetText((int)Texts.PlaceText);
         BarImage = GetImage((int)Images.ImagesBar);
-        text2.text = Managers.Data.Spaces[1200 + Managers.Game.SaveData.SpaceLevel].Space_Name + "  공사중...";
+        text2.text = Managers.Data.Spaces[1200 + Managers.Game.SaveData.SpaceLevel+1].Space_Name + "  공사중...";
 
         st = DateTime.ParseExact(PlayerPrefs.GetString("OpenTime"), "yyyyMMddHHmmss", System.Globalization.CultureInfo.InvariantCulture);
     }
