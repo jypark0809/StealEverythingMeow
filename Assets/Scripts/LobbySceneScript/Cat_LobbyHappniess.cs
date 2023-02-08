@@ -117,7 +117,7 @@ public class Cat_LobbyHappniess : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if(!EventSystem.current.IsPointerOverGameObject(pointerID))
+        if (!IsPointerOverUIObject(Input.mousePosition))
         {
             if (!IsInfo)
                 Infoset();
@@ -188,10 +188,10 @@ public class Cat_LobbyHappniess : MonoBehaviour
             case 2:
                 _Index1 = (int)Define.CatEmotion.Tail;
                 _Index2 = (int)Define.CatEmotion.Dig;
-                if(!Managers.Game.SaveData.Emotion[_Index1])
+                if (!Managers.Game.SaveData.Emotion[_Index1])
                 {
                     Managers.Game.SaveData.Emotion[_Index1] = true;
-                    Managers.Game.SaveData.EmotionList.Add(Managers.Data.ExpressBooks[1501+ _Index1].Express_Int_Name);
+                    Managers.Game.SaveData.EmotionList.Add(Managers.Data.ExpressBooks[1501 + _Index1].Express_Int_Name);
                     _Index1bool = true;
                 }
                 if (!Managers.Game.SaveData.Emotion[_Index2])
@@ -217,7 +217,7 @@ public class Cat_LobbyHappniess : MonoBehaviour
                     Managers.Game.SaveData.Emotion[_Index2] = true;
                     Managers.Game.SaveData.EmotionList.Add(Managers.Data.ExpressBooks[1501 + _Index2].Express_Int_Name);
                     _Index2bool = true;
- 
+
                 }
                 if (_Index1bool || _Index2bool)
                     Managers.UI.ShowPopupUI<UI_ExpressOpen>();
@@ -259,6 +259,18 @@ public class Cat_LobbyHappniess : MonoBehaviour
                     Managers.UI.ShowPopupUI<UI_ExpressOpen>();
                 break;
         }
-                
+
     }
+
+
+    public bool IsPointerOverUIObject(Vector2 touchPos)
+    {
+
+        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+        eventDataCurrentPosition.position = touchPos;
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+        return results.Count > 0;
+    }
+
 }
