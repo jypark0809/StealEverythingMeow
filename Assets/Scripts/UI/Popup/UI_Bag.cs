@@ -45,17 +45,17 @@ public class UI_Bag : UI_Popup
 
     void OpenFood(PointerEventData evt)
     {
-        Get<GameObject>((int)GameObjects.Food).SetActive(false);
-        Get<GameObject>((int)GameObjects.Inven).SetActive(true);
-        GetButton((int)Buttons.FoodButton).interactable = false;
-        GetButton((int)Buttons.InvenButton).interactable = true;
+        Get<GameObject>((int)GameObjects.Food).SetActive(true);
+        GetButton((int)Buttons.FoodButton).interactable = true;
+        Get<GameObject>((int)GameObjects.Inven).SetActive(false);
+        GetButton((int)Buttons.InvenButton).interactable = false;
     }
     void OpenInven(PointerEventData evt)
     {
-        Get<GameObject>((int)GameObjects.Food).SetActive(true);
-        Get<GameObject>((int)GameObjects.Inven).SetActive(false);
-        GetButton((int)Buttons.InvenButton).interactable = false;
-        GetButton((int)Buttons.FoodButton).interactable = true;
+        Get<GameObject>((int)GameObjects.Inven).SetActive(true);
+        GetButton((int)Buttons.InvenButton).interactable = true;
+        GetButton((int)Buttons.FoodButton).interactable = false;
+        Get<GameObject>((int)GameObjects.Food).SetActive(false);
     }
 
     void OnCloseButton(PointerEventData evt)

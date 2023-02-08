@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class LoadingScene : BaseScene
+public class LoadingScene : MonoBehaviour
 {
     public static string nextScene;
     public static bool GoGame;
@@ -16,16 +16,6 @@ public class LoadingScene : BaseScene
     private Image ToGame;
     [SerializeField]
     private Image ToCatHouse;
-
-    private AsyncOperation async;
-
-    protected override void Init()
-    {
-        base.Init();
-        SceneType = Define.SceneType.LoadingScene;
-
-        //StartCoroutine(Load());
-    }
 
 
     public static void LoadScene(string sceneName, bool ToGame = false)
@@ -53,7 +43,7 @@ public class LoadingScene : BaseScene
     IEnumerator Load()
     {
         yield return null;
-        async = SceneManager.LoadSceneAsync(nextScene);
+        AsyncOperation async = SceneManager.LoadSceneAsync(nextScene);
         async.allowSceneActivation = false;
         float timer = 0.0f;
 
@@ -74,14 +64,11 @@ public class LoadingScene : BaseScene
                 progressBar.fillAmount = Mathf.Lerp(progressBar.fillAmount, 1f, timer);
                 if (progressBar.fillAmount == 1.0f)
                 {
-                    yield return new WaitForSeconds(2f);
+                    //yield return new WaitForSeconds(1f);
                     async.allowSceneActivation = true;
                     break;
                 }
             }
         }
-    }
-    public override void Clear()
-    {
     }
 }
