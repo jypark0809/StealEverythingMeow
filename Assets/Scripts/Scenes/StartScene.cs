@@ -3,26 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-public class StartScene : BaseScene
+public class StartScene : MonoBehaviour
 {
     [SerializeField]
     private Image progressBar;
+    [SerializeField]
+    private Image Tab;
 
-
-    private AsyncOperation async;
-    private bool canOpen = false;
+    public bool canOpen = false;
 
     public void SetCanOpen()
     {
-        canOpen = true;
+        if (Ondo)
+            canOpen = true;
     }
-    protected override void Init()
-    {
-        base.Init();
-        SceneType = Define.SceneType.StartScene;
 
-        //StartCoroutine(Load());
-    }
+    private bool Fade;
+    private bool Ondo = true;
 
     private void Start()
     {
@@ -31,7 +28,7 @@ public class StartScene : BaseScene
     IEnumerator Load()
     {
         yield return null;
-        async = SceneManager.LoadSceneAsync("CatHouseScene");
+        AsyncOperation async = SceneManager.LoadSceneAsync("CatHouseScene");
         async.allowSceneActivation = false;
         float timer = 0.0f;
 
@@ -39,10 +36,10 @@ public class StartScene : BaseScene
         {
             yield return null;
             timer += Time.deltaTime;
-            if(async.progress<0.9f)
+            if (async.progress < 0.9f)
             {
                 progressBar.fillAmount = Mathf.Lerp(progressBar.fillAmount, async.progress, timer);
-                if(progressBar.fillAmount >= async.progress)
+                if (progressBar.fillAmount >= async.progress)
                 {
                     timer = 0f;
                 }
@@ -50,16 +47,39 @@ public class StartScene : BaseScene
             else
             {
                 progressBar.fillAmount = Mathf.Lerp(progressBar.fillAmount, 1f, timer);
-                if(progressBar.fillAmount == 1.0f)
-                { 
-                    async.allowSceneActivation = true;
-                    break;
+                if (progressBar.fillAmount == 1.0f)
+                {
+
+                    if (canOpen)
+                    {
+                        async.allowSceneActivation = true;
+                        break;
+                    }
                 }
+
             }
-        }            
+        }
     }
-    public override void Clear()
+
+
+    float start = 1f;
+    float end = 0f;
+    IEnumerator Alpa()
     {
+        Fade = true;
+        Color color = Tab.GetComponent<Image>().color;
+        color.a = Mathf.Lerp(1f, 0.2f, 3f);
+        yield return null;
+        /*
+        while (color.a > 0f)
+        {
+            color.a = Mathf.Lerp(start, end, 0.5f);
+            Tab.color = color;
+            yield return new WaitForSeconds(0.4f);
+            color.a = Mathf.Lerp(end, start, 0.5f);
+            Tab.color = color;
+        }
+        */
     }
 }
 

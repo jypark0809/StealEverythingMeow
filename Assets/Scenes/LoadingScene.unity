@@ -212,6 +212,84 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   progressBar: {fileID: 1593274838}
+  ToGame: {fileID: 1639342980}
+  ToCatHouse: {fileID: 425825035}
+--- !u!1 &425825033
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 425825034}
+  - component: {fileID: 425825036}
+  - component: {fileID: 425825035}
+  m_Layer: 5
+  m_Name: ToCatHouse
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &425825034
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 425825033}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7368649463621398956}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &425825035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 425825033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 22b42a5ef4ee2534786e664a87671610, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &425825036
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 425825033}
+  m_CullTransparentMesh: 1
 --- !u!1 &462093814
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,7 +457,7 @@ RectTransform:
   - {fileID: 1593274837}
   - {fileID: 462093815}
   m_Father: {fileID: 7368649463621398956}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -399,7 +477,6 @@ GameObject:
   - component: {fileID: 763408694}
   - component: {fileID: 763408693}
   - component: {fileID: 763408692}
-  - component: {fileID: 763408691}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -407,29 +484,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &763408691
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 763408690}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 353b3250a5914f749adce81717f2c2ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mapsize:
-  - {x: 14.5, y: 15}
-  - {x: 17.5, y: 20}
-  - {x: 28, y: 21.8}
-  center:
-  - {x: 1.5, y: 0}
-  - {x: 1.5, y: 3.2}
-  - {x: -7.5, y: 1.7}
-  Index: 0
-  IsMove: 0
-  targetPos: {x: 0, y: 0, z: 0}
 --- !u!114 &763408692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -640,7 +694,7 @@ GameObject:
   - component: {fileID: 1639342981}
   - component: {fileID: 1639342980}
   m_Layer: 5
-  m_Name: Image
+  m_Name: ToGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -852,6 +906,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1639342979}
+  - {fileID: 425825034}
   - {fileID: 757026459}
   m_Father: {fileID: 0}
   m_RootOrder: 3
