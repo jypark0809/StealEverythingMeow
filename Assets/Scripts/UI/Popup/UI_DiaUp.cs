@@ -41,6 +41,6 @@ public class UI_DiaUp : UI_Popup
     }
     private void OnCloseButton(PointerEventData evt)
     {
-        Managers.UI.CloseAllPopupUI();
+        Managers.UI.ClosePopupUI();
     }
 }

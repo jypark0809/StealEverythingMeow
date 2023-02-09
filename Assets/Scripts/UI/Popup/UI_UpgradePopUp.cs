@@ -30,6 +30,7 @@ public class UI_UpgradePopUp : UI_Popup
     void OpenSoom(PointerEventData evt)
     {
         Managers.UI.ShowPopupUI<UI_UnlockSoomPopup>();
+        Managers.UI.ClosePopupUI();
     }
     void OpenSpace(PointerEventData evt)
     {
@@ -37,6 +38,6 @@ public class UI_UpgradePopUp : UI_Popup
     }
     void OnCloseButton(PointerEventData evt)
     {
-        Managers.UI.CloseAllPopupUI();
+        Managers.UI.ClosePopupUI();
     }
 }

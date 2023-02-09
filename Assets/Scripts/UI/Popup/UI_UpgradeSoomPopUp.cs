@@ -79,11 +79,12 @@ public class UI_UpgradeSoomPopUp : UI_Popup
 
     void OnCloseButton(PointerEventData evt)
     {
-        Managers.UI.CloseAllPopupUI();
+        Managers.UI.ClosePopupUI();
     }
     void OnDiaUpgrade(PointerEventData evt)
     {
         Managers.UI.ShowPopupUI<UI_DiaUp>();
+        Managers.UI.ClosePopupUI();
     }
     void OnGoldUpgrdae(PointerEventData evt)
     {

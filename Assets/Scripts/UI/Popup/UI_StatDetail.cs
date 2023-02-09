@@ -239,7 +239,7 @@ public class UI_StatDetail : UI_Popup
             }
             Managers.Game.SaveGame();
             (Managers.UI.SceneUI as UI_CatHouseScene)._catHouseSceneTop.RefreshUI();
-            Managers.UI.CloseAllPopupUI();
+            Managers.UI.ClosePopupUI();
         }
         else
         {

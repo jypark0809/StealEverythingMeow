@@ -91,6 +91,7 @@ public class UI_UnlockRoomPopup : UI_Popup
     void OnOkayButton(PointerEventData evt)
     {
        Managers.Object.RoomOpen.Open();
+       Managers.UI.ClosePopupUI();
     }
     void OnCloseButton(PointerEventData evt)
     {
