@@ -77,6 +77,7 @@ public class UI_UnlockSoomPopup : UI_Popup
 
     void OnOpenUpCon(PointerEventData evt)
     {
+        Managers.UI.ClosePopupUI();
         Managers.UI.ShowPopupUI<UI_UpgradeSoomPopUp>();
     }
 

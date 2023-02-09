@@ -152,7 +152,13 @@ public class UI_CatHoustSceneTop : UI_Base
     public void RefreshUI()
     {
         // GetText((int)Texts.JellyText).text = $"{Managers.Game.SaveData.Jelly}/5";
-        GetText((int)Texts.LevelText).text = Managers.Game.SaveData.SpaceLevel.ToString();
+        if (Managers.Game.SaveData.SpaceLevel == 10)
+        {
+            GetText((int)Texts.LevelText).text = "Max";
+            GetText((int)Texts.LevelText).fontSize = 10;
+        }
+        else
+            GetText((int)Texts.LevelText).text = Managers.Game.SaveData.SpaceLevel.ToString();
         GetText((int)Texts.DiamondText).text = String.Format("{0:#,0}", Managers.Game.SaveData.Dia);
         GetText((int)Texts.GoldText).text = String.Format("{0:#,0}", Managers.Game.SaveData.Gold);
     }

@@ -91,6 +91,7 @@ public class UI_UpgradeSoomPopUp : UI_Popup
         Managers.Game.SaveData.Gold -= Managers.Data.Sooms[1300 + Managers.Game.SaveData.SoomLevel + 1].Gold;
         (Managers.UI.SceneUI as UI_CatHouseScene)._catHouseSceneTop.RefreshUI();
         Managers.Object.SoomOpen.SomUpgrade();
+        Managers.UI.ClosePopupUI();
     }
     void SetFur()
     {
