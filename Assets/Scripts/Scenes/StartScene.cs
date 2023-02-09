@@ -49,12 +49,15 @@ public class StartScene : MonoBehaviour
                 progressBar.fillAmount = Mathf.Lerp(progressBar.fillAmount, 1f, timer);
                 if (progressBar.fillAmount == 1.0f)
                 {
-
+                    async.allowSceneActivation = true;
+                    break;
+                    /*
                     if (canOpen)
                     {
                         async.allowSceneActivation = true;
                         break;
                     }
+                    */
                 }
 
             }

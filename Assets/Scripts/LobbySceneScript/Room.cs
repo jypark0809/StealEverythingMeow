@@ -59,8 +59,8 @@ public class Room : MonoBehaviour
         PlayerPrefs.SetString("OpenTime", OpenTime.ToString("yyyyMMddHHmmss"));
         IsTime = true;
         Managers.UI.CloseAllPopupUI();
-        Managers.UI.MakeWorldSpaceUI<UI_RestTime>().SetInfo(DurationTime);
         Managers.Game.SaveGame();
+        Managers.UI.MakeWorldSpaceUI<UI_RestTime>().SetInfo(DurationTime);
     }
     private void OpenRoom()
     {
