@@ -118,13 +118,13 @@ public class Stat : MonoBehaviour
             _speedLv = value;
             StatSpeedData speedData;
             Managers.Data.StatSpeeds.TryGetValue(_speedLv, out speedData);
-            MoveSpeed = speedData.Stats_Speed;
+            MoveSpeed += speedData.Stats_Speed;
         }
     }
     public int CooltimeLv
     {
         get { return _cooltimeLv; }
-        set 
+        set
         {
             _cooltimeLv = value;
             StatCooltimeData cooltimeData;

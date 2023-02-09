@@ -39,5 +39,6 @@ public class DestroyableObject : MonoBehaviour
 
         Managers.Resource.Destroy(gameObject);
         Managers.Object.ShowGoldText(transform.position, _object.Object_Gold);
+        Managers.Game.SaveData.Dia += _object.Object_Diamond;
     }
 }

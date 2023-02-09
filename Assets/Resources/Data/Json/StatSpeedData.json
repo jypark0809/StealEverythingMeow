@@ -2,27 +2,27 @@
   "statSpeeds": [
     {
       "Stats_Lv": 1,
-      "Stats_Speed": 5.0
+      "Stats_Speed": 0
     },
     {
       "Stats_Lv": 2,
-      "Stats_Speed": 5.5
+      "Stats_Speed": 0.5
     },
     {
       "Stats_Lv": 3,
-      "Stats_Speed": 6.0
+      "Stats_Speed": 0.5
     },
     {
       "Stats_Lv": 4,
-      "Stats_Speed": 6.5
+      "Stats_Speed": 0.5
     },
     {
       "Stats_Lv": 5,
-      "Stats_Speed": 7.0
+      "Stats_Speed": 0.5
     },
     {
       "Stats_Lv": 6,
-      "Stats_Speed": 7.5
+      "Stats_Speed": 0.5
     }
   ]
 }
