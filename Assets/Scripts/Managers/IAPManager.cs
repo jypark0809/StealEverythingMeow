@@ -14,15 +14,15 @@ public class IAPManager : IStoreListener
     public bool IsNoAds { get; private set; }
     bool _init = false;
 
-    const string DIA50 = "1617";
-    const string DIA120 = "1618";
-    const string DIA300 = "1619";
-    const string DIA450 = "1620";
-    const string DIA700 = "1621";
-    const string BEGINNER_PKG = "1625";
-    const string MATERIAL_PKG_1 = "1626";
-    const string MATERIAL_PKG_2 = "1627";
-    const string GOLD_PKG = "1628";
+    const string DIA50 = "s_diamond_50";
+    const string DIA120 = "s_diamond_120";
+    const string DIA300 = "s_diamond_300";
+    const string DIA450 = "s_diamond_450";
+    const string DIA700 = "s_diamond_700";
+    const string BEGINNER_PKG = "s_pkg_beginner";
+    const string MATERIAL_PKG_1 = "s_pkg_material1";
+    const string MATERIAL_PKG_2 = "s_pkg_material2";
+    const string GOLD_PKG = "s_pkg_gold";
     const string NO_ADS = "ant_noads";
 
     Action<Product, PurchaseFailureReason> _onPurchased;

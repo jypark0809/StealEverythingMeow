@@ -2,7 +2,7 @@
   "ShopItems": [
     {
       "Shop_Id": 1601,
-      "Shop_Int_Name": "S_Churu",
+      "Shop_Int_Name": "s_Churu",
       "Shop_Name": "츄르",
       "Shop_Desc": "하양이가 좋아하는 간식",
       "Shop_Type": 0,
@@ -15,7 +15,7 @@
     },
     {
       "Shop_Id": 1602,
-      "Shop_Int_Name": "S_Mackerel",
+      "Shop_Int_Name": "s_Mackerel",
       "Shop_Name": "고등어구이",
       "Shop_Desc": "까망이가 좋아하는 간식",
       "Shop_Type": 0,
@@ -28,7 +28,7 @@
     },
     {
       "Shop_Id": 1603,
-      "Shop_Int_Name": "S_Jerky",
+      "Shop_Int_Name": "s_Jerky",
       "Shop_Name": "육포",
       "Shop_Desc": "삼색이가 좋아하는 간식",
       "Shop_Type": 0,
@@ -41,7 +41,7 @@
     },
     {
       "Shop_Id": 1604,
-      "Shop_Int_Name": "S_Tuna",
+      "Shop_Int_Name": "s_Tuna",
       "Shop_Name": "참치캔",
       "Shop_Desc": "치즈가 좋아하는 간식",
       "Shop_Type": 0,
@@ -54,7 +54,7 @@
     },
     {
       "Shop_Id": 1605,
-      "Shop_Int_Name": "S_Salmon",
+      "Shop_Int_Name": "s_Salmon",
       "Shop_Name": "연어",
       "Shop_Desc": "획색이가 좋아하는 간식",
       "Shop_Type": 0,
@@ -67,7 +67,7 @@
     },
     {
       "Shop_Id": 1606,
-      "Shop_Int_Name": "S_Catleaf",
+      "Shop_Int_Name": "s_Catleaf",
       "Shop_Name": "캣잎사탕",
       "Shop_Desc": "모든 고양이가 좋아하는 간식",
       "Shop_Type": 0,
@@ -80,7 +80,7 @@
     },
     {
       "Shop_Id": 1607,
-      "Shop_Int_Name": "S_Wood",
+      "Shop_Int_Name": "s_Wood",
       "Shop_Name": "나무",
       "Shop_Desc": "30개",
       "Shop_Type": 1,
@@ -93,7 +93,7 @@
     },
     {
       "Shop_Id": 1608,
-      "Shop_Int_Name": "S_Stone",
+      "Shop_Int_Name": "s_Stone",
       "Shop_Name": "돌",
       "Shop_Desc": "20개",
       "Shop_Type": 1,
@@ -106,7 +106,7 @@
     },
     {
       "Shop_Id": 1609,
-      "Shop_Int_Name": "S_Cotton",
+      "Shop_Int_Name": "s_Cotton",
       "Shop_Name": "솜",
       "Shop_Desc": "10개",
       "Shop_Type": 1,
@@ -119,7 +119,7 @@
     },
     {
       "Shop_Id": 1610,
-      "Shop_Int_Name": "S_Power_Ad",
+      "Shop_Int_Name": "s_Power_Ad",
       "Shop_Name": "광고(젤리)",
       "Shop_Desc": "광고 시청시 젤리 1개 획득.",
       "Shop_Type": 2,
@@ -132,7 +132,7 @@
     },
     {
       "Shop_Id": 1611,
-      "Shop_Int_Name": "S_Power_1",
+      "Shop_Int_Name": "s_Power_1",
       "Shop_Name": "젤리 1",
       "Shop_Desc": "",
       "Shop_Type": 2,
@@ -145,7 +145,7 @@
     },
     {
       "Shop_Id": 1612,
-      "Shop_Int_Name": "S_Power_10",
+      "Shop_Int_Name": "s_Power_10",
       "Shop_Name": "젤리 10",
       "Shop_Desc": "",
       "Shop_Type": 2,
@@ -158,7 +158,7 @@
     },
     {
       "Shop_Id": 1613,
-      "Shop_Int_Name": "S_Power_50",
+      "Shop_Int_Name": "s_Power_50",
       "Shop_Name": "젤리 50",
       "Shop_Desc": "",
       "Shop_Type": 2,
@@ -171,7 +171,7 @@
     },
     {
       "Shop_Id": 1614,
-      "Shop_Int_Name": "S_Diamond_Ad",
+      "Shop_Int_Name": "s_Diamond_Ad",
       "Shop_Name": "광고(다이아)",
       "Shop_Desc": "광고 시청시 다이아 10개 획득.",
       "Shop_Type": 3,
@@ -184,7 +184,7 @@
     },
     {
       "Shop_Id": 1615,
-      "Shop_Int_Name": "S_Diamond_50",
+      "Shop_Int_Name": "s_Diamond_50",
       "Shop_Name": "다이아 50",
       "Shop_Desc": "",
       "Shop_Type": 3,
@@ -197,7 +197,7 @@
     },
     {
       "Shop_Id": 1616,
-      "Shop_Int_Name": "S_Diamond_120",
+      "Shop_Int_Name": "s_Diamond_120",
       "Shop_Name": "다이아 120",
       "Shop_Desc": "",
       "Shop_Type": 3,
@@ -210,7 +210,7 @@
     },
     {
       "Shop_Id": 1617,
-      "Shop_Int_Name": "S_Diamond_300",
+      "Shop_Int_Name": "s_Diamond_300",
       "Shop_Name": "다이아 300",
       "Shop_Desc": "",
       "Shop_Type": 3,
@@ -223,7 +223,7 @@
     },
     {
       "Shop_Id": 1618,
-      "Shop_Int_Name": "S_Diamond_450",
+      "Shop_Int_Name": "s_Diamond_450",
       "Shop_Name": "다이아 450",
       "Shop_Desc": "",
       "Shop_Type": 3,
@@ -236,7 +236,7 @@
     },
     {
       "Shop_Id": 1619,
-      "Shop_Int_Name": "S_Diamond_700",
+      "Shop_Int_Name": "s_Diamond_700",
       "Shop_Name": "다이아 700",
       "Shop_Desc": "",
       "Shop_Type": 3,
@@ -249,7 +249,7 @@
     },
     {
       "Shop_Id": 1620,
-      "Shop_Int_Name": "S_Gold_Ad",
+      "Shop_Int_Name": "s_Gold_Ad",
       "Shop_Name": "광고(골드)",
       "Shop_Desc": "광고 시청시 공간 Lv별 골드 획득.",
       "Shop_Type": 4,
@@ -262,7 +262,7 @@
     },
     {
       "Shop_Id": 1621,
-      "Shop_Int_Name": "S_Gold_30000",
+      "Shop_Int_Name": "s_Gold_30000",
       "Shop_Name": "30000 골드",
       "Shop_Desc": "",
       "Shop_Type": 4,
@@ -275,7 +275,7 @@
     },
     {
       "Shop_Id": 1622,
-      "Shop_Int_Name": "S_Gold_200000",
+      "Shop_Int_Name": "s_Gold_200000",
       "Shop_Name": "200000 골드",
       "Shop_Desc": "",
       "Shop_Type": 4,
@@ -288,7 +288,7 @@
     },
     {
       "Shop_Id": 1623,
-      "Shop_Int_Name": "S_Pkg_Beginner",
+      "Shop_Int_Name": "s_Pkg_Beginner",
       "Shop_Name": "초보자 패키지",
       "Shop_Desc": "다이아 400/ 골드 100000",
       "Shop_Type": 5,
@@ -301,7 +301,7 @@
     },
     {
       "Shop_Id": 1624,
-      "Shop_Int_Name": "S_Pkg_Material1",
+      "Shop_Int_Name": "s_Pkg_Material1",
       "Shop_Name": "건축재료 패키지I",
       "Shop_Desc": "나무 200/ 돌 70/ 솜 30",
       "Shop_Type": 5,
@@ -314,7 +314,7 @@
     },
     {
       "Shop_Id": 1625,
-      "Shop_Int_Name": "S_Pkg_Material2",
+      "Shop_Int_Name": "s_Pkg_Material2",
       "Shop_Name": "건축재료 패키지II",
       "Shop_Desc": "나무 300/ 돌12/ 솜 63",
       "Shop_Type": 5,
@@ -327,7 +327,7 @@
     },
     {
       "Shop_Id": 1626,
-      "Shop_Int_Name": "S_Pkg_Gold",
+      "Shop_Int_Name": "s_Pkg_Gold",
       "Shop_Name": "재화 패키지",
       "Shop_Desc": "다이아 500/ 골드 300000",
       "Shop_Type": 5,

@@ -254,7 +254,7 @@ public class UI_ShopItem : UI_Base
 
         Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
         Debug.Log("OnIAPButtonClicked");
-        Managers.IAP.Purchase(_iData.Shop_Id.ToString(), (product, failureReason) =>
+        Managers.IAP.Purchase(_iData.Shop_Int_Name.ToString(), (product, failureReason) =>
         {
             Debug.Log($"Purchase Done {product.transactionID} {failureReason}");
             // 성공했는지 확인
