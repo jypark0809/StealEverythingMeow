@@ -45,6 +45,8 @@ public class UI_RestTime : UI_Base
         text2.text = Managers.Data.Spaces[1200 + Managers.Game.SaveData.SpaceLevel+1].Space_Name + "  °ø»çÁß...";
 
         st = DateTime.ParseExact(PlayerPrefs.GetString("OpenTime"), "yyyyMMddHHmmss", System.Globalization.CultureInfo.InvariantCulture);
+        SetTime();
+        SetBarImage();
     }
     void Update()
     {
