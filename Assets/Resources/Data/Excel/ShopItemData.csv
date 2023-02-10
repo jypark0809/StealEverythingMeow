@@ -13,15 +13,15 @@ Shop_Id,Shop_Int_Name,Shop_Name,Shop_Desc,Shop_Type,Shop_Limit_Num,Pay_Type,Pay_
 1612,s_Power_10,젤리 10,,2,0,1,207,3206,0.5,Sprites/UI/ShopItem/Jelly/Jelly10
 1613,s_Power_50,젤리 50,,2,0,1,575,3207,0.5,Sprites/UI/ShopItem/Jelly/Jelly50
 1614,s_Diamond_Ad,광고(다이아),광고 시청시 다이아 10개 획득.,3,3,3,0,3208,0.5,Sprites/UI/ShopItem/Dia/DiaAds
-1615,s_Diamond_50,다이아 50,,3,0,2,650,3209,0.4,Sprites/UI/ShopItem/Dia/Dia50
-1616,s_Diamond_120,다이아 120,,3,0,2,1500,3210,0.38,Sprites/UI/ShopItem/Dia/Dia120
-1617,s_Diamond_300,다이아 300,,3,0,2,3300,3211,0.25,Sprites/UI/ShopItem/Dia/Dia300
-1618,s_Diamond_450,다이아 450,,3,0,2,4600,3212,0.25,Sprites/UI/ShopItem/Dia/Dia450
-1619,s_Diamond_700,다이아 700,,3,0,2,6800,3213,0.25,Sprites/UI/ShopItem/Dia/Dia700
+1615,s_diamond_50,다이아 50,,3,0,2,650,3209,0.4,Sprites/UI/ShopItem/Dia/Dia50
+1616,s_diamond_120,다이아 120,,3,0,2,1500,3210,0.38,Sprites/UI/ShopItem/Dia/Dia120
+1617,s_diamond_300,다이아 300,,3,0,2,3300,3211,0.25,Sprites/UI/ShopItem/Dia/Dia300
+1618,s_diamond_450,다이아 450,,3,0,2,4600,3212,0.25,Sprites/UI/ShopItem/Dia/Dia450
+1619,s_diamond_700,다이아 700,,3,0,2,6800,3213,0.25,Sprites/UI/ShopItem/Dia/Dia700
 1620,s_Gold_Ad,광고(골드),광고 시청시 공간 Lv별 골드 획득.,4,3,3,0,3201,0.5,Sprites/UI/ShopItem/Gold/GoldAds
 1621,s_Gold_30000,30000 골드,,4,0,1,60,3214,0.5,Sprites/UI/ShopItem/Gold/Moneysack30k
 1622,s_Gold_200000,200000 골드,,4,0,1,300,3215,0.45,Sprites/UI/ShopItem/Gold/Moneysack200k
-1623,s_Pkg_Beginner,초보자 패키지,다이아 400/ 골드 100000,5,0,2,1500,3216,0.45,Sprites/UI/ShopItem/Package/Package_Beginner
-1624,s_Pkg_Material1,건축재료 패키지I,나무 200/ 돌 70/ 솜 30,5,0,2,2900,3217,0.4,Sprites/UI/ShopItem/Package/Package_Material_01
-1625,s_Pkg_Material2,건축재료 패키지II,나무 300/ 돌12/ 솜 63,5,0,2,3900,3218,0.4,Sprites/UI/ShopItem/Package/Package_Material_02
-1626,s_Pkg_Gold,재화 패키지,다이아 500/ 골드 300000,5,0,2,2800,3219,0.45,Sprites/UI/ShopItem/Package/Package_Gold
+1623,s_pkg_beginner,초보자 패키지,다이아 400/ 골드 100000,5,0,2,1500,3216,0.45,Sprites/UI/ShopItem/Package/Package_Beginner
+1624,s_pkg_material1,건축재료 패키지I,나무 200/ 돌 70/ 솜 30,5,0,2,2900,3217,0.4,Sprites/UI/ShopItem/Package/Package_Material_01
+1625,s_pkg_material2,건축재료 패키지II,나무 300/ 돌12/ 솜 63,5,0,2,3900,3218,0.4,Sprites/UI/ShopItem/Package/Package_Material_02
+1626,s_pkg_gold,재화 패키지,다이아 500/ 골드 300000,5,0,2,2800,3219,0.45,Sprites/UI/ShopItem/Package/Package_Gold

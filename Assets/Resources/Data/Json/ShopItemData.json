@@ -184,7 +184,7 @@
     },
     {
       "Shop_Id": 1615,
-      "Shop_Int_Name": "s_Diamond_50",
+      "Shop_Int_Name": "s_diamond_50",
       "Shop_Name": "다이아 50",
       "Shop_Desc": "",
       "Shop_Type": 3,
@@ -197,7 +197,7 @@
     },
     {
       "Shop_Id": 1616,
-      "Shop_Int_Name": "s_Diamond_120",
+      "Shop_Int_Name": "s_diamond_120",
       "Shop_Name": "다이아 120",
       "Shop_Desc": "",
       "Shop_Type": 3,
@@ -210,7 +210,7 @@
     },
     {
       "Shop_Id": 1617,
-      "Shop_Int_Name": "s_Diamond_300",
+      "Shop_Int_Name": "s_diamond_300",
       "Shop_Name": "다이아 300",
       "Shop_Desc": "",
       "Shop_Type": 3,
@@ -223,7 +223,7 @@
     },
     {
       "Shop_Id": 1618,
-      "Shop_Int_Name": "s_Diamond_450",
+      "Shop_Int_Name": "s_diamond_450",
       "Shop_Name": "다이아 450",
       "Shop_Desc": "",
       "Shop_Type": 3,
@@ -236,7 +236,7 @@
     },
     {
       "Shop_Id": 1619,
-      "Shop_Int_Name": "s_Diamond_700",
+      "Shop_Int_Name": "s_diamond_700",
       "Shop_Name": "다이아 700",
       "Shop_Desc": "",
       "Shop_Type": 3,
@@ -288,7 +288,7 @@
     },
     {
       "Shop_Id": 1623,
-      "Shop_Int_Name": "s_Pkg_Beginner",
+      "Shop_Int_Name": "s_pkg_beginner",
       "Shop_Name": "초보자 패키지",
       "Shop_Desc": "다이아 400/ 골드 100000",
       "Shop_Type": 5,
@@ -301,7 +301,7 @@
     },
     {
       "Shop_Id": 1624,
-      "Shop_Int_Name": "s_Pkg_Material1",
+      "Shop_Int_Name": "s_pkg_material1",
       "Shop_Name": "건축재료 패키지I",
       "Shop_Desc": "나무 200/ 돌 70/ 솜 30",
       "Shop_Type": 5,
@@ -314,7 +314,7 @@
     },
     {
       "Shop_Id": 1625,
-      "Shop_Int_Name": "s_Pkg_Material2",
+      "Shop_Int_Name": "s_pkg_material2",
       "Shop_Name": "건축재료 패키지II",
       "Shop_Desc": "나무 300/ 돌12/ 솜 63",
       "Shop_Type": 5,
@@ -327,7 +327,7 @@
     },
     {
       "Shop_Id": 1626,
-      "Shop_Int_Name": "s_Pkg_Gold",
+      "Shop_Int_Name": "s_pkg_gold",
       "Shop_Name": "재화 패키지",
       "Shop_Desc": "다이아 500/ 골드 300000",
       "Shop_Type": 5,
