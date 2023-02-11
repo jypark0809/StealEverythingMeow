@@ -25,6 +25,7 @@ public class StartScene : MonoBehaviour
     {
         StartCoroutine(Load());
     }
+
     IEnumerator Load()
     {
         yield return null;

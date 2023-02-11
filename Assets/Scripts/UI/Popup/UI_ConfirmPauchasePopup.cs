@@ -96,28 +96,9 @@ public class UI_ConfirmPauchasePopup : UI_Popup
         }
     }
 
-    void OnPurchaseButtonClicked(PointerEventData evt)
-    {
-        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
-        switch ((int)_purchaseType)
-        {
-            case (int)PurchaseType.Furniture:
-                    PurchaseFurniture();
-                break;
-            case (int)PurchaseType.Item:
-                PurchaseItem();
-                break;
-        }
-    }
-
-    void CancleButtonClicked(PointerEventData evt)
-    {
-        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
-        ClosePopupUI();
-    }
-
     void PurchaseFurniture()
     {
+        // Not Enough Gold
         if (Managers.Game.SaveData.Gold < _fData.F_Gold)
         {
             UI_NotEnoughGoods ui = Managers.UI.ShowPopupUI<UI_NotEnoughGoods>();
@@ -147,7 +128,7 @@ public class UI_ConfirmPauchasePopup : UI_Popup
         Managers.UI.CloseAllPopupUI();
     }
 
-    
+
     void PurchaseItem()
     {
         // Check Enough [Gold / Dia]
@@ -173,19 +154,16 @@ public class UI_ConfirmPauchasePopup : UI_Popup
 
             Managers.Game.SaveData.Dia -= _iData.Pay_Value;
         }
-            
 
         // Get Reward DB
         RewardData rData;
         Managers.Data.Rewards.TryGetValue(_iData.Reward, out rData);
-
         Managers.Game.SaveData.Gold += rData.Gold;
         Managers.Game.SaveData.Dia += rData.Diamond;
         Managers.Game.SaveData.Wood += rData.Wood;
         Managers.Game.SaveData.Stone += rData.Stone;
         Managers.Game.SaveData.Cotton += rData.Cotton;
         Managers.Game.SaveData.Jelly += rData.Jelly;
-
 
         // Exception : Snack Item
         // Snack [CatnipCandy, Churu, Mackerel, Jerky, Tuna, Salmon]
@@ -219,4 +197,27 @@ public class UI_ConfirmPauchasePopup : UI_Popup
 
         Managers.UI.ClosePopupUI();
     }
+
+    #region EventHandler
+    void OnPurchaseButtonClicked(PointerEventData evt)
+    {
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
+        switch ((int)_purchaseType)
+        {
+            case (int)PurchaseType.Furniture:
+                PurchaseFurniture();
+                break;
+            case (int)PurchaseType.Item:
+                PurchaseItem();
+                break;
+        }
+    }
+
+    void CancleButtonClicked(PointerEventData evt)
+    {
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
+        ClosePopupUI();
+    }
+    #endregion
+    
 }
