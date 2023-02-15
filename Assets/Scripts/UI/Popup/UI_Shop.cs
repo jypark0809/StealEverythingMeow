@@ -39,6 +39,16 @@ public class UI_Shop : UI_Popup
         _contentItem.SetActive(false);
     }
 
+    void Update()
+    {
+#if UNITY_ANDROID
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ClosePopupUI();
+        }
+#endif
+    }
+
     #region Toggle EventHandler
     void OnRoomToggleSelected(bool boolean)
     {

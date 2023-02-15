@@ -41,6 +41,16 @@ public class UI_Setting : UI_Popup
         GetButton((int)Buttons.HelpButton).gameObject.BindEvent(OnHelpButtonClicked);
     }
 
+    void Update()
+    {
+#if UNITY_ANDROID
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ClosePopupUI();
+        }
+#endif
+    }
+
     void OnBgmToggleSelected(bool boolean)
     {
         Managers.Game.BGMOn = boolean;

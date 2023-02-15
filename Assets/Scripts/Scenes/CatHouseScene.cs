@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CatHouseScene : BaseScene
 {
+    int ClickCount = 0;
+
     protected override void Init()
     {
         base.Init();
@@ -37,9 +39,15 @@ public class CatHouseScene : BaseScene
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Managers.Game.SpendJelly();
+            Debug.Log("Esc");
+            ClickCount++;
+            if (ClickCount == 2)
+            {
+                ClickCount = 0;
+                Application.Quit();
+            }
         }
     }
 
