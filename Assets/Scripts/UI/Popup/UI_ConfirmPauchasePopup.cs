@@ -56,6 +56,16 @@ public class UI_ConfirmPauchasePopup : UI_Popup
         GetButton((int)Buttons.CancleButton).gameObject.BindEvent(CancleButtonClicked);
     }
 
+    void Update()
+    {
+#if UNITY_ANDROID
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ClosePopupUI();
+        }
+#endif
+    }
+
     public void SetItemInfo(ShopItemData iData)
     {
         _iData = iData;

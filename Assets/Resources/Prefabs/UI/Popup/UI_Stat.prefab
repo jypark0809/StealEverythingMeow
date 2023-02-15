@@ -79,7 +79,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4472255112207847772}
+  - {fileID: 785883909175202750}
   m_Father: {fileID: 3120315582320454022}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2468,6 +2468,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 687949088735096298}
     m_Modifications:
+    - target: {fileID: 5719077278095320155, guid: 595a57d313adc9a44a9b8a6ae18d6506, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719077278095320155, guid: 595a57d313adc9a44a9b8a6ae18d6506, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719077278095320155, guid: 595a57d313adc9a44a9b8a6ae18d6506, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719077278095320155, guid: 595a57d313adc9a44a9b8a6ae18d6506, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8909984216031602360, guid: 595a57d313adc9a44a9b8a6ae18d6506, type: 3}
       propertyPath: m_Name
       value: UI_CatSet
@@ -2558,8 +2574,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 595a57d313adc9a44a9b8a6ae18d6506, type: 3}
---- !u!224 &4472255112207847772 stripped
+--- !u!224 &785883909175202750 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 8909984216031602361, guid: 595a57d313adc9a44a9b8a6ae18d6506, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5719077278095320155, guid: 595a57d313adc9a44a9b8a6ae18d6506, type: 3}
   m_PrefabInstance: {fileID: 5023267561835624421}
   m_PrefabAsset: {fileID: 0}

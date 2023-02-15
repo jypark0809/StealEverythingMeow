@@ -40,6 +40,16 @@ public class UI_NotEnoughGoods : UI_Popup
         GetImage((int)Images.Blocker).gameObject.BindEvent(OnBlockerClicked);
     }
 
+    void Update()
+    {
+#if UNITY_ANDROID
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ClosePopupUI();
+        }
+#endif
+    }
+
     public void SetItemInfo(ShopItemData iData)
     {
         _iData = iData;

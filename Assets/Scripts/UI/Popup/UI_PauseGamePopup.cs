@@ -62,6 +62,16 @@ public class UI_PauseGamePopup : UI_Popup
 
     }
 
+    void Update()
+    {
+#if UNITY_ANDROID
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ClosePopupUI();
+        }
+#endif
+    }
+
     #region EventHandler
     void OnBgmToggleSelected(bool boolean)
     {
