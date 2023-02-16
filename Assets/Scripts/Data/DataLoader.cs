@@ -393,3 +393,18 @@ public class RewardDataLoader : ILoader<int, RewardData>
         return dic;
     }
 }
+
+[Serializable]
+public class AdsCountData
+{
+    public int JellyAds;
+    public int DiaAds;
+    public int GoldAds;
+
+    public void InitAdsCountData()
+    {
+        JellyAds = 3;
+        DiaAds = 3;
+        GoldAds = 3;
+    }
+}

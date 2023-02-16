@@ -72,7 +72,7 @@ public class UI_DestroyableObjectPopup : UI_Popup
 
         if (_shakeTime > 0)
         {
-            _shakeTime -= Time.deltaTime;
+            _shakeTime -= Time.unscaledDeltaTime;
             _imageTransform.position += Random.insideUnitSphere * _shakePower;
         }
         else
@@ -84,6 +84,8 @@ public class UI_DestroyableObjectPopup : UI_Popup
     public override void Init()
     {
         base.Init();
+
+        Time.timeScale = 0;
 
         _imageTransform = GetImage((int)Images.ObjectImage).gameObject.transform;
         _originPos = GetImage((int)Images.ObjectImage).gameObject.transform.position;
@@ -141,7 +143,8 @@ public class UI_DestroyableObjectPopup : UI_Popup
     IEnumerator GetReward()
     {
         Managers.Sound.Play(Define.Sound.Effect, "Effects/Clattering");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSecondsRealtime(1f);
+        Time.timeScale = 1;
         Managers.UI.ClosePopupUI();
     }
 }
