@@ -23,6 +23,7 @@ public class UI_Setting : UI_Popup
         Init();
     }
 
+
     public override void Init()
     {
         base.Init();
