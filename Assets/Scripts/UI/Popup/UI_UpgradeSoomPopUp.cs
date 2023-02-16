@@ -76,7 +76,7 @@ public class UI_UpgradeSoomPopUp : UI_Popup
         }
         if (Managers.Game.SaveData.IsSoomUp && Managers.Game.SaveData.Gold >= Managers.Data.Sooms[1300 + Managers.Game.SaveData.SoomLevel + 1].Gold)
         {
-            GetButton((int)Buttons.GoldUp).gameObject.BindEvent(OnGoldUpgrdae);
+            GetButton((int)Buttons.GoldUp).gameObject.BindEvent(OnGoldUpgrade);
             GetButton((int)Buttons.GoldUp).image.color = Color.yellow;
         }
         else
@@ -94,13 +94,13 @@ public class UI_UpgradeSoomPopUp : UI_Popup
         Managers.UI.ShowPopupUI<UI_DiaUp>();
         Managers.UI.ClosePopupUI();
     }
-    void OnGoldUpgrdae(PointerEventData evt)
+    void OnGoldUpgrade(PointerEventData evt)
     {
         Managers.Game.SaveData.Gold -= Managers.Data.Sooms[1300 + Managers.Game.SaveData.SoomLevel + 1].Gold;
         (Managers.UI.SceneUI as UI_CatHouseScene)._catHouseSceneTop.RefreshUI();
         Managers.Object.SoomOpen.SomUpgrade();
         Managers.UI.ClosePopupUI();
-        Managers.UI.ClosePopupUI();
+        Managers.UI.ShowPopupUI<UI_ExpressOpen>();
     }
     void SetFur()
     {

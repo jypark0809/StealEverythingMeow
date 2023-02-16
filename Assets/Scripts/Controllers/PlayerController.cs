@@ -36,9 +36,6 @@ public class PlayerController : MonoBehaviour
                 case Define.State.Walk:
                     _anim.Play("Walk");
                     break;
-                case Define.State.Jump:
-                    _anim.Play("Jump");
-                    break;
             }
         }
     }
@@ -60,9 +57,6 @@ public class PlayerController : MonoBehaviour
                 break;
             case Define.State.Walk:
                 UpdateWalk();
-                break;
-            case Define.State.Jump:
-
                 break;
         }
 

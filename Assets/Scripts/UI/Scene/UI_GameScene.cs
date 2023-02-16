@@ -286,8 +286,6 @@ public class UI_GameScene : UI_Scene
         GetImage((int)Images.TreasureMapImage).fillAmount = (float)curMapCount / maxMapCount;
     }
 
-
-
     void SetSkillImage()
     {
         switch(PlayerPrefs.GetInt("SelectedCatNum"))

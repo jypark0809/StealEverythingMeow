@@ -6,13 +6,17 @@ using UnityEngine.UI;
 
 public class UI_SelectCatPopup : UI_Popup
 {
-    enum Toggles
+    enum GameObjects
     {
         WhiteToggle,
         BlackToggle,
         CalicoToggle,
         TabbyToggle,
         GrayToggle,
+        BlackBlocker,
+        CalicoBlocker,
+        TabbyBlocker,
+        GrayBlocker
     }
 
     enum Images
@@ -38,20 +42,24 @@ public class UI_SelectCatPopup : UI_Popup
     public override void Init()
     {
         base.Init();
-        Bind<GameObject>(typeof(Toggles));
+        Bind<GameObject>(typeof(GameObjects));
         Bind<Button>(typeof(Buttons));
         Bind<Image>(typeof(Images));
 
-        GetObject((int)Toggles.WhiteToggle).GetComponent<Toggle>().onValueChanged.AddListener(OnWhiteToggleSelected);
-        GetObject((int)Toggles.BlackToggle).GetComponent<Toggle>().onValueChanged.AddListener(OnBlackToggleSelected);
-        GetObject((int)Toggles.CalicoToggle).GetComponent<Toggle>().onValueChanged.AddListener(OnCalicoToggleSelected);
-        GetObject((int)Toggles.TabbyToggle).GetComponent<Toggle>().onValueChanged.AddListener(OnTabbyToggleSelected);
-        GetObject((int)Toggles.GrayToggle).GetComponent<Toggle>().onValueChanged.AddListener(OnGrayToggleSelected);
-        GetObject((int)Toggles.WhiteToggle).GetComponent<Toggle>().isOn = true;
+        GetObject((int)GameObjects.WhiteToggle).GetComponent<Toggle>().onValueChanged.AddListener(OnWhiteToggleSelected);
+        GetObject((int)GameObjects.BlackToggle).GetComponent<Toggle>().onValueChanged.AddListener(OnBlackToggleSelected);
+        GetObject((int)GameObjects.CalicoToggle).GetComponent<Toggle>().onValueChanged.AddListener(OnCalicoToggleSelected);
+        GetObject((int)GameObjects.TabbyToggle).GetComponent<Toggle>().onValueChanged.AddListener(OnTabbyToggleSelected);
+        GetObject((int)GameObjects.GrayToggle).GetComponent<Toggle>().onValueChanged.AddListener(OnGrayToggleSelected);
+        GetObject((int)GameObjects.WhiteToggle).GetComponent<Toggle>().isOn = true;
+        GetImage((int)Images.WhiteImage).gameObject.GetComponent<Animator>().Play("Selected");
+
         PlayerPrefs.SetInt("SelectedCatNum", 0);
 
         GetButton((int)Buttons.StartButton).gameObject.BindEvent(OnStartButtonClicked);
         GetButton((int)Buttons.CloseButton).gameObject.BindEvent(OnCloseButtonClicked);
+
+        RefreshUI();
     }
 
     void Update()
@@ -64,6 +72,15 @@ public class UI_SelectCatPopup : UI_Popup
 #endif
     }
 
+    void RefreshUI()
+    {
+        // 고양이 보유 여부 확인
+        GetObject((int)GameObjects.BlackBlocker).SetActive(!Managers.Game.SaveData.CatHave[(int)Define.CatType.Black]);
+        GetObject((int)GameObjects.CalicoBlocker).SetActive(!Managers.Game.SaveData.CatHave[(int)Define.CatType.Calico]);
+        GetObject((int)GameObjects.TabbyBlocker).SetActive(!Managers.Game.SaveData.CatHave[(int)Define.CatType.Tabby]);
+        GetObject((int)GameObjects.GrayBlocker).SetActive(!Managers.Game.SaveData.CatHave[(int)Define.CatType.Gray]);
+    }
+
     #region EventHandler
     void OnWhiteToggleSelected(bool boolean)
     {
@@ -73,7 +90,6 @@ public class UI_SelectCatPopup : UI_Popup
         {
             GetImage((int)Images.WhiteImage).gameObject.GetComponent<Animator>().Play("Selected");
             PlayerPrefs.SetInt("SelectedCatNum", 0);
-            Debug.Log(PlayerPrefs.GetInt("SelectedCatNum"));
         }
         else
         {
@@ -140,7 +156,6 @@ public class UI_SelectCatPopup : UI_Popup
             GetImage((int)Images.GrayImage).gameObject.GetComponent<Animator>().Play("Unselected");
         }
     }
-    #endregion
 
     void OnStartButtonClicked(PointerEventData evt)
     {
@@ -154,4 +169,5 @@ public class UI_SelectCatPopup : UI_Popup
         Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
         Managers.UI.ClosePopupUI();
     }
+    #endregion
 }

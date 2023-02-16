@@ -15,7 +15,6 @@ public class Define : MonoBehaviour
         Idle,
         Walk,
         Die,
-        Jump,
         Other,
     }
 
@@ -76,7 +75,8 @@ public class Define : MonoBehaviour
         Black,
         Calico,
         Tabby,
-        Grey
+        Gray,
+        MaxCount
     }
     public enum CatEmotion
     {

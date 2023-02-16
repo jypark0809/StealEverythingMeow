@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI.Table;
 
 public class TimeScheduler : MonoBehaviour
 {
@@ -49,28 +50,30 @@ public class TimeScheduler : MonoBehaviour
 
             instance = go.GetComponent<TimeScheduler>();
         }
+        Debug.Log($"Hour : {DateTime.Now.ToLocalTime().Hour}");
+        Debug.Log($"Min : {DateTime.Now.ToLocalTime().Minute}");
+        Debug.Log($"Sec : {DateTime.Now.ToLocalTime().Second}");
     }
 
     void Start()
     {
         // 마지막 접속한 날짜와 지금 접속한 날짜가 다를 때
-        if (lastQuitTime.Year != lastQuitTime.Year && lastQuitTime.Month != lastQuitTime.Month && lastQuitTime.Day != DateTime.Now.ToLocalTime().Day)
+        if (lastQuitTime.Year != lastQuitTime.Year || lastQuitTime.Month != lastQuitTime.Month || lastQuitTime.Day != DateTime.Now.ToLocalTime().Day)
         {
             InitData();
         }
-            
         StartCoroutine(Timer());
     }
 
     public void LoadLastQuitTime()
     {
-        Debug.Log($"LoadLastQuitTime HasKey : {PlayerPrefs.HasKey("LastQuitTime")}");
+        // Debug.Log($"LoadLastQuitTime HasKey : {PlayerPrefs.HasKey("LastQuitTime")}");
         if (PlayerPrefs.HasKey("LastQuitTime"))
         {
             var getTime = string.Empty;
             getTime = PlayerPrefs.GetString("LastQuitTime");
             lastQuitTime = DateTime.FromBinary(Convert.ToInt64(getTime));
-            // Debug.Log($"LoadLastQuitTime : {lastQuitTime}");
+            Debug.Log($"LoadLastQuitTime : {lastQuitTime}");
         }
     }
 
@@ -88,15 +91,17 @@ public class TimeScheduler : MonoBehaviour
 
     private IEnumerator Timer()
     {
-        while (true)
+        bool isNextDay = false;
+        while (isNextDay == false)
         {
             DateTime now = DateTime.Now.ToLocalTime();
-            if (now.Hour == 0 && now.Minute == 0 && now.Minute == 0)
+            if (now.Hour == 0 && now.Minute == 0 && now.Second == 0)
             {
                 InitData(); // 데이터 초기화
+                isNextDay = true;
             }
 
-            yield return new WaitForSeconds(60f);
+            yield return new WaitForSeconds(1f);
         }
     }
 
