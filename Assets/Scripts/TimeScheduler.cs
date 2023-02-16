@@ -54,12 +54,9 @@ public class TimeScheduler : MonoBehaviour
     void Start()
     {
         // 마지막 접속한 날짜와 지금 접속한 날짜가 다를 때
-        if (lastQuitTime.Month != lastQuitTime.Month && lastQuitTime.Day != DateTime.Now.ToLocalTime().Day)
+        if (lastQuitTime.Year != lastQuitTime.Year && lastQuitTime.Month != lastQuitTime.Month && lastQuitTime.Day != DateTime.Now.ToLocalTime().Day)
         {
             InitData();
-
-            // 고양이 행복도
-
         }
             
         StartCoroutine(Timer());
@@ -97,9 +94,6 @@ public class TimeScheduler : MonoBehaviour
             if (now.Hour == 0 && now.Minute == 0 && now.Minute == 0)
             {
                 InitData(); // 데이터 초기화
-                
-                // 고양이 행복도 버튼 활성화
-
             }
 
             yield return new WaitForSeconds(60f);
@@ -109,5 +103,8 @@ public class TimeScheduler : MonoBehaviour
     void InitData()
     {
         // 데이터 초기화
+        Managers.Game.SaveData.adsData.InitAdsCountData();
+
+        Managers.Game.SaveGame();
     }
 }

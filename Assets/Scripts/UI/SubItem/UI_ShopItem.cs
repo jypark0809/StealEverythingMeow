@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Purchasing;
@@ -38,7 +37,7 @@ public class UI_ShopItem : UI_Base
     {
         ItemName,
         ItemDesc,
-        //PurchaseCountText,
+        PurchaseCountText,
         GoldText,
         DiamondText,
         AdsText,
@@ -100,10 +99,24 @@ public class UI_ShopItem : UI_Base
         GetText((int)Texts.ItemName).text = _iData.Shop_Name;
         GetText((int)Texts.ItemDesc).text = _iData.Shop_Desc;
 
-        //if (_iData.Shop_Limit_Num == 0)
-        //    GetText((int)Texts.PurchaseCountText).gameObject.SetActive(false);
-        //else
-        //    GetText((int)Texts.PurchaseCountText).text = $"0/{_iData.Shop_Limit_Num}";
+        if (_iData.Pay_Type != (int)ShopPurchaseType.Ads)
+            GetText((int)Texts.PurchaseCountText).gameObject.SetActive(false);
+        else
+        {
+            switch(_iData.Shop_Id)
+            {
+                case 1610:
+                    GetText((int)Texts.PurchaseCountText).text = $"{Managers.Game.SaveData.adsData.JellyAds}/{_iData.Shop_Limit_Num}";
+                    break;
+                case 1614:
+                    GetText((int)Texts.PurchaseCountText).text = $"{Managers.Game.SaveData.adsData.DiaAds}/{_iData.Shop_Limit_Num}";
+                    break;
+                case 1620:
+                    GetText((int)Texts.PurchaseCountText).text = $"{Managers.Game.SaveData.adsData.GoldAds}/{_iData.Shop_Limit_Num}";
+                    break;
+            }
+        }
+            
 
         switch (_iData.Pay_Type)
         {
@@ -174,7 +187,17 @@ public class UI_ShopItem : UI_Base
         Managers.Game.SaveData.Cotton += rData.Cotton;
         Managers.Game.SaveData.Jelly += rData.Jelly;
 
-        if (_iData.Shop_Id == 1620)
+        if (_iData.Shop_Id == 1610)
+        {
+            Managers.Game.SaveData.adsData.JellyAds--;
+            GetText((int)Texts.PurchaseCountText).text = $"{Managers.Game.SaveData.adsData.JellyAds}/{_iData.Shop_Limit_Num}";
+        }
+        else if (_iData.Shop_Id == 1614)
+        {
+            Managers.Game.SaveData.adsData.DiaAds--;
+            GetText((int)Texts.PurchaseCountText).text = $"{Managers.Game.SaveData.adsData.DiaAds}/{_iData.Shop_Limit_Num}";
+        }
+        else if (_iData.Shop_Id == 1620)
         {
             switch (Managers.Game.SaveData.SpaceLevel)
             {
@@ -209,7 +232,11 @@ public class UI_ShopItem : UI_Base
                     Managers.Game.SaveData.Gold += 5984;
                     break;
             }
+
+            Managers.Game.SaveData.adsData.GoldAds--;
+            GetText((int)Texts.PurchaseCountText).text = $"{Managers.Game.SaveData.adsData.GoldAds}/{_iData.Shop_Limit_Num}";
         }
+        
 
         // Save Data
         Managers.Game.SaveGame();
@@ -271,6 +298,14 @@ public class UI_ShopItem : UI_Base
             return;
 
         Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
+
+        // Ads limit count <= 0
+        if (GetText((int)Texts.PurchaseCountText).text == "0/3")
+        {
+            Debug.Log("Count is 0");
+            return;
+        }
+        
         Managers.Ads.ShowRewardedAds(() => { GetReward(); });
     }
 

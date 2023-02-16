@@ -21,6 +21,8 @@ public class GameData
     // Furniture List
     public List<FurnitureData> FList = new List<FurnitureData>();
 
+    // Ads Product Count
+    public AdsCountData adsData = new AdsCountData();
 
     public bool[] Emotion = new bool[Define.MOTION_COUNT];
     public List<string> EmotionList = new List<string>();
@@ -52,6 +54,7 @@ public class GameData
     public GameData()
     {
         Jelly = 5;
+        adsData.InitAdsCountData();
 
         //감정표현 기본세팅
         Emotion[(int)Define.CatEmotion.Blink] = true;
