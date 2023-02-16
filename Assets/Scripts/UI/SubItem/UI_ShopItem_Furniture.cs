@@ -1,18 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class UI_ShopItem_Furniture : UI_Base
 {
-    public int id;
-    public string itemName;
-    public string itemDesc;
-    public string itemPrice;
-    public string spritePath;
+    public ScrollRect _scrollRect;
+    bool isDrag = false;
+
+    FurnitureData _fData;
     public bool isPurchasable; // true면 구매 가능
 
     enum Images
@@ -23,6 +21,7 @@ public class UI_ShopItem_Furniture : UI_Base
     enum Buttons
     {
         PurchaseButton,
+        PurchasedButton
     }
 
     enum Texts
@@ -32,6 +31,13 @@ public class UI_ShopItem_Furniture : UI_Base
         PriceText
     }
 
+    void Awake()
+    {
+        Bind<Button>(typeof(Buttons));
+        Bind<Image>(typeof(Images));
+        Bind<TextMeshProUGUI>(typeof(Texts));
+    }
+
     void Start()
     {
         Init();
@@ -39,27 +45,82 @@ public class UI_ShopItem_Furniture : UI_Base
 
     public override void Init()
     {
-        Bind<Button>(typeof(Buttons));
-        Bind<Image>(typeof(Images));
-        Bind<TextMeshProUGUI>(typeof(Texts));
+        _scrollRect = transform.parent.parent.parent.GetComponent<ScrollRect>();
 
-        GetButton((int)Buttons.PurchaseButton).gameObject.BindEvent(OnButtonClicked);
-        GetButton((int)Buttons.PurchaseButton).interactable = isPurchasable;
+        GetButton((int)Buttons.PurchaseButton).gameObject.BindEvent(OnPurchaseButtonClicked, Define.UIEvent.Click);
+        GetButton((int)Buttons.PurchaseButton).gameObject.BindEvent(OnBeginDrag, Define.UIEvent.BeginDrag);
+        GetButton((int)Buttons.PurchaseButton).gameObject.BindEvent(OnDrag, Define.UIEvent.Drag);
+        GetButton((int)Buttons.PurchaseButton).gameObject.BindEvent(OnEndDrag, Define.UIEvent.EndDrag);
 
-        GetImage((int)Images.ItemImage).sprite = Managers.Resource.Load<Sprite>(spritePath);
-        GetImage((int)Images.ItemImage).SetNativeSize();
-        GetImage((int)Images.ItemImage).rectTransform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+        GetButton((int)Buttons.PurchasedButton).gameObject.BindEvent(OnPurchasedButtonClicked, Define.UIEvent.Click);
+        GetButton((int)Buttons.PurchasedButton).gameObject.BindEvent(OnBeginDrag, Define.UIEvent.BeginDrag);
+        GetButton((int)Buttons.PurchasedButton).gameObject.BindEvent(OnDrag, Define.UIEvent.Drag);
+        GetButton((int)Buttons.PurchasedButton).gameObject.BindEvent(OnEndDrag, Define.UIEvent.EndDrag);
 
-        GetText((int)Texts.ItemName).text = itemName;
-        GetText((int)Texts.ItemDesc).text = itemDesc;
-        GetText((int)Texts.PriceText).text = itemPrice;
+        if (isPurchasable)
+        {
+            GetButton((int)Buttons.PurchasedButton).gameObject.SetActive(false);
+        }
+        else
+        {
+            GetButton((int)Buttons.PurchaseButton).gameObject.SetActive(false);
+        }
     }
 
-    void OnButtonClicked(PointerEventData evt)
+    public void SetInfo(FurnitureData fData)
     {
-        if (GetButton((int)Buttons.PurchaseButton).interactable)
-        {
-            Managers.UI.ShowPopupUI<UI_Temp>();
-        }
+        _fData = fData;
+        RefreshUI();
+    }
+
+    void RefreshUI()
+    {
+        GetImage((int)Images.ItemImage).sprite = Managers.Resource.Load<Sprite>(_fData.F_Path);
+        GetImage((int)Images.ItemImage).SetNativeSize();
+        GetImage((int)Images.ItemImage).rectTransform.localScale = new Vector3(_fData.F_Size, _fData.F_Size, _fData.F_Size);
+
+        GetText((int)Texts.ItemName).text = _fData.F_Name;
+        GetText((int)Texts.ItemDesc).text = _fData.F_Desc;
+        GetText((int)Texts.PriceText).text = $"{_fData.F_Gold.ToString("N0")}";
+    }
+
+    void OnPurchaseButtonClicked(PointerEventData evt)
+    {
+        // Disable click when draging
+        if (isDrag == true)
+            return;
+
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
+
+        UI_ConfirmPauchasePopup ui = Managers.UI.ShowPopupUI<UI_ConfirmPauchasePopup>();
+        ui.SetFurnitureInfo(_fData);
+    }
+
+    void OnPurchasedButtonClicked(PointerEventData evt)
+    {
+        // Disable click when draging
+        if (isDrag == true)
+            return;
+
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
+
+        Debug.Log("This furniture is already purchased");
+    }
+
+    void OnBeginDrag(PointerEventData evt)
+    {
+        isDrag = true;
+        _scrollRect.OnBeginDrag(evt);
+    }
+
+    void OnDrag(PointerEventData evt)
+    {
+        _scrollRect.OnDrag(evt);
+    }
+
+    void OnEndDrag(PointerEventData evt)
+    {
+        isDrag = false;
+        _scrollRect.OnEndDrag(evt);
     }
 }

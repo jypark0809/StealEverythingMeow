@@ -15,7 +15,6 @@ public class Define : MonoBehaviour
         Idle,
         Walk,
         Die,
-        Jump,
         Other,
     }
 
@@ -31,6 +30,8 @@ public class Define : MonoBehaviour
         Unknown,
         GameScene,
         CatHouseScene,
+        StartScene,
+        LoadingScene,
     }
 
     public enum Sound
@@ -43,10 +44,60 @@ public class Define : MonoBehaviour
     public enum UIEvent
     {
         Click,
-        Drag,
         PointerDown,
         PointerUp,
+        BeginDrag,
+        Drag,
+        EndDrag
     }
 
-    public const int MOTION_COUNT = 12;
+    public enum ShopPurchaseType
+    {
+        Gold,
+        Diamond,
+        Cash,
+        Ads,
+    }
+
+    public enum SnackType
+    {
+        CatnipCandy,
+        Churu,
+        Mackerel,
+        Jerky,
+        Tuna,
+        Salmon
+    }
+
+    public enum CatType
+    {
+        White,
+        Black,
+        Calico,
+        Tabby,
+        Gray,
+        MaxCount
+    }
+    public enum CatEmotion
+    {
+        Blink,
+        Dig,
+        Ennui,
+        Fly,
+        Lick,
+        Paw,
+        Relax,
+        Scratch, 
+        Sleep1, 
+        Sleep2,
+        Sleep3,
+        Sniff,
+        Stretch,
+        Sway, 
+        Tail, 
+        Attack
+    }
+
+
+    public const int MOTION_COUNT = 16;
 }

@@ -125,7 +125,7 @@ public class DestroyableObjectDataLoader : ILoader<int, DestroyableObjectData>
 
 
 [Serializable]
-public class FurnitureData
+public class FurnitureData : IEquatable<FurnitureData>
 {
     public int F_Id;
     public string F_Int_Name;
@@ -135,6 +135,19 @@ public class FurnitureData
     public int F_Happiness;
     public int F_Gold;
     public string F_Path;
+    public float F_Size;
+
+    public bool Equals(FurnitureData other)
+    {
+        if (this.F_Id == other.F_Id)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
 
 [Serializable]
@@ -195,6 +208,7 @@ public class SpaceData
     public int Space_Id;
     public string Space_Int_Name;
     public string Space_Name;
+    public string Space_Desc;
     public int Space_Lv;
     public int Space_Furniture_Count;
     public int Space_Gold_Plus;
@@ -245,6 +259,7 @@ public class CatBookData
     public int Diamond;
     public string Cat_Path;
 }
+
 [Serializable]
 public class CatBookDataLoader : ILoader<int, CatBookData>
 {
@@ -272,6 +287,7 @@ public class ExpressBookData
     public int Express_Time;
     public string Express_Path;
 }
+
 [Serializable]
 public class ExpressBookDataLoader : ILoader<int, ExpressBookData>
 {
@@ -288,3 +304,107 @@ public class ExpressBookDataLoader : ILoader<int, ExpressBookData>
     }
 }
 
+[Serializable]
+public class ShopItemData
+{
+    public int Shop_Id;
+    public string Shop_Int_Name;
+    public string Shop_Name;
+    public string Shop_Desc;
+    public int Shop_Type;
+    public int Shop_Limit_Num;
+    public int Pay_Type;
+    public int Pay_Value;
+    public int Reward;
+    public float Scale;
+    public string ImgPath;
+}
+
+[Serializable]
+public class ShopItemDataLoader : ILoader<int, ShopItemData>
+{
+    public List<ShopItemData> ShopItems = new List<ShopItemData>();
+
+    public Dictionary<int, ShopItemData> MakeDict()
+    {
+        Dictionary<int, ShopItemData> dic = new Dictionary<int, ShopItemData>();
+
+        foreach (ShopItemData itemData in ShopItems)
+            dic.Add(itemData.Shop_Id, itemData);
+
+        return dic;
+    }
+}
+
+[Serializable]
+public class HappinessData
+{
+    public int H_Id;
+    public int H_Lv;
+    public int H_Max;
+    public int H_Cat_Type;
+    public int H_Rwd_Wood;
+    public int H_Rwd_Stone;
+    public int H_Rwd_Cotton;
+    public int H_Rwd_Gold;
+    public int H_Rwd_Power;
+}
+
+[Serializable]
+public class HappinessDataLoader : ILoader<int, HappinessData>
+{
+    public List<HappinessData> Happinesses = new List<HappinessData>();
+
+    public Dictionary<int, HappinessData> MakeDict()
+    {
+        Dictionary<int, HappinessData> dic = new Dictionary<int, HappinessData>();
+
+        foreach (HappinessData HappinessData in Happinesses)
+            dic.Add(HappinessData.H_Id, HappinessData);
+
+        return dic;
+    }
+}
+
+[Serializable]
+public class RewardData
+{
+    public int Id;
+    public int Gold;
+    public int Diamond;
+    public int Wood;
+    public int Stone;
+    public int Cotton;
+    public int Jelly;
+}
+
+[Serializable]
+public class RewardDataLoader : ILoader<int, RewardData>
+{
+    public List<RewardData> Rewards = new List<RewardData>();
+
+    public Dictionary<int, RewardData> MakeDict()
+    {
+        Dictionary<int, RewardData> dic = new Dictionary<int, RewardData>();
+
+        foreach (RewardData reward in Rewards)
+            dic.Add(reward.Id, reward);
+
+        return dic;
+    }
+}
+
+[Serializable]
+public class AdsCountData
+{
+    public int JellyAds;
+    public int DiaAds;
+    public int GoldAds;
+
+    public void InitAdsCountData()
+    {
+        JellyAds = 3;
+        DiaAds = 3;
+        GoldAds = 3;
+    }
+}

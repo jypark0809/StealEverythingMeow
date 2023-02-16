@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class DataTransformer : EditorWindow
 {
@@ -15,20 +16,26 @@ public class DataTransformer : EditorWindow
         string path = Application.persistentDataPath + "/SaveData.json";
         if (File.Exists(path))
             File.Delete(path);
+
+        PlayerPrefs.DeleteAll();
     }
 
     [MenuItem("Tools/ParseExcel")]
     public static void ParseExcel()
     {
+        ParseCatBookData("CatBook");
+        ParseDestroyableObjectData("DestroyableObject");
+        ParseExpressBookData("ExpressBook");
+        ParseFurnitureData("Furniture");
+        ParseHappinessData("Happiness");
         ParseLevelExpData("LevelExp");
-        ParseStatSpeedData("StatSpeed");
+        ParseShopItemData("ShopItem");
+        ParseRewardData("Reward");
+        ParseSoomData("Soom");
+        ParseSpaceData("Space");
         ParseStatCooltimeData("StatCooltime");
         ParseStatMagnetData("StatMagnet");
-        ParseDestroyableObjectData("DestroyableObject");
-        ParseFurnitureData("Furniture");
-        ParseSoomData("Soom");
-        ParseCatBookData("CatBook");
-        ParseExpressBookData("ExpressBook");
+        ParseStatSpeedData("StatSpeed");
     }
 
     static void ParseLevelExpData(string filename)
@@ -211,7 +218,8 @@ public class DataTransformer : EditorWindow
                 F_Space_Num = int.Parse(row[i++]),
                 F_Happiness = int.Parse(row[i++]),
                 F_Gold = int.Parse(row[i++]),
-                F_Path = row[i++]
+                F_Path = row[i++],
+                F_Size = float.Parse(row[i++])
             });
         }
 
@@ -287,7 +295,7 @@ public class DataTransformer : EditorWindow
                 Cat_Id = int.Parse(row[i++]),
                 Cat_Int_Name = row[i++],
                 Cat_Name = row[i++],
-                Cat_Desc = row[i++],
+                Cat_Desc = row[i++].Replace("\\n", "\n"),
                 Cat_Favor_Food = int.Parse(row[i++]),
                 Cat_Skill_Name = row[i++],
                 Cat_Skill_Count = int.Parse(row[i++]),
@@ -339,6 +347,161 @@ public class DataTransformer : EditorWindow
                 Express_Path = row[i++],
             });
 
+        }
+
+        #endregion
+
+        string jsonStr = JsonConvert.SerializeObject(loader, Formatting.Indented);
+        File.WriteAllText($"{Application.dataPath}/Resources/Data/Json/{filename}Data.json", jsonStr);
+        AssetDatabase.Refresh();
+    }
+
+    static void ParseShopItemData(string filename)
+    {
+        ShopItemDataLoader loader = new ShopItemDataLoader();
+
+        #region ExcelData
+        string[] lines = File.ReadAllText($"{Application.dataPath}/Resources/Data/Excel/{filename}Data.csv").Split("\n");
+
+        for (int y = 1; y < lines.Length; y++)
+        {
+            string[] row = lines[y].Replace("\r", "").Split(',');
+            if (row.Length == 0)
+                continue;
+            if (string.IsNullOrEmpty(row[0]))
+                continue;
+            int i = 0;
+
+            loader.ShopItems.Add(new ShopItemData()
+            {
+                Shop_Id = int.Parse(row[i++]),
+                Shop_Int_Name = row[i++],
+                Shop_Name = row[i++],
+                Shop_Desc = row[i++].Replace("\\n", "\n"),
+                Shop_Type = int.Parse(row[i++]),
+                Shop_Limit_Num = int.Parse(row[i++]),
+                Pay_Type = int.Parse(row[i++]),
+                Pay_Value = int.Parse(row[i++]),
+                Reward = int.Parse(row[i++]),
+                Scale = float.Parse(row[i++]),
+                ImgPath = row[i++]
+            });
+        }
+
+        #endregion
+
+        string jsonStr = JsonConvert.SerializeObject(loader, Formatting.Indented);
+        File.WriteAllText($"{Application.dataPath}/Resources/Data/Json/{filename}Data.json", jsonStr);
+        AssetDatabase.Refresh();
+    }
+
+    static void ParseRewardData(string filename)
+    {
+        RewardDataLoader loader = new RewardDataLoader();
+
+        #region ExcelData
+        string[] lines = File.ReadAllText($"{Application.dataPath}/Resources/Data/Excel/{filename}Data.csv").Split("\n");
+
+        for (int y = 1; y < lines.Length; y++)
+        {
+            string[] row = lines[y].Replace("\r", "").Split(',');
+            if (row.Length == 0)
+                continue;
+            if (string.IsNullOrEmpty(row[0]))
+                continue;
+            int i = 0;
+
+            loader.Rewards.Add(new RewardData()
+            {
+                Id = int.Parse(row[i++]),
+                Gold = int.Parse(row[i++]),
+                Diamond = int.Parse(row[i++]),
+                Wood = int.Parse(row[i++]),
+                Stone = int.Parse(row[i++]),
+                Cotton = int.Parse(row[i++]),
+                Jelly = int.Parse(row[i++])
+            });
+
+        }
+
+        #endregion
+
+        string jsonStr = JsonConvert.SerializeObject(loader, Formatting.Indented);
+        File.WriteAllText($"{Application.dataPath}/Resources/Data/Json/{filename}Data.json", jsonStr);
+        AssetDatabase.Refresh();
+    }
+
+    static void ParseHappinessData(string filename)
+    {
+        HappinessDataLoader loader = new HappinessDataLoader();
+
+        #region ExcelData
+        string[] lines = File.ReadAllText($"{Application.dataPath}/Resources/Data/Excel/{filename}Data.csv").Split("\n");
+
+        for (int y = 1; y < lines.Length; y++)
+        {
+            string[] row = lines[y].Replace("\r", "").Split(',');
+            if (row.Length == 0)
+                continue;
+            if (string.IsNullOrEmpty(row[0]))
+                continue;
+            int i = 0;
+
+            loader.Happinesses.Add(new HappinessData()
+            {
+                H_Id = int.Parse(row[i++]),
+                H_Lv = int.Parse(row[i++]),
+                H_Max = int.Parse(row[i++]),
+                H_Cat_Type = int.Parse(row[i++]),
+                H_Rwd_Wood = int.Parse(row[i++]),
+                H_Rwd_Stone = int.Parse(row[i++]),
+                H_Rwd_Cotton = int.Parse(row[i++]),
+                H_Rwd_Gold = int.Parse(row[i++]),
+                H_Rwd_Power = int.Parse(row[i++]),
+            });
+
+        }
+
+        #endregion
+
+        string jsonStr = JsonConvert.SerializeObject(loader, Formatting.Indented);
+        File.WriteAllText($"{Application.dataPath}/Resources/Data/Json/{filename}Data.json", jsonStr);
+        AssetDatabase.Refresh();
+    }
+
+    static void ParseSpaceData(string filename)
+    {
+        SpaceDataLoader loader = new SpaceDataLoader();
+
+        #region ExcelData
+        string[] lines = File.ReadAllText($"{Application.dataPath}/Resources/Data/Excel/{filename}Data.csv").Split("\n");
+
+        for (int y = 1; y < lines.Length; y++)
+        {
+            string[] row = lines[y].Replace("\r", "").Split(',');
+            if (row.Length == 0)
+                continue;
+            if (string.IsNullOrEmpty(row[0]))
+                continue;
+            int i = 0;
+
+            loader.Spaces.Add(new SpaceData()
+            {
+                Space_Id = int.Parse(row[i++]),
+                Space_Int_Name = row[i++],
+                Space_Name = row[i++],
+                Space_Desc = row[i++].Replace("\\n", "\n"),
+                Space_Lv = int.Parse(row[i++]),
+                Space_Furniture_Count = int.Parse(row[i++]),
+                Space_Gold_Plus = int.Parse(row[i++]),
+                Gold = int.Parse(row[i++]),
+                Wood = int.Parse(row[i++]),
+                Stone = int.Parse(row[i++]),
+                Cotton = int.Parse(row[i++]),
+                Happiness = int.Parse(row[i++]),
+                Space_Time = int.Parse(row[i++]),
+                Soom_Lv = int.Parse(row[i++])
+            });
         }
 
         #endregion

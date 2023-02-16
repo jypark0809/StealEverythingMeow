@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class UI_DestroyableObjectPopup : UI_Popup
 {
-    int _id;
     DestroyableObjectData _object;
     int _touchCount;
     int TouchCount
@@ -38,6 +37,11 @@ public class UI_DestroyableObjectPopup : UI_Popup
     int _maxTouchCount;
     Vector3 _originPos;
     Sprite[] _sprites;
+    Transform _imageTransform;
+
+    [SerializeField]
+    float _shakePower = 10f;
+    float _shakeTime;
 
     enum GameObjects
     {
@@ -50,6 +54,12 @@ public class UI_DestroyableObjectPopup : UI_Popup
         TouchPanel,
     }
 
+    void Awake()
+    {
+        Bind<Image>(typeof(Images));
+        Bind<GameObject>(typeof(GameObjects));
+    }
+
     void Start()
     {
         Init();
@@ -57,26 +67,39 @@ public class UI_DestroyableObjectPopup : UI_Popup
 
     void Update()
     {
+        if (TouchCount >= _maxTouchCount)
+            return;
 
+        if (_shakeTime > 0)
+        {
+            _shakeTime -= Time.unscaledDeltaTime;
+            _imageTransform.position += Random.insideUnitSphere * _shakePower;
+        }
+        else
+        {
+            _imageTransform.position = _originPos;
+        }
     }
 
     public override void Init()
     {
         base.Init();
-        Bind<Image>(typeof(Images));
-        Bind<GameObject>(typeof(GameObjects));
 
+        Time.timeScale = 0;
+
+        _imageTransform = GetImage((int)Images.ObjectImage).gameObject.transform;
         _originPos = GetImage((int)Images.ObjectImage).gameObject.transform.position;
-
-        _id = PlayerPrefs.GetInt("DestoryableObject");
-        Managers.Data.DestroyableObjects.TryGetValue(_id, out _object);
-
         _sprites = Resources.LoadAll<Sprite>(_object.Image_Path);
 
         _maxTouchCount = _object.Touch_Count;
         GetImage((int)Images.ObjectImage).sprite = _sprites[0];
         GetImage((int)Images.ObjectImage).SetNativeSize();
         GetImage((int)Images.TouchPanel).gameObject.BindEvent(OnTouchPanelClicked);
+    }
+
+    public void SetInfo(DestroyableObjectData objectData)
+    {
+        _object = objectData;
     }
 
     void OnTouchPanelClicked(PointerEventData evt)
@@ -86,29 +109,11 @@ public class UI_DestroyableObjectPopup : UI_Popup
             TouchCount++;
 
             PlayRandomSound();
-            Vibration.Vibrate((long)50);
+            // Vibration.Vibrate((long)50);
 
             // Shake Object
-            StartCoroutine(ShakeObject(_shakePower, _shakeTime));
+            _shakeTime += 0.3f;
         }
-    }
-
-    [SerializeField]
-    float _shakePower = 10f;
-    [SerializeField]
-    float _shakeTime = 0.3f;
-
-    IEnumerator ShakeObject(float shakePower, float duration)
-    {
-        Transform _transform = GetImage((int)Images.ObjectImage).gameObject.transform;
-        while (duration > 0)
-        {
-            _transform.position +=
-                Random.insideUnitSphere * shakePower;
-            duration -= Time.deltaTime;
-            yield return null;
-        }
-        _transform.position = _originPos;
     }
 
     private void OnDestroy()
@@ -138,7 +143,8 @@ public class UI_DestroyableObjectPopup : UI_Popup
     IEnumerator GetReward()
     {
         Managers.Sound.Play(Define.Sound.Effect, "Effects/Clattering");
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSecondsRealtime(1f);
+        Time.timeScale = 1;
         Managers.UI.ClosePopupUI();
     }
 }

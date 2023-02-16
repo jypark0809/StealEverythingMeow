@@ -1,0 +1,279 @@
+{
+  "Happinesses": [
+    {
+      "H_Id": 1801,
+      "H_Lv": 1,
+      "H_Max": 0,
+      "H_Cat_Type": 0,
+      "H_Rwd_Wood": 1,
+      "H_Rwd_Stone": 0,
+      "H_Rwd_Cotton": 0,
+      "H_Rwd_Gold": 0,
+      "H_Rwd_Power": 0
+    },
+    {
+      "H_Id": 1802,
+      "H_Lv": 2,
+      "H_Max": 1000,
+      "H_Cat_Type": 0,
+      "H_Rwd_Wood": 3,
+      "H_Rwd_Stone": 0,
+      "H_Rwd_Cotton": 0,
+      "H_Rwd_Gold": 0,
+      "H_Rwd_Power": 0
+    },
+    {
+      "H_Id": 1803,
+      "H_Lv": 3,
+      "H_Max": 2000,
+      "H_Cat_Type": 0,
+      "H_Rwd_Wood": 5,
+      "H_Rwd_Stone": 0,
+      "H_Rwd_Cotton": 0,
+      "H_Rwd_Gold": 0,
+      "H_Rwd_Power": 0
+    },
+    {
+      "H_Id": 1804,
+      "H_Lv": 4,
+      "H_Max": 3000,
+      "H_Cat_Type": 0,
+      "H_Rwd_Wood": 7,
+      "H_Rwd_Stone": 0,
+      "H_Rwd_Cotton": 0,
+      "H_Rwd_Gold": 0,
+      "H_Rwd_Power": 0
+    },
+    {
+      "H_Id": 1805,
+      "H_Lv": 5,
+      "H_Max": 4000,
+      "H_Cat_Type": 0,
+      "H_Rwd_Wood": 10,
+      "H_Rwd_Stone": 0,
+      "H_Rwd_Cotton": 0,
+      "H_Rwd_Gold": 0,
+      "H_Rwd_Power": 0
+    },
+    {
+      "H_Id": 1806,
+      "H_Lv": 1,
+      "H_Max": 0,
+      "H_Cat_Type": 1,
+      "H_Rwd_Wood": 0,
+      "H_Rwd_Stone": 1,
+      "H_Rwd_Cotton": 0,
+      "H_Rwd_Gold": 0,
+      "H_Rwd_Power": 0
+    },
+    {
+      "H_Id": 1807,
+      "H_Lv": 2,
+      "H_Max": 1000,
+      "H_Cat_Type": 1,
+      "H_Rwd_Wood": 0,
+      "H_Rwd_Stone": 4,
+      "H_Rwd_Cotton": 0,
+      "H_Rwd_Gold": 0,
+      "H_Rwd_Power": 0
+    },
+    {
+      "H_Id": 1808,
+      "H_Lv": 3,
+      "H_Max": 2000,
+      "H_Cat_Type": 1,
+      "H_Rwd_Wood": 0,
+      "H_Rwd_Stone": 8,
+      "H_Rwd_Cotton": 0,
+      "H_Rwd_Gold": 0,
+      "H_Rwd_Power": 0
+    },
+    {
+      "H_Id": 1809,
+      "H_Lv": 4,
+      "H_Max": 3000,
+      "H_Cat_Type": 1,
+      "H_Rwd_Wood": 0,
+      "H_Rwd_Stone": 12,
+      "H_Rwd_Cotton": 0,
+      "H_Rwd_Gold": 0,
+      "H_Rwd_Power": 0
+    },
+    {
+      "H_Id": 1810,
+      "H_Lv": 5,
+      "H_Max": 4000,
+      "H_Cat_Type": 1,
+      "H_Rwd_Wood": 0,
+      "H_Rwd_Stone": 15,
+      "H_Rwd_Cotton": 0,
+      "H_Rwd_Gold": 0,
+      "H_Rwd_Power": 0
+    },
+    {
+      "H_Id": 1811,
+      "H_Lv": 1,
+      "H_Max": 0,
+      "H_Cat_Type": 2,
+      "H_Rwd_Wood": 0,
+      "H_Rwd_Stone": 0,
+      "H_Rwd_Cotton": 1,
+      "H_Rwd_Gold": 0,
+      "H_Rwd_Power": 0
+    },
+    {
+      "H_Id": 1812,
+      "H_Lv": 2,
+      "H_Max": 1000,
+      "H_Cat_Type": 2,
+      "H_Rwd_Wood": 0,
+      "H_Rwd_Stone": 0,
+      "H_Rwd_Cotton": 3,
+      "H_Rwd_Gold": 0,
+      "H_Rwd_Power": 0
+    },
+    {
+      "H_Id": 1813,
+      "H_Lv": 3,
+      "H_Max": 2000,
+      "H_Cat_Type": 2,
+      "H_Rwd_Wood": 0,
+      "H_Rwd_Stone": 0,
+      "H_Rwd_Cotton": 5,
+      "H_Rwd_Gold": 0,
+      "H_Rwd_Power": 0
+    },
+    {
+      "H_Id": 1814,
+      "H_Lv": 4,
+      "H_Max": 3000,
+      "H_Cat_Type": 2,
+      "H_Rwd_Wood": 0,
+      "H_Rwd_Stone": 0,
+      "H_Rwd_Cotton": 7,
+      "H_Rwd_Gold": 0,
+      "H_Rwd_Power": 0
+    },
+    {
+      "H_Id": 1815,
+      "H_Lv": 5,
+      "H_Max": 4000,
+      "H_Cat_Type": 2,
+      "H_Rwd_Wood": 0,
+      "H_Rwd_Stone": 0,
+      "H_Rwd_Cotton": 10,
+      "H_Rwd_Gold": 0,
+      "H_Rwd_Power": 0
+    },
+    {
+      "H_Id": 1816,
+      "H_Lv": 1,
+      "H_Max": 0,
+      "H_Cat_Type": 3,
+      "H_Rwd_Wood": 0,
+      "H_Rwd_Stone": 0,
+      "H_Rwd_Cotton": 0,
+      "H_Rwd_Gold": 5000,
+      "H_Rwd_Power": 0
+    },
+    {
+      "H_Id": 1817,
+      "H_Lv": 2,
+      "H_Max": 1000,
+      "H_Cat_Type": 3,
+      "H_Rwd_Wood": 0,
+      "H_Rwd_Stone": 0,
+      "H_Rwd_Cotton": 0,
+      "H_Rwd_Gold": 10000,
+      "H_Rwd_Power": 0
+    },
+    {
+      "H_Id": 1818,
+      "H_Lv": 3,
+      "H_Max": 2000,
+      "H_Cat_Type": 3,
+      "H_Rwd_Wood": 0,
+      "H_Rwd_Stone": 0,
+      "H_Rwd_Cotton": 0,
+      "H_Rwd_Gold": 15000,
+      "H_Rwd_Power": 0
+    },
+    {
+      "H_Id": 1819,
+      "H_Lv": 4,
+      "H_Max": 3000,
+      "H_Cat_Type": 3,
+      "H_Rwd_Wood": 0,
+      "H_Rwd_Stone": 0,
+      "H_Rwd_Cotton": 0,
+      "H_Rwd_Gold": 25000,
+      "H_Rwd_Power": 0
+    },
+    {
+      "H_Id": 1820,
+      "H_Lv": 5,
+      "H_Max": 4000,
+      "H_Cat_Type": 3,
+      "H_Rwd_Wood": 0,
+      "H_Rwd_Stone": 0,
+      "H_Rwd_Cotton": 0,
+      "H_Rwd_Gold": 40000,
+      "H_Rwd_Power": 0
+    },
+    {
+      "H_Id": 1821,
+      "H_Lv": 1,
+      "H_Max": 0,
+      "H_Cat_Type": 4,
+      "H_Rwd_Wood": 0,
+      "H_Rwd_Stone": 0,
+      "H_Rwd_Cotton": 0,
+      "H_Rwd_Gold": 0,
+      "H_Rwd_Power": 1
+    },
+    {
+      "H_Id": 1822,
+      "H_Lv": 2,
+      "H_Max": 1000,
+      "H_Cat_Type": 4,
+      "H_Rwd_Wood": 0,
+      "H_Rwd_Stone": 0,
+      "H_Rwd_Cotton": 0,
+      "H_Rwd_Gold": 0,
+      "H_Rwd_Power": 2
+    },
+    {
+      "H_Id": 1823,
+      "H_Lv": 3,
+      "H_Max": 2000,
+      "H_Cat_Type": 4,
+      "H_Rwd_Wood": 0,
+      "H_Rwd_Stone": 0,
+      "H_Rwd_Cotton": 0,
+      "H_Rwd_Gold": 0,
+      "H_Rwd_Power": 3
+    },
+    {
+      "H_Id": 1824,
+      "H_Lv": 4,
+      "H_Max": 3000,
+      "H_Cat_Type": 4,
+      "H_Rwd_Wood": 0,
+      "H_Rwd_Stone": 0,
+      "H_Rwd_Cotton": 0,
+      "H_Rwd_Gold": 0,
+      "H_Rwd_Power": 4
+    },
+    {
+      "H_Id": 1825,
+      "H_Lv": 5,
+      "H_Max": 4000,
+      "H_Cat_Type": 4,
+      "H_Rwd_Wood": 0,
+      "H_Rwd_Stone": 0,
+      "H_Rwd_Cotton": 0,
+      "H_Rwd_Gold": 0,
+      "H_Rwd_Power": 5
+    }
+  ]
+}

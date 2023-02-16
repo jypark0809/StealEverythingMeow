@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.EventSystems;
 public class Soom : MonoBehaviour
-{ 
+{
+    int pointerID;
+
     public bool IsWood;
     public bool IsStone;
     public bool IsCotton;
@@ -16,6 +18,13 @@ public class Soom : MonoBehaviour
     private void Awake()
     {
         CurSoomLevel = Managers.Game.SaveData.SoomLevel;
+        this.transform.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(("Sprites/Furniture/Soom/" + Managers.Data.Sooms[1300 + CurSoomLevel].Soom_Int_Name));
+
+#if UNITY_EDITOR
+        pointerID = -1; //PC나 유니티 상에서는 -1
+#elif UNITY_ANDROID
+        pointerID = 0;  // 휴대폰이나 이외에서 터치 상에서는 0 
+#endif
     }
 
     private void Update()
@@ -31,50 +40,80 @@ public class Soom : MonoBehaviour
     }
     private void OnMouseDown()
     {
-        Managers.Object.CatHouse.gameObject.GetComponent<TileManager>().Open();
         /*
         if(CurSoomLevel == 0)// 튜토리얼
             SomUpgrade();
         else if (CurSoomLevel <3)
             Managers.UI.ShowPopupUI<UI_UpgradeSom>(); 
         */
+        if (!IsPointerOverUIObject(Input.mousePosition))
+        {
+            Managers.UI.ShowPopupUI<UI_UpgradePopUp>();
+        }
     }
 
     public void SomUpgrade()
     {
+        //재화소모
+        Managers.Game.SaveData.Wood -= Managers.Data.Sooms[1300 + CurSoomLevel + 1].Wood;
+        Managers.Game.SaveData.Stone -= Managers.Data.Sooms[1300 + CurSoomLevel + 1].Stone;
+        Managers.Game.SaveData.Cotton -= Managers.Data.Sooms[1300 + CurSoomLevel + 1].Cotton;
+        (Managers.UI.SceneUI as UI_CatHouseScene)._catHouseSceneTop.RefreshUI();
+
+
         CurSoomLevel++;
-        Managers.Game.SaveData.SoomLevel++; //추후합치고 변수 재정립하기 
-        this.transform.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(("Sprites/Furniture/" + Managers.Data.Sooms[1300 + CurSoomLevel].Soom_Int_Name));
+        Managers.Game.SaveData.SoomLevel++;
+        this.transform.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(("Sprites/Furniture/Soom/" + Managers.Data.Sooms[1300 + CurSoomLevel].Soom_Int_Name));
         Managers.Sound.Play(Define.Sound.Effect, "Effects/SomOpen");
-        if(Managers.Game.SaveData.SoomLevel == 3)
+
+        //행복도 증가
+        for (int i = 0; i < Managers.Game.SaveData.CatHave.Length; i++)
         {
+            if (Managers.Game.SaveData.CatHave[i])
+                Managers.Game.SaveData.CatCurHappinessExp[i] += Managers.Data.Sooms[1300 + CurSoomLevel].Happiness;
+        }
+        if (CurSoomLevel == 2)
+        {
+            Managers.Game.SaveData.Emotion[(int)Define.CatEmotion.Scratch] = true;
+            Managers.Game.SaveData.Emotion[(int)Define.CatEmotion.Sway] = true;
+            Managers.Game.SaveData.EmotionList.Add(Managers.Data.ExpressBooks[1501 + (int)Define.CatEmotion.Scratch].Express_Int_Name);
+            Managers.Game.SaveData.EmotionList.Add(Managers.Data.ExpressBooks[1501 + (int)Define.CatEmotion.Sway].Express_Int_Name);
+            Camera.main.GetComponent<CameraMove>().Index = 1;
+        }
+        if (CurSoomLevel == 3)
+        {
+            Managers.Game.SaveData.Emotion[(int)Define.CatEmotion.Attack] = true;
+            Managers.Game.SaveData.Emotion[(int)Define.CatEmotion.Lick] = true;
+            Managers.Game.SaveData.EmotionList.Add(Managers.Data.ExpressBooks[1501 + (int)Define.CatEmotion.Attack].Express_Int_Name);
+            Managers.Game.SaveData.EmotionList.Add(Managers.Data.ExpressBooks[1501 + (int)Define.CatEmotion.Lick].Express_Int_Name);
+            Camera.main.GetComponent<CameraMove>().Index = 2;
             Managers.Game.SaveData.IsSoomUp = false;
         }
-
+        Managers.Game.SaveGame();
     }
-    //좀더 효율적인코드가있을것같은기분..
     private void IsUpgrdaeCheck()
     {
         if (Managers.Game.SaveData.Wood >= Managers.Data.Sooms[1300 + CurSoomLevel + 1].Wood)
             IsWood = true;
+        else
+            IsWood = false;
         if (Managers.Game.SaveData.Stone >= Managers.Data.Sooms[1300 + CurSoomLevel + 1].Stone)
             IsStone = true;
+        else
+            IsStone = false;
         if (Managers.Game.SaveData.Cotton >= Managers.Data.Sooms[1300 + CurSoomLevel + 1].Cotton)
             IsCotton = true;
-
-        //방체크,가구체크 >>가구경우 상점과 확인후 다시 수정필요
-        if (Managers.Game.SaveData.SpaceLevel == Managers.Data.Sooms[1300 + CurSoomLevel + 1].Space_Num)
+        else
+            IsCotton = false;
+        if (Managers.Game.SaveData.SpaceLevel == Managers.Data.Sooms[1300 + CurSoomLevel].Space_Num)
             IsRoom = true;
+        else
+            IsRoom = false;
 
-        /*
-        int CurFur = 0;
-        for (int i = 0; i < Managers.Game.SaveData.RoomLevel; i++)
-        {
-            CurFur += Managers.Game.SaveData.MaxFurniture[i];
-        }
-        if (CurFur == Managers.Data.Sooms[1300 + CurSoomLevel + 1].Space_F_Count)
+        if (Managers.Game.SaveData.FList.Count == Managers.Data.Sooms[1300 + CurSoomLevel].Space_F_Count)
             IsFur = true;
-        */
+        else
+            IsFur = false;
 
         if (IsWood & IsStone & IsCotton & IsFur & IsRoom)
         {
@@ -84,5 +123,14 @@ public class Soom : MonoBehaviour
         {
             Managers.Game.SaveData.IsSoomUp = false;
         }
+    }
+
+    public bool IsPointerOverUIObject(Vector2 touchPos)
+    {
+        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+        eventDataCurrentPosition.position = touchPos;
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+        return results.Count > 0;
     }
 }

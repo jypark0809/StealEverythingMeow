@@ -32,7 +32,6 @@ public class GameScene : BaseScene
         if (Managers.Game.SaveData.firstExecution == true)
         {
             Managers.UI.ShowPopupUI<UI_GameTutorialPopup>();
-            Time.timeScale = 0;
             Managers.Game.SaveData.firstExecution = false;
         }
 
@@ -47,6 +46,11 @@ public class GameScene : BaseScene
     private void Update()
     {
         _playTime += Time.deltaTime;
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            SpawnPortal();
+        }
     }
 
     void SetPlayer()

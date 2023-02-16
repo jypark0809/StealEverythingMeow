@@ -7,6 +7,15 @@ using UnityEngine.UI;
 
 public class UI_GameOver : UI_Popup
 {
+    TextMeshProUGUI PlaytimeText;
+    TextMeshProUGUI GoldText;
+    TextMeshProUGUI ExtraGoldText;
+    TextMeshProUGUI TotalGoldText;
+    TextMeshProUGUI WoodText;
+    TextMeshProUGUI RockText;
+    TextMeshProUGUI CottonText;
+    SpaceData _sData;
+
     enum Texts
     {
         PlaytimeText,
@@ -34,18 +43,50 @@ public class UI_GameOver : UI_Popup
         Bind<TextMeshProUGUI>(typeof(Texts));
         Bind<Button>(typeof(Buttons));
 
-        Managers.Sound.Play(Define.Sound.Effect, "Effects/GameOver", volume: 0.2f);
+        Managers.Data.Spaces.TryGetValue(Managers.Game.SaveData.SpaceLevel + 1200, out _sData);
+        
+        PlaytimeText = GetText((int)Texts.PlaytimeText);
+        GoldText = GetText((int)Texts.GoldText);
+        ExtraGoldText = GetText((int)Texts.ExtraGoldText);
+        TotalGoldText = GetText((int)Texts.TotalGoldText);
+        WoodText = GetText((int)Texts.WoodText);
+        RockText = GetText((int)Texts.RockText);
+        CottonText = GetText((int)Texts.CottonText);
 
         GetButton((int)Buttons.ExitButton).gameObject.BindEvent(OnCloseButton);
-        GetText((int)Texts.PlaytimeText).text = 
-            $"PlayTime : {UpdateTime((Managers.Scene.CurrentScene as GameScene)._playTime)}";
-        GetText((int)Texts.GoldText).text =
-            $"Gold : {Managers.Object.Player.Stat.Gold}";
-        GetText((int)Texts.TotalGoldText).text =
-            $"Total : {Managers.Object.Player.Stat.Gold.ToString()}";
-        GetText((int)Texts.WoodText).text = Managers.Object.Player.Stat.Wood.ToString();
-        GetText((int)Texts.RockText).text = Managers.Object.Player.Stat.Rock.ToString();
-        GetText((int)Texts.CottonText).text = Managers.Object.Player.Stat.Cotton.ToString();
+
+        RefreshUI();
+        SaveGameResult();
+
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/GameOver", volume: 0.2f);
+    }
+
+    void RefreshUI()
+    {
+        int totalGold = Managers.Object.Player.Stat.Gold * _sData.Space_Gold_Plus / 100;
+
+        PlaytimeText.text = $"ÇÃ·¹ÀÌ ½Ã°£ : {UpdateTime((Managers.Scene.CurrentScene as GameScene)._playTime)}";
+        GoldText.text = $"È¹µæ °ñµå : {Managers.Object.Player.Stat.Gold}";
+        ExtraGoldText.text = $"°ø°£ Lv Bonus : {_sData.Space_Gold_Plus}%";
+        TotalGoldText.text = $"ÇÕ°è : {totalGold}";
+        WoodText.text = Managers.Object.Player.Stat.Wood.ToString();
+        RockText.text = Managers.Object.Player.Stat.Rock.ToString();
+        CottonText.text = Managers.Object.Player.Stat.Cotton.ToString();
+    }
+
+    void SaveGameResult()
+    {
+        int totalGold = Managers.Object.Player.Stat.Gold * _sData.Space_Gold_Plus / 100;
+
+        Managers.Game.SaveData.Gold += totalGold;
+        Managers.Game.SaveData.Wood += Managers.Object.Player.Stat.Wood;
+        Managers.Game.SaveData.Stone += Managers.Object.Player.Stat.Rock;
+        Managers.Game.SaveData.Cotton += Managers.Object.Player.Stat.Cotton;
+
+        if (Managers.Game.SaveData.firstExecution)
+            Managers.Game.SaveData.firstExecution = false;
+
+        Managers.Game.SaveGame();
     }
 
     string UpdateTime(float time)
@@ -61,9 +102,8 @@ public class UI_GameOver : UI_Popup
     {
         Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
         Time.timeScale = 1;
-        Managers.Scene.LoadScene(Define.SceneType.CatHouseScene);
-
-        // Save Data
+        LoadingScene.LoadScene("CatHouseScene", false);
+        //Managers.Scene.LoadScene(Define.SceneType.CatHouseScene);
 
         ClosePopupUI();
     }

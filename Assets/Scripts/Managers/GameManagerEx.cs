@@ -8,38 +8,59 @@ using static Define;
 [Serializable]
 public class GameData
 {
+    //재화
     public int Jelly;
-    public int Gold = 30000;
-    public int Dia = 20000;
+    public int Gold = 1000000;
+    public int Dia = 1000000;
 
     // 재료
-    public int Wood = 1000;
-    public int Cotton = 1000;
-    public int Stone = 1000;
+    public int Wood = 5000;
+    public int Cotton = 5000;
+    public int Stone = 5000;
+
+    // Furniture List
+    public List<FurnitureData> FList = new List<FurnitureData>();
+
+    // Ads Product Count
+    public AdsCountData adsData = new AdsCountData();
+
+    public bool[] Emotion = new bool[Define.MOTION_COUNT];
+    public List<string> EmotionList = new List<string>();
 
 
-    public int[] MaxFurniture = new int[11] {0,0,0,0,0,0,0,0,0,0,0}; //추후 수정
-    public int SoomLevel = 0;
-    public bool[] Emotion = new bool[Define.MOTION_COUNT] {true, true, true, true, true, true, true, true, true, true, true, true};
-
-
+    //공간
     public int SpaceLevel = 1;
-    public bool IsRoomOpen;
-    public float RoomTime = 30f;
+    public int SoomLevel = 1;
+    public bool IsRoomOpen = false;
     public bool IsSoomUp = false;
+    public bool DoingRoomUpgrade;
+    public bool DoingSoomUpgrdae;
 
     public bool BGMOn = true;
     public bool EffectSoundOn = true;
-
     public bool firstExecution = true;
 
 
+    // 고양이 보유여부 [White, Black, Calico, Tabby, Grey]
+    public int CatCount = 1;
+    public bool[] CatHave = new bool[5] { true, false, false, false, false };
+    public int[] CatHappinessLevel = new int[5] { 1, 1, 1, 1, 1 };
+    public float[] CatCurHappinessExp = new float[5] { 0, 0, 0, 0, 0 };
+    public string[] CatName = {"하양이","까망이","삼색이","치즈", "회색이"};
+    public bool[] DaysRwd = new bool[5] { false, false, false, false, false };
 
-    //간식
-    public int[] Food = { 1, 2, 0, 4, 5 ,0};
+    // 간식 [캣잎사탕, 츄르, 고등어구이, 육포, 참치캔, 연어]
+    public int[] Food = { 0, 0, 0, 0, 0, 0 };
     public GameData()
     {
         Jelly = 5;
+        adsData.InitAdsCountData();
+
+        //감정표현 기본세팅
+        Emotion[(int)Define.CatEmotion.Blink] = true;
+        Emotion[(int)Define.CatEmotion.Sleep3] = true;
+        Emotion[(int)Define.CatEmotion.Sniff] = true;
+        Emotion[(int)Define.CatEmotion.Ennui] = true;
     }
 }
 
@@ -47,6 +68,21 @@ public class GameManagerEx
 {
     GameData _gameData = new GameData();
     public GameData SaveData { get { return _gameData; } set { _gameData = value; } }
+
+    public void SpendJelly()
+    {
+        SaveData.Jelly--;
+        SaveGame();
+
+        UI_CatHouseScene scene = (Managers.UI.SceneUI as UI_CatHouseScene);
+        scene._catHouseSceneTop.RefreshUI();
+
+        // MAX_COUNT - 1
+        if (Managers.Game.SaveData.Jelly == 4)
+        {
+            scene._catHouseSceneTop.SetActiveRechargeText();
+        }
+    }
 
     #region Option
     public bool BGMOn

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using static EnemyController;
 
 public class PlayerController : MonoBehaviour
 {
@@ -35,9 +36,6 @@ public class PlayerController : MonoBehaviour
                 case Define.State.Walk:
                     _anim.Play("Walk");
                     break;
-                case Define.State.Jump:
-                    _anim.Play("Jump");
-                    break;
             }
         }
     }
@@ -60,9 +58,6 @@ public class PlayerController : MonoBehaviour
             case Define.State.Walk:
                 UpdateWalk();
                 break;
-            case Define.State.Jump:
-
-                break;
         }
 
         _rigid.velocity = Vector3.zero;
@@ -77,5 +72,23 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 nextVec = MoveVec * Stat.MoveSpeed * Time.fixedDeltaTime;
         _rigid.MovePosition(_rigid.position + nextVec);
+    }
+
+    // 피격 판정
+    public void TakeDamage()
+    {
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/CatCry", volume: 0.4f);
+        // Vibration.Vibrate((long)50);
+        Stat.Hp--;
+        StartCoroutine(PlayerInvincible());
+    }
+
+    IEnumerator PlayerInvincible()
+    {
+        gameObject.layer = 27;
+        GetComponent<SpriteRenderer>().color = new Color(1, 0.5f, 0.5f, 1f);
+        yield return new WaitForSeconds(2f);
+        gameObject.layer = 29;
+        GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
     }
 }

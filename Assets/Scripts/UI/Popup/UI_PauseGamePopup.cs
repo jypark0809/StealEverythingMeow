@@ -17,6 +17,7 @@ public class UI_PauseGamePopup : UI_Popup
     {
         CloseButton,
         MainMenuButton,
+        HelpButton
     }
 
     enum Texts
@@ -44,6 +45,8 @@ public class UI_PauseGamePopup : UI_Popup
 
         GetButton((int)Buttons.CloseButton).gameObject.BindEvent(OnCloseButtonClicked);
         GetButton((int)Buttons.MainMenuButton).gameObject.BindEvent(OnMainMenuButtonClicked);
+        GetButton((int)Buttons.HelpButton).gameObject.BindEvent(OnHelpButtonButtonClicked);
+
         GetObject((int)Toggles.BgmToggle).GetComponent<Toggle>().onValueChanged.AddListener(OnBgmToggleSelected);
         GetObject((int)Toggles.BgmToggle).GetComponent<Toggle>().isOn = Managers.Game.BGMOn;
         GetObject((int)Toggles.EffectSoundToggle).GetComponent<Toggle>().onValueChanged.AddListener(OnEffectSoundToggleSelected);
@@ -59,6 +62,16 @@ public class UI_PauseGamePopup : UI_Popup
 
     }
 
+    void Update()
+    {
+#if UNITY_ANDROID
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ClosePopupUI();
+        }
+#endif
+    }
+
     #region EventHandler
     void OnBgmToggleSelected(bool boolean)
     {
@@ -68,6 +81,8 @@ public class UI_PauseGamePopup : UI_Popup
             Managers.Sound.Play(Define.Sound.Bgm);
         else
             Managers.Sound.Stop(Define.Sound.Bgm);
+
+        Managers.Game.SaveGame();
     }
 
     void OnEffectSoundToggleSelected(bool boolean)
@@ -78,6 +93,8 @@ public class UI_PauseGamePopup : UI_Popup
         {
             Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
         }
+
+        Managers.Game.SaveGame();
     }
 
     void OnCloseButtonClicked(PointerEventData evt)
@@ -91,7 +108,14 @@ public class UI_PauseGamePopup : UI_Popup
     {
         Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
         Time.timeScale = 1;
-        Managers.Scene.LoadScene(Define.SceneType.CatHouseScene);
+        LoadingScene.LoadScene("CatHouseScene", false);
+        //Managers.Scene.LoadScene(Define.SceneType.CatHouseScene);
+    }
+
+    void OnHelpButtonButtonClicked(PointerEventData evt)
+    {
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
+        Managers.UI.ShowPopupUI<UI_GameTutorialPopup>();
     }
     #endregion
 }

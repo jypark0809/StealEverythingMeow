@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class UIManager
 {
-    int _order = 10;
+    int _order = -10;
 
     Stack<UI_Popup> _popupStack = new Stack<UI_Popup>();
     
@@ -35,7 +35,7 @@ public class UIManager
         }
         else
         {
-            canvas.sortingOrder = 0;
+            canvas.sortingOrder = -20;
         }
     }
 

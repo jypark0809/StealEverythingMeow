@@ -26,8 +26,6 @@ public class UI_GameScene : UI_Scene
 
     public Action skillHandler = null;
 
-    UI_Test _testUI;
-
     enum GameObjects
     {
         JoystickPanel,
@@ -97,6 +95,7 @@ public class UI_GameScene : UI_Scene
         GetButton((int)Buttons.PauseButton).gameObject.BindEvent(PopupPuaseUI);
         GetButton((int)Buttons.SkillButton).gameObject.BindEvent((PointerEventData evt) => skillHandler?.Invoke());
 
+        // Joystick
         joystickRadius = GetObject((int)GameObjects.OutLineCircle).GetComponent<RectTransform>().sizeDelta.y * 1.2f;
         GetObject((int)GameObjects.OutLineCircle).SetActive(false);
         GetObject((int)GameObjects.FiiledCircle).SetActive(false);
@@ -292,24 +291,24 @@ public class UI_GameScene : UI_Scene
         switch(PlayerPrefs.GetInt("SelectedCatNum"))
         {
             case 0:
-                //GetImage((int)Images.SkillImage).sprite = Managers.Resource.Load<Sprite>("Sprites/UI/Skill_CalicoCat");
+                //GetImage((int)Images.SkillImage).sprite = Managers.Resource.Load<Sprite>("Sprites/UI/SkillIcon/Skill_CalicoCat");
                 //GetImage((int)Images.SkillImage).SetNativeSize();
                 break;
             case 1:
-                GetImage((int)Images.SkillImage).sprite = Managers.Resource.Load<Sprite>("Sprites/UI/Skill_BlackCat");
+                GetImage((int)Images.SkillImage).sprite = Managers.Resource.Load<Sprite>("Sprites/UI/SkillIcon/Skill_BlackCat");
                 GetImage((int)Images.SkillImage).SetNativeSize();
                 break;
             case 2:
                 Image img = GetImage((int)Images.SkillImage);
-                img.sprite = Managers.Resource.Load<Sprite>("Sprites/UI/Skill_CalicoCat");
+                img.sprite = Managers.Resource.Load<Sprite>("Sprites/UI/SkillIcon/Skill_CalicoCat");
                 GetImage((int)Images.SkillImage).SetNativeSize();
                 break;
             case 3:
-                GetImage((int)Images.SkillImage).sprite = Managers.Resource.Load<Sprite>("Sprites/UI/Skill_CalicoCat");
+                GetImage((int)Images.SkillImage).sprite = Managers.Resource.Load<Sprite>("Sprites/UI/SkillIcon/Skill_CalicoCat");
                 GetImage((int)Images.SkillImage).SetNativeSize();
                 break;
             case 4:
-                GetImage((int)Images.SkillImage).sprite = Managers.Resource.Load<Sprite>("Sprites/UI/Skill_CalicoCat");
+                GetImage((int)Images.SkillImage).sprite = Managers.Resource.Load<Sprite>("Sprites/UI/SkillIcon/Skill_CalicoCat");
                 GetImage((int)Images.SkillImage).SetNativeSize();
                 break;
         }

@@ -25,6 +25,19 @@ public class ObjectManager
     GameObject _stage;
     public GameObject Stage { get { return _stage; } set { _stage = value; } }
 
+
+    Cat_LobbyHappniess _catLobbyWhite;
+    Cat_LobbyHappniess _catLobbyBlack;
+    Cat_LobbyHappniess _catLobbyGray;
+    Cat_LobbyHappniess _catLobbyCalico;
+    Cat_LobbyHappniess _catLobbyTabby;
+
+
+    public Cat_LobbyHappniess CatLobbyWhite { get { return _catLobbyWhite; } set { _catLobbyWhite = value; } }
+    public Cat_LobbyHappniess CatLobbyBlack { get { return _catLobbyBlack; } set { _catLobbyBlack = value; } }
+    public Cat_LobbyHappniess CatLobbyGray { get { return _catLobbyGray; } set { _catLobbyGray = value; } }
+    public Cat_LobbyHappniess CatLobbyCalico { get { return _catLobbyCalico; } set { _catLobbyCalico = value; } }
+    public Cat_LobbyHappniess CatLobbyTabby { get { return _catLobbyTabby; } set { _catLobbyTabby = value; } }
     public ObjectManager()
     {
         Init();
@@ -32,7 +45,7 @@ public class ObjectManager
 
     public void Init()
     {
-        
+
     }
 
     public GameObject SpawnPlayer(string path, Transform parent = null)
@@ -48,6 +61,48 @@ public class ObjectManager
         _catHouse = go.GetOrAddComponent<Grid>();
     }
 
+    Soom _Soom;
+    Room _Room;
+    public Soom SoomOpen { get { return _Soom; } set { _Soom = value; } }
+    public Room RoomOpen { get { return _Room; } set { _Room = value; } }
+
+    public void SpawnSoom(string path, Transform parent = null)
+    {
+        GameObject go = Managers.Resource.Instantiate(path, parent);
+        _Room = go.GetOrAddComponent<Room>();
+        _Soom = go.GetOrAddComponent<Soom>();
+
+    }
+    public void SpawnCat(string path, Transform parent = null)
+    {
+        if (Managers.Game.SaveData.CatHave[(int)Define.CatType.White])
+        {
+            GameObject go1 = Managers.Resource.Instantiate(path+ "White", parent);
+            _catLobbyWhite = go1.GetOrAddComponent<Cat_LobbyHappniess>();
+        }
+        if (Managers.Game.SaveData.CatHave[(int)Define.CatType.Black])
+        {
+            GameObject go2 = Managers.Resource.Instantiate(path+ "Black", parent);
+            _catLobbyBlack = go2.GetOrAddComponent<Cat_LobbyHappniess>();
+        }
+        if (Managers.Game.SaveData.CatHave[(int)Define.CatType.Gray])
+        {
+            GameObject go3 = Managers.Resource.Instantiate(path + "Gray", parent);
+            _catLobbyGray = go3.GetOrAddComponent<Cat_LobbyHappniess>();
+        }
+        if (Managers.Game.SaveData.CatHave[(int)Define.CatType.Calico])
+        {
+            GameObject go4 = Managers.Resource.Instantiate(path + "Thcolor", parent);
+            _catLobbyCalico = go4.GetOrAddComponent<Cat_LobbyHappniess>();
+        }
+        if (Managers.Game.SaveData.CatHave[(int)Define.CatType.Tabby])
+        {
+            GameObject go5 = Managers.Resource.Instantiate(path + "Cheeze", parent);
+            _catLobbyTabby = go5.GetOrAddComponent<Cat_LobbyHappniess>();
+        }
+
+    }
+
     public GameObject SpawnStage(string path, Transform parent = null)
     {
         _stage = Managers.Resource.Instantiate(path, parent);
@@ -59,5 +114,12 @@ public class ObjectManager
         GameObject go = Managers.Resource.Instantiate("Item/GoldText");
         GoldText goldText = go.GetOrAddComponent<GoldText>();
         goldText.SetInfo(pos, gold);
+    }
+
+    public void ShowTimeText(Vector2 pos)
+    {
+        GameObject go = Managers.Resource.Instantiate("Item/TimeText");
+        TimeText timeText = go.GetOrAddComponent<TimeText>();
+        timeText.SetInfo(pos);
     }
 }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.U2D;
 
 public class EnemyController : MonoBehaviour
 {
@@ -97,9 +96,10 @@ public class EnemyController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            StartCoroutine(ChangePlayerState());
-            Vibration.Vibrate((long)50);
-            Managers.Sound.Play(Define.Sound.Effect, "Effects/CatCry", volume: 0.4f);
+            // TODO : Player -> PlayerController로 넘기기
+            Managers.Object.Player.TakeDamage();
+
+            // Enemy
             State = EnemyState.Idle;
         }
     }
@@ -270,16 +270,6 @@ public class EnemyController : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         _exclamationMark.SetActive(false);
         State = EnemyState.Attack;
-    }
-
-    IEnumerator ChangePlayerState()
-    {
-        Managers.Object.Player.Stat.Hp--;
-        Managers.Object.Player.gameObject.layer = 27;
-        Managers.Object.Player.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
-        yield return new WaitForSeconds(2f);
-        Managers.Object.Player.gameObject.layer = 29;
-        Managers.Object.Player.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
     }
 
     #region OnDrawGizmos
