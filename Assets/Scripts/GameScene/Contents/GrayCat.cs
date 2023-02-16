@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TabbyCat : MonoBehaviour
+public class GrayCat : MonoBehaviour
 {
     void Start()
     {

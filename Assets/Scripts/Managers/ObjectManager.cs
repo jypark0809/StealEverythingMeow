@@ -85,7 +85,7 @@ public class ObjectManager
             GameObject go2 = Managers.Resource.Instantiate(path+ "Black", parent);
             _catLobbyBlack = go2.GetOrAddComponent<Cat_LobbyHappniess>();
         }
-        if (Managers.Game.SaveData.CatHave[(int)Define.CatType.Grey])
+        if (Managers.Game.SaveData.CatHave[(int)Define.CatType.Gray])
         {
             GameObject go3 = Managers.Resource.Instantiate(path + "Gray", parent);
             _catLobbyGray = go3.GetOrAddComponent<Cat_LobbyHappniess>();

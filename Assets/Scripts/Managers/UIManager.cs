@@ -35,7 +35,7 @@ public class UIManager
         }
         else
         {
-            canvas.sortingOrder = -11;
+            canvas.sortingOrder = -20;
         }
     }
 
