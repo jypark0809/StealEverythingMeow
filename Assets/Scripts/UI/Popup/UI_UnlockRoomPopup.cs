@@ -44,7 +44,15 @@ public class UI_UnlockRoomPopup : UI_Popup
     {
         Init();
     }
-
+    void Update()
+    {
+#if UNITY_ANDROID
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ClosePopupUI();
+        }
+#endif
+    }
     public override void Init()
     {
         base.Init();

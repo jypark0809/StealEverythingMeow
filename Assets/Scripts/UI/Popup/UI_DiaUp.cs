@@ -20,7 +20,15 @@ public class UI_DiaUp : UI_Popup
     {
         Init();
     }
-
+    void Update()
+    {
+#if UNITY_ANDROID
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ClosePopupUI();
+        }
+#endif
+    }
     public override void Init()
     {
         base.Init();
@@ -36,6 +44,7 @@ public class UI_DiaUp : UI_Popup
     private void OnOkeButton(PointerEventData evt)
     {
         Managers.Object.SoomOpen.SomUpgrade();
+        Managers.UI.CloseAllPopupUI();
         Managers.Game.SaveData.Dia -= Managers.Data.Sooms[1300 + Managers.Game.SaveData.SoomLevel + 1].Diamond;
         (Managers.UI.SceneUI as UI_CatHouseScene)._catHouseSceneTop.RefreshUI();
     }
