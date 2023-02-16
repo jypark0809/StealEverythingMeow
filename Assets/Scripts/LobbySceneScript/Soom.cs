@@ -92,7 +92,6 @@ public class Soom : MonoBehaviour
             Managers.Game.SaveData.IsSoomUp = false;
         }
         Managers.Game.SaveGame();
-        Managers.UI.ClosePopupUI();
     }
     private void IsUpgrdaeCheck()
     {

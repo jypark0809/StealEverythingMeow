@@ -24,7 +24,15 @@ public class UI_ExpressDia : UI_Popup
     {
         Init();
     }
-
+    void Update()
+    {
+#if UNITY_ANDROID
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ClosePopupUI();
+        }
+#endif
+    }
     public override void Init()
     {
         base.Init();

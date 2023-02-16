@@ -67,6 +67,16 @@ public class UI_TutorialPopup : UI_Popup
         GetObject((int)GameObjects.CloseButton).gameObject.SetActive(false);
     }
 
+    void Update()
+    {
+#if UNITY_ANDROID
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ClosePopupUI();
+        }
+#endif
+    }
+
     void OnLeftButtonClicked(PointerEventData evt)
     {
         Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");

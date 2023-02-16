@@ -54,6 +54,16 @@ public class UI_SelectCatPopup : UI_Popup
         GetButton((int)Buttons.CloseButton).gameObject.BindEvent(OnCloseButtonClicked);
     }
 
+    void Update()
+    {
+#if UNITY_ANDROID
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ClosePopupUI();
+        }
+#endif
+    }
+
     #region EventHandler
     void OnWhiteToggleSelected(bool boolean)
     {

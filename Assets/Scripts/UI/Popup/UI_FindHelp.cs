@@ -26,6 +26,16 @@ public class UI_FindHelp : UI_Popup
         GetImage((int)Images.Image).gameObject.BindEvent(OnCloseButtonClicked);
     }
 
+    void Update()
+    {
+#if UNITY_ANDROID
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ClosePopupUI();
+        }
+#endif
+    }
+
     void OnCloseButtonClicked(PointerEventData evt)
     {
         Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");

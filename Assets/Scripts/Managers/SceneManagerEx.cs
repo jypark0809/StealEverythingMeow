@@ -33,6 +33,11 @@ public class SceneManagerEx
         SceneManager.LoadScene(GetSceneName(type));
     }
 
+    public void LoadSceneAsync(Define.SceneType loadScene, Define.SceneType NextScene)
+    {
+
+    }
+
     string GetSceneName(Define.SceneType type)
     {
         string name = System.Enum.GetName(typeof(Define.SceneType), type);

@@ -39,6 +39,7 @@ public class CommonItem : Item
             Managers.Object.Player.Stat.Exp += itemData.Exp + (Managers.Object.Player.Stat.Stage - 1);
             Managers.Object.ShowGoldText(transform.position, itemGold);
 
+            isPull = false;
             (Managers.UI.SceneUI as UI_GameScene).UpdateGoldText();
             gameObject.SetActive(false);
         }

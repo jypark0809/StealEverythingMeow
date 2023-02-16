@@ -23,6 +23,7 @@ public class UI_Setting : UI_Popup
         Init();
     }
 
+
     public override void Init()
     {
         base.Init();
@@ -39,6 +40,16 @@ public class UI_Setting : UI_Popup
         GetButton((int)Buttons.InstagramButton).gameObject.BindEvent(OnInstagramButtonClicked);
         GetButton((int)Buttons.NaverBlogButton).gameObject.BindEvent(OnNaverBlogButtonClicked);
         GetButton((int)Buttons.HelpButton).gameObject.BindEvent(OnHelpButtonClicked);
+    }
+
+    void Update()
+    {
+#if UNITY_ANDROID
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ClosePopupUI();
+        }
+#endif
     }
 
     void OnBgmToggleSelected(bool boolean)
