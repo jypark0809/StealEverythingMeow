@@ -47,6 +47,7 @@ public class Room : MonoBehaviour
     }
     public void Open()
     {
+        Managers.UI.ClosePopupUI();
         //재화소모
         Managers.Game.SaveData.Gold -= Managers.Data.Spaces[1200 + CurRoomLevel + 1].Gold;
         Managers.Game.SaveData.Wood -= Managers.Data.Spaces[1200 + CurRoomLevel + 1].Wood;

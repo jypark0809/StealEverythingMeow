@@ -5,11 +5,11 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 
-public class UI_FurnitureCheckPanel : UI_Base
+public class UI_SoomCheckPanel : UI_Base
 {
 
     string _FurName;
-    bool _Need = false;
+    bool _Need;
 
     enum Texts
     {
@@ -29,7 +29,7 @@ public class UI_FurnitureCheckPanel : UI_Base
         Bind<TextMeshProUGUI>(typeof(Texts));
         Bind<Image>(typeof(Images));
 
-        GetText((int)Texts.RoomText).text = _FurName;
+        GetText((int)Texts.RoomText).text = "¼û¼ûÁý Lv" +_FurName;
 
         if(_Need)
             GetImage((int)Images.CheckImages).GetComponent<Image>().sprite = Resources.Load<Sprite>(("Sprites/UI/Panel2/Checkbox3"));

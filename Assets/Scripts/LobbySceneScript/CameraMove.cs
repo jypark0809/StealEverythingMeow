@@ -75,9 +75,7 @@ public class CameraMove : MonoBehaviour
                 clickPoint = Input.mousePosition;
                 Vector2 pos = Camera.main.ScreenToWorldPoint(clickPoint);
                 if (Physics2D.Raycast(pos, transform.forward, LayerMask.GetMask("Soom")))
-                {
                     return;
-                }
             }
             else if (Input.GetMouseButton(0))
             {
