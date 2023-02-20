@@ -26,6 +26,7 @@ public class Room : MonoBehaviour
         if(Managers.Game.SaveData.SpaceLevel < 10)
             IsRoomCheck();
 
+        
         if(Managers.Game.SaveData.DoingRoomUpgrade)
         {
             DateTime st = DateTime.ParseExact(PlayerPrefs.GetString("OpenTime"), "yyyyMMddHHmmss", System.Globalization.CultureInfo.InvariantCulture);
@@ -42,7 +43,7 @@ public class Room : MonoBehaviour
                 }
             }
         }
-
+        
     }
     public void Open()
     {
@@ -60,6 +61,7 @@ public class Room : MonoBehaviour
         IsTime = true;
         Managers.Game.SaveGame();
         Managers.UI.MakeWorldSpaceUI<UI_RestTime>().SetInfo(DurationTime);
+        
     }
     private void OpenRoom()
     {
