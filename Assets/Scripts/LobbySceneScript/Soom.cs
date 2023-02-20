@@ -78,7 +78,6 @@ public class Soom : MonoBehaviour
             Managers.Game.SaveData.Emotion[(int)Define.CatEmotion.Sway] = true;
             Managers.Game.SaveData.EmotionList.Add(Managers.Data.ExpressBooks[1501 + (int)Define.CatEmotion.Scratch].Express_Int_Name);
             Managers.Game.SaveData.EmotionList.Add(Managers.Data.ExpressBooks[1501 + (int)Define.CatEmotion.Sway].Express_Int_Name);
-            Managers.UI.ShowPopupUI<UI_ExpressOpen>();
             Camera.main.GetComponent<CameraMove>().Index = 1;
         }
         if (CurSoomLevel == 3)
@@ -87,7 +86,6 @@ public class Soom : MonoBehaviour
             Managers.Game.SaveData.Emotion[(int)Define.CatEmotion.Lick] = true;
             Managers.Game.SaveData.EmotionList.Add(Managers.Data.ExpressBooks[1501 + (int)Define.CatEmotion.Attack].Express_Int_Name);
             Managers.Game.SaveData.EmotionList.Add(Managers.Data.ExpressBooks[1501 + (int)Define.CatEmotion.Lick].Express_Int_Name);
-            Managers.UI.ShowPopupUI<UI_ExpressOpen>();
             Camera.main.GetComponent<CameraMove>().Index = 2;
             Managers.Game.SaveData.IsSoomUp = false;
         }

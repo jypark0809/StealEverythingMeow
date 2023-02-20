@@ -31869,6 +31869,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6722017917432439843, guid: da1ea0f189711f64a990821f53e011e8, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9ed7a07a7c6aea24ca082228dcc9b7c6, type: 3}
+    - target: {fileID: 6722017917432439843, guid: da1ea0f189711f64a990821f53e011e8, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6722017917432439844, guid: da1ea0f189711f64a990821f53e011e8, type: 3}
       propertyPath: m_Name
       value: Chocolate_05
@@ -31930,6 +31938,14 @@ PrefabInstance:
     - target: {fileID: 6722017917432439840, guid: da1ea0f189711f64a990821f53e011e8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6722017917432439843, guid: da1ea0f189711f64a990821f53e011e8, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9ed7a07a7c6aea24ca082228dcc9b7c6, type: 3}
+    - target: {fileID: 6722017917432439843, guid: da1ea0f189711f64a990821f53e011e8, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6722017917432439844, guid: da1ea0f189711f64a990821f53e011e8, type: 3}
       propertyPath: m_Name
@@ -32431,6 +32447,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6722017917432439843, guid: da1ea0f189711f64a990821f53e011e8, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9ed7a07a7c6aea24ca082228dcc9b7c6, type: 3}
+    - target: {fileID: 6722017917432439843, guid: da1ea0f189711f64a990821f53e011e8, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6722017917432439844, guid: da1ea0f189711f64a990821f53e011e8, type: 3}
       propertyPath: m_Name
       value: Chocolate_07
@@ -32492,6 +32516,14 @@ PrefabInstance:
     - target: {fileID: 6722017917432439840, guid: da1ea0f189711f64a990821f53e011e8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6722017917432439843, guid: da1ea0f189711f64a990821f53e011e8, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9ed7a07a7c6aea24ca082228dcc9b7c6, type: 3}
+    - target: {fileID: 6722017917432439843, guid: da1ea0f189711f64a990821f53e011e8, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6722017917432439844, guid: da1ea0f189711f64a990821f53e011e8, type: 3}
       propertyPath: m_Name
@@ -32636,6 +32668,14 @@ PrefabInstance:
     - target: {fileID: 6722017917432439840, guid: da1ea0f189711f64a990821f53e011e8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6722017917432439843, guid: da1ea0f189711f64a990821f53e011e8, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9ed7a07a7c6aea24ca082228dcc9b7c6, type: 3}
+    - target: {fileID: 6722017917432439843, guid: da1ea0f189711f64a990821f53e011e8, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6722017917432439844, guid: da1ea0f189711f64a990821f53e011e8, type: 3}
       propertyPath: m_Name
@@ -33123,6 +33163,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6722017917432439843, guid: da1ea0f189711f64a990821f53e011e8, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9ed7a07a7c6aea24ca082228dcc9b7c6, type: 3}
+    - target: {fileID: 6722017917432439843, guid: da1ea0f189711f64a990821f53e011e8, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6722017917432439844, guid: da1ea0f189711f64a990821f53e011e8, type: 3}
       propertyPath: m_Name
       value: Chocolate_03
@@ -33247,6 +33295,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6722017917432439843, guid: da1ea0f189711f64a990821f53e011e8, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9ed7a07a7c6aea24ca082228dcc9b7c6, type: 3}
+    - target: {fileID: 6722017917432439843, guid: da1ea0f189711f64a990821f53e011e8, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6722017917432439844, guid: da1ea0f189711f64a990821f53e011e8, type: 3}
       propertyPath: m_Name
       value: Chocolate_02
@@ -33308,6 +33364,14 @@ PrefabInstance:
     - target: {fileID: 6722017917432439840, guid: da1ea0f189711f64a990821f53e011e8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6722017917432439843, guid: da1ea0f189711f64a990821f53e011e8, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9ed7a07a7c6aea24ca082228dcc9b7c6, type: 3}
+    - target: {fileID: 6722017917432439843, guid: da1ea0f189711f64a990821f53e011e8, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6722017917432439844, guid: da1ea0f189711f64a990821f53e011e8, type: 3}
       propertyPath: m_Name

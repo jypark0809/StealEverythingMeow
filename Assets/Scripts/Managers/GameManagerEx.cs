@@ -10,17 +10,19 @@ public class GameData
 {
     //재화
     public int Jelly;
-    public int Gold = 1000000;
-    public int Dia;
+    public int Gold = 2000000;
+    public int Dia = 1000000;
 
     // 재료
-    public int Wood = 5000;
-    public int Cotton = 5000;
-    public int Stone = 5000;
+    public int Wood = 2000;
+    public int Cotton = 2000;
+    public int Stone = 2000;
 
     // Furniture List
     public List<FurnitureData> FList = new List<FurnitureData>();
 
+    // Ads Product Count
+    public AdsCountData adsData = new AdsCountData();
 
     public bool[] Emotion = new bool[Define.MOTION_COUNT];
     public List<string> EmotionList = new List<string>();
@@ -52,6 +54,7 @@ public class GameData
     public GameData()
     {
         Jelly = 5;
+        adsData.InitAdsCountData();
 
         //감정표현 기본세팅
         Emotion[(int)Define.CatEmotion.Blink] = true;
