@@ -21,7 +21,7 @@ public class CameraMove : MonoBehaviour
     Camera thecamera;
     PixelPerfectCamera pix;
 
-    private float Movespeed = 2f;
+    public float Movespeed = 2f;
     public Vector3 targetPos;
 
     private void Awake()
@@ -60,12 +60,6 @@ public class CameraMove : MonoBehaviour
         */
 
     }
-    private void ZoomIn()
-    {
-        float scrollWheel = Input.GetAxis("Mouse ScrollWheel");
-        Camera.main.orthographicSize += scrollWheel * Time.deltaTime * scrollWheel;
-    }
-
     private void FixedUpdate()
     {
         Moving();
@@ -77,18 +71,27 @@ public class CameraMove : MonoBehaviour
         if (!EventSystem.current.IsPointerOverGameObject(pointerID))
         {
             if (Input.GetMouseButtonDown(0))
-                clickPoint = Input.mousePosition;
-
-            if (Input.GetMouseButton(0))
             {
-                Vector3 position
-                    = Camera.main.ScreenToViewportPoint((Vector2)Input.mousePosition - clickPoint);
-
-                Vector3 move = -position * (Time.deltaTime * 30f);
-
-                transform.Translate(move);
-                transform.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
+                clickPoint = Input.mousePosition;
+                Vector2 pos = Camera.main.ScreenToWorldPoint(clickPoint);
+                if (Physics2D.Raycast(pos, transform.forward, LayerMask.GetMask("Soom")))
+                    return;
             }
+            else if (Input.GetMouseButton(0))
+            {
+                Vector2 pos = Camera.main.ScreenToWorldPoint(clickPoint);
+                if (Physics2D.Raycast(pos, transform.forward, LayerMask.GetMask("Soom")))
+                {
+                    return;
+                }
+                Vector3 position = Camera.main.ScreenToViewportPoint((Vector2)Input.mousePosition - clickPoint);
+                Vector3 move = -position.normalized * (Time.deltaTime) * Movespeed;
+                transform.Translate(move);
+                clickPoint = Input.mousePosition;
+                transform.position = new Vector3(transform.position.x, transform.position.y, -10);
+            }
+            else if (Input.GetMouseButtonUp(0))
+                return;
         }
     }
 
@@ -101,6 +104,12 @@ public class CameraMove : MonoBehaviour
         float clampY = Mathf.Clamp(transform.position.y, -Ly + center[Index].y, Ly + center[Index].y);
 
         transform.position = new Vector3(clampX, clampY, -10f);
+    }
+
+    private void ZoomIn()
+    {
+        float scrollWheel = Input.GetAxis("Mouse ScrollWheel");
+        Camera.main.orthographicSize += scrollWheel * Time.deltaTime * scrollWheel;
     }
 
     private void OnDrawGizmos()

@@ -43,7 +43,7 @@ public class UI_UpgradePopUp : UI_Popup
     void OpenSpace(PointerEventData evt)
     {
         Managers.UI.ClosePopupUI();
-        Managers.UI.ShowPopupUI<UI_UnlockRoomPopup>();
+        Managers.UI.ShowPopupUI<UI_RoomSet>();
     }
     void OnCloseButton(PointerEventData evt)
     {

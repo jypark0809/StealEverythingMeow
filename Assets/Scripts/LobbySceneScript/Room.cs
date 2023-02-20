@@ -26,6 +26,7 @@ public class Room : MonoBehaviour
         if(Managers.Game.SaveData.SpaceLevel < 10)
             IsRoomCheck();
 
+        
         if(Managers.Game.SaveData.DoingRoomUpgrade)
         {
             DateTime st = DateTime.ParseExact(PlayerPrefs.GetString("OpenTime"), "yyyyMMddHHmmss", System.Globalization.CultureInfo.InvariantCulture);
@@ -42,10 +43,11 @@ public class Room : MonoBehaviour
                 }
             }
         }
-
+        
     }
     public void Open()
     {
+        Managers.UI.ClosePopupUI();
         //재화소모
         Managers.Game.SaveData.Gold -= Managers.Data.Spaces[1200 + CurRoomLevel + 1].Gold;
         Managers.Game.SaveData.Wood -= Managers.Data.Spaces[1200 + CurRoomLevel + 1].Wood;
@@ -60,6 +62,7 @@ public class Room : MonoBehaviour
         IsTime = true;
         Managers.Game.SaveGame();
         Managers.UI.MakeWorldSpaceUI<UI_RestTime>().SetInfo(DurationTime);
+        
     }
     private void OpenRoom()
     {
