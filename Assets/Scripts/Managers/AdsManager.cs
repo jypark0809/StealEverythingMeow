@@ -18,7 +18,7 @@ public class AdsManager
     // InterstitialAd _interstitialAd; // Àü¸é ±¤°í
     RewardedAd _rewardedAd; // º¸»óÇü ±¤°í
     Action _rewardedCallback;
-
+    
     public void Init()
     {
         MobileAds.Initialize(initStatus => { });
