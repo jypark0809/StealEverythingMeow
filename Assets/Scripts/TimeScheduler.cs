@@ -50,9 +50,6 @@ public class TimeScheduler : MonoBehaviour
 
             instance = go.GetComponent<TimeScheduler>();
         }
-        Debug.Log($"Hour : {DateTime.Now.ToLocalTime().Hour}");
-        Debug.Log($"Min : {DateTime.Now.ToLocalTime().Minute}");
-        Debug.Log($"Sec : {DateTime.Now.ToLocalTime().Second}");
     }
 
     void Start()
@@ -73,7 +70,7 @@ public class TimeScheduler : MonoBehaviour
             var getTime = string.Empty;
             getTime = PlayerPrefs.GetString("LastQuitTime");
             lastQuitTime = DateTime.FromBinary(Convert.ToInt64(getTime));
-            Debug.Log($"LoadLastQuitTime : {lastQuitTime}");
+            // Debug.Log($"LoadLastQuitTime : {lastQuitTime}");
         }
     }
 
