@@ -91,16 +91,15 @@ public class UI_UpgradeSoomPopUp : UI_Popup
     }
     void OnDiaUpgrade(PointerEventData evt)
     {
-        Managers.UI.ShowPopupUI<UI_DiaUp>();
         Managers.UI.ClosePopupUI();
+        Managers.UI.ShowPopupUI<UI_DiaUp>();
+
     }
     void OnGoldUpgrade(PointerEventData evt)
     {
         Managers.Game.SaveData.Gold -= Managers.Data.Sooms[1300 + Managers.Game.SaveData.SoomLevel + 1].Gold;
         (Managers.UI.SceneUI as UI_CatHouseScene)._catHouseSceneTop.RefreshUI();
         Managers.Object.SoomOpen.SomUpgrade();
-        Managers.UI.ClosePopupUI();
-        Managers.UI.ShowPopupUI<UI_ExpressOpen>();
     }
     void SetFur()
     {

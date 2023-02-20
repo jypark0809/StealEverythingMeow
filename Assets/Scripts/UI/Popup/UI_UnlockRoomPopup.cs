@@ -86,7 +86,7 @@ public class UI_UnlockRoomPopup : UI_Popup
         GetObject((int)GameObjects.Upgrade).gameObject.SetActive(true);
         GetObject((int)GameObjects.Full).gameObject.SetActive(false);
 
-        if (Managers.Game.SaveData.IsRoomOpen && !Managers.Game.SaveData.DoingRoomUpgrade)
+        if (Managers.Game.SaveData.IsRoomOpen && !Managers.Game.SaveData.DoingRoomUpgrade && Index-1 == Managers.Game.SaveData.SpaceLevel)
             GetButton((int)Buttons.OkButton).gameObject.BindEvent(OnOkayButton);
         else
             GetButton((int)Buttons.OkButton).interactable = false;

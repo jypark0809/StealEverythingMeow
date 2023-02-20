@@ -28,7 +28,6 @@ public class UI_SoomCheckPanel : UI_Base
     {
         Bind<TextMeshProUGUI>(typeof(Texts));
         Bind<Image>(typeof(Images));
-
         GetText((int)Texts.RoomText).text = "¼û¼ûÁý Lv" +_FurName;
 
         if(_Need)

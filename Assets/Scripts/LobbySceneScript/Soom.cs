@@ -89,6 +89,7 @@ public class Soom : MonoBehaviour
             Camera.main.GetComponent<CameraMove>().Index = 2;
             Managers.Game.SaveData.IsSoomUp = false;
         }
+        Managers.UI.ShowPopupUI<UI_ExpressOpen>();
         Managers.UI.ShowPopupUI<UI_CatPlus>();
         Managers.Game.SaveGame();
     }
