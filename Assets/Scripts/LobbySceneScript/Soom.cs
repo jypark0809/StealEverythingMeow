@@ -54,12 +54,12 @@ public class Soom : MonoBehaviour
 
     public void SomUpgrade()
     {
+        Managers.UI.ClosePopupUI();
         //재화소모
         Managers.Game.SaveData.Wood -= Managers.Data.Sooms[1300 + CurSoomLevel + 1].Wood;
         Managers.Game.SaveData.Stone -= Managers.Data.Sooms[1300 + CurSoomLevel + 1].Stone;
         Managers.Game.SaveData.Cotton -= Managers.Data.Sooms[1300 + CurSoomLevel + 1].Cotton;
         (Managers.UI.SceneUI as UI_CatHouseScene)._catHouseSceneTop.RefreshUI();
-
 
         CurSoomLevel++;
         Managers.Game.SaveData.SoomLevel++;
@@ -89,6 +89,7 @@ public class Soom : MonoBehaviour
             Camera.main.GetComponent<CameraMove>().Index = 2;
             Managers.Game.SaveData.IsSoomUp = false;
         }
+        Managers.UI.ShowPopupUI<UI_CatPlus>();
         Managers.Game.SaveGame();
     }
     private void IsUpgrdaeCheck()

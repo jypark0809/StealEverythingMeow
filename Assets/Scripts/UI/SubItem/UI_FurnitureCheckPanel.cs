@@ -9,7 +9,7 @@ public class UI_FurnitureCheckPanel : UI_Base
 {
 
     string _FurName;
-    bool _Need;
+    bool _Need = false;
 
     enum Texts
     {
