@@ -29,8 +29,8 @@ public class GameData
 
 
     //°ø°£
-    public int SpaceLevel = 1;
-    public int SoomLevel = 1;
+    public int SpaceLevel = 10;
+    public int SoomLevel = 3;
     public bool IsRoomOpen = false;
     public bool IsSoomUp = false;
     public bool DoingRoomUpgrade;

@@ -124,9 +124,13 @@ public class UI_ConfirmPauchasePopup : UI_Popup
         // Add furniture to fList of save data
         Managers.Game.SaveData.FList.Add(_fData);
 
-        // arrange Furniture
+        // arrange Furniture\
+        
         GameObject go = Managers.Resource.Instantiate($"Furniture/{_fData.F_Space_Num}/{_fData.F_Int_Name}");
         go.transform.position = new Vector2(go.transform.localPosition.x + 0.5f, go.transform.localPosition.y + 0.5f);
+
+        // Camera
+        Camera.main.GetComponent<CameraMove>().Exam(go);
 
         // Save Data
         Managers.Game.SaveGame();
@@ -137,6 +141,7 @@ public class UI_ConfirmPauchasePopup : UI_Popup
         // Close All Popup UI;
         Managers.UI.CloseAllPopupUI();
     }
+
 
 
     void PurchaseItem()
