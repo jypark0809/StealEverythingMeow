@@ -7,7 +7,6 @@ using TMPro;
 public class UI_StatDetail : UI_Popup
 {
     private string[] CatName = { "White", "Black", "Calico", "Tabby", "Gray" };
-    private string[] FoodName = { "Churu", "Jerky", "Mackerel", "Salmon", "Tuna", "CatnipCandy" };
     int Index;
     GameObject HaveGo, NotHaveGo;
     TextMeshProUGUI HaveText, NotHaveText, HaveDes, NotHaveDes, HaveSkil, NotHaveSkill, HaveFoodName, CatPrice;
@@ -135,7 +134,7 @@ public class UI_StatDetail : UI_Popup
             HaveSkillImage.sprite = null;
         }
         HaveFoodName.text = Managers.Data.ShopItems[Managers.Data.CatBooks[1401 + _index].Cat_Favor_Food].Shop_Name;
-        HaveFoodImage.sprite = Managers.Resource.Load<Sprite>("Sprites/UI/ShopItem/Snack/" + FoodName[Index]);
+        HaveFoodImage.sprite = Managers.Resource.Load<Sprite>(Managers.Data.ShopItems[Managers.Data.CatBooks[1401 + _index].Cat_Favor_Food].ImgPath);
         HappyLevel = Managers.Game.SaveData.CatHappinessLevel[_index];
         GetText((int)Texts.NeedExp).text = "다음 행복도까지 필요경험치 : " + (Managers.Data.Happinesses[1800 + _index * 5 + HappyLevel + 1].H_Max - Managers.Game.SaveData.CatCurHappinessExp[_index]).ToString();
         GetText((int)Texts.HappyLevel).text = "행복도 레벨 : " + HappyLevel.ToString();

@@ -26,7 +26,7 @@ public class Room : MonoBehaviour
         if(Managers.Game.SaveData.SpaceLevel < 10)
             IsRoomCheck();
 
-        
+        /*
         if(Managers.Game.SaveData.DoingRoomUpgrade)
         {
             DateTime st = DateTime.ParseExact(PlayerPrefs.GetString("OpenTime"), "yyyyMMddHHmmss", System.Globalization.CultureInfo.InvariantCulture);
@@ -43,6 +43,7 @@ public class Room : MonoBehaviour
                 }
             }
         }
+        */
         
     }
     public void Open()
@@ -60,9 +61,12 @@ public class Room : MonoBehaviour
         OpenTime = DateTime.Now.AddSeconds(DurationTime);
         PlayerPrefs.SetString("OpenTime", OpenTime.ToString("yyyyMMddHHmmss"));
         IsTime = true;
+        
+        OpenRoom();
         Managers.Game.SaveGame();
         Managers.UI.MakeWorldSpaceUI<UI_RestTime>().SetInfo(DurationTime);
         
+
     }
     private void OpenRoom()
     {
@@ -77,6 +81,7 @@ public class Room : MonoBehaviour
 
         //카메라 움직임 추가
 
+
         //생성
         Managers.Resource.Destroy(Managers.Object.CatHouse.gameObject);
         Managers.UI.ShowPopupUI<UI_Sucess>();
@@ -85,6 +90,8 @@ public class Room : MonoBehaviour
         Managers.Object.SpawnCatHouse("CatHouse_" + Managers.Game.SaveData.SpaceLevel);
         Managers.Sound.Play(Define.Sound.Effect, "Effects/RoomOpen");
         Managers.Game.SaveGame();
+
+        (Managers.UI.SceneUI as UI_CatHouseScene)._catHouseSceneTop.RefreshUI();
     }
     private void IsRoomCheck()
     {

@@ -102,10 +102,11 @@ public class UI_GameOver : UI_Popup
     {
         Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
         Time.timeScale = 1;
+        ClosePopupUI();
         LoadingScene.LoadScene("CatHouseScene", false);
         //Managers.Scene.LoadScene(Define.SceneType.CatHouseScene);
 
-        ClosePopupUI();
+
     }
     #endregion
 }

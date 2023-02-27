@@ -36,6 +36,7 @@ public class UI_CatInfo : UI_Base
 
         GetText((int)Texts.NameText).text = CatName;
         GetText((int)Texts.HappyLevel).text = "LV. " + HappyLevel.ToString();
+        this.transform.position = Target.position;
         SetHappiness();
     }
 

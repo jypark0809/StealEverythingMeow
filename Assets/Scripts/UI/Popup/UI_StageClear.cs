@@ -104,8 +104,6 @@ public class UI_StageClear : UI_Popup
         Time.timeScale = 1;
         LoadingScene.LoadScene("CatHouseScene", false);
         //Managers.Scene.LoadScene(Define.SceneType.CatHouseScene);
-
-
         ClosePopupUI();
     }
     #endregion
