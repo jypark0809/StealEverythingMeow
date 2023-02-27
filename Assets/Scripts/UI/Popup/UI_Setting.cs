@@ -131,6 +131,7 @@ public class UI_Setting : UI_Popup
             Managers.Game.SaveData.Wood += 320;
             Managers.Game.SaveData.Stone += 150;
             Managers.Game.SaveData.Cotton += 20;
+            Managers.UI.ShowPopupUI<UI_GetCouponReward>();
 
             // Refresh UI
             (Managers.UI.SceneUI as UI_CatHouseScene)._catHouseSceneTop.RefreshUI();

@@ -23,7 +23,8 @@ public class WhiteCat : MonoBehaviour
     IEnumerator UseSkill()
     {
         Managers.Sound.Play(Define.Sound.Effect, "Effects/CatIdle");
-        yield return new WaitForSeconds(1f);
+        yield return null;
+
         skillCoroutine = null;
     }
 }

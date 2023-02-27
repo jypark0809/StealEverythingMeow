@@ -25,6 +25,7 @@ public class UI_GameScene : UI_Scene
     Animator _playerAnim;
 
     public Action skillHandler = null;
+    Image coolTimeCircle;
 
     enum GameObjects
     {
@@ -47,6 +48,7 @@ public class UI_GameScene : UI_Scene
         Heart2,
         Heart3,
         TreasureMapImage,
+        CoolTimeCircle,
         SkillImage
     }
 
@@ -56,6 +58,8 @@ public class UI_GameScene : UI_Scene
         SkillButton,
     }
 
+    bool isCooltime = false;
+    Coroutine coolTimeCoroutine;
     void Update()
     {
         switch(_state)
@@ -66,6 +70,21 @@ public class UI_GameScene : UI_Scene
                 UpdateTime();
                 break;
         }
+
+        //if (isCooltime)
+        //{
+        //    coolTimeCircle.fillAmount += 1 / player.Stat.CoolTime * Time.deltaTime;
+        //    if (coolTimeCircle.fillAmount > 1)
+        //    {
+        //        coolTimeCircle.fillAmount = 1;
+        //        isCooltime = false;
+        //    }
+        //}
+        //else
+        //{
+        //    coolTimeCircle.fillAmount = 0;
+        //    isCooltime = true;
+        //}
     }
 
     void Start()
@@ -85,6 +104,7 @@ public class UI_GameScene : UI_Scene
         Bind<TextMeshProUGUI>(typeof(Texts));
         Bind<Button>(typeof(Buttons));
 
+        coolTimeCircle = GetImage((int)Images.CoolTimeCircle);
         SetSkillImage();
 
         GetObject((int)GameObjects.JoystickPanel).BindEvent(OnPointerDown, Define.UIEvent.PointerDown);
@@ -93,13 +113,12 @@ public class UI_GameScene : UI_Scene
 
         GetText((int)Texts.GoldText).text = Managers.Object.Player.Stat.Gold.ToString();
         GetButton((int)Buttons.PauseButton).gameObject.BindEvent(PopupPuaseUI);
-        GetButton((int)Buttons.SkillButton).gameObject.BindEvent((PointerEventData evt) => skillHandler?.Invoke());
+        GetButton((int)Buttons.SkillButton).gameObject.BindEvent(OnSkillButtonClicked);
 
         // Joystick
         joystickRadius = GetObject((int)GameObjects.OutLineCircle).GetComponent<RectTransform>().sizeDelta.y * 1.2f;
         GetObject((int)GameObjects.OutLineCircle).SetActive(false);
         GetObject((int)GameObjects.FiiledCircle).SetActive(false);
-        
     }
 
     void OnPointerDown(PointerEventData evt)
@@ -314,12 +333,41 @@ public class UI_GameScene : UI_Scene
         }
     }
 
+
     #region EventHandler
     void PopupPuaseUI(PointerEventData evt)
     {
         Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
         Time.timeScale = 0;
         Managers.UI.ShowPopupUI<UI_PauseGamePopup>();
+    }
+
+    void OnSkillButtonClicked(PointerEventData evt)
+    {
+        if (coolTimeCoroutine == null)
+        {
+            skillHandler?.Invoke();
+            coolTimeCoroutine = StartCoroutine(CoolTimeCircleFilled());
+        }
+    }
+
+    IEnumerator CoolTimeCircleFilled()
+    {
+        coolTimeCircle.fillAmount = 0;
+        isCooltime = true;
+        float coolTime = player.Stat.CoolTime;
+        while(isCooltime)
+        {
+            coolTimeCircle.fillAmount += 1 / coolTime * Time.deltaTime;
+            if (coolTimeCircle.fillAmount >= 1)
+            {
+                coolTimeCircle.fillAmount = 1;
+                isCooltime = false;
+            }
+            yield return null;
+        }
+
+        coolTimeCoroutine = null;
     }
     #endregion
 }

@@ -18,7 +18,7 @@ public class Clock : Item
     {
         if (collision.tag == "Player")
         {
-            Managers.Sound.Play(Define.Sound.Effect, "Effects/GetItem", volume: 0.4f);
+            Managers.Sound.Play(Define.Sound.Effect, "Effects/GetClock", volume: 0.4f);
             Managers.Object.ShowTimeText(transform.position);
 
             ig.isActive = true;

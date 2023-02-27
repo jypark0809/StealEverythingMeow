@@ -4,11 +4,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UI_RwdInstall : UI_Popup
+public class UI_GetCouponReward : UI_Popup
 {
     enum Buttons
     {
-        OkButton,
         CloseButton,
     }
 
@@ -30,14 +29,7 @@ public class UI_RwdInstall : UI_Popup
         base.Init();
         Bind<Button>(typeof(Buttons));
 
-        GetButton((int)Buttons.OkButton).gameObject.BindEvent(OnRwd);
         GetButton((int)Buttons.CloseButton).gameObject.BindEvent(OnCloseButton);
-    }
-
-    private void OnRwd(PointerEventData evt)
-    {
-
-
     }
 
     private void OnCloseButton(PointerEventData evt)
