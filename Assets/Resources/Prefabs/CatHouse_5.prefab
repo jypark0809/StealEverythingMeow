@@ -4254,7 +4254,7 @@ GameObject:
   - component: {fileID: 7750200481106095363}
   - component: {fileID: 7653306115204601069}
   - component: {fileID: 3055768426141296499}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: utility_before_wall_Vertical
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12746,7 +12746,7 @@ GameObject:
   - component: {fileID: 792499268265496510}
   - component: {fileID: 1249684983086028136}
   - component: {fileID: 5791395945176360423}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: utility_before_wall_Horizontal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
