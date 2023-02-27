@@ -19,6 +19,7 @@ public class UI_Setting : UI_Popup
         NaverBlogButton,
         HelpButton,
         CouponButton,
+        StoryButton,
         CloseButton
     }
 
@@ -47,6 +48,7 @@ public class UI_Setting : UI_Popup
         GetObject((int)GameObjects.EffectSoundToggle).GetComponent<Toggle>().isOn = Managers.Game.EffectSoundOn;
 
         GetButton((int)Buttons.CloseButton).gameObject.BindEvent(OnCloseButtonClicked);
+        GetButton((int)Buttons.StoryButton).gameObject.BindEvent(OnStoryButtonClicked);
         GetButton((int)Buttons.InstagramButton).gameObject.BindEvent(OnInstagramButtonClicked);
         GetButton((int)Buttons.NaverBlogButton).gameObject.BindEvent(OnNaverBlogButtonClicked);
         GetButton((int)Buttons.HelpButton).gameObject.BindEvent(OnHelpButtonClicked);
@@ -91,27 +93,32 @@ public class UI_Setting : UI_Popup
 
     void OnCloseButtonClicked(PointerEventData evt)
     {
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
         Managers.UI.ClosePopupUI();
     }
 
     void OnInstagramButtonClicked(PointerEventData evt)
     {
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
         Application.OpenURL("https://www.instagram.com/stealeverything_meow/");
     }
 
     void OnNaverBlogButtonClicked(PointerEventData evt)
     {
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
         Application.OpenURL("https://blog.naver.com/stealeverything_meow");
     }
 
     void OnHelpButtonClicked(PointerEventData evt)
     {
         // Help
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
         Managers.UI.ShowPopupUI<UI_TutorialPopup>();
     }
 
     void OnCouponButtonClicked(PointerEventData evt)
     {
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
         string couponNum = "ILOVESTEALEVERYTHINGMEOW";
         // string inputText = GetText((int)Texts.CouponText).text;
         string inputText = GetObject((int)GameObjects.InputField).GetComponent<TMP_InputField>().text;
@@ -146,5 +153,11 @@ public class UI_Setting : UI_Popup
             // UI_WrongCouponPopup
             Managers.UI.ShowPopupUI<UI_WrongCouponPopup>();
         }
+    }
+
+    void OnStoryButtonClicked(PointerEventData evt)
+    {
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
+        Managers.UI.ShowPopupUI<UI_ConversationScript>();
     }
 }

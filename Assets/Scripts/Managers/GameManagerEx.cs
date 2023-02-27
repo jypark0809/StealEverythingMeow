@@ -43,7 +43,7 @@ public class GameData
 
     // 고양이 보유여부 [White, Black, Calico, Tabby, Grey]
     public int CatCount = 1;
-    public bool[] CatHave = new bool[5] { true, true, true, true, true };
+    public bool[] CatHave = new bool[5] { true, false, false, false, false };
     public int[] CatHappinessLevel = new int[5] { 1, 1, 1, 1, 1 };
     public float[] CatCurHappinessExp = new float[5] { 0, 0, 0, 0, 0 };
     public string[] CatName = {"하양이","까망이","삼색이","치즈", "회색이"};
