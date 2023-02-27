@@ -257,7 +257,23 @@ public class CatBookData
     public int Soom_Lv;
     public int Gold;
     public int Diamond;
-    public string Cat_Path;
+    public string Cat_Img;
+    public string End_Story1;
+    public string End_Story1_Img;
+    public string End_Story2;
+    public string End_Story2_Img;
+    public string End_Story3;
+    public string End_Story3_Img;
+    public string End_Story4;
+    public string End_Story4_Img;
+    public string End_Story5;
+    public string End_Story5_Img;
+    public int End_Reward1_Type;
+    public int End_Reward1;
+    public int End_Reward2_Type;
+    public int End_Reward2;
+    public int End_Reward3_Type;
+    public int End_Reward3;
 }
 
 [Serializable]
