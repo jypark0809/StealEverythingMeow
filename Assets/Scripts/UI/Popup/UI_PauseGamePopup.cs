@@ -67,6 +67,7 @@ public class UI_PauseGamePopup : UI_Popup
 #if UNITY_ANDROID
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            Time.timeScale = 1;
             ClosePopupUI();
         }
 #endif

@@ -29,7 +29,7 @@ public class AdsManager
     // 출시 전에 실제 ID 박으면 정지 사유가 되니 조심하자.
     const string TEST_APP_ID = "ca-app-pub-3940256099942544~3347511713";
     const string TEST_ANDROID_INTERSTITIAL = "ca-app-pub-3940256099942544/1033173712";
-    const string TEST_ANDROID_REWARDED = "ca-app-pub-3940256099942544/5224354917";
+    const string TEST_ANDROID_REWARDED = "ca-app-pub-1206779307721674/9981161133";
     const string TEST_IOS_INTERSTITIAL = "ca-app-pub-3940256099942544/4411468910";
     const string TEST_IOS_REWARDED = "ca-app-pub-3940256099942544/1712485313";
 
