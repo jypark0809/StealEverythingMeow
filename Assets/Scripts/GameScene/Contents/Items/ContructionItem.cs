@@ -21,13 +21,13 @@ public class ContructionItem : Item
             switch (type)
             {
                 case 0:
-                    Managers.Object.Player.Stat.Wood++;
+                    Managers.Object.Player.Stat.Wood += 3;
                     break;
                 case 1:
-                    Managers.Object.Player.Stat.Rock++;
+                    Managers.Object.Player.Stat.Rock += 3;
                     break;
                 case 2:
-                    Managers.Object.Player.Stat.Cotton++;
+                    Managers.Object.Player.Stat.Cotton += 2;
                     break;
             }
 

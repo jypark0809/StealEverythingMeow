@@ -202,34 +202,34 @@ public class UI_ShopItem : UI_Base
             switch (Managers.Game.SaveData.SpaceLevel)
             {
                 case 1:
-                    Managers.Game.SaveData.Gold += 2000;
+                    Managers.Game.SaveData.Gold += 3000;
                     break;
                 case 2:
-                    Managers.Game.SaveData.Gold += 3291;
+                    Managers.Game.SaveData.Gold += 4937;
                     break;
                 case 3:
-                    Managers.Game.SaveData.Gold += 3590;
-                    break;
-                case 4:
-                    Managers.Game.SaveData.Gold += 3889;
-                    break;
-                case 5:
-                    Managers.Game.SaveData.Gold += 4488;
-                    break;
-                case 6:
-                    Managers.Game.SaveData.Gold += 4787;
-                    break;
-                case 7:
-                    Managers.Game.SaveData.Gold += 5086;
-                    break;
-                case 8:
                     Managers.Game.SaveData.Gold += 5385;
                     break;
+                case 4:
+                    Managers.Game.SaveData.Gold += 5833;
+                    break;
+                case 5:
+                    Managers.Game.SaveData.Gold += 6732;
+                    break;
+                case 6:
+                    Managers.Game.SaveData.Gold += 7181;
+                    break;
+                case 7:
+                    Managers.Game.SaveData.Gold += 7629;
+                    break;
+                case 8:
+                    Managers.Game.SaveData.Gold += 8078;
+                    break;
                 case 9:
-                    Managers.Game.SaveData.Gold += 5684;
+                    Managers.Game.SaveData.Gold += 8526;
                     break;
                 case 10:
-                    Managers.Game.SaveData.Gold += 5984;
+                    Managers.Game.SaveData.Gold += 8976;
                     break;
             }
 
