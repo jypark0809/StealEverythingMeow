@@ -33,18 +33,9 @@ public class UI_CatSet : UI_Base
             Get<Image>((int)Images.BlockImage).gameObject.SetActive(false);
 
         Get<Image>((int)Images.CatImage).sprite = Resources.Load<Sprite>(("Sprites/Nyan/" + CatName[Index]+"/"+ CatName[Index]+"_Walk1"));
-        Get<TextMeshProUGUI>((int)Texts.CatName).GetComponent<TextMeshProUGUI>().text = Managers.Data.CatBooks[1401+Index].Cat_Name;
+        Get<TextMeshProUGUI>((int)Texts.CatName).GetComponent<TextMeshProUGUI>().text = Managers.Game.SaveData.CatName[Index];
         GetImage((int)Images.UI_CatSet).gameObject.BindEvent(OpenDetail, Define.UIEvent.Click);
     }
-
-    private void Update()
-    {
-        if (Managers.Game.SaveData.CatHave[Index])
-        {
-            Get<Image>((int)Images.BlockImage).gameObject.SetActive(false);
-        }
-    }
-
     public void SetInfo(int _index)
     {
         Index = _index;
@@ -54,5 +45,10 @@ public class UI_CatSet : UI_Base
     {
         Managers.UI.ShowPopupUI<UI_StatDetail>().SetInfo(Index);
     }
-    
+
+    public void OpenBlock()
+    {
+        Get<Image>((int)Images.BlockImage).gameObject.SetActive(false);
+    }
+
 }

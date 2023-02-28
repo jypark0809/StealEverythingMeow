@@ -27,8 +27,9 @@ public class UI_StatDetail : UI_Popup
         RightButton,
         LeftButton,
         CloseButton,
-        BuyButton
-
+        BuyButton,
+        ReHappyStory,
+        ChangeName
     }
     enum Texts
     {
@@ -114,9 +115,13 @@ public class UI_StatDetail : UI_Popup
         NotHaveGo.SetActive(false);
 
         //정보설정
-        HaveText.text = Managers.Data.CatBooks[1401 + _index].Cat_Name;
+        HaveText.text = Managers.Game.SaveData.CatName[Index];
         HaveImage.sprite = Managers.Resource.Load<Sprite>("Sprites/Nyan/" + CatName[Index] + "/" + CatName[Index] + "_Walk1");
         HaveDes.text = Managers.Data.CatBooks[1401 + _index].Cat_Desc;
+
+        //이름변경 
+        GetButton((int)Buttons.ChangeName).gameObject.BindEvent(ChangeName);
+
         if (Index != 0)
         {
             HaveSkillImage.gameObject.SetActive(true);
@@ -133,10 +138,22 @@ public class UI_StatDetail : UI_Popup
             HaveSkil.text = "";
             HaveSkillImage.sprite = null;
         }
+        if (Managers.Game.SaveData.IsViewStory[Index])
+        {
+            GetButton((int)Buttons.ReHappyStory).gameObject.SetActive(true);
+            GetButton((int)Buttons.ReHappyStory).gameObject.BindEvent(ReStory);
+        }
+        else
+        {
+            GetButton((int)Buttons.ReHappyStory).gameObject.SetActive(false);
+        }
         HaveFoodName.text = Managers.Data.ShopItems[Managers.Data.CatBooks[1401 + _index].Cat_Favor_Food].Shop_Name;
         HaveFoodImage.sprite = Managers.Resource.Load<Sprite>(Managers.Data.ShopItems[Managers.Data.CatBooks[1401 + _index].Cat_Favor_Food].ImgPath);
         HappyLevel = Managers.Game.SaveData.CatHappinessLevel[_index];
-        GetText((int)Texts.NeedExp).text = "다음 행복도까지 필요경험치 : " + (Managers.Data.Happinesses[1800 + _index * 5 + HappyLevel + 1].H_Max - Managers.Game.SaveData.CatCurHappinessExp[_index]).ToString();
+        if (HappyLevel < 5)
+            GetText((int)Texts.NeedExp).text = "다음 행복도까지 필요경험치 : " + (Managers.Data.Happinesses[1800 + _index * 5 + HappyLevel + 1].H_Max - Managers.Game.SaveData.CatCurHappinessExp[_index]).ToString();
+        else
+            GetText((int)Texts.NeedExp).text = "";
         GetText((int)Texts.HappyLevel).text = "행복도 레벨 : " + HappyLevel.ToString();
         SetHappiness();
 
@@ -158,7 +175,7 @@ public class UI_StatDetail : UI_Popup
             CatPrice.text = Managers.Data.CatBooks[1401 + Index].Diamond.ToString();
             if (Managers.Data.CatBooks[1401 + Index].Diamond > Managers.Game.SaveData.Dia)
             {
-                CatPrice.color = Color.red; 
+                CatPrice.color = Color.red;
                 Buy.interactable = false;
                 Buy.gameObject.BindEvent(CannotBuy);
             }
@@ -188,8 +205,6 @@ public class UI_StatDetail : UI_Popup
         }
 
     }
-
-    
     public void SetInfo(int _index)
     {
         Index = _index;
@@ -228,10 +243,9 @@ public class UI_StatDetail : UI_Popup
             SetNotHave(Index);
         }
     }
-
     void BuyCat(PointerEventData evt)
     {
-        if(Managers.Game.SaveData.CatCount < Managers.Data.Sooms[1300 +Managers.Game.SaveData.SoomLevel].Cap_Capacity)
+        if (Managers.Game.SaveData.CatCount < Managers.Data.Sooms[1300 + Managers.Game.SaveData.SoomLevel].Cap_Capacity)
         {
             Managers.Game.SaveData.CatCount++;
             Managers.Game.SaveData.CatHave[Index] = true;
@@ -247,6 +261,8 @@ public class UI_StatDetail : UI_Popup
             }
             Managers.Game.SaveGame();
             (Managers.UI.SceneUI as UI_CatHouseScene)._catHouseSceneTop.RefreshUI();
+            Managers.UI.FindPopup<UI_Stat>().ReBarCat();
+            Managers.UI.FindPopup<UI_Stat>()._Stats.transform.GetChild(Index).GetComponent<UI_CatSet>().OpenBlock();
             Managers.UI.ClosePopupUI();
         }
         else
@@ -254,7 +270,6 @@ public class UI_StatDetail : UI_Popup
             Managers.UI.ShowPopupUI<UI_MoreSoom>();
         }
     }
-
     void CannotBuy(PointerEventData evt)
     {
         return;
@@ -285,6 +300,18 @@ public class UI_StatDetail : UI_Popup
                 Item1.SetInfo(0, 1);
             }
         }
+    }
+    void ReStory(PointerEventData evt)
+    {
+        Managers.UI.ShowPopupUI<UI_HappinessStory>().SetInfo(Index);
+    }
+    void ChangeName(PointerEventData evt)
+    {
+        Managers.UI.ShowPopupUI<UI_ChangeName>().Setinfo(Index);//ui생성
+    }
+    public void ReName()
+    {
+        HaveText.text = Managers.Game.SaveData.CatName[Index];
     }
     void OnCloseButton(PointerEventData evt)
     {

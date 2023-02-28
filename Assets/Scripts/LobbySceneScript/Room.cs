@@ -26,7 +26,7 @@ public class Room : MonoBehaviour
         if(Managers.Game.SaveData.SpaceLevel < 10)
             IsRoomCheck();
 
-        /*
+        
         if(Managers.Game.SaveData.DoingRoomUpgrade)
         {
             DateTime st = DateTime.ParseExact(PlayerPrefs.GetString("OpenTime"), "yyyyMMddHHmmss", System.Globalization.CultureInfo.InvariantCulture);
@@ -43,7 +43,7 @@ public class Room : MonoBehaviour
                 }
             }
         }
-        */
+        
         
     }
     public void Open()
@@ -61,8 +61,7 @@ public class Room : MonoBehaviour
         OpenTime = DateTime.Now.AddSeconds(DurationTime);
         PlayerPrefs.SetString("OpenTime", OpenTime.ToString("yyyyMMddHHmmss"));
         IsTime = true;
-        
-        OpenRoom();
+
         Managers.Game.SaveGame();
         Managers.UI.MakeWorldSpaceUI<UI_RestTime>().SetInfo(DurationTime);
         
@@ -70,6 +69,7 @@ public class Room : MonoBehaviour
     }
     private void OpenRoom()
     {
+        Managers.UI.CloseAllPopupUI();
         IsTime = false;
         Managers.Game.SaveData.DoingRoomUpgrade = false;
         //행복도 추가

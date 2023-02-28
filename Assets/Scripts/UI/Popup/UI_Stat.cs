@@ -7,8 +7,11 @@ using TMPro;
 
 public class UI_Stat : UI_Popup
 {
-    private float catNum = 0;
-    private float ExpressNum = 0;
+    public float catNum = 0;
+    public float ExpressNum = 0;
+
+    public GameObject _Stats;
+    public GameObject _Express;
     enum GameObjects
     {
         CatStats,
@@ -98,9 +101,9 @@ public class UI_Stat : UI_Popup
 
     void SetCat()
     {
-        GameObject gridPanel = Get<GameObject>((int)GameObjects.CatStat);
+        _Stats = Get<GameObject>((int)GameObjects.CatStat);
 
-        foreach (Transform child in gridPanel.transform)
+        foreach (Transform child in _Stats.transform)
             Managers.Resource.Destroy(child.gameObject);
 
         for (int i = 0; i < Managers.Game.SaveData.CatHave.Length; i++)
@@ -109,15 +112,15 @@ public class UI_Stat : UI_Popup
             {
                 catNum++;
             }
-            UI_CatSet Item = Managers.UI.MakeSubItem<UI_CatSet>(gridPanel.transform);
+            UI_CatSet Item = Managers.UI.MakeSubItem<UI_CatSet>(_Stats.transform);
             Item.SetInfo(i);
         }
     }
     void SetExpress()
     {
-        GameObject gridPanel = Get<GameObject>((int)GameObjects.CatExpress);
+        _Express = Get<GameObject>((int)GameObjects.CatExpress);
 
-        foreach (Transform child in gridPanel.transform)
+        foreach (Transform child in _Express.transform)
             Managers.Resource.Destroy(child.gameObject);
 
         for (int i = 0; i < Managers.Game.SaveData.Emotion.Length; i++)
@@ -126,9 +129,21 @@ public class UI_Stat : UI_Popup
             {
                 ExpressNum++;
             }
-            UI_ExpressSet Item = Managers.UI.MakeSubItem<UI_ExpressSet>(gridPanel.transform);
+            UI_ExpressSet Item = Managers.UI.MakeSubItem<UI_ExpressSet>(_Express.transform);
             Item.SetInfo(i);
         }
+    }
+    public void ReBarCat()
+    {
+        catNum++;
+        GetImage((int)Images.StatCompelteBar).fillAmount = catNum / Managers.Game.SaveData.CatHave.Length;
+        GetText((int)Texts.StatPercent).text = "µµ°¨ ¿Ï¼º·ü : " + (catNum / Managers.Game.SaveData.CatHave.Length) * 100 + "%";
+    }
+    public void ReBarExpress()
+    {
+        ExpressNum++;
+        GetImage((int)Images.ExpressCompelteBar).fillAmount = ExpressNum / (Define.MOTION_COUNT);
+        GetText((int)Texts.ExpressPercent).text = "µµ°¨ ¿Ï¼º·ü : " + (ExpressNum / (Define.MOTION_COUNT)) * 100 + "%";
     }
     void OnCloseButton(PointerEventData evt)
     {

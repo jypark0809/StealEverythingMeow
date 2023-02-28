@@ -208,14 +208,6 @@ public class Cat_LobbyMove : MonoBehaviour
             }
         }
     }
-
-    private void OnMouseDown()
-    {
-        if (!IsPointerOverUIObject(Input.mousePosition))
-        {
-            SpecialEmotion();
-        }
-    }
     private void DoBasicEmotion()
     {
         if (IsEmotion)
@@ -238,7 +230,7 @@ public class Cat_LobbyMove : MonoBehaviour
 
         StartCoroutine(CanSpcialEmotion("Sniff", 1f));
     }
-    private void SpecialEmotion()
+    public void SpecialEmotion()
     {
         
         if(Managers.Game.SaveData.EmotionList.Count ==0)
