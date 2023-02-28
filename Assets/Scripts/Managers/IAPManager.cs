@@ -235,5 +235,10 @@ public class IAPManager : IStoreListener
         _onPurchased?.Invoke(product, failureReason);
     }
 
+    public void OnInitializeFailed(InitializationFailureReason error, string message)
+    {
+        throw new NotImplementedException();
+    }
+
     #endregion
 }

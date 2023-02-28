@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0944870d726536d41b28d0267c7a1756, type: 3}
   m_Name: CommonItem
   m_EditorClassIdentifier: 
-  gold: 4
+  gold: 8
   exp: 2

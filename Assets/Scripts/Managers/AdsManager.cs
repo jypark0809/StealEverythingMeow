@@ -42,7 +42,7 @@ public class AdsManager
 #if UNITY_ANDROID
         // string interstitial = ""; // Android_Interstitial
         // string interstitialTest = TEST_ANDROID_INTERSTITIAL;
-        string rewarded = "ca-app-pub-1206779307721674/4187252903"; // Android_Rewarded
+        string rewarded = "ca-app-pub-1206779307721674/9981161133"; // Android_Rewarded
         string rewardedTest = TEST_ANDROID_REWARDED;
 #else
         string interstitial = ""; // IOS_Interstitial
