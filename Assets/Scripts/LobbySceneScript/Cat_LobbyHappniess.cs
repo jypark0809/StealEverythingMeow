@@ -23,20 +23,25 @@ public class Cat_LobbyHappniess : MonoBehaviour
     private bool IsInfo;
     private bool Isget;
 
-    public float Exp;
-
     void Awake()
     {
 #if UNITY_EDITOR
         pointerID = -1; //PC나 유니티 상에서는 -1
 #elif UNITY_ANDROID
         pointerID = 0;  // 휴대폰이나 이외에서 터치 상에서는 0 
+
 #endif
+        /*
+        if (!Managers.Game.SaveData.IsViewStory[CatIndex] && Managers.Game.SaveData.CatHappinessLevel[CatIndex] ==5)
+        {
+            Managers.UI.MakeWorldSpaceUI<UI_OnHappinessStory>().SetInfo(CatIndex, this.transform);
+            //UI띄우기
+        }
+        */
     }
     void Update()
     {
         HappinessLevelUp();
-        Exp = Managers.Game.SaveData.CatCurHappinessExp[CatIndex];
     }
 
     void HappinessLevelUp()
@@ -51,13 +56,13 @@ public class Cat_LobbyHappniess : MonoBehaviour
             Managers.Game.SaveData.CatHappinessLevel[CatIndex]++;
             if (CurMaxLevel < GetMinMax(Managers.Game.SaveData.CatHappinessLevel))
                 GetEmotion();
-
             Managers.UI.ShowPopupUI<UI_HappyLevelUp>().CatIndex = CatIndex;
         }
         if (Managers.Game.SaveData.CatHappinessLevel[CatIndex] == 5)
         {
             Managers.Game.SaveData.CatCurHappinessExp[CatIndex] = 0;
             Managers.Game.SaveData.CatHappinessLevel[CatIndex] = 5;
+            //Managers.UI.MakeWorldSpaceUI<UI_OnHappinessStory>().SetInfo(CatIndex, this.transform);
         }
         Managers.Game.SaveGame();
     }
@@ -152,8 +157,18 @@ public class Cat_LobbyHappniess : MonoBehaviour
     {
         if (!IsPointerOverUIObject(Input.mousePosition))
         {
+            /*
+            if (Managers.Game.SaveData.CatHappinessLevel[CatIndex] == 5 && !Managers.Game.SaveData.IsViewStory[CatIndex])
+            {
+                Debug.Log(Managers.Game.SaveData.CatName[CatIndex]);
+                Managers.UI.ShowPopupUI<UI_Letter>().SetInfo(Managers.Game.SaveData.CatName[CatIndex], CatIndex);
+                Managers.Game.SaveGame();
+                return;
+            }
+            */
             if (!IsInfo)
                 Infoset();
+            this.GetComponent<Cat_LobbyMove>().SpecialEmotion();
             /*
             if (!Isget)
                 GetGoods();
@@ -162,9 +177,10 @@ public class Cat_LobbyHappniess : MonoBehaviour
     }
     void Infoset()
     {
-        GameObject go = Managers.UI.MakeWorldSpaceUI<UI_CatInfo>().gameObject;
-        go.GetComponent<UI_CatInfo>().SetInfo(Managers.Game.SaveData.CatName[CatIndex], Managers.Game.SaveData.CatHappinessLevel[CatIndex], Managers.Game.SaveData.CatCurHappinessExp[CatIndex], Managers.Data.Happinesses[1800 + CatIndex * 5 + Managers.Game.SaveData.CatHappinessLevel[CatIndex] + 1].H_Max, this.transform);
-        go.transform.position = this.transform.position;
+        if (Managers.Game.SaveData.CatHappinessLevel[CatIndex] < 5)
+            Managers.UI.MakeWorldSpaceUI<UI_CatInfo>().SetInfo(Managers.Game.SaveData.CatName[CatIndex], Managers.Game.SaveData.CatHappinessLevel[CatIndex], Managers.Game.SaveData.CatCurHappinessExp[CatIndex], Managers.Data.Happinesses[1800 + CatIndex * 5 + Managers.Game.SaveData.CatHappinessLevel[CatIndex] + 1].H_Max, this.transform);
+        else
+            Managers.UI.MakeWorldSpaceUI<UI_CatInfo>().SetInfo(Managers.Game.SaveData.CatName[CatIndex], Managers.Game.SaveData.CatHappinessLevel[CatIndex], 1, 1, this.transform);
         IsInfo = true;
         StartCoroutine(trueInfo());
     }

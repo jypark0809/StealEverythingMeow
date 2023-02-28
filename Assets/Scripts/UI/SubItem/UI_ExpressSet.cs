@@ -39,13 +39,6 @@ public class UI_ExpressSet : UI_Base
         GetImage((int)Images.BlockImage).gameObject.BindEvent(OpenExpress, Define.UIEvent.Click);
 
     }
-    private void Update()
-    {
-        if(Managers.Game.SaveData.Emotion[Index])
-        {
-            Get<Image>((int)Images.BlockImage).gameObject.SetActive(false);
-        }
-    }
     public void SetInfo(int _index)
     {
         Index = _index;
@@ -55,5 +48,8 @@ public class UI_ExpressSet : UI_Base
     {
         Managers.UI.ShowPopupUI<UI_ExpressDia>().SetInfo(Index);
     }
-
+    public void OpenBlock()
+    {
+        Get<Image>((int)Images.BlockImage).gameObject.SetActive(false);
+    }
 }
