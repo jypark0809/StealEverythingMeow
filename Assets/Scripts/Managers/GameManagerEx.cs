@@ -10,13 +10,13 @@ public class GameData
 {
     //재화
     public int Jelly;
-    public int Gold = 1000000;
-    public int Dia = 100000;
+    public int Gold;
+    public int Dia;
 
     // 재료
-    public int Wood = 3000;
-    public int Cotton = 3000;
-    public int Stone = 3000;
+    public int Wood = 30;
+    public int Cotton;
+    public int Stone;
 
     // Furniture List
     public List<FurnitureData> FList = new List<FurnitureData>();
@@ -29,8 +29,8 @@ public class GameData
 
 
     //공간
-    public int SpaceLevel = 2;
-    public int SoomLevel = 3;
+    public int SpaceLevel = 1;
+    public int SoomLevel = 1;
     public bool IsRoomOpen = false;
     public bool IsSoomUp = false;
     public bool DoingRoomUpgrade;
