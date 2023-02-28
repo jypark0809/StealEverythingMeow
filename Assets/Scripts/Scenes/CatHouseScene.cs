@@ -32,7 +32,10 @@ public class CatHouseScene : BaseScene
         }
 
         if (Managers.Game.SaveData.firstExecution == true)
+        {
+            Managers.UI.ShowPopupUI<UI_FindHelp>();
             Managers.UI.ShowPopupUI<UI_ConversationScript>();
+        }
         else
             Managers.Sound.Play(Define.Sound.Bgm, "BGM/BGM_Home", volume: 0.1f);
     }
