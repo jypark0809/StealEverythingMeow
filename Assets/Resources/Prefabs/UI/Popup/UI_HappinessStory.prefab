@@ -393,7 +393,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Script Text Script Text Script
 
-    Script Text Script Text
+    Script Text Script Text Script
 
     Script
     Text Script Text Script'
@@ -830,6 +830,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a1862684faa6484ab19e571d9931624, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Index: 1
   _charPerSecend: 15
 --- !u!1 &7389243778866555067
 GameObject:

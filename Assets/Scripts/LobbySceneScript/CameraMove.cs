@@ -127,6 +127,7 @@ public class CameraMove : MonoBehaviour
         {
             yield return new WaitForSeconds(1f);
             Managers.UI.ShowPopupUI<UI_Ending>();
+            Managers.Resource.Instantiate("UI/UI_Effect");
         }
 
     }

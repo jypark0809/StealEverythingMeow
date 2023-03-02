@@ -9,7 +9,7 @@ public class UI_HappinessStory : UI_Popup
 {
     private string[] CatName = { "White", "Black", "Calico", "Tabby", "Gray" };
 
-    int Index;
+    public int Index =1;
     int count = 0;
 
     int _index;
@@ -92,17 +92,17 @@ public class UI_HappinessStory : UI_Popup
                     GetImage((int)Images.OpenLetter).gameObject.SetActive(false);
                     _curScriptLine = Managers.Data.CatBooks[1401 + Index].End_Story2;
                     SetLine(Managers.Data.CatBooks[1401 + Index].End_Story2);
-                    GetImage((int)Images.HappyImages).sprite = Resources.Load<Sprite>(("Sprites/HappyStory/하양이/" + Managers.Data.CatBooks[1401 + Index].End_Story2_Img));
+                    GetImage((int)Images.HappyImages).sprite = Resources.Load<Sprite>(("Sprites/HappyStory/" + Managers.Data.CatBooks[1401 + Index].End_Story2_Img));
                     break;
                 case 2:
                     _curScriptLine = Managers.Data.CatBooks[1401 + Index].End_Story3;
                     SetLine(Managers.Data.CatBooks[1401 + Index].End_Story3);
-                    GetImage((int)Images.HappyImages).sprite = Resources.Load<Sprite>(("Sprites/HappyStory/하양이/" + Managers.Data.CatBooks[1401 + Index].End_Story3_Img));
+                    GetImage((int)Images.HappyImages).sprite = Resources.Load<Sprite>(("Sprites/HappyStory/" + Managers.Data.CatBooks[1401 + Index].End_Story3_Img));
                     break;
                 case 3:
                     _curScriptLine = Managers.Data.CatBooks[1401 + Index].End_Story4;
                     SetLine(Managers.Data.CatBooks[1401 + Index].End_Story4);
-                    GetImage((int)Images.HappyImages).sprite = Resources.Load<Sprite>(("Sprites/HappyStory/하양이/" + Managers.Data.CatBooks[1401 + Index].End_Story4_Img));
+                    GetImage((int)Images.HappyImages).sprite = Resources.Load<Sprite>(("Sprites/HappyStory/" + Managers.Data.CatBooks[1401 + Index].End_Story4_Img));
                     break;
                 case 4:
                     _curScriptLine = Managers.Data.CatBooks[1401 + Index].End_Story5;

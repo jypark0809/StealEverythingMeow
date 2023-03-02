@@ -10,7 +10,7 @@ public class GameData
 {
     //재화
     public int Jelly;
-    public int Gold = 100000000;
+    public int Gold = 1000000000;
     public int Dia;
 
     // 재료
@@ -43,12 +43,13 @@ public class GameData
 
     // 고양이 보유여부 [White, Black, Calico, Tabby, Grey]
     public int CatCount = 1;
-    public bool[] CatHave = new bool[5] { true, false, false, false, false };
-    public int[] CatHappinessLevel = new int[5] { 5, 5, 4, 1, 5 };
+    public bool[] CatHave = new bool[5] { true, true, true, true, true };
+    public int[] CatHappinessLevel = new int[5] { 1, 1, 1, 1, 1 };
     public float[] CatCurHappinessExp = new float[5] { 0, 0, 0, 0, 0 };
     public string[] CatName = {"하양이","까망이","삼색이","치즈", "회색이"};
     public bool[] DaysRwd = new bool[5] { false, false, false, false, false };
     public bool[] IsViewStory = new bool[5] { false, false, false, false, false };
+
     // 간식 [캣잎사탕, 츄르, 고등어구이, 육포, 참치캔, 연어]
     public int[] Food = { 0, 0, 0, 0, 0, 0 };
     public GameData()

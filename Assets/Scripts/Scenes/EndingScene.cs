@@ -17,6 +17,7 @@ public class EndingScene : MonoBehaviour
 
     IEnumerator Onstart()
     {
+        Managers.Sound.Play(Define.Sound.Bgm, "BGM/BGM_Ending", volume : 0.4f);
         yield return new WaitForSeconds(20f);
         Panels.SetActive(false);
         Texts.SetActive(true);

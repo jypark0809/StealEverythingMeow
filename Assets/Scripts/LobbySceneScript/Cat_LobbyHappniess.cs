@@ -31,19 +31,18 @@ public class Cat_LobbyHappniess : MonoBehaviour
         pointerID = 0;  // 휴대폰이나 이외에서 터치 상에서는 0 
 
 #endif
-        
         if (!Managers.Game.SaveData.IsViewStory[CatIndex] && Managers.Game.SaveData.CatHappinessLevel[CatIndex] ==5)
         {
             Managers.UI.MakeWorldSpaceUI<UI_OnHappinessStory>().SetInfo(CatIndex, this.transform);
-            //UI띄우기
         }
-        
+
+        if(!Managers.Game.SaveData.DaysRwd[CatIndex])
+            Managers.UI.MakeWorldSpaceUI<UI_DailyRwd>().SetInfo(CatIndex, this.transform);
     }
     void Update()
     {
         HappinessLevelUp();
     }
-
     void HappinessLevelUp()
     {
         if (Managers.Game.SaveData.CatHappinessLevel[CatIndex] == 5)
@@ -66,7 +65,6 @@ public class Cat_LobbyHappniess : MonoBehaviour
         }
         Managers.Game.SaveGame();
     }
-
     public void Love(string _food)
     {
         if (Managers.Game.SaveData.CatHappinessLevel[CatIndex] == 5)
@@ -152,26 +150,24 @@ public class Cat_LobbyHappniess : MonoBehaviour
         this.GetComponent<Cat_LobbyMove>().EatEmotion();
 
     }
-
     private void OnMouseDown()
     {
         if (!IsPointerOverUIObject(Input.mousePosition))
         {
-            
-            if (Managers.Game.SaveData.CatHappinessLevel[CatIndex] == 5 && !Managers.Game.SaveData.IsViewStory[CatIndex])
+            if (!Managers.Game.SaveData.DaysRwd[CatIndex])
             {
-                Debug.Log(Managers.Game.SaveData.CatName[CatIndex]);
-                Managers.UI.ShowPopupUI<UI_Letter>().SetInfo(Managers.Game.SaveData.CatName[CatIndex], CatIndex);
-                Managers.Game.SaveGame();
+                GetGoods();
                 return;
             }
             if (!IsInfo)
                 Infoset();
+            if (Managers.Game.SaveData.CatHappinessLevel[CatIndex] == 5 && !Managers.Game.SaveData.IsViewStory[CatIndex])
+            {
+                Managers.UI.ShowPopupUI<UI_Letter>().SetInfo(Managers.Game.SaveData.CatName[CatIndex], CatIndex);
+                Managers.Game.SaveGame();
+                return;
+            }
             this.GetComponent<Cat_LobbyMove>().SpecialEmotion();
-            /*
-            if (!Isget)
-                GetGoods();
-            */
         }
     }
     void Infoset()
@@ -190,27 +186,37 @@ public class Cat_LobbyHappniess : MonoBehaviour
     }
     void GetGoods()
     {
+        int count = 0;
         switch (CatIndex)
         {
             case 0:
+                count = Managers.Data.Happinesses[1800 + CatIndex * 5 + Managers.Game.SaveData.CatHappinessLevel[CatIndex]].H_Rwd_Wood;
                 Managers.Game.SaveData.Wood += Managers.Data.Happinesses[1800 + CatIndex * 5 + Managers.Game.SaveData.CatHappinessLevel[CatIndex]].H_Rwd_Wood;
                 break;
             case 1:
+                count = Managers.Data.Happinesses[1800 + CatIndex * 5 + Managers.Game.SaveData.CatHappinessLevel[CatIndex]].H_Rwd_Stone;
                 Managers.Game.SaveData.Stone += Managers.Data.Happinesses[1800 + CatIndex * 5 + Managers.Game.SaveData.CatHappinessLevel[CatIndex]].H_Rwd_Stone;
                 break;
             case 2:
+                count = Managers.Data.Happinesses[1800 + CatIndex * 5 + Managers.Game.SaveData.CatHappinessLevel[CatIndex]].H_Rwd_Cotton;
                 Managers.Game.SaveData.Cotton += Managers.Data.Happinesses[1800 + CatIndex * 5 + Managers.Game.SaveData.CatHappinessLevel[CatIndex]].H_Rwd_Cotton;
                 break;
             case 3:
+                count = Managers.Data.Happinesses[1800 + CatIndex * 5 + Managers.Game.SaveData.CatHappinessLevel[CatIndex]].H_Rwd_Gold;
                 Managers.Game.SaveData.Gold += Managers.Data.Happinesses[1800 + CatIndex * 5 + Managers.Game.SaveData.CatHappinessLevel[CatIndex]].H_Rwd_Gold;
                 break;
             case 4:
-                Managers.Game.SaveData.Jelly += Managers.Data.Happinesses[1800 + CatIndex * 5 + Managers.Game.SaveData.CatHappinessLevel[CatIndex]].H_Rwd_Power;
+                count = Managers.Data.Happinesses[1800 + CatIndex * 5 + Managers.Game.SaveData.CatHappinessLevel[CatIndex]].H_Rwd_Power;
+                Managers.Game.SaveData.Dia += Managers.Data.Happinesses[1800 + CatIndex * 5 + Managers.Game.SaveData.CatHappinessLevel[CatIndex]].H_Rwd_Power;
                 break;
         }
+        //다이아 수정
+        Debug.Log("획득");
+        Managers.Resource.Instantiate("LobbyCat/DailyText").GetComponent<DailyText>().SetInfo(this.transform.position, count);
         Managers.Game.SaveData.CatCurHappinessExp[CatIndex] += 5;
+        Managers.Game.SaveData.DaysRwd[CatIndex] = true;
         (Managers.UI.SceneUI as UI_CatHouseScene)._catHouseSceneTop.RefreshUI();
-        Isget = true;
+        Managers.Game.SaveGame();
     }
     int GetMinMax(int[] array)
     {

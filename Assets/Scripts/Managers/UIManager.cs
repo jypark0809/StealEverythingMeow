@@ -96,6 +96,7 @@ public class UIManager
         return popup;
     }
 
+
     public T FindPopup<T>() where T : UI_Popup
     {
         return _popupStack.Where(x => x.GetType() == typeof(T)).FirstOrDefault() as T;
