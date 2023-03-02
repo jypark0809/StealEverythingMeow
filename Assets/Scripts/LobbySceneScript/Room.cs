@@ -23,11 +23,10 @@ public class Room : MonoBehaviour
 
     private void Update()
     {
-        if(Managers.Game.SaveData.SpaceLevel < 10)
+        if (Managers.Game.SaveData.SpaceLevel < 10)
             IsRoomCheck();
 
-        
-        if(Managers.Game.SaveData.DoingRoomUpgrade)
+        if (Managers.Game.SaveData.DoingRoomUpgrade)
         {
             DateTime st = DateTime.ParseExact(PlayerPrefs.GetString("OpenTime"), "yyyyMMddHHmmss", System.Globalization.CultureInfo.InvariantCulture);
             if (DateTime.Now >= st)
@@ -43,8 +42,6 @@ public class Room : MonoBehaviour
                 }
             }
         }
-        
-        
     }
     public void Open()
     {
@@ -141,4 +138,6 @@ public class Room : MonoBehaviour
         else
             Managers.Game.SaveData.IsRoomOpen = false;
     }
+
+
 }

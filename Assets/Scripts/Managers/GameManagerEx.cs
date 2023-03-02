@@ -49,6 +49,7 @@ public class GameData
     public string[] CatName = {"하양이","까망이","삼색이","치즈", "회색이"};
     public bool[] DaysRwd = new bool[5] { false, false, false, false, false };
     public bool[] IsViewStory = new bool[5] { false, false, false, false, false };
+
     // 간식 [캣잎사탕, 츄르, 고등어구이, 육포, 참치캔, 연어]
     public int[] Food = { 0, 0, 0, 0, 0, 0 };
     public GameData()

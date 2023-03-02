@@ -7,14 +7,10 @@ using UnityEngine.UI;
 
 public class UI_Ending : UI_Popup
 {
-    enum Texts
+    enum GameObjects
     {
+        Touch,
     }
-    enum Buttons
-    {
-        OkButton,
-    }
-
     void Start()
     {
         Init();
@@ -22,13 +18,11 @@ public class UI_Ending : UI_Popup
     public override void Init()
     {
         base.Init();
-        Bind<Button>(typeof(Buttons));
-        Bind<TextMeshProUGUI>(typeof(Texts));
-        GetButton((int)Buttons.OkButton).gameObject.BindEvent(OnCloseButton);
+        Bind<GameObject>(typeof(GameObjects));
+        GetObject((int)GameObjects.Touch).BindEvent(OnOpenEVent);
     }
-    void OnCloseButton(PointerEventData evt)
+    void OnOpenEVent(PointerEventData evt)
     {
-        Managers.Scene.LoadScene(Define.SceneType.EndingScene);
-        Managers.UI.ClosePopupUI();
+        Managers.UI.ShowPopupUI<UI_EndingResult>();
     }
 }
