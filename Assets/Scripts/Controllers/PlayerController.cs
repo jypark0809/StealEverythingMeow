@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D _rigid;
     Animator _anim;
     public Vector3 MoveVec { get; set; }
+    public bool isStop = false;
 
     Stat _stat;
     public Stat Stat { get { return _stat; } set { _stat = value; } }
@@ -70,7 +71,7 @@ public class PlayerController : MonoBehaviour
 
     void UpdateWalk()
     {
-        Vector2 nextVec = MoveVec * Stat.MoveSpeed * Time.fixedDeltaTime;
+        Vector2 nextVec = MoveVec * Stat.MoveSpeed * Time.fixedUnscaledDeltaTime;
         _rigid.MovePosition(_rigid.position + nextVec);
     }
 
