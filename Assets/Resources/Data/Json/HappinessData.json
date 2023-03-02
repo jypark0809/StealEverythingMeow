@@ -229,7 +229,7 @@
       "H_Rwd_Stone": 0,
       "H_Rwd_Cotton": 0,
       "H_Rwd_Gold": 0,
-      "H_Rwd_Power": 1
+      "H_Rwd_Power": 10
     },
     {
       "H_Id": 1822,
@@ -240,7 +240,7 @@
       "H_Rwd_Stone": 0,
       "H_Rwd_Cotton": 0,
       "H_Rwd_Gold": 0,
-      "H_Rwd_Power": 2
+      "H_Rwd_Power": 20
     },
     {
       "H_Id": 1823,
@@ -251,7 +251,7 @@
       "H_Rwd_Stone": 0,
       "H_Rwd_Cotton": 0,
       "H_Rwd_Gold": 0,
-      "H_Rwd_Power": 3
+      "H_Rwd_Power": 30
     },
     {
       "H_Id": 1824,
@@ -262,7 +262,7 @@
       "H_Rwd_Stone": 0,
       "H_Rwd_Cotton": 0,
       "H_Rwd_Gold": 0,
-      "H_Rwd_Power": 4
+      "H_Rwd_Power": 40
     },
     {
       "H_Id": 1825,
@@ -273,7 +273,7 @@
       "H_Rwd_Stone": 0,
       "H_Rwd_Cotton": 0,
       "H_Rwd_Gold": 0,
-      "H_Rwd_Power": 5
+      "H_Rwd_Power": 50
     }
   ]
 }

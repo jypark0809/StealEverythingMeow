@@ -30,7 +30,8 @@ public class UI_HappinessStory : UI_Popup
     }
     enum Texts
     {
-        ScriptText
+        ScriptText,
+        NameText
     }
 
     enum Images
@@ -64,7 +65,7 @@ public class UI_HappinessStory : UI_Popup
 
         GetImage((int)Images.OpenLetter).gameObject.SetActive(false);
         GetImage((int)Images.CloseLetter).gameObject.BindEvent(Startevent);
-
+        GetText((int)Texts.NameText).text = Managers.Game.SaveData.CatName[Index];
 
 
         Managers.Sound.Play(Define.Sound.Bgm, "BGM/BGM_HappyStory", volume: 0.4f);
@@ -76,9 +77,15 @@ public class UI_HappinessStory : UI_Popup
         GetImage((int)Images.CloseLetter).gameObject.SetActive(false);
         GetImage((int)Images.OpenLetter).gameObject.SetActive(true);
         GetImage((int)Images.CatImages).gameObject.SetActive(true);
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/Page", volume: 0.4f);
+        StartCoroutine(DelayText());
+    }
+
+    IEnumerator DelayText()
+    {
+        yield return new WaitForSeconds(1f);
         GetObject((int)GameObjects.ScriptPanel).SetActive(true);
         SetLine(Managers.Data.CatBooks[1401 + Index].End_Story1);
-
     }
     private void NextIndex(PointerEventData data)
     {

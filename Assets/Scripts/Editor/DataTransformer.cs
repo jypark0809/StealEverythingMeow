@@ -323,8 +323,6 @@ public class DataTransformer : EditorWindow
                 End_Reward1 = int.Parse(row[i++]),
                 End_Reward2_Type = int.Parse(row[i++]),
                 End_Reward2 = int.Parse(row[i++]),
-                End_Reward3_Type = int.Parse(row[i++]),
-                End_Reward3 = int.Parse(row[i++]),
             }); ;
 
         }
