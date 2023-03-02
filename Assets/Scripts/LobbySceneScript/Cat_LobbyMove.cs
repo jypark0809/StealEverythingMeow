@@ -266,15 +266,6 @@ public class Cat_LobbyMove : MonoBehaviour
         anim.SetBool(_str, false);
         IsSpecialEmotion = false;
     }
-    public bool IsPointerOverUIObject(Vector2 touchPos)
-    {
-
-        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
-        eventDataCurrentPosition.position = touchPos;
-        List<RaycastResult> results = new List<RaycastResult>();
-        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
-        return results.Count > 0;
-    }
 }
 
 

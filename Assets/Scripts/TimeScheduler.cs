@@ -107,6 +107,21 @@ public class TimeScheduler : MonoBehaviour
         // 데이터 초기화
         Managers.Game.SaveData.adsData.InitAdsCountData();
 
+        for (int i = 0; i < Managers.Game.SaveData.DaysRwd.Length; i++)
+        {
+            Managers.Game.SaveData.DaysRwd[i] = false;
+        }
+        if(Managers.Game.SaveData.CatHave[0])
+            Managers.Object.CatLobbyWhite.OnDayRwd();
+        if (Managers.Game.SaveData.CatHave[1])
+            Managers.Object.CatLobbyBlack.OnDayRwd();
+        if (Managers.Game.SaveData.CatHave[2])
+            Managers.Object.CatLobbyCalico.OnDayRwd();
+        if (Managers.Game.SaveData.CatHave[3])
+            Managers.Object.CatLobbyTabby.OnDayRwd();
+        if (Managers.Game.SaveData.CatHave[4])
+            Managers.Object.CatLobbyGray.OnDayRwd();    
+
         Managers.Game.SaveGame();
     }
 }

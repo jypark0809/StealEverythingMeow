@@ -272,8 +272,6 @@ public class CatBookData
     public int End_Reward1;
     public int End_Reward2_Type;
     public int End_Reward2;
-    public int End_Reward3_Type;
-    public int End_Reward3;
 }
 
 [Serializable]

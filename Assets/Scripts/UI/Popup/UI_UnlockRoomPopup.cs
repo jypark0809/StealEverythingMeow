@@ -173,7 +173,7 @@ public class UI_UnlockRoomPopup : UI_Popup
             Managers.Resource.Destroy(GetObject((int)GameObjects.ConSetStone));
         else
         {
-            if (Managers.Data.Spaces[1200 + Index].Stone > Managers.Game.SaveData.Cotton)
+            if (Managers.Data.Spaces[1200 + Index].Stone > Managers.Game.SaveData.Stone)
                 GetText((int)Texts.StoneCount).text = "<color=red>" + Managers.Game.SaveData.Stone + "</color> / " + Managers.Data.Spaces[1200 + Index].Stone.ToString();
             else
             {
