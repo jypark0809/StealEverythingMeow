@@ -20,6 +20,7 @@ public class UI_Setting : UI_Popup
         HelpButton,
         CouponButton,
         StoryButton,
+        CreditButton,
         CloseButton
     }
 
@@ -53,6 +54,7 @@ public class UI_Setting : UI_Popup
         GetButton((int)Buttons.NaverBlogButton).gameObject.BindEvent(OnNaverBlogButtonClicked);
         GetButton((int)Buttons.HelpButton).gameObject.BindEvent(OnHelpButtonClicked);
         GetButton((int)Buttons.CouponButton).gameObject.BindEvent(OnCouponButtonClicked);
+        GetButton((int)Buttons.CreditButton).gameObject.BindEvent(OnCreditEvent);
     }
 
     void Update()
@@ -159,5 +161,11 @@ public class UI_Setting : UI_Popup
     {
         Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
         Managers.UI.ShowPopupUI<UI_ConversationScript>();
+    }
+
+    void OnCreditEvent(PointerEventData evt)
+    {
+        Managers.Scene.LoadScene(Define.SceneType.EndingScene);
+        Managers.UI.CloseAllPopupUI();
     }
 }

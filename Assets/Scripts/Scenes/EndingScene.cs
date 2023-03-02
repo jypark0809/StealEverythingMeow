@@ -5,14 +5,25 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class EndingScene : MonoBehaviour
 {
-    public GameObject Credit;
-    void Start()
-    {
+    public GameObject Panels;
+    public GameObject Texts;
+    public GameObject Buttons;
         
+
+    private void Start()
+    {
+        StartCoroutine(Onstart());
     }
 
-    void Update()
+    IEnumerator Onstart()
     {
-        
+        yield return new WaitForSeconds(20f);
+        Panels.SetActive(false);
+        Texts.SetActive(true);
+        Buttons.SetActive(true);
+    }
+    public void ReturnGame()
+    {
+        LoadingScene.LoadScene("CatHouseScene", false);
     }
 }

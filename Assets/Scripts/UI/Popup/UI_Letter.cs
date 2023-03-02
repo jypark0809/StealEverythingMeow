@@ -30,6 +30,7 @@ public class UI_Letter : UI_Popup
 
         GetText((int)Texts.CatText).text = $"{_Catname}의 속마음 일기가 도착했습니다. \n 확인하시겠습니까?";
 
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/LetterSound", volume: 0.4f);
         GetButton((int)Buttons.OkButton).gameObject.BindEvent(OnOpenEvent);
         GetButton((int)Buttons.CloseButton).gameObject.BindEvent(OnCloseButton);
     }

@@ -41,6 +41,7 @@ public class UI_ChangeName : UI_Popup
     void OnChangeEvent(PointerEventData evt)
     {
         //재화소모
+        Managers.Game.SaveData.Dia -= 100;
 
         //이름바꾸기
         Managers.Game.SaveData.CatName[_catIndex] = GetObject((int)Gameobjects.TypeName).GetComponent<TMP_InputField>().text;

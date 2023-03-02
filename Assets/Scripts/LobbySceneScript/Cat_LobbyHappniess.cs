@@ -31,13 +31,13 @@ public class Cat_LobbyHappniess : MonoBehaviour
         pointerID = 0;  // 휴대폰이나 이외에서 터치 상에서는 0 
 
 #endif
-        /*
+        
         if (!Managers.Game.SaveData.IsViewStory[CatIndex] && Managers.Game.SaveData.CatHappinessLevel[CatIndex] ==5)
         {
             Managers.UI.MakeWorldSpaceUI<UI_OnHappinessStory>().SetInfo(CatIndex, this.transform);
             //UI띄우기
         }
-        */
+        
     }
     void Update()
     {
@@ -62,7 +62,7 @@ public class Cat_LobbyHappniess : MonoBehaviour
         {
             Managers.Game.SaveData.CatCurHappinessExp[CatIndex] = 0;
             Managers.Game.SaveData.CatHappinessLevel[CatIndex] = 5;
-            //Managers.UI.MakeWorldSpaceUI<UI_OnHappinessStory>().SetInfo(CatIndex, this.transform);
+            Managers.UI.MakeWorldSpaceUI<UI_OnHappinessStory>().SetInfo(CatIndex, this.transform);
         }
         Managers.Game.SaveGame();
     }
@@ -157,7 +157,7 @@ public class Cat_LobbyHappniess : MonoBehaviour
     {
         if (!IsPointerOverUIObject(Input.mousePosition))
         {
-            /*
+            
             if (Managers.Game.SaveData.CatHappinessLevel[CatIndex] == 5 && !Managers.Game.SaveData.IsViewStory[CatIndex])
             {
                 Debug.Log(Managers.Game.SaveData.CatName[CatIndex]);
@@ -165,7 +165,6 @@ public class Cat_LobbyHappniess : MonoBehaviour
                 Managers.Game.SaveGame();
                 return;
             }
-            */
             if (!IsInfo)
                 Infoset();
             this.GetComponent<Cat_LobbyMove>().SpecialEmotion();

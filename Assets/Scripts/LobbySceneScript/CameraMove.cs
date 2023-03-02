@@ -62,7 +62,7 @@ public class CameraMove : MonoBehaviour
     Vector2 clickPoint;
     private void Moving()
     {
-        if (!EventSystem.current.IsPointerOverGameObject(pointerID))
+        if (!IsPointerOverUIObject(Input.mousePosition))
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -122,6 +122,13 @@ public class CameraMove : MonoBehaviour
         IsMove = false;
         pix.enabled = true;
         Managers.Sound.Play(Define.Sound.Effect, "Effects/OpenFurniture", volume: 0.4f);
+
+        if(Managers.Game.SaveData.SpaceLevel == 10 && Managers.Game.SaveData.FList.Count == 43)
+        {
+            yield return new WaitForSeconds(1f);
+            Managers.UI.ShowPopupUI<UI_Ending>();
+        }
+
     }
     IEnumerator lerpCorotuine(float b = 20, float Time1 =3f)
     {
@@ -141,5 +148,14 @@ public class CameraMove : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(center[Index], mapsize[Index] * 2);
+    }
+
+    public bool IsPointerOverUIObject(Vector2 touchPos)
+    {
+        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+        eventDataCurrentPosition.position = touchPos;
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+        return results.Count > 0;
     }
 }
