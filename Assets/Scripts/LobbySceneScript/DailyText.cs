@@ -11,7 +11,7 @@ public class DailyText : MonoBehaviour
     public void SetInfo(Vector2 pos, int gold)
     {
         _GoldText = GetComponent<TextMeshPro>();
-        transform.position = new Vector3(pos.x, pos.y, -4);
+        transform.position = new Vector3(pos.x, pos.y+1, -4);
         _GoldText.text = $"+{gold}";
         _alpha = new Color(1, 1, 1, 1);
         StartCoroutine(FloatGoldText());

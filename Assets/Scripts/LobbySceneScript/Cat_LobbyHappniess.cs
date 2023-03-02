@@ -1,8 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-
 public class Cat_LobbyHappniess : MonoBehaviour
 {
     int pointerID;
@@ -42,6 +42,10 @@ public class Cat_LobbyHappniess : MonoBehaviour
     void Update()
     {
         HappinessLevelUp();
+    }
+    public void OnDayRwd()
+    {
+        Managers.UI.MakeWorldSpaceUI<UI_DailyRwd>().SetInfo(CatIndex, this.transform);
     }
     void HappinessLevelUp()
     {
@@ -212,6 +216,7 @@ public class Cat_LobbyHappniess : MonoBehaviour
         }
         //´ÙÀÌ¾Æ ¼öÁ¤
         Debug.Log("È¹µæ");
+        PlayerPrefs.SetString("RwdTime", DateTime.Now.ToString("yyyyMMddHHmmss"));
         Managers.Resource.Instantiate("LobbyCat/DailyText").GetComponent<DailyText>().SetInfo(this.transform.position, count);
         Managers.Game.SaveData.CatCurHappinessExp[CatIndex] += 5;
         Managers.Game.SaveData.DaysRwd[CatIndex] = true;
