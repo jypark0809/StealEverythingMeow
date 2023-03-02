@@ -7,16 +7,19 @@ public class DestroyableObject : MonoBehaviour
     [SerializeField]
     int id;
     DestroyableObjectData _object;
+    PlayerController _player;
 
     void Start()
     {
         Managers.Data.DestroyableObjects.TryGetValue(id, out _object);
+        _player = Managers.Object.Player;
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
+            _player.isStop = true;
             StartCoroutine(ShowDestroyableObjectUI());
         }
     }
@@ -37,6 +40,7 @@ public class DestroyableObject : MonoBehaviour
             Managers.UI.ShowPopupUI<UI_StageClear>();
         }
 
+        _player.isStop = false;
         Managers.Resource.Destroy(gameObject);
         Managers.Object.ShowGoldText(transform.position, _object.Object_Gold);
         Managers.Game.SaveData.Dia += _object.Object_Diamond;

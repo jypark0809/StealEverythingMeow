@@ -70,21 +70,6 @@ public class UI_GameScene : UI_Scene
                 UpdateTime();
                 break;
         }
-
-        //if (isCooltime)
-        //{
-        //    coolTimeCircle.fillAmount += 1 / player.Stat.CoolTime * Time.deltaTime;
-        //    if (coolTimeCircle.fillAmount > 1)
-        //    {
-        //        coolTimeCircle.fillAmount = 1;
-        //        isCooltime = false;
-        //    }
-        //}
-        //else
-        //{
-        //    coolTimeCircle.fillAmount = 0;
-        //    isCooltime = true;
-        //}
     }
 
     void Start()
@@ -231,6 +216,7 @@ public class UI_GameScene : UI_Scene
     bool alarm;
     void UpdateTime()
     {
+        // 시간 부족 알림
         if (limitTime < 30 && alarm == false)
         {
             Managers.Sound.Play(Define.Sound.Effect, "Effects/ClockTikSound", volume: 0.4f);
@@ -245,11 +231,15 @@ public class UI_GameScene : UI_Scene
         }
         else
         {
-            limitTime -= Time.deltaTime;
-            min = (int)limitTime / 60;
-            sec = (int)limitTime % 60;
-            string result = sec.ToString("D2");
-            GetText((int)Texts.TimeText).text = $"{min}:{result}";
+            // QTE
+            if(!player.isStop)
+            {
+                limitTime -= Time.unscaledDeltaTime;
+                min = (int)limitTime / 60;
+                sec = (int)limitTime % 60;
+                string result = sec.ToString("D2");
+                GetText((int)Texts.TimeText).text = $"{min}:{result}";
+            }
         }
     }
 
@@ -358,12 +348,16 @@ public class UI_GameScene : UI_Scene
         float coolTime = player.Stat.CoolTime;
         while(isCooltime)
         {
-            coolTimeCircle.fillAmount += 1 / coolTime * Time.deltaTime;
-            if (coolTimeCircle.fillAmount >= 1)
+            if(!player.isStop)
             {
-                coolTimeCircle.fillAmount = 1;
-                isCooltime = false;
+                coolTimeCircle.fillAmount += 1 / coolTime * Time.unscaledDeltaTime;
+                if (coolTimeCircle.fillAmount >= 1)
+                {
+                    coolTimeCircle.fillAmount = 1;
+                    isCooltime = false;
+                }
             }
+            
             yield return null;
         }
 

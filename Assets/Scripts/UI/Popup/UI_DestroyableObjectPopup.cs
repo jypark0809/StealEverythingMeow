@@ -38,6 +38,7 @@ public class UI_DestroyableObjectPopup : UI_Popup
     Vector3 _originPos;
     Sprite[] _sprites;
     Transform _imageTransform;
+    PlayerController _player;
 
     [SerializeField]
     float _shakePower = 10f;
@@ -86,6 +87,15 @@ public class UI_DestroyableObjectPopup : UI_Popup
         base.Init();
 
         Time.timeScale = 0;
+
+        _player = Managers.Object.Player;
+        if(_player.TryGetComponent<TabbyCat>(out TabbyCat cat))
+        {
+            if(cat.skillCoroutine != null)
+            {
+                StopCoroutine(cat.skillCoroutine);
+            }
+        }
 
         _imageTransform = GetImage((int)Images.ObjectImage).gameObject.transform;
         _originPos = GetImage((int)Images.ObjectImage).gameObject.transform.position;
