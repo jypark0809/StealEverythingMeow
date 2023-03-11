@@ -81,6 +81,14 @@ public class UI_SelectCatPopup : UI_Popup
             ClosePopupUI();
         }
 #endif
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            PlayerPrefs.SetInt("SelectedCatNum", 3);
+            Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
+            LoadingScene.LoadScene("GameScene", true);
+            Managers.UI.ClosePopupUI();
+        }
     }
 
     void RefreshUI()

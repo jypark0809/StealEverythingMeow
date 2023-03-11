@@ -22,7 +22,7 @@ public class Clock : Item
             Managers.Object.ShowTimeText(transform.position);
 
             ig.isActive = true;
-            (Managers.UI.SceneUI as UI_GameScene).PlusTime(plusTime);
+            (Managers.UI.SceneUI as UI_GameScene).GetClockItem(plusTime);
             gameObject.SetActive(false);
         }
     }
