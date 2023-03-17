@@ -130,7 +130,7 @@ public class UI_DestroyableObjectPopup : UI_Popup
     {
         Managers.Object.Player.Stat.Gold += _object.Object_Gold;
         Managers.Object.Player.Stat.Diamond += _object.Object_Diamond;
-        (Managers.UI.SceneUI as UI_GameScene).UpdateGoldText();
+        (Managers.UI.SceneUI as UI_GameScene).SetGoldText();
     }
 
     void PlayRandomSound()

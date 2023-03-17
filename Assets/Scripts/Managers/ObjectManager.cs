@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,6 +26,8 @@ public class ObjectManager
     GameObject _stage;
     public GameObject Stage { get { return _stage; } set { _stage = value; } }
 
+    GameObject _map;
+    public GameObject Map { get { return _map; } set { _map = value; } }
 
     Cat_LobbyHappniess _catLobbyWhite;
     Cat_LobbyHappniess _catLobbyBlack;
@@ -32,12 +35,12 @@ public class ObjectManager
     Cat_LobbyHappniess _catLobbyCalico;
     Cat_LobbyHappniess _catLobbyTabby;
 
-
     public Cat_LobbyHappniess CatLobbyWhite { get { return _catLobbyWhite; } set { _catLobbyWhite = value; } }
     public Cat_LobbyHappniess CatLobbyBlack { get { return _catLobbyBlack; } set { _catLobbyBlack = value; } }
     public Cat_LobbyHappniess CatLobbyGray { get { return _catLobbyGray; } set { _catLobbyGray = value; } }
     public Cat_LobbyHappniess CatLobbyCalico { get { return _catLobbyCalico; } set { _catLobbyCalico = value; } }
     public Cat_LobbyHappniess CatLobbyTabby { get { return _catLobbyTabby; } set { _catLobbyTabby = value; } }
+    
     public ObjectManager()
     {
         Init();
@@ -108,6 +111,7 @@ public class ObjectManager
         _stage = Managers.Resource.Instantiate(path, parent);
         return _stage;
     }
+
 
     public void ShowGoldText(Vector2 pos, int gold)
     {
