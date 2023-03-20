@@ -92,7 +92,6 @@ public class UI_ConversationScript : UI_Popup
             // Read All Scripts
             Managers.Sound.Play(Define.Sound.Bgm, "BGM/BGM_Home", volume: 0.1f);
             ClosePopupUI();
-            Managers.UI.ShowPopupUI<UI_FindHelp>();
         }
     }
 

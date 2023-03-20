@@ -18,13 +18,14 @@ public class UI_GameScene : UI_Scene
 
     GameState _state = GameState.Game;
 
-    Vector3 beginDragPos; // BeginDrag position
-    public Vector3 joystickDir;
+    Vector3 beginDragPos;
+    Vector3 joystickDir;
     float joystickRadius;
-    PlayerController player;
+    PlayerController _player;
     Animator _playerAnim;
 
     public Action skillHandler = null;
+    Image coolTimeCircle;
 
     enum GameObjects
     {
@@ -47,6 +48,7 @@ public class UI_GameScene : UI_Scene
         Heart2,
         Heart3,
         TreasureMapImage,
+        CoolTimeCircle,
         SkillImage
     }
 
@@ -56,6 +58,8 @@ public class UI_GameScene : UI_Scene
         SkillButton,
     }
 
+    bool isCooltime = false;
+    Coroutine coolTimeCoroutine;
     void Update()
     {
         switch(_state)
@@ -77,70 +81,30 @@ public class UI_GameScene : UI_Scene
     {
         base.Init();
 
-        player = Managers.Object.Player;
-        _playerAnim = player.GetComponent<Animator>();
+        _player = Managers.Object.Player;
+        _playerAnim = _player.GetComponent<Animator>();
         
         Bind<GameObject>(typeof(GameObjects));
         Bind<Image>(typeof(Images));
         Bind<TextMeshProUGUI>(typeof(Texts));
         Bind<Button>(typeof(Buttons));
 
+        coolTimeCircle = GetImage((int)Images.CoolTimeCircle);
         SetSkillImage();
 
+        #region Joystick
         GetObject((int)GameObjects.JoystickPanel).BindEvent(OnPointerDown, Define.UIEvent.PointerDown);
         GetObject((int)GameObjects.JoystickPanel).BindEvent(OnPointerUp, Define.UIEvent.PointerUp);
         GetObject((int)GameObjects.JoystickPanel).BindEvent(OnDrag, Define.UIEvent.Drag);
 
-        GetText((int)Texts.GoldText).text = Managers.Object.Player.Stat.Gold.ToString();
-        GetButton((int)Buttons.PauseButton).gameObject.BindEvent(PopupPuaseUI);
-        GetButton((int)Buttons.SkillButton).gameObject.BindEvent((PointerEventData evt) => skillHandler?.Invoke());
-
-        // Joystick
         joystickRadius = GetObject((int)GameObjects.OutLineCircle).GetComponent<RectTransform>().sizeDelta.y * 1.2f;
         GetObject((int)GameObjects.OutLineCircle).SetActive(false);
         GetObject((int)GameObjects.FiiledCircle).SetActive(false);
-        
-    }
+        #endregion
 
-    void OnPointerDown(PointerEventData evt)
-    {
-        GetObject((int)GameObjects.OutLineCircle).SetActive(true);
-        GetObject((int)GameObjects.FiiledCircle).SetActive(true);
-        GetObject((int)GameObjects.OutLineCircle).transform.position = Input.mousePosition;
-        GetObject((int)GameObjects.FiiledCircle).transform.position = Input.mousePosition;
-        beginDragPos = Input.mousePosition;
-    }
-
-    void OnDrag(PointerEventData evt)
-    {
-        player.State = Define.State.Walk;
-        Vector3 endDragPosition = evt.position;
-        joystickDir = (endDragPosition - beginDragPos).normalized;
-        SetPlayerAnim();
-        player.MoveVec = joystickDir;
-
-        // Set FilledCircle Boundary
-        float stickDistance = Vector3.Distance(endDragPosition, beginDragPos);
-        if (stickDistance < joystickRadius)
-        {
-            GetObject((int)GameObjects.FiiledCircle).transform.position = beginDragPos + joystickDir * stickDistance;
-        }
-        else
-        {
-            GetObject((int)GameObjects.FiiledCircle).transform.position = beginDragPos + joystickDir * joystickRadius;
-        }
-    }
-
-    void OnPointerUp(PointerEventData evt)
-    {
-        joystickDir = Vector3.zero;
-        player.MoveVec = joystickDir;
-
-        // Idle Animation
-        player.State = Define.State.Idle;
-
-        GetObject((int)GameObjects.OutLineCircle).SetActive(false);
-        GetObject((int)GameObjects.FiiledCircle).SetActive(false);
+        GetText((int)Texts.GoldText).text = Managers.Object.Player.Stat.Gold.ToString();
+        GetButton((int)Buttons.PauseButton).gameObject.BindEvent(PopupPuaseUI);
+        GetButton((int)Buttons.SkillButton).gameObject.BindEvent(OnSkillButtonClicked);
     }
 
     void SetPlayerAnim()
@@ -212,6 +176,7 @@ public class UI_GameScene : UI_Scene
     bool alarm;
     void UpdateTime()
     {
+        // 시간 부족 알림
         if (limitTime < 30 && alarm == false)
         {
             Managers.Sound.Play(Define.Sound.Effect, "Effects/ClockTikSound", volume: 0.4f);
@@ -226,15 +191,19 @@ public class UI_GameScene : UI_Scene
         }
         else
         {
-            limitTime -= Time.deltaTime;
-            min = (int)limitTime / 60;
-            sec = (int)limitTime % 60;
-            string result = sec.ToString("D2");
-            GetText((int)Texts.TimeText).text = $"{min}:{result}";
+            // Destroyable Object
+            if(!_player.isStop)
+            {
+                limitTime -= Time.unscaledDeltaTime;
+                min = (int)limitTime / 60;
+                sec = (int)limitTime % 60;
+                string result = sec.ToString("D2");
+                GetText((int)Texts.TimeText).text = $"{min}:{result}";
+            }
         }
     }
 
-    public void PlusTime(float time)
+    public void GetClockItem(float time)
     {
         limitTime += time;
     }
@@ -271,17 +240,17 @@ public class UI_GameScene : UI_Scene
         GetObject((int)GameObjects.ExpBar).GetComponent<Slider>().value = (float)curExp/maxExp;
     }
 
-    public void UpdateGoldText()
+    public void SetGoldText()
     {
         GetText((int)Texts.GoldText).text = Managers.Object.Player.Stat.Gold.ToString();
     }
 
-    public void UpdateLevelText()
+    public void SetLevelText()
     {
         GetText((int)Texts.LevelText).text = $"Lv.{Managers.Object.Player.Stat.Level.ToString()}";
     }
 
-    public void UpdateTreasureMapImage(int curMapCount, int maxMapCount)
+    public void SetMapRatio(int curMapCount, int maxMapCount)
     {
         GetImage((int)Images.TreasureMapImage).fillAmount = (float)curMapCount / maxMapCount;
     }
@@ -291,8 +260,7 @@ public class UI_GameScene : UI_Scene
         switch(PlayerPrefs.GetInt("SelectedCatNum"))
         {
             case 0:
-                //GetImage((int)Images.SkillImage).sprite = Managers.Resource.Load<Sprite>("Sprites/UI/SkillIcon/Skill_CalicoCat");
-                //GetImage((int)Images.SkillImage).SetNativeSize();
+                // Default Image
                 break;
             case 1:
                 GetImage((int)Images.SkillImage).sprite = Managers.Resource.Load<Sprite>("Sprites/UI/SkillIcon/Skill_BlackCat");
@@ -314,12 +282,85 @@ public class UI_GameScene : UI_Scene
         }
     }
 
+    IEnumerator CoolTimeCircleFilled()
+    {
+        coolTimeCircle.fillAmount = 0;
+        isCooltime = true;
+        float coolTime = _player.Stat.CoolTime;
+        while (isCooltime)
+        {
+            if (!_player.isStop)
+            {
+                coolTimeCircle.fillAmount += 1 / coolTime * Time.unscaledDeltaTime;
+                if (coolTimeCircle.fillAmount >= 1)
+                {
+                    coolTimeCircle.fillAmount = 1;
+                    isCooltime = false;
+                }
+            }
+
+            yield return null;
+        }
+
+        coolTimeCoroutine = null;
+    }
+
     #region EventHandler
     void PopupPuaseUI(PointerEventData evt)
     {
         Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
         Time.timeScale = 0;
         Managers.UI.ShowPopupUI<UI_PauseGamePopup>();
+    }
+
+    void OnSkillButtonClicked(PointerEventData evt)
+    {
+        if (coolTimeCoroutine == null)
+        {
+            skillHandler?.Invoke();
+            coolTimeCoroutine = StartCoroutine(CoolTimeCircleFilled());
+        }
+    }
+
+    void OnPointerDown(PointerEventData evt)
+    {
+        GetObject((int)GameObjects.OutLineCircle).SetActive(true);
+        GetObject((int)GameObjects.FiiledCircle).SetActive(true);
+        GetObject((int)GameObjects.OutLineCircle).transform.position = Input.mousePosition;
+        GetObject((int)GameObjects.FiiledCircle).transform.position = Input.mousePosition;
+        beginDragPos = Input.mousePosition;
+    }
+
+    void OnDrag(PointerEventData evt)
+    {
+        _player.State = Define.State.Walk;
+        Vector3 endDragPosition = evt.position;
+        joystickDir = (endDragPosition - beginDragPos).normalized;
+        SetPlayerAnim();
+        _player.MoveVec = joystickDir;
+
+        // Set FilledCircle Boundary
+        float stickDistance = Vector3.Distance(endDragPosition, beginDragPos);
+        if (stickDistance < joystickRadius)
+        {
+            GetObject((int)GameObjects.FiiledCircle).transform.position = beginDragPos + joystickDir * stickDistance;
+        }
+        else
+        {
+            GetObject((int)GameObjects.FiiledCircle).transform.position = beginDragPos + joystickDir * joystickRadius;
+        }
+    }
+
+    void OnPointerUp(PointerEventData evt)
+    {
+        joystickDir = Vector3.zero;
+        _player.MoveVec = joystickDir;
+
+        // Idle Animation
+        _player.State = Define.State.Idle;
+
+        GetObject((int)GameObjects.OutLineCircle).SetActive(false);
+        GetObject((int)GameObjects.FiiledCircle).SetActive(false);
     }
     #endregion
 }

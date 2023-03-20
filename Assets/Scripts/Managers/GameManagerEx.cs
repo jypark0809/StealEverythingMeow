@@ -10,13 +10,13 @@ public class GameData
 {
     //재화
     public int Jelly;
-    public int Gold = 1000000;
-    public int Dia = 1000000;
+    public int Gold;
+    public int Dia;
 
     // 재료
-    public int Wood = 5000;
-    public int Cotton = 5000;
-    public int Stone = 5000;
+    public int Wood = 30;
+    public int Cotton;
+    public int Stone;
 
     // Furniture List
     public List<FurnitureData> FList = new List<FurnitureData>();
@@ -48,6 +48,7 @@ public class GameData
     public float[] CatCurHappinessExp = new float[5] { 0, 0, 0, 0, 0 };
     public string[] CatName = {"하양이","까망이","삼색이","치즈", "회색이"};
     public bool[] DaysRwd = new bool[5] { false, false, false, false, false };
+    public bool[] IsViewStory = new bool[5] { false, false, false, false, false };
 
     // 간식 [캣잎사탕, 츄르, 고등어구이, 육포, 참치캔, 연어]
     public int[] Food = { 0, 0, 0, 0, 0, 0 };

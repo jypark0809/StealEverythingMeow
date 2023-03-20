@@ -50,9 +50,6 @@ public class TimeScheduler : MonoBehaviour
 
             instance = go.GetComponent<TimeScheduler>();
         }
-        Debug.Log($"Hour : {DateTime.Now.ToLocalTime().Hour}");
-        Debug.Log($"Min : {DateTime.Now.ToLocalTime().Minute}");
-        Debug.Log($"Sec : {DateTime.Now.ToLocalTime().Second}");
     }
 
     void Start()
@@ -73,7 +70,7 @@ public class TimeScheduler : MonoBehaviour
             var getTime = string.Empty;
             getTime = PlayerPrefs.GetString("LastQuitTime");
             lastQuitTime = DateTime.FromBinary(Convert.ToInt64(getTime));
-            Debug.Log($"LoadLastQuitTime : {lastQuitTime}");
+            // Debug.Log($"LoadLastQuitTime : {lastQuitTime}");
         }
     }
 
@@ -109,6 +106,21 @@ public class TimeScheduler : MonoBehaviour
     {
         // 데이터 초기화
         Managers.Game.SaveData.adsData.InitAdsCountData();
+
+        for (int i = 0; i < Managers.Game.SaveData.DaysRwd.Length; i++)
+        {
+            Managers.Game.SaveData.DaysRwd[i] = false;
+        }
+        if(Managers.Game.SaveData.CatHave[0])
+            Managers.Object.CatLobbyWhite.OnDayRwd();
+        if (Managers.Game.SaveData.CatHave[1])
+            Managers.Object.CatLobbyBlack.OnDayRwd();
+        if (Managers.Game.SaveData.CatHave[2])
+            Managers.Object.CatLobbyCalico.OnDayRwd();
+        if (Managers.Game.SaveData.CatHave[3])
+            Managers.Object.CatLobbyTabby.OnDayRwd();
+        if (Managers.Game.SaveData.CatHave[4])
+            Managers.Object.CatLobbyGray.OnDayRwd();    
 
         Managers.Game.SaveGame();
     }

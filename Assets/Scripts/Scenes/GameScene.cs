@@ -128,6 +128,7 @@ public class GameScene : BaseScene
         
         GameObject mapItem = Managers.Resource.Instantiate("Item/FuntionalItem/TreasureMap", _stage.transform);
         mapItem.transform.position = spawnPos[indexList[index]].position;
+        Managers.Object.Map = mapItem;
         index++;
     }
 

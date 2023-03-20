@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class UI_CatHoustSceneTop : UI_Base
 {
@@ -12,6 +14,11 @@ public class UI_CatHoustSceneTop : UI_Base
     int _lastRemainTime; // 충전 남은 시간(저번 종료시 남은 시간까지 계산한 후)
     GameObject remainTimeText;
 
+
+    enum Images
+    {
+        LevelImage,
+    }
     enum Texts
     {
         LevelText,
@@ -24,14 +31,30 @@ public class UI_CatHoustSceneTop : UI_Base
     private void Awake()
     {
         Bind<TextMeshProUGUI>(typeof(Texts));
+        Bind<Image>(typeof(Images));
         // remainTimeText = GetText((int)Texts.RechargeText).gameObject;
     }
 
     public override void Init()
     {
-        GetText((int)Texts.LevelText).text = Managers.Game.SaveData.SpaceLevel.ToString();
+        if (Managers.Game.SaveData.SpaceLevel == 10)
+        {
+            GetText((int)Texts.LevelText).text = "Max";
+            GetText((int)Texts.LevelText).fontSize = 10;
+        }
+        else
+        {
+            GetText((int)Texts.LevelText).text = Managers.Game.SaveData.SpaceLevel.ToString();
+        }
         GetText((int)Texts.DiamondText).text = String.Format("{0:#,0}", Managers.Game.SaveData.Dia);
         GetText((int)Texts.GoldText).text = String.Format("{0:#,0}", Managers.Game.SaveData.Gold);
+        GetImage((int)Images.LevelImage).gameObject.BindEvent(OpenRoom);
+    }
+
+    void OpenRoom(PointerEventData evt)
+    {
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
+        Managers.UI.ShowPopupUI<UI_RoomSet>();
     }
 
     float timer = 1;

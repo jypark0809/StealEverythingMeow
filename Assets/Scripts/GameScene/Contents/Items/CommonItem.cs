@@ -40,7 +40,7 @@ public class CommonItem : Item
             Managers.Object.ShowGoldText(transform.position, itemGold);
 
             isPull = false;
-            (Managers.UI.SceneUI as UI_GameScene).UpdateGoldText();
+            (Managers.UI.SceneUI as UI_GameScene).SetGoldText();
             gameObject.SetActive(false);
         }
     }

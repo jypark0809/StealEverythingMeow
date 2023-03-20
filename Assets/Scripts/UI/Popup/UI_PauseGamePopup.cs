@@ -43,6 +43,8 @@ public class UI_PauseGamePopup : UI_Popup
         Bind<TextMeshProUGUI>(typeof(Texts));
         Bind<GameObject>(typeof(Toggles));
 
+        Managers.Object.Player.isStop = true;
+
         GetButton((int)Buttons.CloseButton).gameObject.BindEvent(OnCloseButtonClicked);
         GetButton((int)Buttons.MainMenuButton).gameObject.BindEvent(OnMainMenuButtonClicked);
         GetButton((int)Buttons.HelpButton).gameObject.BindEvent(OnHelpButtonButtonClicked);
@@ -52,14 +54,12 @@ public class UI_PauseGamePopup : UI_Popup
         GetObject((int)Toggles.EffectSoundToggle).GetComponent<Toggle>().onValueChanged.AddListener(OnEffectSoundToggleSelected);
         GetObject((int)Toggles.EffectSoundToggle).GetComponent<Toggle>().isOn = Managers.Game.EffectSoundOn;
 
-
         GetText((int)Texts.WoodText).text = Managers.Object.Player.Stat.Wood.ToString();
         GetText((int)Texts.RockText).text = Managers.Object.Player.Stat.Rock.ToString();
         GetText((int)Texts.CottonText).text = Managers.Object.Player.Stat.Cotton.ToString();
         GetText((int)Texts.SpeedText).text = $"Lv. {Managers.Object.Player.Stat.SpeedLv.ToString()}";
         GetText((int)Texts.SightText).text = $"Lv. {Managers.Object.Player.Stat.CooltimeLv.ToString()}";
         GetText((int)Texts.MagnetText).text = $"Lv. {Managers.Object.Player.Stat.MagnetLv.ToString()}";
-
     }
 
     void Update()
@@ -67,6 +67,7 @@ public class UI_PauseGamePopup : UI_Popup
 #if UNITY_ANDROID
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            Time.timeScale = 1;
             ClosePopupUI();
         }
 #endif
@@ -101,6 +102,7 @@ public class UI_PauseGamePopup : UI_Popup
     {
         Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
         Time.timeScale = 1;
+        Managers.Object.Player.isStop = false;
         Managers.UI.ClosePopupUI();
     }
 
@@ -109,6 +111,7 @@ public class UI_PauseGamePopup : UI_Popup
         Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
         Time.timeScale = 1;
         LoadingScene.LoadScene("CatHouseScene", false);
+        Managers.UI.ClosePopupUI();
         //Managers.Scene.LoadScene(Define.SceneType.CatHouseScene);
     }
 

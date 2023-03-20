@@ -29,7 +29,7 @@ public class Stat : MonoBehaviour
         set
         {
             _level = value;
-            (Managers.UI.SceneUI as UI_GameScene).UpdateLevelText();
+            (Managers.UI.SceneUI as UI_GameScene).SetLevelText();
             Managers.UI.ShowPopupUI<UI_SelectAbility>();
             Time.timeScale = 0;
         }
@@ -88,7 +88,7 @@ public class Stat : MonoBehaviour
         {
             _map = value;
 
-            (Managers.UI.SceneUI as UI_GameScene).UpdateTreasureMapImage(_map, MaxMap);
+            (Managers.UI.SceneUI as UI_GameScene).SetMapRatio(_map, MaxMap);
 
             if (_map < MaxMap && _map > 0)
             {

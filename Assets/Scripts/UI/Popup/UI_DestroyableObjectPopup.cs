@@ -38,6 +38,7 @@ public class UI_DestroyableObjectPopup : UI_Popup
     Vector3 _originPos;
     Sprite[] _sprites;
     Transform _imageTransform;
+    PlayerController _player;
 
     [SerializeField]
     float _shakePower = 10f;
@@ -87,6 +88,15 @@ public class UI_DestroyableObjectPopup : UI_Popup
 
         Time.timeScale = 0;
 
+        _player = Managers.Object.Player;
+        if(_player.TryGetComponent<TabbyCat>(out TabbyCat cat))
+        {
+            if(cat.skillCoroutine != null)
+            {
+                StopCoroutine(cat.skillCoroutine);
+            }
+        }
+
         _imageTransform = GetImage((int)Images.ObjectImage).gameObject.transform;
         _originPos = GetImage((int)Images.ObjectImage).gameObject.transform.position;
         _sprites = Resources.LoadAll<Sprite>(_object.Image_Path);
@@ -120,7 +130,7 @@ public class UI_DestroyableObjectPopup : UI_Popup
     {
         Managers.Object.Player.Stat.Gold += _object.Object_Gold;
         Managers.Object.Player.Stat.Diamond += _object.Object_Diamond;
-        (Managers.UI.SceneUI as UI_GameScene).UpdateGoldText();
+        (Managers.UI.SceneUI as UI_GameScene).SetGoldText();
     }
 
     void PlayRandomSound()

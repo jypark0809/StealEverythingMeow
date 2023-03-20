@@ -14,6 +14,9 @@ public class CameraMove : MonoBehaviour
     Vector2[] mapsize;
     [SerializeField]
     Vector2[] center;
+    [SerializeField]
+    Vector2[] RoomPos;
+
 
     public int Index;
     public bool IsMove;
@@ -21,7 +24,7 @@ public class CameraMove : MonoBehaviour
     Camera thecamera;
     PixelPerfectCamera pix;
 
-    private float Movespeed = 2f;
+    public float Movespeed;
     public Vector3 targetPos;
 
     private void Awake()
@@ -43,54 +46,49 @@ public class CameraMove : MonoBehaviour
     {
         Index = Managers.Game.SaveData.SoomLevel - 1;
     }
-    public void Update()
+    private void Update()
     {
-        if (IsMove)
-            transform.position = Vector3.Lerp(this.transform.position, targetPos, Time.deltaTime * Movespeed);
-        /*
-        if (Input.GetMouseButton(0))
-        {
-            pix.enabled = false;
-            ZoomIn();
-        }
-        else
-        {
-            pix.enabled = true;
-        }
-        */
 
     }
-    private void ZoomIn()
-    {
-        float scrollWheel = Input.GetAxis("Mouse ScrollWheel");
-        Camera.main.orthographicSize += scrollWheel * Time.deltaTime * scrollWheel;
-    }
-
     private void FixedUpdate()
     {
-        Moving();
+        if (IsMove)
+            transform.position = Vector3.Lerp(this.transform.position, targetPos, Time.deltaTime * 3f);
+        else
+            Moving();
+
         LimitCameraArea();
     }
     Vector2 clickPoint;
     private void Moving()
     {
-        if (!EventSystem.current.IsPointerOverGameObject(pointerID))
+        if (!IsPointerOverUIObject(Input.mousePosition))
         {
             if (Input.GetMouseButtonDown(0))
-                clickPoint = Input.mousePosition;
-
-            if (Input.GetMouseButton(0))
             {
-                Vector3 position
-                    = Camera.main.ScreenToViewportPoint((Vector2)Input.mousePosition - clickPoint);
-
-                Vector3 move = -position * (Time.deltaTime * 30f);
-
-                transform.Translate(move);
-                transform.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
+                clickPoint = Input.mousePosition;
+                Vector2 pos = Camera.main.ScreenToWorldPoint(clickPoint);
+                if (Physics2D.Raycast(pos, transform.forward, LayerMask.GetMask("Soom")))
+                    return;
             }
+            else if (Input.GetMouseButton(0))
+            {
+                Vector2 pos = Camera.main.ScreenToWorldPoint(clickPoint);
+                if (Physics2D.Raycast(pos, transform.forward, LayerMask.GetMask("Soom")))
+                {
+                    return;
+                }
+                Vector3 position = Camera.main.ScreenToViewportPoint((Vector2)Input.mousePosition - clickPoint);
+                Vector3 move = -position.normalized * (Time.deltaTime) * Movespeed;
+                transform.Translate(move);
+                clickPoint = Input.mousePosition;
+                transform.position = new Vector3(transform.position.x, transform.position.y, -10);
+            }
+            else if (Input.GetMouseButtonUp(0))
+                return;
         }
     }
+
 
     private void LimitCameraArea()
     {
@@ -102,10 +100,63 @@ public class CameraMove : MonoBehaviour
 
         transform.position = new Vector3(clampX, clampY, -10f);
     }
+    public void Exam(GameObject go)
+    {
+        StartCoroutine(TargetMove(go));
+    }
+    public IEnumerator TargetMove(GameObject _go)
+    {
+        Vector3 curPos = _go.transform.position;
+        if (Managers.Game.SaveData.SpaceLevel > 2 && Managers.Game.SaveData.SpaceLevel < 10)
+        {
+            targetPos = RoomPos[Managers.Game.SaveData.SpaceLevel - 2];
+        }
+        else if (Managers.Game.SaveData.SpaceLevel == 2 || Managers.Game.SaveData.SpaceLevel == 10)
+        {
+            targetPos = _go.transform.position; // 거실가구 보여주는법 해결하기
+        }
+        _go.transform.position = new Vector3(0, -50f, 0);
+        IsMove = true;
+        yield return new WaitForSeconds(2f);
+        _go.transform.position = curPos;
+        IsMove = false;
+        pix.enabled = true;
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/OpenFurniture", volume: 0.4f);
 
+        if(Managers.Game.SaveData.SpaceLevel == 10 && Managers.Game.SaveData.FList.Count == 43)
+        {
+            yield return new WaitForSeconds(1f);
+            Managers.UI.ShowPopupUI<UI_Ending>();
+            Managers.Resource.Instantiate("UI/UI_Effect");
+        }
+
+    }
+    IEnumerator lerpCorotuine(float b = 20, float Time1 =3f)
+    {
+        pix.enabled = false;
+        float elasedTime = 0.0f;
+        float start = Camera.main.orthographicSize;
+        while(elasedTime < Time1)
+        {
+            elasedTime += (Time.deltaTime);
+            Camera.main.orthographicSize = Mathf.Lerp(start, b, elasedTime / Time1);
+
+            yield return null;
+        }
+        yield return null;
+    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(center[Index], mapsize[Index] * 2);
+    }
+
+    public bool IsPointerOverUIObject(Vector2 touchPos)
+    {
+        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+        eventDataCurrentPosition.position = touchPos;
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+        return results.Count > 0;
     }
 }

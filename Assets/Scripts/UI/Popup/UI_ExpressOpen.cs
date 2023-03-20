@@ -43,25 +43,6 @@ public class UI_ExpressOpen : UI_Popup
         Bind<Button>(typeof(Buttons));
 
         EmotionText = GetText((int)Texts.RwdText);
-
-        /*
-        if(ind1 && ind2)
-        {
-            EmotionText.text = " '" + Managers.Data.ExpressBooks[1501 + index1].Express_Name + "' , '" + Managers.Data.ExpressBooks[1501 + index2].Express_Name + "'";
-
-        }
-        else
-        {
-            if (ind1)
-            {
-                EmotionText.text += " '" + Managers.Data.ExpressBooks[1501 + index1].Express_Name + "' ";
-            }
-            if (ind2)
-            {
-                EmotionText.text += " '" + Managers.Data.ExpressBooks[1501 + index2].Express_Name + "'";
-            }
-        }      
-        */ 
         EmotionText.text = "새로운 감정표현을 획득했어요 \n 도감에서 확인해주세요!";
         GetButton((int)Buttons.OkButton).gameObject.BindEvent(OnCloseButton);
     }

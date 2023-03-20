@@ -208,14 +208,6 @@ public class Cat_LobbyMove : MonoBehaviour
             }
         }
     }
-
-    private void OnMouseDown()
-    {
-        if (!IsPointerOverUIObject(Input.mousePosition))
-        {
-            SpecialEmotion();
-        }
-    }
     private void DoBasicEmotion()
     {
         if (IsEmotion)
@@ -238,7 +230,7 @@ public class Cat_LobbyMove : MonoBehaviour
 
         StartCoroutine(CanSpcialEmotion("Sniff", 1f));
     }
-    private void SpecialEmotion()
+    public void SpecialEmotion()
     {
         
         if(Managers.Game.SaveData.EmotionList.Count ==0)
@@ -273,15 +265,6 @@ public class Cat_LobbyMove : MonoBehaviour
         yield return new WaitForSeconds(_Time);
         anim.SetBool(_str, false);
         IsSpecialEmotion = false;
-    }
-    public bool IsPointerOverUIObject(Vector2 touchPos)
-    {
-
-        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
-        eventDataCurrentPosition.position = touchPos;
-        List<RaycastResult> results = new List<RaycastResult>();
-        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
-        return results.Count > 0;
     }
 }
 

@@ -308,8 +308,22 @@ public class DataTransformer : EditorWindow
                 Soom_Lv = int.Parse(row[i++]),
                 Gold = int.Parse(row[i++]),
                 Diamond = int.Parse(row[i++]),
-                Cat_Path = row[i++],
-            });
+                Cat_Img = row[i++],
+                End_Story1 = row[i++].Replace("/", ",").Replace("\\n", "\n"),
+                End_Story1_Img = row[i++],
+                End_Story2 = row[i++].Replace("/", ",").Replace("\\n", "\n"),
+                End_Story2_Img = row[i++],
+                End_Story3 = row[i++].Replace("/", ",").Replace("\\n", "\n"),
+                End_Story3_Img = row[i++],
+                End_Story4 = row[i++].Replace("/", ",").Replace("\\n", "\n"),
+                End_Story4_Img = row[i++],
+                End_Story5 = row[i++].Replace("/", ",").Replace("\\n", "\n"),
+                End_Story5_Img = row[i++],
+                End_Reward1_Type = int.Parse(row[i++]),
+                End_Reward1 = int.Parse(row[i++]),
+                End_Reward2_Type = int.Parse(row[i++]),
+                End_Reward2 = int.Parse(row[i++]),
+            }); ;
 
         }
 

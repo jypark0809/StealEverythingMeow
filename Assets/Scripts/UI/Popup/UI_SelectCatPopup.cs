@@ -31,7 +31,11 @@ public class UI_SelectCatPopup : UI_Popup
     enum Buttons
     {
         StartButton,
-        CloseButton
+        CloseButton,
+        //CBlackButton,
+        //CCalicoButton,
+        //CTabbyButton,
+        //CGrayButton
     }
 
     void Start()
@@ -59,6 +63,13 @@ public class UI_SelectCatPopup : UI_Popup
         GetButton((int)Buttons.StartButton).gameObject.BindEvent(OnStartButtonClicked);
         GetButton((int)Buttons.CloseButton).gameObject.BindEvent(OnCloseButtonClicked);
 
+        //#region Bind Cheat Button
+        //GetButton((int)Buttons.CBlackButton).gameObject.BindEvent(OnCBlackButtonClicked);
+        //GetButton((int)Buttons.CCalicoButton).gameObject.BindEvent(OnCCalicoButtonClicked);
+        //GetButton((int)Buttons.CTabbyButton).gameObject.BindEvent(OnCTabbyButtonClicked);
+        //GetButton((int)Buttons.CGrayButton).gameObject.BindEvent(OnCGrayButtonClicked);
+        //#endregion
+
         RefreshUI();
     }
 
@@ -70,6 +81,14 @@ public class UI_SelectCatPopup : UI_Popup
             ClosePopupUI();
         }
 #endif
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            PlayerPrefs.SetInt("SelectedCatNum", 3);
+            Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
+            LoadingScene.LoadScene("GameScene", true);
+            Managers.UI.ClosePopupUI();
+        }
     }
 
     void RefreshUI()
@@ -161,12 +180,47 @@ public class UI_SelectCatPopup : UI_Popup
     {
         Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
         LoadingScene.LoadScene("GameScene", true);
+        Managers.UI.ClosePopupUI();
         //Managers.Scene.LoadScene(Define.SceneType.GameScene);
     }
 
     void OnCloseButtonClicked(PointerEventData evt)
     {
         Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
+        Managers.UI.ClosePopupUI();
+    }
+    #endregion
+
+    #region Cheat
+    void OnCBlackButtonClicked(PointerEventData evt)
+    {
+        PlayerPrefs.SetInt("SelectedCatNum", 1);
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
+        LoadingScene.LoadScene("GameScene", true);
+        Managers.UI.ClosePopupUI();
+    }
+
+    void OnCCalicoButtonClicked(PointerEventData evt)
+    {
+        PlayerPrefs.SetInt("SelectedCatNum", 2);
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
+        LoadingScene.LoadScene("GameScene", true);
+        Managers.UI.ClosePopupUI();
+    }
+
+    void OnCTabbyButtonClicked(PointerEventData evt)
+    {
+        PlayerPrefs.SetInt("SelectedCatNum", 3);
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
+        LoadingScene.LoadScene("GameScene", true);
+        Managers.UI.ClosePopupUI();
+    }
+
+    void OnCGrayButtonClicked(PointerEventData evt)
+    {
+        PlayerPrefs.SetInt("SelectedCatNum", 4);
+        Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
+        LoadingScene.LoadScene("GameScene", true);
         Managers.UI.ClosePopupUI();
     }
     #endregion
