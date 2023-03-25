@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Experimental.Rendering.Universal;
 using UnityEngine.EventSystems;
+using UnityEngine.U2D;
+
 public class CameraMove : MonoBehaviour
 {
     int pointerID;
