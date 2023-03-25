@@ -63,12 +63,12 @@ public class UI_SelectCatPopup : UI_Popup
         GetButton((int)Buttons.StartButton).gameObject.BindEvent(OnStartButtonClicked);
         GetButton((int)Buttons.CloseButton).gameObject.BindEvent(OnCloseButtonClicked);
 
-        //#region Bind Cheat Button
+        #region Bind Cheat Button
         //GetButton((int)Buttons.CBlackButton).gameObject.BindEvent(OnCBlackButtonClicked);
         //GetButton((int)Buttons.CCalicoButton).gameObject.BindEvent(OnCCalicoButtonClicked);
         //GetButton((int)Buttons.CTabbyButton).gameObject.BindEvent(OnCTabbyButtonClicked);
         //GetButton((int)Buttons.CGrayButton).gameObject.BindEvent(OnCGrayButtonClicked);
-        //#endregion
+        #endregion
 
         RefreshUI();
     }

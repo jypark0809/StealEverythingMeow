@@ -194,7 +194,7 @@ public class UI_GameScene : UI_Scene
             // Destroyable Object
             if(!_player.isStop)
             {
-                limitTime -= Time.unscaledDeltaTime;
+                limitTime -= Time.deltaTime;
                 min = (int)limitTime / 60;
                 sec = (int)limitTime % 60;
                 string result = sec.ToString("D2");

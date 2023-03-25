@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5059983853355351238}
   - component: {fileID: 8404023487451808639}
   - component: {fileID: 5118938672086988917}
-  - component: {fileID: 3944636981447102050}
+  - component: {fileID: -806854019741078760}
   m_Layer: 30
   m_Name: TreasureMap
   m_TagString: Untagged
@@ -102,7 +102,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.4
---- !u!114 &3944636981447102050
+--- !u!114 &-806854019741078760
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
