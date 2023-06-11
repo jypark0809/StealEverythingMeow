@@ -10,8 +10,8 @@ public class GameData
 {
     //재화
     public int Jelly;
-    public int Gold;
-    public int Dia;
+    public int Gold = 1000000;
+    public int Dia = 1000000;
 
     // 재료
     public int Wood = 30;

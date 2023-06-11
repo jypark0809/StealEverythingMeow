@@ -25,19 +25,17 @@ public class UI_UpgradeSoomPopUp : UI_Popup
 
     enum GameObjects
     {
-        ConSetCotton,
-        ConSetWood,
-        ConSetStone,
         CottonPanel,
         WoodPanel,
         StonePanel,
-
         ConditionSet
     }
+
     void Start()
     {
         Init();
     }
+
     void Update()
     {
 #if UNITY_ANDROID
@@ -47,6 +45,7 @@ public class UI_UpgradeSoomPopUp : UI_Popup
         }
 #endif
     }
+
     public override void Init()
     {
         base.Init();
@@ -161,7 +160,7 @@ public class UI_UpgradeSoomPopUp : UI_Popup
     {
         //³ª¹«
         if (Managers.Data.Sooms[1300 + Managers.Game.SaveData.SoomLevel + 1].Wood == 0)
-            Managers.Resource.Destroy(GetObject((int)GameObjects.ConSetWood));
+            Managers.Resource.Destroy(GetObject((int)GameObjects.WoodPanel));
         else
         {
             if (Managers.Data.Sooms[1300 + Managers.Game.SaveData.SoomLevel + 1].Wood > Managers.Game.SaveData.Wood)
@@ -173,7 +172,7 @@ public class UI_UpgradeSoomPopUp : UI_Popup
         }
         //µ¹
         if (Managers.Data.Sooms[1300 + Managers.Game.SaveData.SoomLevel + 1].Stone == 0)
-            Managers.Resource.Destroy(GetObject((int)GameObjects.ConSetStone));
+            Managers.Resource.Destroy(GetObject((int)GameObjects.StonePanel));
         else
         {
             if (Managers.Data.Sooms[1300 + Managers.Game.SaveData.SoomLevel + 1].Stone > Managers.Game.SaveData.Stone)
@@ -186,7 +185,7 @@ public class UI_UpgradeSoomPopUp : UI_Popup
 
         //¼Ø
         if (Managers.Data.Sooms[1300 + Managers.Game.SaveData.SoomLevel + 1].Cotton == 0)
-            Managers.Resource.Destroy(GetObject((int)GameObjects.ConSetCotton));
+            Managers.Resource.Destroy(GetObject((int)GameObjects.CottonPanel));
         else
         {
             if (Managers.Data.Sooms[1300 + Managers.Game.SaveData.SoomLevel + 1].Cotton > Managers.Game.SaveData.Cotton)

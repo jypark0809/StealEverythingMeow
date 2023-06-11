@@ -51,7 +51,7 @@ public class UI_Room : UI_Base
         else if ( Managers.Game.SaveData.SpaceLevel == Index + 1)
         {
             GetImage((int)Images.OnText).gameObject.SetActive(false);
-            GetText((int)Texts.OpneText).text = "해금 가능";
+            GetText((int)Texts.OpneText).text = "확장 가능";
             GetButton((int)Buttons.OpenButton).gameObject.BindEvent(OpenRoom);
         }
         else if(Managers.Game.SaveData.SpaceLevel < Index + 1)

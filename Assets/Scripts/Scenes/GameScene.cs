@@ -29,11 +29,11 @@ public class GameScene : BaseScene
         SetPlayer();
         Managers.Object.Camera.SetPlayer(_player.GetComponent<PlayerController>());
 
-        if (Managers.Game.SaveData.firstExecution == true)
-        {
-            Managers.UI.ShowPopupUI<UI_GameTutorialPopup>();
-            Managers.Game.SaveData.firstExecution = false;
-        }
+        //if (Managers.Game.SaveData.firstExecution == true)
+        //{
+        //    Managers.UI.ShowPopupUI<UI_GameTutorialPopup>();
+        //    Managers.Game.SaveData.firstExecution = false;
+        //}
 
         spawnPos = Util.FindChild(_stage, "TreasureMapSpawnPoint", false).GetComponentsInChildren<Transform>();
         CreateUnDuplicateRandom(1, spawnPos.Length, 4);
