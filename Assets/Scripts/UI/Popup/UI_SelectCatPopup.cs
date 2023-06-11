@@ -63,12 +63,12 @@ public class UI_SelectCatPopup : UI_Popup
         GetButton((int)Buttons.StartButton).gameObject.BindEvent(OnStartButtonClicked);
         GetButton((int)Buttons.CloseButton).gameObject.BindEvent(OnCloseButtonClicked);
 
-        //#region Bind Cheat Button
+        #region Bind Cheat Button
         //GetButton((int)Buttons.CBlackButton).gameObject.BindEvent(OnCBlackButtonClicked);
         //GetButton((int)Buttons.CCalicoButton).gameObject.BindEvent(OnCCalicoButtonClicked);
         //GetButton((int)Buttons.CTabbyButton).gameObject.BindEvent(OnCTabbyButtonClicked);
         //GetButton((int)Buttons.CGrayButton).gameObject.BindEvent(OnCGrayButtonClicked);
-        //#endregion
+        #endregion
 
         RefreshUI();
     }
@@ -81,14 +81,6 @@ public class UI_SelectCatPopup : UI_Popup
             ClosePopupUI();
         }
 #endif
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            PlayerPrefs.SetInt("SelectedCatNum", 3);
-            Managers.Sound.Play(Define.Sound.Effect, "Effects/UI_Click");
-            LoadingScene.LoadScene("GameScene", true);
-            Managers.UI.ClosePopupUI();
-        }
     }
 
     void RefreshUI()
