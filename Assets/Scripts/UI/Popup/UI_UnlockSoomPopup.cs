@@ -15,7 +15,7 @@ public class UI_UnlockSoomPopup : UI_Popup
 
     enum Texts
     {
-        CurrentSoomLevel,
+        // CurrentSoomLevel,
         CurText,
         NextText,
         B1,
@@ -66,7 +66,7 @@ public class UI_UnlockSoomPopup : UI_Popup
             GetObject((int)GameObjects.Upgrade).gameObject.SetActive(true);
             GetObject((int)GameObjects.Full).gameObject.SetActive(false);
 
-            GetText((int)Texts.CurrentSoomLevel).text = "Lv " + Managers.Game.SaveData.SoomLevel.ToString();
+            // GetText((int)Texts.CurrentSoomLevel).text = "Lv " + Managers.Game.SaveData.SoomLevel.ToString();
             GetText((int)Texts.CurText).text = "Lv " + Managers.Game.SaveData.SoomLevel.ToString();
             GetText((int)Texts.NextText).text = "Lv " + (Managers.Game.SaveData.SoomLevel + 1).ToString();
 

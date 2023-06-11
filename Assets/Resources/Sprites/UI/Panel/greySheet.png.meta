@@ -252,7 +252,7 @@ TextureImporter:
         height: 45
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 6, y: 5, z: 6, w: 4}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -442,7 +442,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      greySheet_0: -1262789106
+      greySheet_13: 2099378048
       greySheet_5: 1284443405
       greySheet_4: 1581275479
       gray_x: -156166004
@@ -456,7 +456,7 @@ TextureImporter:
       greySheet_3: -1555528854
       greySheet_11: -159660374
       greySheet_7: -271833020
-      greySheet_13: 2099378048
+      greySheet_0: -1262789106
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

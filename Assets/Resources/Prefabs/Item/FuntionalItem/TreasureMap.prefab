@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5059983853355351238}
   - component: {fileID: 8404023487451808639}
   - component: {fileID: 5118938672086988917}
-  - component: {fileID: 3944636981447102050}
+  - component: {fileID: -806854019741078760}
   m_Layer: 30
   m_Name: TreasureMap
   m_TagString: Untagged
@@ -54,7 +54,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -102,7 +102,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.4
---- !u!114 &3944636981447102050
+--- !u!114 &-806854019741078760
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -114,3 +114,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2d125a2e02b00f45afc332c19547bd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isIndicate: 0

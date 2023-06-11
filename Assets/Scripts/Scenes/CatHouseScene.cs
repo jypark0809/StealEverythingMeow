@@ -33,7 +33,7 @@ public class CatHouseScene : BaseScene
 
         if (Managers.Game.SaveData.firstExecution == true)
         {
-            Managers.UI.ShowPopupUI<UI_FindHelp>();
+            //Managers.UI.ShowPopupUI<UI_FindHelp>();
             Managers.UI.ShowPopupUI<UI_ConversationScript>();
         }
         else
